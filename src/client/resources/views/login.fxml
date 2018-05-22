@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<HBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('/client/resources/img/background.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.LoginController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Pane layoutY="37.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="200.0" text="Server address" />
+                  <TextField fx:id="address" layoutY="17.0" prefHeight="25.0" prefWidth="200.0" promptText="Server address" text="localhost" />
+                  <Label fx:id="errorAddress" layoutY="43.0" prefHeight="17.0" prefWidth="200.0" textFill="RED" />
+               </children>
+            </Pane>
+            <Pane layoutY="104.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="200.0" text="Username" />
+                  <TextField fx:id="username" layoutY="17.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" text="Test" />
+                  <Label fx:id="errorUsername" layoutY="43.0" prefHeight="17.0" prefWidth="200.0" textFill="RED" />
+               </children>
+            </Pane>
+            <Button layoutX="140.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickConnect" text="Connect" textAlignment="RIGHT" />
+         </children>
+      </Pane>
+   </children>
+</HBox>
