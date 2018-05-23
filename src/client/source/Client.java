@@ -97,7 +97,6 @@ public class Client extends Application implements Serializable {
         this.setScene(this.main.show());
     }
 
-
     private void setScene(Parent root) {
         Scene scene = stage.getScene();
 

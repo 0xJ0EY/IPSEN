@@ -35,7 +35,7 @@
                 </Tab>
                 <Tab text="Settings">
                     <content>
-                        <!--<fx:include fx:id="settings" source="settings.fxml" />-->
+                        <fx:include fx:id="settings" source="settings.fxml" />
                     </content>
                 </Tab>
                 <Tab text="Rules">

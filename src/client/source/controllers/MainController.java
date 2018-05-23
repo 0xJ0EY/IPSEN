@@ -1,7 +1,6 @@
 package client.source.controllers;
 
 import client.source.Client;
-import com.sun.scenario.Settings;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TabPane;
@@ -30,9 +29,8 @@ public class MainController implements ControllerInterface {
     @FXML private AnchorPane turn;
     @FXML public TurnController turnController;
 
-    // TODO: Fix this
-//    @FXML private AnchorPane settings;
-//    @FXML public SettingsController settingsController;
+    @FXML private AnchorPane settings;
+    @FXML public SettingsController settingsController;
 
     @FXML private AnchorPane rules;
     @FXML public RulesController rulesController;
@@ -47,7 +45,7 @@ public class MainController implements ControllerInterface {
         belowController.setClient(client);
         marketController.setClient(client);
         turnController.setClient(client);
-//        settingsController.setClient(client);
+        settingsController.setClient(client);
 
         this.client = client;
     }

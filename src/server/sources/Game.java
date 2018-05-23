@@ -68,10 +68,6 @@ public class Game implements Runnable, Serializable {
 
                         while (!player.hasAction()) {
                             Thread.sleep(100);
-
-                            System.out.println(player);
-
-                            System.out.println("Polling for response");
                         }
 
                         System.out.println("Execute action");
@@ -120,7 +116,7 @@ public class Game implements Runnable, Serializable {
         boolean hasEnded = true;
 
         for (Player player : this.players) {
-            if (player.hasPassed()) hasEnded = false;
+            if (!player.hasPassed()) hasEnded = false;
         }
 
         return hasEnded;
