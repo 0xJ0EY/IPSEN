@@ -51,6 +51,13 @@ public class Client extends Application implements Serializable {
         this.stage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        System.out.println("Disconnect");
+        gameClient.disconnect();
+        super.stop();
+    }
+
     private void loadLogin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/login.fxml"));
         loader.load();

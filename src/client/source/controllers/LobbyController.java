@@ -44,9 +44,12 @@ public class LobbyController implements ControllerInterface {
         buttonStart.setDisable(false);
     }
 
-    public void clickStart() throws RemoteException {
-        System.out.println("Start match");
+    public void onClickStart() throws RemoteException {
         this.client.gameClient.requestRequest(new StartGameRequest());
+    }
+
+    public void onClickDisconnect() throws RemoteException {
+        this.client.gameClient.disconnect();
     }
 
     @Override

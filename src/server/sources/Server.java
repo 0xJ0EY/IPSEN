@@ -2,7 +2,7 @@ package server.sources;
 
 import server.sources.interfaces.*;
 import server.sources.models.Player;
-import server.sources.notifications.PlayerConnectedNotification;
+import server.sources.notifications.UpdatePlayerListNotification;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -17,7 +17,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private final int SERVER_PORT = 1099;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
-    public Game game = new Game(this);
+    public Game game = new Game((ServerInterface) this);
 
     public Server() throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -38,24 +38,35 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         Player player = new Player();
 
         // Link GameClient & Player
+        player.setGame(this.game);
         player.setGameClient(gameClient);
+
         gameClient.setPlayer(player);
 
-        // Set
-        this.gameClients.add(gameClient);
+        // Set player
         game.players.add(player);
+        this.gameClients.add(gameClient);
 
         if (this.gameClients.size() == 1) {
             gameClient.promote();
         }
 
-        this.notifyClients(new PlayerConnectedNotification());
+        this.notifyClients(new UpdatePlayerListNotification());
     }
 
     @Override
-    public void unregisterClient(GameClientInterface gameClient) {
-        // TODO Remove player object from the game
+    public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
+
         this.gameClients.remove(gameClient);
+
+        for (Player player : this.game.players) {
+            if (player.getGameClient().equals(gameClient)) {
+                System.out.println("Disconnected player");
+                this.game.players.remove(player);
+            }
+        }
+
+        this.notifyClients(new UpdatePlayerListNotification());
     }
 
     @Override
@@ -89,6 +100,10 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     public static void main(String[] args) throws Exception {
         new Server();
+    }
+
+    public void startGame() {
+        new Thread(game).start();
     }
 
     public void save() {

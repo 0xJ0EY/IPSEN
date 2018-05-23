@@ -23,6 +23,26 @@
                         <fx:include fx:id="below" source="below.fxml" />
                     </content>
                 </Tab>
+                <Tab text="Market">
+                    <content>
+                        <fx:include fx:id="market" source="market.fxml" />
+                    </content>
+                </Tab>
+                <Tab text="Turn">
+                    <content>
+                        <fx:include fx:id="turn" source="turn.fxml" />
+                    </content>
+                </Tab>
+                <Tab text="Settings">
+                    <content>
+                        <!--<fx:include fx:id="settings" source="settings.fxml" />-->
+                    </content>
+                </Tab>
+                <Tab text="Rules">
+                    <content>
+                        <fx:include fx:id="rules" source="rules.fxml" />
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
     </children>

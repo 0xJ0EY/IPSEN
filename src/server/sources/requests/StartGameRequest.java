@@ -9,7 +9,7 @@ public class StartGameRequest implements RequestInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        server.game.play();
+        server.startGame();
     }
 
 }

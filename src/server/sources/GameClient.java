@@ -9,15 +9,18 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.UUID;
 
 public class GameClient extends UnicastRemoteObject implements GameClientInterface {
 
     private ServerInterface server;
     private Client client;
     private String username;
-    private Player player;
+    private PlayerInterface player;
 
     private boolean owner = false;
+
+    private UUID uuid = UUID.randomUUID();
 
     public GameClient(Client client) throws RemoteException {
         super();
@@ -33,6 +36,11 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
 
         this.server = (ServerInterface) Naming.lookup("//" + address + "/Server");
         this.server.registerClient(this);
+    }
+
+    public void disconnect() throws RemoteException {
+        this.server.unregisterClient(this);
+
     }
 
     @Override
@@ -71,12 +79,22 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     }
 
     @Override
-    public Player getPlayer() throws RemoteException {
+    public PlayerInterface getPlayer() throws RemoteException {
         return this.player;
     }
 
     @Override
-    public void setPlayer(Player player) throws RemoteException {
+    public void setPlayer(PlayerInterface player) throws RemoteException {
         this.player = player;
+    }
+
+    @Override
+    public UUID getUUID() throws RemoteException {
+        return this.uuid;
+    }
+
+    @Override
+    public boolean equals(GameClientInterface gameClient) throws RemoteException {
+        return this.uuid.equals(gameClient.getUUID());
     }
 }

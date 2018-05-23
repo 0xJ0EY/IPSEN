@@ -2,7 +2,7 @@ package client.source.controllers;
 
 import client.source.Client;
 
-public class AboveController {
+public class SettingsController {
 
     private Client client;
 

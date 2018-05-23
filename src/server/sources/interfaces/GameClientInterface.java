@@ -6,22 +6,20 @@ import server.sources.models.Player;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.UUID;
 
 public interface GameClientInterface extends Remote {
 
-
     /**
-     * Wrapper for clear request to the server
-     * TODO: Decide to remove this
-     * @param request
+     * Send a clear request to the server
+     * @param request request
      * @throws RemoteException
      */
     public void requestRequest(RequestInterface request) throws RemoteException;
 
     /**
-     * Wrapper for clear action request to the server
-     * TODO: Decide to remove this
-     * @param action
+     * Send an combination of a request and notification request to the server
+     * @param action request
      * @throws RemoteException
      */
     public void requestAction(ActionInterface action) throws RemoteException;
@@ -33,8 +31,18 @@ public interface GameClientInterface extends Remote {
      */
     public void receiveNotification(NotificationInterface notification) throws RemoteException;
 
+    /**
+     * Return the set username
+     * @return username
+     * @throws RemoteException
+     */
     public String getUsername() throws RemoteException;
 
+    /**
+     * Return the server interfacer if available
+     * @return ServerInterface
+     * @throws RemoteException
+     */
     public ServerInterface getServer() throws RemoteException;
 
     /**
@@ -55,10 +63,15 @@ public interface GameClientInterface extends Remote {
      * @return Player
      * @throws RemoteException
      */
-    public Player getPlayer() throws RemoteException;
+    public PlayerInterface getPlayer() throws RemoteException;
 
     /**
      * Set a new player object
+     * @throws RemoteException
      */
-    public void setPlayer(Player player) throws RemoteException;
+    public void setPlayer(PlayerInterface player) throws RemoteException;
+
+    public UUID getUUID() throws RemoteException;
+
+    public boolean equals(GameClientInterface gameClient) throws RemoteException;
 }

@@ -5,11 +5,13 @@ import server.sources.interfaces.NotificationInterface;
 
 import java.rmi.RemoteException;
 
-public class PlayerConnectedNotification implements NotificationInterface {
+public class TestNotification  implements NotificationInterface {
+
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
-        // Force that every client updates the lobby list
-        gameClient.getClient().lobby.updateLobbyList();
+        System.out.println("Dit is een test notification");
+
     }
+
 }
