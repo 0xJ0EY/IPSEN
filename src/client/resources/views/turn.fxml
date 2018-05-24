@@ -7,16 +7,26 @@
 <?import javafx.scene.layout.*?>
 
 
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c4d369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.TurnController">
    <children>
-      <!-- Left side -->
-      <Button layoutX="14.0" layoutY="50.0" prefHeight="80" prefWidth="250" mnemonicParsing="false"  onAction="#onClickAction" text="Explore" />
-      <Button layoutX="14.0" layoutY="150.0" prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#onClickAction" text="Build" />
-      <Button layoutX="14.0" layoutY="250.0" prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#onClickAction" text="Labour" />
+      <GridPane alignment="center" hgap="300" vgap="10">
+         <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+         <!-- left column -->
+         <Button prefHeight="80" prefWidth="250" mnemonicParsing="false"  onAction="#explore" text="Explore"
+                 GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2" />
+         <Button prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#build" text="Build"
+                 GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2" />
+         <Button prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#labour" text="Labour"
+                 GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" />
 
-      <!-- Right side -->
-      <Button layoutX="300.0" layoutY="50.0" prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#onClickAction" text="Harvest" />
-      <Button layoutX="300.0" layoutY="150.0" prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#onClickAction" text="Train" />
-      <Button layoutX="300.0" layoutY="250.0" prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#onClickAction" text="Pass" />
+         <!-- right column -->
+         <Button prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#harvest" text="Harvest"
+                 GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="2" />
+         <Button prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#train" text="Train"
+                 GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2" />
+         <Button prefHeight="80" prefWidth="250" mnemonicParsing="false" onAction="#pass" text="Pass"
+                 GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="2" />
+      </GridPane>
    </children>
 </AnchorPane>
