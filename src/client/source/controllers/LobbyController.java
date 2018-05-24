@@ -29,7 +29,7 @@ public class LobbyController implements ControllerInterface {
 
     public void updateLobbyList() throws RemoteException {
         ArrayList<GameClientInterface> currentClients = this.client.gameClient.getServer().listCurrentClients();
-        ArrayList<String> clientNames = new ArrayList<String>(); // TODO: Look for a way to remove this
+        ArrayList<String> clientNames = new ArrayList<String>();
 
         for (GameClientInterface client : currentClients) {
             clientNames.add(client.getUsername());
@@ -44,12 +44,28 @@ public class LobbyController implements ControllerInterface {
         buttonStart.setDisable(false);
     }
 
+    public void disableStartButton() {
+        buttonStart.setDisable(true);
+    }
+
     public void onClickStart() throws RemoteException {
         this.client.gameClient.requestRequest(new StartGameRequest());
     }
 
+    /**
+     * Disconnect the client from the game
+     * @throws RemoteException
+     */
     public void onClickDisconnect() throws RemoteException {
+
+        // Disconnect from the game lobby / game
         this.client.gameClient.disconnect();
+
+        // Disable the start button if it was active
+        this.disableStartButton();
+
+        // Return the client to the login screen
+        this.client.showLogin();
     }
 
     @Override

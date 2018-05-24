@@ -39,7 +39,7 @@ public interface GameClientInterface extends Remote {
     public String getUsername() throws RemoteException;
 
     /**
-     * Return the server interfacer if available
+     * Return the server interface if available
      * @return ServerInterface
      * @throws RemoteException
      */
@@ -71,7 +71,18 @@ public interface GameClientInterface extends Remote {
      */
     public void setPlayer(PlayerInterface player) throws RemoteException;
 
+    /**
+     * Return the randomly set UUID
+     * @return
+     * @throws RemoteException
+     */
     public UUID getUUID() throws RemoteException;
 
+    /**
+     *
+     * @param gameClient
+     * @return
+     * @throws RemoteException
+     */
     public boolean equals(GameClientInterface gameClient) throws RemoteException;
 }

@@ -2,7 +2,6 @@ package server.sources;
 
 import client.source.Client;
 import server.sources.interfaces.*;
-import server.sources.models.Player;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -17,6 +16,8 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     private Client client;
     private String username;
     private PlayerInterface player;
+
+    private boolean connected = false;
 
     private boolean owner = false;
 
@@ -36,10 +37,22 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
 
         this.server = (ServerInterface) Naming.lookup("//" + address + "/Server");
         this.server.registerClient(this);
+        this.connected = true;
+
     }
 
     public void disconnect() throws RemoteException {
-        this.server.unregisterClient(this);
+
+        // Only disconnect when connected to a server
+        if (this.connected) {
+            // Clear gameClient of client
+            this.client.gameClient = new GameClient(this.client);
+
+            // Send unregister request to the server
+            this.server.unregisterClient((GameClientInterface) this);
+
+            this.connected = false;
+        }
 
     }
 
@@ -75,7 +88,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     @Override
     public void promote() throws RemoteException {
         this.owner = true;
-        this.client.lobby.enableStartButton();
+        this.client.getLobby().enableStartButton();
     }
 
     @Override

@@ -53,7 +53,7 @@ public class Game implements Runnable, Serializable {
 
     }
 
-    public void runGame() {
+    public void runGame() throws RemoteException {
         this.setGameState(GameStates.RUNNING);
 
         while (!this.gameHasEnded()) {
@@ -108,6 +108,16 @@ public class Game implements Runnable, Serializable {
             this.play();
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    public void removePlayer(GameClientInterface gameClient) {
+
+        for (Player player : this.players) {
+            if (player.equals(gameClient)) {
+                this.players.remove(player);
+            }
         }
 
     }
