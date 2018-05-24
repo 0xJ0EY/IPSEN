@@ -1,6 +1,7 @@
-package server.sources.models;
+package server.sources.models.buildings;
 
 import server.sources.interfaces.Perk;
+import server.sources.models.Player;
 
 import java.util.ArrayList;
 
