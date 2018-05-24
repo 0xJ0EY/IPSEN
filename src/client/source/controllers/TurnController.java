@@ -10,10 +10,42 @@ public class TurnController {
 
     private Client client;
 
-    @FXML private void onClickAction() throws RemoteException {
+
+    @FXML private void explore() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new TestAction());
-        System.out.println("Send action");
+        System.out.println("Send action explore");
+
+    }
+
+    @FXML private void build() throws RemoteException {
+
+        client.gameClient.getPlayer().doAction(new TestAction());
+        System.out.println("Send action build");
+
+    }
+    @FXML private void labour() throws RemoteException {
+
+        client.gameClient.getPlayer().doAction(new TestAction());
+        System.out.println("Send action labour");
+
+    }
+    @FXML private void harvest() throws RemoteException {
+
+        client.gameClient.getPlayer().doAction(new TestAction());
+        System.out.println("Send action harvest");
+
+    }
+    @FXML private void train() throws RemoteException {
+
+        client.gameClient.getPlayer().doAction(new TestAction());
+        System.out.println("Send action train");
+
+    }
+    @FXML private void pass() throws RemoteException {
+
+        client.gameClient.getPlayer().doAction(new TestAction());
+        System.out.println("Send action pass");
 
     }
 
