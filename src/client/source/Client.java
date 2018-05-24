@@ -20,7 +20,7 @@ public class Client extends Application implements Serializable {
     public GameClient gameClient;
 
     public LoginController login;
-    public LobbyController lobby;
+    private LobbyController lobby;
     public MainController main;
 
     @Override
@@ -71,8 +71,8 @@ public class Client extends Application implements Serializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/lobby.fxml"));
         loader.load();
 
-        this.lobby = loader.getController();
-        this.lobby.setClient(this);
+        this.setLobby(loader.getController());
+        this.getLobby().setClient(this);
 
     }
 
@@ -90,7 +90,7 @@ public class Client extends Application implements Serializable {
     }
 
     public void showLobby() {
-        this.setScene(this.lobby.show());
+        this.setScene(this.getLobby().show());
     }
 
     public void showMain() {
@@ -111,4 +111,11 @@ public class Client extends Application implements Serializable {
         launch(args);
     }
 
+    public LobbyController getLobby() {
+        return lobby;
+    }
+
+    public void setLobby(LobbyController lobby) {
+        this.lobby = lobby;
+    }
 }

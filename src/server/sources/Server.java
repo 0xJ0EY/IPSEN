@@ -47,9 +47,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         game.players.add(player);
         this.gameClients.add(gameClient);
 
-        if (this.gameClients.size() == 1) {
-            gameClient.promote();
-        }
+        this.promoteOwner();
 
         this.notifyClients(new UpdatePlayerListNotification());
     }
@@ -57,23 +55,33 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
+        this.game.removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
-        for (Player player : this.game.players) {
-            if (player.getGameClient().equals(gameClient)) {
-                System.out.println("Disconnected player");
-                this.game.players.remove(player);
-            }
-        }
+        this.promoteOwner();
 
         this.notifyClients(new UpdatePlayerListNotification());
     }
 
+    /**
+     * Always promote the first client in the list
+     * @throws RemoteException
+     */
+    private void promoteOwner() throws RemoteException {
+
+        if (this.gameClients.size() > 0) {
+            this.gameClients.get(0).promote();
+        }
+
+    }
+
     @Override
     public void notifyClients(NotificationInterface notification) throws RemoteException {
+
         for (GameClientInterface gameClient : this.gameClients) {
             gameClient.receiveNotification(notification);
         }
+
     }
 
     @Override
