@@ -16,7 +16,7 @@ public abstract class Building {
      * @param price
      * @param perks
      * */
-    public Building(int price, ArrayList<Perk> perks){
+    public Building(int price, ArrayList<Perk> perks) {
         this.perks = perks;
     }
 
@@ -25,6 +25,7 @@ public abstract class Building {
      * @param player
      * */
     public boolean canBuy(Player player) {
-        return false;
+        // TODO: Check if builder can actually buy the building
+        return true;
     }
 }
