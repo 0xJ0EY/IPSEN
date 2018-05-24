@@ -1,5 +1,7 @@
 package server.sources.models;
 
+import server.sources.interfaces.Perk;
+
 import java.util.ArrayList;
 
 /**
