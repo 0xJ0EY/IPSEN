@@ -1,4 +1,4 @@
-package server.sources.models;
+package server.sources.models.buildings;
 
 import server.sources.interfaces.Perk;
 
@@ -7,14 +7,14 @@ import java.util.ArrayList;
 /**
  * Created by robin on 24-5-2018.
  */
-public class House extends Building {
+public class KeyHouse extends House {
 
     /**
-     * For creating a house object.
+     * For creating a KeyHouse object.
      * @param price
      * @param perks
      * */
-    public House(int price, ArrayList<Perk> perks){
+    public KeyHouse(int price, ArrayList<Perk> perks){
         super(price, perks);
     }
 }
