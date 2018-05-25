@@ -21,6 +21,6 @@ public class RulesController implements Initializable {
      * */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        firstSideRules.setImage(new Image("client/resources/img/rules.jpg"));
+        firstSideRules.setImage(new Image(""));
     }
 }
