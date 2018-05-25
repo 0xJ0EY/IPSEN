@@ -4,6 +4,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('/client/resources/img/rules.jpg'); -fx-background-size: contain; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
-
+<?import javafx.scene.control.ScrollPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: cadetblue" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
+    <children>
+        <!--<HBox fx:id="rulesImgHbox" spacing="10" minHeight="0.0" minWidth="0.0" prefHeight="200" prefWidth="200" >-->
+            <!--<ImageView fx:id="firstSideRules" pickOnBounds="true" preserveRatio="true" fitHeight="200" fitWidth="200" >-->
+            <!--</ImageView>-->
+        <!--</HBox>-->
+        <ScrollPane fx:id="rulesScrollpane" prefHeight="600" prefWidth="850" >
+            <content>
+                <HBox fx:id="rulesImgHbox" spacing="10" >
+                    <ImageView fx:id="firstSideRules" pickOnBounds="true" preserveRatio="true" >
+                    </ImageView>
+                </HBox>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>
