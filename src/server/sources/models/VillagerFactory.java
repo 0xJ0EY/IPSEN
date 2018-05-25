@@ -1,4 +1,4 @@
-p qackage server.sources.models;
+package server.sources.models;
 
 import java.util.ArrayList;
 
