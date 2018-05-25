@@ -1,6 +1,8 @@
 package server.sources.models.stories;
 
-public class Reward {
+import java.io.Serializable;
+
+public class Reward implements Serializable {
 
     private String reward;
 
@@ -10,5 +12,9 @@ public class Reward {
 
     public void execute() {
         System.out.println(this.reward);
+    }
+
+    public String getReward() {
+        return reward;
     }
 }

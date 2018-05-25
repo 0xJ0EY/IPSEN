@@ -1,8 +1,9 @@
 package server.sources.models.stories;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Story {
+public class Story implements Serializable {
 
     private String story;
     private ArrayList<Choice> choices;

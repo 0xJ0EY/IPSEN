@@ -2,7 +2,7 @@ package client.source.controllers;
 
 import client.source.Client;
 import javafx.fxml.FXML;
-import server.sources.actions.ExploreAction;
+import server.sources.actions.ExploreStoryAction;
 import server.sources.actions.TestAction;
 
 import java.rmi.RemoteException;
@@ -14,7 +14,7 @@ public class TurnController {
 
     @FXML private void explore() throws RemoteException {
 
-        client.gameClient.getPlayer().doAction(new ExploreAction());
+        client.gameClient.getPlayer().doAction(new ExploreStoryAction());
         System.out.println("Send action explore");
 
     }

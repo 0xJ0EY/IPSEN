@@ -19,11 +19,6 @@ public class Game implements Runnable, Serializable {
 
     public ArrayList<Player> players = new ArrayList<Player>();
 
-    //Create Stories list
-    public ArrayList<Story> stories = new ArrayList<Story>();
-    //Create story factory
-    private StoryFactory sf;
-
     public ServerInterface server;
     private GameStates gameState = GameStates.LOBBY;
 
@@ -55,18 +50,13 @@ public class Game implements Runnable, Serializable {
 
         //Fill stories array with stories
         try {
-            sf = new StoryFactory();
-            stories = sf.getStoriesFromXML("stories.xml");
-        } catch (Exception e) {
+            new StoryFactory().loadStoriesFromXML();
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
 
         Player player = this.players.get(0);
         player.requestAction();
-
-        //showoff van mij dat het werkt xx
-        System.out.println(stories.get(0).getStory());
-        System.out.println("Game started");
 
     }
 
