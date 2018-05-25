@@ -1,11 +1,9 @@
 package server.sources.models;
 
-public class TrainerVillager extends Villager {
+public class TrainerVillager extends Villager implements Trainable{
 
-
-    //TODO: implementing training
-    public void train(){
+    //TODO: implementing train
+    public void trainVillager() {
 
     }
-
 }

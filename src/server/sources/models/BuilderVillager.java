@@ -1,10 +1,9 @@
 package server.sources.models;
 
-public class BuilderVillager extends Villager {
+public class BuilderVillager extends Villager implements Buildable{
 
-    //TODO: implententing build
-    public void build(){
+    //TODO: implementing build
+    public void buildBuilding() {
 
     }
-
 }
