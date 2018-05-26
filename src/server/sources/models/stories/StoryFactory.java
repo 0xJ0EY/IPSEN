@@ -5,12 +5,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StoryFactory {
@@ -18,27 +21,43 @@ public class StoryFactory {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder builder = factory.newDocumentBuilder();
 
+    private static ArrayList<Story> stories;
+
     public StoryFactory() throws ParserConfigurationException {
     }
 
-    public ArrayList<Story> getStoriesFromXML(String filename) throws Exception {
+    public Story randomStory() {
+        if (StoryFactory.stories.size() == 0) this.loadStoriesFromXML();
+
+        int key = (int) (Math.random() * StoryFactory.stories.size());
+
+        return StoryFactory.stories.get(key);
+    }
+
+    public void loadStoriesFromXML() {
 
         ArrayList<Story> storyArrayList = new ArrayList<Story>();
 
-        Document document = builder.parse(new InputSource(new FileReader(new File("src/server/resources/data/" + filename))));
+        try {
+            Document document = builder.parse(new InputSource(new FileReader(new File("src/server/resources/data/stories.xml"))));
 
-        NodeList stories = document.getElementsByTagName("story");
+            NodeList stories = document.getElementsByTagName("story");
 
-        for (int i = 0; i < stories.getLength(); ++i) {
-            Node storyNode = stories.item(i);
-            Element storyElement = (Element) storyNode;
+            for (int i = 0; i < stories.getLength(); ++i) {
+                Node storyNode = stories.item(i);
+                Element storyElement = (Element) storyNode;
 
-            String text = storyElement.getElementsByTagName("text").item(0).getTextContent();
+                String text = storyElement.getElementsByTagName("text").item(0).getTextContent();
 
-            storyArrayList.add(new Story(text, this.fetchChoice(storyNode)));
+                storyArrayList.add(new Story(text, this.fetchChoice(storyNode)));
+            }
+
+        } catch (IOException | SAXException e) {
+            e.printStackTrace();
         }
 
-        return storyArrayList;
+        // Set all stories in the static object
+        StoryFactory.stories = storyArrayList;
     }
 
     private ArrayList<Choice> fetchChoice(Node storyNode) {
@@ -51,8 +70,9 @@ public class StoryFactory {
         for (int i = 0; i < choiceNodes.getLength(); i++) {
             Node choiceNode = choiceNodes.item(i);
             Element choiceElement = (Element) choiceNode;
+            String description = choiceElement.getAttribute("description");
 
-            choices.add(new Choice(this.fetchOptions(choiceNode)));
+            choices.add(new Choice(description, this.fetchOptions(choiceNode)));
         }
 
         return choices;

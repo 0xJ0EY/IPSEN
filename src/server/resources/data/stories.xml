@@ -3,7 +3,7 @@
     <story>
         <text>Holy shit</text>
         <choices>
-            <choice>
+            <choice description="Holy">
                 <option cost="2">
                     <reward>VILLAGER</reward>
                 </option>
@@ -13,7 +13,7 @@
                     <reward>COIN</reward>
                 </option>
             </choice>
-            <choice>
+            <choice description="Shit">
                 <option cost="2">
                     <reward>COIN</reward>
                 </option>
@@ -33,7 +33,7 @@
     <story>
         <text>Hello Henk</text>
         <choices>
-            <choice>
+            <choice description="Hello">
                 <option cost="2">
                     <reward>VILLAGER</reward>
                 </option>
@@ -43,7 +43,7 @@
                     <reward>COIN</reward>
                 </option>
             </choice>
-            <choice>
+            <choice description="Henk">
                 <option cost="2">
                     <reward>COIN</reward>
                 </option>
@@ -59,4 +59,5 @@
             </choice>
         </choices>
     </story>
+
 </stories>
