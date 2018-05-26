@@ -7,24 +7,24 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: cadetblue" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
    <children>
-       <FlowPane orientation="HORIZONTAL" prefWidth="600">
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="first_rule" text="0" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="second_rule" text="1" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="third_rule" text="2" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="fourth_rule" text="3" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="fifth_rule" text="4" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="sixth_rule" text="5" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="seventh_rule" text="6" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="eighth_rule" text="7" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="ninth_rule" text="8" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="tenth_rule" text="9" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="eleventh_rule" text="10" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="twelfth_rule" text="11" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="thirteenth_rule" text="12" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="fourteenth_rule" text="13" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="fifteenth_rule" text="14" />
-            <Button mnemonicParsing="false" onAction="#handle" fx:id="sixteenth_rule" text="15" />
+       <FlowPane orientation="HORIZONTAL" prefWidth="600" hgap="5" vgap="5">
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="first_rule" text="p0" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="second_rule" text="p1" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="third_rule" text="p2" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="fourth_rule" text="p3" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="fifth_rule" text="p4" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="sixth_rule" text="p5" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="seventh_rule" text="p6" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="eighth_rule" text="p7" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="ninth_rule" text="p8" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="tenth_rule" text="p9" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="eleventh_rule" text="p10" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="twelfth_rule" text="p11" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="thirteenth_rule" text="p12" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="fourteenth_rule" text="p13" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="fifteenth_rule" text="p14" />
+            <Button prefWidth="60.0" mnemonicParsing="false" onAction="#handle" fx:id="sixteenth_rule" text="p15" />
        </FlowPane>
-      <ImageView fx:id="ruleImage" fitHeight="750" layoutY="50.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ruleImage" fitHeight="850" layoutY="75.0" layoutX="50.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
