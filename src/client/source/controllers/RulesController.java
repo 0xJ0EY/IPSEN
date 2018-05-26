@@ -30,7 +30,9 @@ public class RulesController implements Initializable, EventHandler<ActionEvent>
     @FXML private Button twelfth_rule;
     @FXML private Button thirteenth_rule;
     @FXML private Button fourteenth_rule;
+    @FXML private Button fifteenth_rule;
     @FXML private Button sixteenth_rule;
+
 
 
     @FXML private ImageView ruleImage;
@@ -42,84 +44,62 @@ public class RulesController implements Initializable, EventHandler<ActionEvent>
      * */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         ruleImage.setImage(new Image("client/resources/img/rules_map/rules-00.jpg"));
-//        rules_1.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
-//        rules_2.setImage(new Image("client/resources/img/rules_map/rules-02.jpg"));
-//        rules_3.setImage(new Image("client/resources/img/rules_map/rules-03.jpg"));
-//        rules_4.setImage(new Image("client/resources/img/rules_map/rules-04.jpg"));
-//        rules_5.setImage(new Image("client/resources/img/rules_map/rules-05.jpg"));
-//        rules_6.setImage(new Image("client/resources/img/rules_map/rules-06.jpg"));
-//        rules_7.setImage(new Image("client/resources/img/rules_map/rules-07.jpg"));
-//        rules_8.setImage(new Image("client/resources/img/rules_map/rules-08.jpg"));
-//        rules_9.setImage(new Image("client/resources/img/rules_map/rules-09.jpg"));
     }
 
+    /**
+     * This is for handling clicks
+     * @param evt
+     */
     @Override
     public void handle(ActionEvent evt) {
-        if (evt.getSource().equals(first)) {
-            System.out.println("Hello World");
+        if (evt.getSource().equals(first_rule)) {
             ruleImage.setImage(new Image("client/resources/img/rules_map/rules-00.jpg"));
         }
-        else if (evt.getSource().equals(second)) {
-            System.out.println("What is this!!!");
+        else if (evt.getSource().equals(second_rule)) {
             ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
         }
-        else if (evt.getSource().equals(third)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(third_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-02.jpg"));
         }
-        else if (evt.getSource().equals(fourth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(fourth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-03.jpg"));
         }
-        else if (evt.getSource().equals(fifth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(fifth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-04.jpg"));
         }
-        else if (evt.getSource().equals(fifth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(sixth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-05.jpg"));
         }
-        else if (evt.getSource().equals(sixth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(seventh_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-06.jpg"));
         }
-        else if (evt.getSource().equals(seventh)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(eighth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-07.jpg"));
         }
-        else if (evt.getSource().equals(eighth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(ninth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-08.jpg"));
         }
-        else if (evt.getSource().equals(ninth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(tenth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-09.jpg"));
         }
-        else if (evt.getSource().equals(tenth)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(eleventh_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-10.jpg"));
         }
-        else if (evt.getSource().equals(second)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(twelfth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-11.jpg"));
         }
-        else if (evt.getSource().equals(second)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(thirteenth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-12.jpg"));
         }
-        else if (evt.getSource().equals(second)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(fourteenth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-13.jpg"));
         }
-        else if (evt.getSource().equals(second)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(fifteenth_rule)) {
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-14.jpg"));
         }
-        else if (evt.getSource().equals(second)) {
-            System.out.println("What is this!!!");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-01.jpg"));
+        else if (evt.getSource().equals(sixteenth_rule)){
+            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-15.jpg"));
         }
     }
 }
