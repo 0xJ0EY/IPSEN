@@ -1,14 +1,13 @@
 package client.source;
 
-import client.source.controllers.LobbyController;
-import client.source.controllers.LoginController;
-import client.source.controllers.MainController;
+import client.source.controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.sources.GameClient;
+import server.sources.models.stories.Story;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -22,6 +21,7 @@ public class Client extends Application implements Serializable {
     public LoginController login;
     private LobbyController lobby;
     public MainController main;
+    private ExploreController explore;
 
     @Override
     public void start(Stage primaryStage) {
@@ -38,6 +38,7 @@ public class Client extends Application implements Serializable {
             this.loadLogin();
             this.loadLobby();
             this.loadMain();
+            this.loadExplore();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,6 +86,14 @@ public class Client extends Application implements Serializable {
 
     }
 
+    private void loadExplore() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/explore.fxml"));
+        loader.load();
+
+        this.explore = loader.getController();
+        this.explore.setClient(this);
+    }
+
     public void showLogin() {
         this.setScene(this.login.show());
     }
@@ -95,6 +104,11 @@ public class Client extends Application implements Serializable {
 
     public void showMain() {
         this.setScene(this.main.show());
+    }
+
+    public void showExplore(Story story) {
+        this.explore.setExploreStory(story);
+        this.setScene((this.explore.show()));
     }
 
     private void setScene(Parent root) {

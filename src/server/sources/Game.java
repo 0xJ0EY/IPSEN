@@ -4,8 +4,11 @@ import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.ServerInterface;
 import server.sources.models.Player;
+import server.sources.models.stories.Story;
+import server.sources.models.stories.StoryFactory;
 import server.sources.notifications.GameStartedNotification;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -45,11 +48,15 @@ public class Game implements Runnable, Serializable {
         System.out.println("Send notification");
         this.server.notifyClients(new GameStartedNotification());
 
+        //Fill stories array with stories
+        try {
+            new StoryFactory().loadStoriesFromXML();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
 
         Player player = this.players.get(0);
         player.requestAction();
-
-        System.out.println("Game started");
 
     }
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.ExploreController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER" layoutY="214.0" prefHeight="100.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <RadioButton fx:id="option1" mnemonicParsing="false" text="RadioButton">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="option" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="option2" mnemonicParsing="false" text="RadioButton" toggleGroup="$option" />
+               </children>
+            </HBox>
+            <TextArea fx:id="story" layoutX="50.0" layoutY="14.0" prefHeight="200.0" prefWidth="500.0" text="Hier komt echt een gaaf verhaal als het meezit&#10;" />
+            <Button fx:id="chooceButton" layoutX="271.0" layoutY="314.0" mnemonicParsing="false" onAction="#clickChooce" text="Chooce" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
