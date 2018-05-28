@@ -1,4 +1,4 @@
-package server.sources.models;
+package server.sources.models.villagers;
 
 public class AllroundVillager extends Villager implements Trainable, Buildable {
 

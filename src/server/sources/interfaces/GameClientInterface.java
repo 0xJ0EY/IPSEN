@@ -1,8 +1,6 @@
 package server.sources.interfaces;
 
 import client.source.Client;
-import server.sources.Server;
-import server.sources.models.Player;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

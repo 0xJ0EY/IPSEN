@@ -1,4 +1,4 @@
-package server.sources.models;
+package server.sources.models.villagers;
 
 public interface Trainable {
 
