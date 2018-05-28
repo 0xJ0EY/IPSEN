@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Villager {
 
-    private ArrayList<Lanterns> lanterns = new ArrayList<Lanterns>();
-    private boolean injured;
-    private boolean tired;
+    protected ArrayList<Lanterns> lanterns = new ArrayList<Lanterns>();
+    protected boolean injured;
+    protected boolean tired;
 
     public Villager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
         this.lanterns = lanterns;
