@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import server.sources.Server;
+import server.sources.exceptions.GameStartedException;
+import server.sources.exceptions.ServerFullException;
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
@@ -36,19 +39,23 @@ public class LoginController implements ControllerInterface {
             this.client.gameClient.connect(address.getText(), username.getText());
             this.client.showLobby();
             return true;
+        } catch (ServerFullException e) {
+            this.errorAddress.setText("The game is full.");
+
+        } catch (GameStartedException e) {
+            this.errorAddress.setText("Game has already started.");
 
         } catch (RemoteException | NotBoundException e) {
             this.errorAddress.setText("Server did not respond.");
             e.printStackTrace();
-            return false;
 
         } catch (MalformedURLException e) {
             this.errorAddress.setText("Invalid url.");
             e.printStackTrace();
-            return false;
 
         }
 
+        return false;
     }
 
     public void setClient(Client client) {
