@@ -11,7 +11,10 @@ public class TurnController {
 
     private Client client;
 
-
+    /**
+     * This allows user to do the explore action
+     * @throws RemoteException
+     */
     @FXML private void explore() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new ExploreStoryAction());
@@ -19,30 +22,54 @@ public class TurnController {
 
     }
 
+    /**
+     * This allows user to do the build action.
+     * @throws RemoteException
+     */
     @FXML private void build() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new TestAction());
         System.out.println("Send action build");
 
     }
+
+    /**
+     * This allows user to do labour action in order to get coins
+     * @throws RemoteException
+     */
     @FXML private void labour() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new TestAction());
         System.out.println("Send action labour");
 
     }
+
+    /**
+     * This allows user to do a harvest action to harvest goods
+     * @throws RemoteException
+     */
     @FXML private void harvest() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new TestAction());
         System.out.println("Send action harvest");
 
     }
+
+    /**
+     * This allows user to train new villagers
+     * @throws RemoteException
+     */
     @FXML private void train() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new TestAction());
         System.out.println("Send action train");
 
     }
+
+    /**
+     * This allows user to pass turn
+     * @throws RemoteException
+     */
     @FXML private void pass() throws RemoteException {
 
         client.gameClient.getPlayer().doAction(new TestAction());
