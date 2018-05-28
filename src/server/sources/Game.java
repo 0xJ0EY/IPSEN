@@ -1,10 +1,8 @@
 package server.sources;
 
-import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.ServerInterface;
 import server.sources.models.Player;
-import server.sources.models.stories.Story;
 import server.sources.models.stories.StoryFactory;
 import server.sources.notifications.GameStartedNotification;
 

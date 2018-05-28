@@ -17,11 +17,8 @@ public class ExploreController implements ControllerInterface {
     private Story exploreStory;
 
     @FXML Parent root;
-
     @FXML private TextArea story;
-
     @FXML private HBox hbox;
-
     @FXML private Button runButton;
     @FXML private Button confirmButton;
     @FXML private ToggleGroup radioGroup = new ToggleGroup();
@@ -46,9 +43,13 @@ public class ExploreController implements ControllerInterface {
 
     @FXML public void clickRun() {
         System.out.println("you clicked run");
+
+//        TODO: tire used villagers
     }
     @FXML public void clickConfirm() {
         System.out.println("you clicked confirm");
+
+//        TODO: dobbelen per villager
     }
 
     public void setExploreStory(Story exploreStory) {

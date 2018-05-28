@@ -1,4 +1,6 @@
-package server.sources.models;
+package server.sources.models.villagers;
+
+import server.sources.models.Dice;
 
 public class CatVillager extends Villager {
 
