@@ -23,7 +23,7 @@
     <house>
         <price>4</price>
         <perks>
-            <perk>TRAIN TO READY</perk>
+            <perk>TRAIN_TO_READY</perk>
             <perk value="1">POTION</perk>
             <perk value="2">COINS</perk>
         </perks>
@@ -31,15 +31,15 @@
     <house>
         <price>7</price>
         <perks>
-            <perk value="4">CIDER</perk>
+            <perk value="1">CIDER</perk>
             <perk value="2">AMETHYST</perk>
         </perks>
     </house>
     <house>
         <price>5</price>
         <perks>
-            <perk value="2">VILLAGER POINTS</perk>
-            <perk>REPLENISHING GOODS</perk>
+            <perk value="2">VILLAGER_POINTS</perk>
+            <perk>REPLENISHING_GOODS</perk>
         </perks>
     </house>
     <house>
@@ -47,7 +47,7 @@
         <perks>
             <perk>REROLL</perk>
             <perk>TRAIN TO READY</perk>
-            <perk value="3">VILLAGE POINTS FOR THINGS</perk>
+            <perk good="fish" value="3">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </house>
     <house>
@@ -76,43 +76,46 @@
     <starhouse>
         <price>11</price>
         <perks>
-            <perk value="3">VILLAGE POINTS</perk>
-            <perk value="1">VILLAGE POINTS FOR THINGS (MUSHROOM, FRUIT, AMESTHYST)</perk>
+            <perk value="3">VILLAGE_POINTS</perk>
+            <perk good="MUSHROOM" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="FRUIT" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="AMESTHYST" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </starhouse>
     <starhouse>
         <price>14</price>
         <perks>
-            <perk value="2">VILLAGE POINTS</perk>
-            <perk value="2">VILLAGE POINTS FOR VILLAGERS</perk>
+            <perk value="2">VILLAGE_POINTS</perk>
+            <perk value="2">VILLAGE_POINTS_FOR_VILLAGERS</perk>
         </perks>
     </starhouse>
     <starhouse>
         <price>17</price>
         <perks>
             <perk value="12">VILLAGE POINTS</perk>
-            <perk value="2">VILLAGE POINTS FOR THINGS (AMETHYST, PAPER)</perk>
+            <perk good="AMETHYST" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </starhouse>
     <starhouse>
         <price>16</price>
         <perks>
-            <perk value="7">VILLAGE POINTS</perk>
-            <perk value="2">VILLAGE POINTS FOR EMPTY CAVE</perk>
+            <perk value="7">VILLAGE_POINTS</perk>
+            <perk value="2">VILLAGE_POINTS_FOR_EMPTY_CAVE</perk>
         </perks>
     </starhouse>
     <starhouse>
         <price>18</price>
         <perks>
             <perk value="3">VILLAGE POINTS</perk>
-            <perk value="2">VILLAGE POINTS FOR THINGS (STARHOUSE)</perk>
+            <perk good="STARHOUSE" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </starhouse>
     <starhouse>
         <price>12</price>
         <perks>
             <perk value="4">VILLAGE POINTS</perk>
-            <perk value="2">VILLAGE POINTS FOR THINGS (ORE, CIDER)</perk>
+            <perk good="ORE" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="CIDER" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </starhouse>
 
@@ -120,7 +123,7 @@
     <keyhouse>
         <price>5</price>
         <perks>
-            <perk value="2">POTION</perk>
+            <perk value="1">POTION</perk>
         </perks>
     </keyhouse>
     <keyhouse>
@@ -140,20 +143,21 @@
         <price>4</price>
         <perks>
             <perk>TRAIN TO READY</perk>
-            <perk value="1">CIDER</perk>
+            <perk>CIDER</perk>
             <perk value="2">COINS</perk>
         </perks>
     </keyhouse>
     <keyhouse>
         <price>5</price>
         <perks>
-            <perk value="2">INCOME FOR GOODS (ORE, ROPE)</perk>
+            <perk good="ORE" value="2">INCOME_FOR_GOODS</perk>
+            <perk good="ROPE" value="1">INCOME_FOR_GOODS</perk>
         </perks>
     </keyhouse>
     <keyhouse>
         <price>2</price>
         <perks>
-            <perk value="3">INCOME FOR GOODS (PAPER)</perk>
+            <perk good="PAPER" value="3" >INCOME FOR GOODS</perk>
         </perks>
     </keyhouse>
     <keyhouse>

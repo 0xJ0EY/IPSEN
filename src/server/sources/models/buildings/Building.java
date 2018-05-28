@@ -1,7 +1,6 @@
 package server.sources.models.buildings;
 
-import javafx.scene.layout.HBox;
-import server.sources.interfaces.Perk;
+import server.sources.models.perks.Perk;
 import server.sources.models.Player;
 
 import java.io.Serializable;
