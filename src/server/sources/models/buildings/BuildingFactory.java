@@ -55,7 +55,6 @@ public class BuildingFactory {
                 Node buildingNode = buildings.item(i);
                 Element buildingElement = (Element) buildingNode;
 
-                String buildingName = buildingElement.getElementsByTagName("text").item(0).getTextContent();
                 int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
                 buildingArrayList.add(new Building(buildingName, price, this.fetchPerk(buildingNode)));

@@ -1,44 +1,73 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<buildings>
-    <building>
-        <text>Building ONE</text>
+<houses>
+    <house>
         <price>5</price>
         <perks>
-            <perk description="Holy">
-
-            </perk>
-            <perk description="Shit">
-
-            </perk>
+            <perk>CIDER</perk>
         </perks>
-    </building>
-    <!--<building>-->
-        <!--<text>Holy shit</text>-->
-        <!--<choices>-->
-            <!--<choice description="Holy">-->
-                <!--<option cost="2">-->
-                    <!--<reward>VILLAGER</reward>-->
-                <!--</option>-->
-                <!--<option cost="5">-->
-                    <!--<reward>COIN</reward>-->
-                    <!--<reward>CIDER</reward>-->
-                    <!--<reward>COIN</reward>-->
-                <!--</option>-->
-            <!--</choice>-->
-            <!--<choice description="Shit">-->
-                <!--<option cost="2">-->
-                    <!--<reward>COIN</reward>-->
-                <!--</option>-->
-                <!--<option cost="3">-->
-                    <!--<reward>POTION</reward>-->
-                    <!--<reward>COIN</reward>-->
-                <!--</option>-->
-                <!--<option cost="5">-->
-                    <!--<reward>COIN</reward>-->
-                    <!--<reward>GOOD</reward>-->
-                    <!--<reward>COIN</reward>-->
-                <!--</option>-->
-            <!--</choice>-->
-        <!--</choices>-->
-    <!--</building>-->
-</buildings>
+    </house>
+    <house>
+        <price>2</price>
+        <perks>
+            <perk value="3">INCOME</perk>
+            <perk>REROLL</perk>
+        </perks>
+    </house>
+    <house>
+        <price>2</price>
+        <perks>
+            <perk>REROLL</perk>
+        </perks>
+    </house>
+    <house>
+        <price>4</price>
+        <perks>
+            <perk>TRAIN TO READY</perk>
+            <perk value="1">POTION</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>7</price>
+        <perks>
+            <perk value="4">CIDER</perk>
+            <perk value="2">AMETHYST</perk>
+        </perks>
+    </house>
+    <house>
+        <price>5</price>
+        <perks>
+            <perk value="2">VILLAGER POINTS</perk>
+            <perk>REPLENISHING GOODS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>12</price>
+        <perks>
+            <perk>REROLL</perk>
+            <perk>TRAIN TO READY</perk>
+            <perk value="3">VILLAGE POINTS FOR THINGS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>3</price>
+        <perks>
+            <perk value="2">Ore</perk>
+        </perks>
+    </house>
+    <house>
+        <price>4</price>
+        <perks>
+            <perk value="1">MUSHROOM</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>6</price>
+        <perks>
+            <perk>REROLL</perk>
+            <perk value="2">COINS</perk>
+            <perk value="1">POTION</perk>
+        </perks>
+    </house>
+</houses>
