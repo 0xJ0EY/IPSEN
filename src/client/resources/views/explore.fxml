@@ -10,13 +10,14 @@
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <HBox fx:id="hbox" alignment="CENTER" layoutY="214.0" prefHeight="100.0" prefWidth="600.0" spacing="20.0">
+            <HBox fx:id="hbox" alignment="CENTER" layoutY="192.0" prefHeight="75.0" prefWidth="600.0" spacing="20.0">
                <children>
 
                </children>
             </HBox>
-            <TextArea fx:id="story" layoutX="50.0" layoutY="14.0" prefHeight="200.0" prefWidth="500.0" text="Hier komt echt een gaaf verhaal als het meezit&#10;" wrapText="true" />
-            <Button fx:id="runButton" layoutX="50.0" layoutY="314.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="60.0" prefWidth="500.0" text="Run" />
+            <TextArea fx:id="story" layoutX="50.0" layoutY="14.0" prefHeight="177.0" prefWidth="500.0" text="Hier komt echt een gaaf verhaal als het meezit&#10;" wrapText="true" />
+            <Button fx:id="runButton" layoutX="50.0" layoutY="328.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="60.0" prefWidth="500.0" text="Run" />
+            <Button fx:id="confirmButton" layoutX="50.0" layoutY="268.0" mnemonicParsing="false" onAction="#clickConfirm" prefHeight="60.0" prefWidth="500.0" text="Confirm" />
          </children>
       </Pane>
    </children>
