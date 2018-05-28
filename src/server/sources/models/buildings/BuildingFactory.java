@@ -55,6 +55,7 @@ public class BuildingFactory {
             NodeList house = document.getElementsByTagName("house");
             NodeList starhouse = document.getElementsByTagName("starhouse");
             NodeList keyhouse = document.getElementsByTagName("keyhouse");
+            NodeList outpost = document.getElementsByTagName("outpost");
 
             Node buildingNode;
             Element buildingElement;
@@ -84,6 +85,15 @@ public class BuildingFactory {
                 int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
                 buildingArrayList.add(new KeyHouse(price, this.fetchPerk(buildingNode)));
+            }
+
+            for (int i = 0; i < outpost.getLength(); ++i){
+                buildingNode = outpost.item(i);
+                buildingElement = (Element) buildingNode;
+
+                int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
+
+                buildingArrayList.add(new Outpost(price, this.fetchPerk(buildingNode)));
             }
 
         } catch (IOException | SAXException e) {
@@ -203,7 +213,19 @@ public class BuildingFactory {
                     break;
                 case "VILLAGE_POINTS_FOR_VILLAGERS":
                     perks.add(
-                            new Village_points_for_villagers_perk(Integer.parseInt(perkElement.getAttribute("value")))
+                        new Village_points_for_villagers_perk(Integer.parseInt(perkElement.getAttribute("value")))
+                    );
+                    System.out.println("Perk implemented");
+                    break;
+                case "ROPE":
+                    perks.add(
+                        new RopePerk(Integer.parseInt(perkElement.getAttribute("value")))
+                    );
+                    System.out.println("Perk implemented");
+                    break;
+                case "GAIN_REPUTATION":
+                    perks.add(
+                        new ReputationPerk()
                     );
                     System.out.println("Perk implemented");
                     break;

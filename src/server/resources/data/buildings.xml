@@ -177,7 +177,67 @@
         <price>7</price>
         <perks>
             <perk>TRAIN_TO_READY</perk>
-            <perk value="3">COINS</perk>
+            <perk value="1">COINS</perk>
         </perks>
     </keyhouse>
+
+    <!-- A dataset of outposts -->
+    <outpost>
+        <price>11</price>
+        <perks>
+            <perk value="1">CIDER</perk>
+            <perk value="3">AMETHYST</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>10</price>
+        <perks>
+            <perk value="1">COINS</perk>
+            <perk value="6">VILLAGE_POINTS</perk>
+            <perk value="1">BEDS</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>7</price>
+        <perks>
+            <perk value="2">ROPE</perk>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>3</price>
+        <perks>
+            <perk value="1">BEDS</perk>
+            <perk>GAIN_REPUTATION</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>4</price>
+        <perks>
+            <perk value="1">ROPE</perk>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>6</price>
+        <perks>
+            <perk value="1">COINS</perk>
+            <perk value="3">VILLAGE_POINTS</perk>
+            <perk value="2">BEDS</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>7</price>
+        <perks>
+            <perk value="2">AMETHYST</perk>
+            <perk value="1">POTION</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>3</price>
+        <perks>
+            <perk value="2">BEDS</perk>
+            <perk>GAIN_REPUTATION</perk>
+        </perks>
+    </outpost>
 </houses>
