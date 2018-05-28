@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <houses>
+    <!-- A dataset of houses -->
     <house>
         <price>5</price>
         <perks>
@@ -70,4 +71,48 @@
             <perk value="1">POTION</perk>
         </perks>
     </house>
+
+    <!-- A dataset of Starhouses -->
+    <starhouse>
+        <price>11</price>
+        <perks>
+            <perk value="3">VILLAGE POINTS</perk>
+            <perk value="1">VILLAGE POINTS FOR THINGS (MUSHROOM, FRUIT, AMESTHYST)</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>14</price>
+        <perks>
+            <perk value="2">VILLAGE POINTS</perk>
+            <perk value="2">VILLAGE POINTS FOR VILLAGERS</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>17</price>
+        <perks>
+            <perk value="12">VILLAGE POINTS</perk>
+            <perk value="2">VILLAGE POINTS FOR THINGS (AMETHYST, PAPER)</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>16</price>
+        <perks>
+            <perk value="7">VILLAGE POINTS</perk>
+            <perk value="2">VILLAGE POINTS FOR EMPTY CAVE</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>18</price>
+        <perks>
+            <perk value="3">VILLAGE POINTS</perk>
+            <perk value="2">VILLAGE POINTS FOR THINGS (STARHOUSE)</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>12</price>
+        <perks>
+            <perk value="4">VILLAGE POINTS</perk>
+            <perk value="2">VILLAGE POINTS FOR THINGS (ORE, CIDER)</perk>
+        </perks>
+    </starhouse>
 </houses>

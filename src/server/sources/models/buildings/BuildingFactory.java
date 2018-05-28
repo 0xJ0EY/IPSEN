@@ -25,7 +25,7 @@ public class BuildingFactory {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder builder = factory.newDocumentBuilder();
 
-    private ArrayList<Building> buildings;
+    private static ArrayList<Building> buildings;
 
     public BuildingFactory() throws ParserConfigurationException {
     }
@@ -49,15 +49,35 @@ public class BuildingFactory {
         try {
             Document document = builder.parse(new InputSource(new FileReader(new File("src/server/resources/data/buildings.xml"))));
 
-            NodeList buildings = document.getElementsByTagName("building");
+            NodeList house = document.getElementsByTagName("house");
+            NodeList starhouse = document.getElementsByTagName("starhouse");
+            NodeList keyhouse = document.getElementsByTagName("keyhouse");
 
-            for (int i = 0; i < buildings.getLength(); ++i) {
-                Node buildingNode = buildings.item(i);
+            for (int i = 0; i < house.getLength(); ++i) {
+                Node buildingNode = house.item(i);
                 Element buildingElement = (Element) buildingNode;
 
                 int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-                buildingArrayList.add(new Building(buildingName, price, this.fetchPerk(buildingNode)));
+                buildingArrayList.add(new Building(price, this.fetchPerk(buildingNode)));
+            }
+
+            for (int i = 0; i < starhouse.getLength(); ++i){
+                Node buildingNode = starhouse.item(i);
+                Element buildingElement = (Element) buildingNode;
+
+                int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
+
+                buildingArrayList.add(new Building(price, this.fetchPerk(buildingNode)));
+            }
+
+            for (int i = 0; i < keyhouse.getLength(); ++i){
+                Node buildingNode = keyhouse.item(i);
+                Element buildingElement = (Element) buildingNode;
+
+                int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
+
+                buildingArrayList.add(new Building(price, this.fetchPerk(buildingNode)));
             }
 
         } catch (IOException | SAXException e) {

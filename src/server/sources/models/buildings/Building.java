@@ -21,8 +21,7 @@ public class Building implements Serializable {
      * @param price
      * @param perks
      * */
-    public Building(String buildingName, int price, ArrayList<Perk> perks) {
-        this.buildingName = buildingName;
+    public Building(int price, ArrayList<Perk> perks) {
         this.price = price;
         this.perks = perks;
     }
