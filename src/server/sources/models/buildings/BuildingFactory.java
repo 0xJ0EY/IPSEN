@@ -91,16 +91,16 @@ public class BuildingFactory {
     private ArrayList<Perk> fetchPerk(Node buildingNode) {
         ArrayList<Perk> perks = new ArrayList<Perk>();
 
-        Element storyElement = (Element) buildingNode;
+        Element buildingElement = (Element) buildingNode;
 
-        NodeList perkNodes = storyElement.getElementsByTagName("perk");
+        NodeList perkNodes = buildingElement.getElementsByTagName("perk");
 
         for (int i = 0; i < perkNodes.getLength(); i++) {
-            Node perkNode = perkNodes.item(i);
-            Element perkElement = (Element) perkNode;
-            String description = perkElement.getAttribute("description");
-
-//            perks.add(new Perk(description, this.fetchOptions(perkNode)));
+//            Node perkNode = perkNodes.item(i);
+//            Element perkElement = (Element) perkNode;
+//            String description = perkElement.getAttribute("description");
+//
+////            perks.add(new Perk(description, this.fetchOptions(perkNode)));
         }
 
         return perks;

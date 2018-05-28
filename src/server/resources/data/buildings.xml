@@ -115,4 +115,65 @@
             <perk value="2">VILLAGE POINTS FOR THINGS (ORE, CIDER)</perk>
         </perks>
     </starhouse>
+
+    <!-- A dataset of keyhouses -->
+    <keyhouse>
+        <price>5</price>
+        <perks>
+            <perk value="2">POTION</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="3">INCOME</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="1">POTION</perk>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>4</price>
+        <perks>
+            <perk>TRAIN TO READY</perk>
+            <perk value="1">CIDER</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>5</price>
+        <perks>
+            <perk value="2">INCOME FOR GOODS (ORE, ROPE)</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="3">INCOME FOR GOODS (PAPER)</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="3">CIDER</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>5</price>
+        <perks>
+            <perk>TRAIN TO READY</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>7</price>
+        <perks>
+            <perk>TRAIN TO READY</perk>
+            <perk value="3">COINS</perk>
+        </perks>
+    </keyhouse>
 </houses>
