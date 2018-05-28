@@ -42,6 +42,9 @@ public class BuildingFactory {
         return this.buildings.get(key);
     }
 
+    /**
+     * This is for loading objects from XML file buildings.xml.
+     */
     public void loadBuildingsFromXML() {
 
         ArrayList<Building> buildingArrayList = new ArrayList<Building>();
@@ -91,6 +94,11 @@ public class BuildingFactory {
         this.buildings = buildingArrayList;
     }
 
+    /**
+     * This is for fetching perks per building object
+     * @param buildingNode
+     * @return perks
+     */
     private ArrayList<Perk> fetchPerk(Node buildingNode) {
         ArrayList<Perk> perks = new ArrayList<Perk>();
 
@@ -102,12 +110,12 @@ public class BuildingFactory {
             Node perkNode = perkNodes.item(i);
             Element perkElement = (Element) perkNode;
 
-            System.out.println(
-                    "Building: " + buildingElement.getTagName() + "{\n" +
-                    "\tperkElement = " + perkElement.getTextContent() + "\n" +
-                    "\tvalue:" + perkElement.getAttribute("value") + "\n" +
-                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
-            );
+//            System.out.println(
+//                    "Building: " + buildingElement.getTagName() + "{\n" +
+//                    "\tperkElement = " + perkElement.getTextContent() + "\n" +
+//                    "\tvalue:" + perkElement.getAttribute("value") + "\n" +
+//                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
+//            );
 //            perks.add(new Perk(description, this.fetchOptions(perkNode)));
         }
 
