@@ -1,4 +1,4 @@
-package server.sources.models;
+package server.sources.models.villagers;
 
 import server.sources.Game;
 import server.sources.interfaces.ActionInterface;
@@ -6,9 +6,7 @@ import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.notifications.PlayerTurnNotification;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.RemoteObject;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Player extends UnicastRemoteObject implements PlayerInterface {
