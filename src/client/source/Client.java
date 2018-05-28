@@ -21,7 +21,7 @@ public class Client extends Application implements Serializable {
     public LoginController login;
     private LobbyController lobby;
     public MainController main;
-    private ExploreController explore;
+    public ExploreController explore;
 
     @Override
     public void start(Stage primaryStage) {

@@ -3,8 +3,9 @@ package client.source.controllers;
 import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import server.sources.models.stories.Story;
 
 public class ExploreController implements ControllerInterface {
@@ -17,16 +18,20 @@ public class ExploreController implements ControllerInterface {
 
     @FXML private TextArea story;
 
-    @FXML private RadioButton option1;
+    @FXML private HBox hbox;
 
-    @FXML private RadioButton option2;
+    @FXML private Button runButton;
 
     @Override
     public Parent show() {
         story.setText(this.exploreStory.getStory());
-        option1.setText(this.exploreStory.getChoices().get(0).getDescription());
-        option2.setText(this.exploreStory.getChoices().get(1).getDescription());
 
+        for(int i=0; i<this.exploreStory.getChoices().size();i++){
+            Button btn = new Button();
+            btn.setId(""+i);
+            btn.setText(this.exploreStory.getChoices().get(i).getDescription());
+            hbox.getChildren().addAll(btn);
+        }
         return this.root;
     }
 
@@ -34,11 +39,19 @@ public class ExploreController implements ControllerInterface {
         this.client = client;
     }
 
-    @FXML public void clickChooce() {
-        System.out.println("you clicked chooce");
+    @FXML public void clickRun() {
+        System.out.println("you clicked run");
     }
 
     public void setExploreStory(Story exploreStory) {
         this.exploreStory = exploreStory;
+    }
+
+    public void enableTurnButton() {
+        this.runButton.setDisable(false);
+    }
+
+    public void disableTurnButton() {
+        this.runButton.setDisable(true);
     }
 }
