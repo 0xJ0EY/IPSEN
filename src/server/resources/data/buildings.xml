@@ -4,7 +4,7 @@
     <house>
         <price>5</price>
         <perks>
-            <perk>CIDER</perk>
+            <perk value="1">CIDER</perk>
         </perks>
     </house>
     <house>
@@ -38,15 +38,15 @@
     <house>
         <price>5</price>
         <perks>
-            <perk value="2">VILLAGER_POINTS</perk>
-            <perk>REPLENISHING_GOODS</perk>
+            <perk value="2">VILLAGE_POINTS</perk>
+            <perk>TRAIN_TO_READY</perk>
         </perks>
     </house>
     <house>
         <price>12</price>
         <perks>
             <perk>REROLL</perk>
-            <perk>TRAIN TO READY</perk>
+            <perk>TRAIN_TO_READY</perk>
             <perk good="fish" value="3">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </house>
@@ -92,7 +92,7 @@
     <starhouse>
         <price>17</price>
         <perks>
-            <perk value="12">VILLAGE POINTS</perk>
+            <perk value="12">VILLAGE_POINTS</perk>
             <perk good="AMETHYST" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </starhouse>
@@ -106,14 +106,14 @@
     <starhouse>
         <price>18</price>
         <perks>
-            <perk value="3">VILLAGE POINTS</perk>
+            <perk value="3">VILLAGE_POINTS</perk>
             <perk good="STARHOUSE" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </starhouse>
     <starhouse>
         <price>12</price>
         <perks>
-            <perk value="4">VILLAGE POINTS</perk>
+            <perk value="4">VILLAGE_POINTS</perk>
             <perk good="ORE" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
             <perk good="CIDER" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
@@ -142,8 +142,8 @@
     <keyhouse>
         <price>4</price>
         <perks>
-            <perk>TRAIN TO READY</perk>
-            <perk>CIDER</perk>
+            <perk>TRAIN_TO_READY</perk>
+            <perk value="1">CIDER</perk>
             <perk value="2">COINS</perk>
         </perks>
     </keyhouse>
@@ -157,7 +157,7 @@
     <keyhouse>
         <price>2</price>
         <perks>
-            <perk good="PAPER" value="3" >INCOME FOR GOODS</perk>
+            <perk good="PAPER" value="3" >INCOME_FOR_GOODS</perk>
         </perks>
     </keyhouse>
     <keyhouse>
@@ -176,7 +176,7 @@
     <keyhouse>
         <price>7</price>
         <perks>
-            <perk>TRAIN TO READY</perk>
+            <perk>TRAIN_TO_READY</perk>
             <perk value="3">COINS</perk>
         </perks>
     </keyhouse>
