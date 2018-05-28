@@ -6,7 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import server.sources.models.perks.Perk;
+import server.sources.models.perks.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -116,9 +116,67 @@ public class BuildingFactory {
 //                    "\tvalue:" + perkElement.getAttribute("value") + "\n" +
 //                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
 //            );
-//            perks.add(new Perk(description, this.fetchOptions(perkNode)));
+            switch (perkElement.getTextContent()){
+                case "CIDER":
+                    perks.add(
+                        new CiderPerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                    break;
+                case "POTION":
+                    perks.add(
+                        new PotionPerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                    break;
+                case "REROLL":
+                    perks.add(
+                        new RerollPerk(
+                            perkElement.getTextContent()
+                        )
+                    );
+                    break;
+                case "INCOME":
+                    perks.add(
+                        new IncomePerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                    break;
+                case "COINS":
+                    perks.add(
+                        new CoinPerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                    break;
+                case "AMETHYST":
+                    perks.add(
+                        new AmethystPerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                    break;
+                case "ORE":
+                    perks.add(
+                        new OrePerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                    break;
+                case "MUSHROOM":
+                    perks.add(
+                        new MushroomPerk(
+                            Integer.parseInt(perkElement.getAttribute("value"))
+                        )
+                    );
+                default:
+                    System.out.println("Perk is unknown");
+                    break;
+            }
         }
-
         return perks;
     }
 
