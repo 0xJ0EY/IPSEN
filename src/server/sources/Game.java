@@ -78,8 +78,6 @@ public class Game implements Runnable, Serializable {
                         System.out.println("Execute action");
                         this.server.executeAction(player.getAction());
 
-                        player.pass();
-
                     } catch (RemoteException | InterruptedException e) {
                         e.printStackTrace();
                     }

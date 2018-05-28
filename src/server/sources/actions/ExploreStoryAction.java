@@ -30,7 +30,6 @@ public class ExploreStoryAction implements ActionInterface {
         }
 
         System.out.println("Generated new story");
-
     }
 
     @Override

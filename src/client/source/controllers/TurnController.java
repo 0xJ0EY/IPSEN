@@ -3,6 +3,7 @@ package client.source.controllers;
 import client.source.Client;
 import javafx.fxml.FXML;
 import server.sources.actions.ExploreStoryAction;
+import server.sources.actions.PassAction;
 import server.sources.actions.TestAction;
 
 import java.rmi.RemoteException;
@@ -13,6 +14,7 @@ public class TurnController {
 
 
     @FXML private void explore() throws RemoteException {
+
         client.gameClient.getPlayer().doAction(new ExploreStoryAction(this.client.gameClient));
         System.out.println("Send action explore");
 
@@ -44,7 +46,7 @@ public class TurnController {
     }
     @FXML private void pass() throws RemoteException {
 
-        client.gameClient.getPlayer().doAction(new TestAction());
+        client.gameClient.getPlayer().doAction(new PassAction(this.client.gameClient));
         System.out.println("Send action pass");
 
     }
