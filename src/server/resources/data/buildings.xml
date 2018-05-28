@@ -165,7 +165,7 @@
     <keyhouse>
         <price>5</price>
         <perks>
-            <perk>TRAIN TO READY</perk>
+            <perk value="3">BEDS</perk>
             <perk value="2">COINS</perk>
         </perks>
     </keyhouse>
