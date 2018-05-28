@@ -20,7 +20,6 @@ public class PassAction implements ActionInterface {
     @Override
     public void execute(Server server) throws RemoteException {
         target.getPlayer().pass();
-//        target.getClient().showMain();
     }
 
     @Override

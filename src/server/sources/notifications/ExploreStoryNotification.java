@@ -21,9 +21,10 @@ public class ExploreStoryNotification implements NotificationInterface {
 
         if (this.target.equals(gameClient)) {
             gameClient.getClient().explore.enableTurnButton();
-
+            gameClient.getClient().explore.enableConfirmButton();
         } else {
             gameClient.getClient().explore.disableTurnButton();
+            gameClient.getClient().explore.disableConfirmButton();
         }
 
         gameClient.getClient().showExplore(this.story);

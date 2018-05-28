@@ -17,8 +17,8 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void explore() throws RemoteException {
+        client.gameClient.requestAction(new ExploreStoryAction(this.client.gameClient));
 
-        client.gameClient.getPlayer().doAction(new ExploreStoryAction(this.client.gameClient));
         System.out.println("Send action explore");
 
     }
