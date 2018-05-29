@@ -16,6 +16,9 @@ public class MenuController {
     @FXML private Button turnButton;
     @FXML private Button settingsButton;
 
+    /**
+     * These methods are used for opening a selected tab.
+     */
     @FXML private void onClickAbove() {
         tabContainer.getSelectionModel().select(Tabs.ABOVE.ordinal());
     }
@@ -40,6 +43,9 @@ public class MenuController {
         tabContainer.getSelectionModel().select(Tabs.RULES.ordinal());
     }
 
+    /**
+     * This is for enabling and disabling a startbutton
+     */
     public void enableTurnButton() {
         this.turnButton.setDisable(false);
     }
@@ -48,6 +54,10 @@ public class MenuController {
         this.turnButton.setDisable(true);
     }
 
+    /**
+     * This is for assigning a tab container.
+     * @param tabContainer
+     */
     public void assignTabContainer(TabPane tabContainer) {
         this.tabContainer = tabContainer;
     }

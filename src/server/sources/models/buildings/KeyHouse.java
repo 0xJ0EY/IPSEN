@@ -1,6 +1,6 @@
 package server.sources.models.buildings;
 
-import server.sources.interfaces.Perk;
+import server.sources.models.perks.Perk;
 
 import java.util.ArrayList;
 

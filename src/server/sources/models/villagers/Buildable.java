@@ -3,6 +3,6 @@ package server.sources.models.villagers;
 public interface Buildable {
 
     //TODO: implenting build
-    void buildBuilding();
+    void build();
 
 }

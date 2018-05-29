@@ -1,5 +1,7 @@
 package server.sources.interfaces;
 
+import server.sources.exceptions.ServerFullException;
+
 import javax.swing.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;

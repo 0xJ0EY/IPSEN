@@ -1,14 +1,17 @@
 package server.sources.models.buildings;
 
-import server.sources.interfaces.Perk;
+import server.sources.models.perks.Perk;
 import server.sources.models.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by robin on 24-5-2018.
  */
-public abstract class Building {
+public class Building implements Serializable {
+
+    private String buildingName;
     private int price;
     private ArrayList<Perk> perks;
 
@@ -18,6 +21,7 @@ public abstract class Building {
      * @param perks
      * */
     public Building(int price, ArrayList<Perk> perks) {
+        this.price = price;
         this.perks = perks;
     }
 

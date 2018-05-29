@@ -23,10 +23,19 @@ public class LobbyController implements ControllerInterface {
 
     @FXML private Button buttonStart;
 
+    /**
+     * For setting a client
+     * @param client
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * This is for updating a list of connected players in a lobby,
+     * ready to play the game environment.
+     * @throws RemoteException
+     */
     public void updateLobbyList() throws RemoteException {
         ArrayList<GameClientInterface> currentClients = this.client.gameClient.getServer().listCurrentClients();
         ArrayList<String> clientNames = new ArrayList<String>();
@@ -40,6 +49,9 @@ public class LobbyController implements ControllerInterface {
 
     }
 
+    /**
+     * This is for enabling and disabling buttons
+     */
     public void enableStartButton() {
         buttonStart.setDisable(false);
     }
@@ -68,6 +80,10 @@ public class LobbyController implements ControllerInterface {
         this.client.showLogin();
     }
 
+    /**
+     * Shows Lobby UI
+     * @return root
+     */
     @Override
     public Parent show() {
         return this.root;

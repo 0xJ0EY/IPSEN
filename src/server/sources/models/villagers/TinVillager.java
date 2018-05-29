@@ -1,14 +1,20 @@
 package server.sources.models.villagers;
 
-public class TinVillager extends Villager{
+import java.util.ArrayList;
+
+public class TinVillager extends Villager {
+
+    public TinVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+        super(lanterns, injured, tired);
+    }
 
     public void rest() {
-        if(injured){
-            injured = false;
-            tired = true;
+        if (this.injured) {
+            this.injured = false;
+            this.tired = true;
         }
-        else if(tired){
-            tired = false;
+        else if(tired) {
+            this.tired = false;
         }
     }
 }
