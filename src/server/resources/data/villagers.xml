@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <villagers>
-    <villager>
+    <villager id="1">
         <type>Trainer</type>
         <lanterns>
             <lantern>
                 <eyes>1</eyes>
-                <amount>1</amount>
+                <cost>1</cost>
             </lantern>
             <lantern>
                 <eyes>4</eyes>
-                <amount>2</amount>
+                <cost>2</cost>
             </lantern>
         </lanterns>
     </villager>
 
-    <villager>
+    <villager id="2">
         <type>Trainer</type>
         <lanterns>
             <lantern>
                 <eyes>1</eyes>
-                <amount>1</amount>
+                <cost>1</cost>
             </lantern>
             <lantern>
                 <eyes>4</eyes>
-                <amount>2</amount>
+                <cost>2</cost>
             </lantern>
         </lanterns>
     </villager>
 
-    <villager>
+    <villager id="3">
         <type>Trainer</type>
         <lanterns>
             <lantern>
                 <eyes>1</eyes>
-                <amount>1</amount>
+                <cost>1</cost>
             </lantern>
             <lantern>
                 <eyes>2</eyes>
-                <amount>2</amount>
+                <cost>2</cost>
             </lantern>
         </lanterns>
     </villager>
 
-    <villager>
+    <villager id="4">
         <type>Trainer</type>
         <lanterns>
             <lantern>
                 <eyes>1</eyes>
-                <amount>1</amount>
+                <cost>1</cost>
             </lantern>
             <lantern>
                 <eyes>4</eyes>
-                <amount>3</amount>
+                <cost>3</cost>
             </lantern>
         </lanterns>
     </villager>
 
-    <villager>
+    <villager id="5">
         <type>Trainer</type>
         <lanterns>
             <lantern>
                 <eyes>1</eyes>
-                <amount>2</amount>
+                <cost>2</cost>
             </lantern>
             <lantern>
                 <eyes>5</eyes>
-                <amount>3</amount>
+                <cost>3</cost>
             </lantern>
         </lanterns>
     </villager>
