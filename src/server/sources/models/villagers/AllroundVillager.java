@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AllroundVillager extends Villager implements Trainable, Buildable {
 
-    public AllroundVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+    public AllroundVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
         super(lanterns, injured, tired);
     }
 

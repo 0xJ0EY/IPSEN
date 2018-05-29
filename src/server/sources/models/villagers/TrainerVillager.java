@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TrainerVillager extends Villager implements Trainable {
 
-    public TrainerVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+    public TrainerVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
         super(lanterns, injured, tired);
     }
 
