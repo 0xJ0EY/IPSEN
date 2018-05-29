@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<villagers>
+    <villager>
+        <type>Trainer</type>
+        <lanterns>
+            <lantern>
+                <eyes>1</eyes>
+                <amount>1</amount>
+            </lantern>
+            <lantern>
+                <eyes>4</eyes>
+                <amount>2</amount>
+            </lantern>
+        </lanterns>
+    </villager>
+
+    <villager>
+        <type>Trainer</type>
+        <lanterns>
+            <lantern>
+                <eyes>1</eyes>
+                <amount>1</amount>
+            </lantern>
+            <lantern>
+                <eyes>4</eyes>
+                <amount>2</amount>
+            </lantern>
+        </lanterns>
+    </villager>
+
+    <villager>
+        <type>Trainer</type>
+        <lanterns>
+            <lantern>
+                <eyes>1</eyes>
+                <amount>1</amount>
+            </lantern>
+            <lantern>
+                <eyes>2</eyes>
+                <amount>2</amount>
+            </lantern>
+        </lanterns>
+    </villager>
+
+    <villager>
+        <type>Trainer</type>
+        <lanterns>
+            <lantern>
+                <eyes>1</eyes>
+                <amount>1</amount>
+            </lantern>
+            <lantern>
+                <eyes>4</eyes>
+                <amount>3</amount>
+            </lantern>
+        </lanterns>
+    </villager>
+
+    <villager>
+        <type>Trainer</type>
+        <lanterns>
+            <lantern>
+                <eyes>1</eyes>
+                <amount>2</amount>
+            </lantern>
+            <lantern>
+                <eyes>5</eyes>
+                <amount>3</amount>
+            </lantern>
+        </lanterns>
+    </villager>
+
+
+</villagers>

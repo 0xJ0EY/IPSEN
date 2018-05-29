@@ -4,7 +4,7 @@ import server.sources.models.Dice;
 
 public class Villager {
 
-    Lanterns[] lanterns = new Lanterns[0];
+    Lanterns[] lanterns = new Lanterns[6];
     boolean injured;
     boolean tired;
 
