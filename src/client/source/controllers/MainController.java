@@ -35,11 +35,18 @@ public class MainController implements ControllerInterface {
     @FXML private AnchorPane rules;
     @FXML public RulesController rulesController;
 
+    /**
+     * This is for assigning tabcontainer.
+     */
     public void initialize() {
         System.out.println("Initialize");
         this.menuController.assignTabContainer(this.tabContainer);
     }
 
+    /**
+     * Of course, for setting client.
+     * @param client
+     */
     public void setClient(Client client) {
         aboveController.setClient(client);
         belowController.setClient(client);
@@ -50,6 +57,10 @@ public class MainController implements ControllerInterface {
         this.client = client;
     }
 
+    /**
+     * For showing Main UI
+     * @return
+     */
     @Override
     public Parent show() {
         return this.root;

@@ -5,3 +5,4 @@ TODO
  - Saving and loading (Requirement)
  - Add state to the server
  - Dont let players connect when the game is running
+ - Scale rules image with client width

@@ -1,9 +1,12 @@
 package server.sources;
 
+import server.sources.exceptions.GameStartedException;
+import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
 import server.sources.models.Player;
 import server.sources.notifications.UpdatePlayerListNotification;
 
+import java.io.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -13,13 +16,18 @@ import java.util.ArrayList;
 
 public class Server extends UnicastRemoteObject implements ServerInterface {
 
+    private final int SERVER_MIN_PLAYER = 2;
     private final int SERVER_MAX_PLAYER = 4;
+
     private final int SERVER_PORT = 1099;
+
+    private enum ServerState { OFFLINE, LOBBY, RUNNING, ENDED }
+    private ServerState state = ServerState.OFFLINE;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
     public Game game = new Game((ServerInterface) this);
 
-    public Server() throws RemoteException, MalformedURLException {
+    public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
 
         System.out.println("Setting security policy");
@@ -31,10 +39,16 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         System.out.println("Server started at \"/Server/\"");
 
+        this.updateState(ServerState.LOBBY);
+
     }
 
     @Override
-    public void registerClient(GameClientInterface gameClient) throws RemoteException {
+    public void registerClient(GameClientInterface gameClient) throws ServerFullException, GameStartedException, RemoteException {
+        if (this.gameClients.size() >= this.SERVER_MAX_PLAYER) throw new ServerFullException();
+
+        if (this.state != ServerState.LOBBY) throw new GameStartedException();
+
         Player player = new Player();
 
         // Link GameClient & Player
@@ -105,20 +119,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         return this.gameClients;
     }
 
-
-    public static void main(String[] args) throws Exception {
-        new Server();
-    }
-
     public void startGame() {
+        this.updateState(ServerState.RUNNING);
         new Thread(game).start();
     }
 
-    public void save() {
-        // TODO: THIS
+    private void updateState(ServerState state) {
+        this.state = state;
     }
 
-    public void load() {
-        // TODO: THIS
+    public void save() {
+
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        new Server(args);
     }
 }
