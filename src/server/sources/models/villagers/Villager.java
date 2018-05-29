@@ -2,40 +2,39 @@ package server.sources.models.villagers;
 
 import server.sources.models.Dice;
 
+import java.util.ArrayList;
+
 public class Villager {
 
-    Lanterns[] lanterns = new Lanterns[0];
-    boolean injured;
-    boolean tired;
+    protected ArrayList<Lanterns> lanterns = new ArrayList<Lanterns>();
+    protected boolean injured;
+    protected boolean tired;
 
-    public Villager(){
-
+    public Villager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+        this.lanterns = lanterns;
+        this.injured = injured;
+        this.tired = tired;
     }
 
-    //TODO: explore implementeren
-    public void rolDiceForLanterns(Dice dice){
-
+    public void rollDiceForLanterns() {
+        Dice dice = new Dice();
     }
 
     //TODO: moet nog bedden weghalen
     public void rest(){
-        if(injured){
+        if (injured) {
             injured = false;
             tired = true;
-        }
-        else if(tired){
+        } else if (tired) {
             tired = false;
         }
     }
 
     public boolean isUseable(){
-        if(!injured && !tired)
-            return true;
-        else
-            return false;
+        return (!injured && !tired);
     }
 
-    public void  tire(){
+    public void tire(){
         tired = true;
     }
 

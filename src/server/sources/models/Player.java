@@ -4,7 +4,6 @@ import server.sources.Game;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
-import server.sources.models.villagers.PlayerBoard;
 import server.sources.notifications.PlayerTurnNotification;
 
 import java.rmi.RemoteException;

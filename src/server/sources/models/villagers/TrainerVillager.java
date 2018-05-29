@@ -1,9 +1,15 @@
 package server.sources.models.villagers;
 
-public class TrainerVillager extends Villager implements Trainable{
+import java.util.ArrayList;
 
-    //TODO: implementing train
-    public void trainVillager() {
+public class TrainerVillager extends Villager implements Trainable {
+
+    public TrainerVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+        super(lanterns, injured, tired);
+    }
+
+    @Override
+    public void train() {
 
     }
 }
