@@ -3,6 +3,7 @@ package server.sources;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.ServerInterface;
 import server.sources.models.Player;
+import server.sources.models.buildings.BuildingFactory;
 import server.sources.models.stories.StoryFactory;
 import server.sources.notifications.GameStartedNotification;
 
@@ -50,6 +51,15 @@ public class Game implements Runnable, Serializable {
         try {
             new StoryFactory().loadStoriesFromXML();
         } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        //Fill buildings array with buildings
+        try{
+            new BuildingFactory().loadHousesFromXML();
+            new BuildingFactory().loadKeyHousesFromXML();
+            new BuildingFactory().loadStarHousesFromXML();
+            new BuildingFactory().loadOutpostsFromXML();
+        } catch (ParserConfigurationException e){
             e.printStackTrace();
         }
 
