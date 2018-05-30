@@ -44,7 +44,6 @@ public class Market {
 
     //TODO: invullen methods
     public void refreshHouses(Player player){
-
         for (int i=0; i<availableHouses.length; i++) {
             availableHouses[i] = randomHouse();
         }
