@@ -28,7 +28,6 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void build() throws RemoteException {
-
         client.getGameClient().getPlayer().doAction(new TestAction());
         System.out.println("Send action build");
 
