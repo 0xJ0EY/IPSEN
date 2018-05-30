@@ -37,13 +37,17 @@ public class LobbyController implements ControllerInterface {
      * @throws RemoteException
      */
     public void updateLobbyList() throws RemoteException {
-        ArrayList<GameClientInterface> currentClients = this.client.gameClient.getServer().listCurrentClients();
+
+        // Load models
+        ArrayList<GameClientInterface> currentClients = this.client.getGameClient().getServer().listCurrentClients();
         ArrayList<String> clientNames = new ArrayList<String>();
 
+        // Get the models username for the view
         for (GameClientInterface client : currentClients) {
             clientNames.add(client.getUsername());
         }
 
+        // Add them in lobby list
         ObservableList<String> listItems = FXCollections.observableArrayList(clientNames);
         lobbyList.setItems(listItems);
 
@@ -61,7 +65,7 @@ public class LobbyController implements ControllerInterface {
     }
 
     public void onClickStart() throws RemoteException {
-        this.client.gameClient.requestRequest(new StartGameRequest());
+        this.client.getGameClient().requestRequest(new StartGameRequest());
     }
 
     /**
@@ -71,7 +75,7 @@ public class LobbyController implements ControllerInterface {
     public void onClickDisconnect() throws RemoteException {
 
         // Disconnect from the game lobby / game
-        this.client.gameClient.disconnect();
+        this.client.getGameClient().disconnect();
 
         // Disable the start button if it was active
         this.disableStartButton();

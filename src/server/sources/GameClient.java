@@ -46,7 +46,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
         // Only disconnect when connected to a server
         if (this.connected) {
             // Clear gameClient of client
-            this.client.gameClient = new GameClient(this.client);
+            this.client.setGameClient(new GameClient(this.client));
 
             // Send unregister request to the server
             this.server.unregisterClient((GameClientInterface) this);
