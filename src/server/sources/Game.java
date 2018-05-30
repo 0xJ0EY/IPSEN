@@ -2,14 +2,12 @@ package server.sources;
 
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.ServerInterface;
-import server.sources.models.Market;
+import server.sources.models.MarketController;
 import server.sources.models.Player;
-import server.sources.models.buildings.BuildingFactory;
-import server.sources.models.stories.StoryFactory;
+import server.sources.models.stories.StoryController;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -28,8 +26,17 @@ public class Game implements Runnable, Serializable {
     private int round = 0;
     private int turn = 0;
 
+    private StoryController stories = new StoryController();
+    private MarketController market = new MarketController();
+
     public Game(ServerInterface server) {
         this.server = server;
+
+        // Load the market
+        this.market.load();
+
+        // Load the stories
+        this.stories.load();
     }
 
     public void play()throws RemoteException {
@@ -49,14 +56,6 @@ public class Game implements Runnable, Serializable {
         System.out.println("Send notification");
         this.server.notifyClients(new GameStartedNotification());
 
-        //Fill stories array with stories
-        try {
-            new StoryFactory().loadStoriesFromXML();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-
-        Market market = new Market();
     }
 
     public void runGame() throws RemoteException {
@@ -146,4 +145,11 @@ public class Game implements Runnable, Serializable {
         this.gameState = gameState;
     }
 
+    public StoryController getStories() {
+        return stories;
+    }
+
+    public MarketController getMarket() {
+        return market;
+    }
 }

@@ -5,10 +5,8 @@ import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.models.stories.Story;
-import server.sources.models.stories.StoryFactory;
 import server.sources.notifications.ExploreStoryNotification;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
 
 public class ExploreStoryAction implements ActionInterface {
@@ -23,11 +21,7 @@ public class ExploreStoryAction implements ActionInterface {
     @Override
     public void execute(Server server) throws RemoteException {
 
-        try {
-            this.story = new StoryFactory().randomStory();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+        this.story = server.getGame().getStories().randomStory();
 
         System.out.println("Generated new story");
     }

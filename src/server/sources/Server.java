@@ -6,7 +6,6 @@ import server.sources.interfaces.*;
 import server.sources.models.Player;
 import server.sources.notifications.UpdatePlayerListNotification;
 
-import java.io.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -25,7 +24,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private ServerState state = ServerState.OFFLINE;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
-    public Game game = new Game((ServerInterface) this);
+    private Game game = new Game((ServerInterface) this);
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -52,13 +51,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         Player player = new Player();
 
         // Link GameClient & Player
-        player.setGame(this.game);
+        player.setGame(this.getGame());
         player.setGameClient(gameClient);
 
         gameClient.setPlayer(player);
 
         // Set player
-        game.players.add(player);
+        getGame().players.add(player);
         this.gameClients.add(gameClient);
 
         this.promoteOwner();
@@ -69,7 +68,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
-        this.game.removePlayer(gameClient);
+        this.getGame().removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
         this.promoteOwner();
@@ -121,17 +120,24 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     public void startGame() {
         this.updateState(ServerState.RUNNING);
-        new Thread(game).start();
+        new Thread(getGame()).start();
     }
 
     private void updateState(ServerState state) {
         this.state = state;
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public void save() {
 
     }
-
 
     public static void main(String[] args) throws Exception {
         new Server(args);
