@@ -8,5 +8,10 @@
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d3b7a3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MarketController">
-
+    <HBox prefHeight="38.0" prefWidth="446.0" spacing="20" styleClass="header_display" stylesheets="@../css/header_display.css">
+        <children>
+            <Label text="Turn:" />
+            <Label fx:id="player_name" text="Label" />
+        </children>
+    </HBox>
 </AnchorPane>
