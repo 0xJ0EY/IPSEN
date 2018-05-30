@@ -18,23 +18,22 @@ import java.util.ArrayList;
 
 public class StoryFactory {
 
-    private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-    private DocumentBuilder builder = factory.newDocumentBuilder();
+    private DocumentBuilderFactory factory;
+    private DocumentBuilder builder;
 
-    private static ArrayList<Story> stories;
+    public StoryFactory() {
 
-    public StoryFactory() throws ParserConfigurationException {
+        try {
+            this.factory = DocumentBuilderFactory.newInstance();
+            this.builder = factory.newDocumentBuilder();
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public Story randomStory() {
-        if (StoryFactory.stories.size() == 0) this.loadStoriesFromXML();
-
-        int key = (int) (Math.random() * StoryFactory.stories.size());
-
-        return StoryFactory.stories.get(key);
-    }
-
-    public void loadStoriesFromXML() {
+    public ArrayList<Story> loadStoriesFromXML() {
 
         ArrayList<Story> storyArrayList = new ArrayList<Story>();
 
@@ -56,8 +55,8 @@ public class StoryFactory {
             e.printStackTrace();
         }
 
-        // Set all stories in the static object
-        StoryFactory.stories = storyArrayList;
+        // Return all the stories
+        return storyArrayList;
     }
 
     private ArrayList<Choice> fetchChoice(Node storyNode) {

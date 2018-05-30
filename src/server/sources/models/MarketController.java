@@ -8,7 +8,7 @@ import server.sources.models.villagers.VillagerFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
 
-public class Market {
+public class MarketController {
 
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<StarHouse> starHouses = new ArrayList<>();
@@ -20,9 +20,9 @@ public class Market {
 
     private ArrayList<Villager> villagers = new ArrayList<>();
 
-    public Market(){
-        try {
+    public void load() {
 
+        try {
             BuildingFactory bf = new BuildingFactory();
             VillagerFactory vf = new VillagerFactory();
 
@@ -40,6 +40,7 @@ public class Market {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+
     }
 
     //TODO: invullen methods
