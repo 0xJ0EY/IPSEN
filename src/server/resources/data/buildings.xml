@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<houses>
+    <!-- A dataset of houses -->
+    <house>
+        <price>5</price>
+        <perks>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </house>
+    <house>
+        <price>2</price>
+        <perks>
+            <perk value="3">INCOME</perk>
+            <perk>REROLL</perk>
+        </perks>
+    </house>
+    <house>
+        <price>2</price>
+        <perks>
+            <perk>REROLL</perk>
+        </perks>
+    </house>
+    <house>
+        <price>4</price>
+        <perks>
+            <perk>TRAIN_TO_READY</perk>
+            <perk value="1">POTION</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>7</price>
+        <perks>
+            <perk value="1">CIDER</perk>
+            <perk value="2">AMETHYST</perk>
+        </perks>
+    </house>
+    <house>
+        <price>5</price>
+        <perks>
+            <perk value="2">VILLAGE_POINTS</perk>
+            <perk>TRAIN_TO_READY</perk>
+        </perks>
+    </house>
+    <house>
+        <price>12</price>
+        <perks>
+            <perk>REROLL</perk>
+            <perk>TRAIN_TO_READY</perk>
+            <perk good="fish" value="3">VILLAGE_POINTS_FOR_THINGS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>3</price>
+        <perks>
+            <perk value="2">ORE</perk>
+        </perks>
+    </house>
+    <house>
+        <price>4</price>
+        <perks>
+            <perk value="1">MUSHROOM</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </house>
+    <house>
+        <price>6</price>
+        <perks>
+            <perk>REROLL</perk>
+            <perk value="2">COINS</perk>
+            <perk value="1">POTION</perk>
+        </perks>
+    </house>
+
+    <!-- A dataset of Starhouses -->
+    <starhouse>
+        <price>11</price>
+        <perks>
+            <perk value="3">VILLAGE_POINTS</perk>
+            <perk good="MUSHROOM" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="FRUIT" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="AMESTHYST" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>14</price>
+        <perks>
+            <perk value="2">VILLAGE_POINTS</perk>
+            <perk value="2">VILLAGE_POINTS_FOR_VILLAGERS</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>17</price>
+        <perks>
+            <perk value="12">VILLAGE_POINTS</perk>
+            <perk good="AMETHYST" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>16</price>
+        <perks>
+            <perk value="7">VILLAGE_POINTS</perk>
+            <perk value="2">VILLAGE_POINTS_FOR_EMPTY_CAVE</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>18</price>
+        <perks>
+            <perk value="3">VILLAGE_POINTS</perk>
+            <perk good="STARHOUSE" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
+        </perks>
+    </starhouse>
+    <starhouse>
+        <price>12</price>
+        <perks>
+            <perk value="4">VILLAGE_POINTS</perk>
+            <perk good="ORE" value="2">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="CIDER" value="1">VILLAGE_POINTS_FOR_THINGS</perk>
+        </perks>
+    </starhouse>
+
+    <!-- A dataset of keyhouses -->
+    <keyhouse>
+        <price>5</price>
+        <perks>
+            <perk value="1">POTION</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="3">INCOME</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="1">POTION</perk>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>4</price>
+        <perks>
+            <perk>TRAIN_TO_READY</perk>
+            <perk value="1">CIDER</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>5</price>
+        <perks>
+            <perk good="ORE" value="2">INCOME_FOR_GOODS</perk>
+            <perk good="ROPE" value="1">INCOME_FOR_GOODS</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk good="PAPER" value="3" >INCOME_FOR_GOODS</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>2</price>
+        <perks>
+            <perk value="3">CIDER</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>5</price>
+        <perks>
+            <perk value="3">BEDS</perk>
+            <perk value="2">COINS</perk>
+        </perks>
+    </keyhouse>
+    <keyhouse>
+        <price>7</price>
+        <perks>
+            <perk>TRAIN_TO_READY</perk>
+            <perk value="1">COINS</perk>
+        </perks>
+    </keyhouse>
+
+    <!-- A dataset of outposts -->
+    <outpost>
+        <price>11</price>
+        <perks>
+            <perk value="1">CIDER</perk>
+            <perk value="3">AMETHYST</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>10</price>
+        <perks>
+            <perk value="1">COINS</perk>
+            <perk value="6">VILLAGE_POINTS</perk>
+            <perk value="1">BEDS</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>7</price>
+        <perks>
+            <perk value="2">ROPE</perk>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>3</price>
+        <perks>
+            <perk value="1">BEDS</perk>
+            <perk>GAIN_REPUTATION</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>4</price>
+        <perks>
+            <perk value="1">ROPE</perk>
+            <perk value="1">CIDER</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>6</price>
+        <perks>
+            <perk value="1">COINS</perk>
+            <perk value="3">VILLAGE_POINTS</perk>
+            <perk value="2">BEDS</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>7</price>
+        <perks>
+            <perk value="2">AMETHYST</perk>
+            <perk value="1">POTION</perk>
+        </perks>
+    </outpost>
+    <outpost>
+        <price>3</price>
+        <perks>
+            <perk value="2">BEDS</perk>
+            <perk>GAIN_REPUTATION</perk>
+        </perks>
+    </outpost>
+</houses>
