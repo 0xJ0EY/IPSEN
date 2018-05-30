@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="client.resources.views.Villager"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<ImageView fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <image>
+      <Image url="@../../../../../../../OneDrive/Afbeeldingen/uselessVillager.png" />
+   </image>
+</ImageView>
