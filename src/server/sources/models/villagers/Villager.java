@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class Villager {
 
-    protected ArrayList<Lanterns> lanterns = new ArrayList<Lanterns>();
+    protected ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
     protected boolean injured;
     protected boolean tired;
 
-    public Villager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+    public Villager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
         this.lanterns = lanterns;
         this.injured = injured;
         this.tired = tired;

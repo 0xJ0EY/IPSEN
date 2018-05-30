@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FishVillager extends Villager implements Buildable {
 
-    public FishVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+    public FishVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
         super(lanterns, injured, tired);
     }
 

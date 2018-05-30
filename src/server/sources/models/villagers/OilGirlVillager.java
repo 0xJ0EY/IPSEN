@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class OilGirlVillager extends Villager {
 
-    public OilGirlVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+    public OilGirlVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
         super(lanterns, injured, tired);
     }
 

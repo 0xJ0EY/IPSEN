@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TinVillager extends Villager {
 
-    public TinVillager(ArrayList<Lanterns> lanterns, boolean injured, boolean tired) {
+    public TinVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
         super(lanterns, injured, tired);
     }
 
