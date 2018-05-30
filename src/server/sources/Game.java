@@ -2,6 +2,7 @@ package server.sources;
 
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.ServerInterface;
+import server.sources.models.Market;
 import server.sources.models.Player;
 import server.sources.models.buildings.BuildingFactory;
 import server.sources.models.stories.StoryFactory;
@@ -53,15 +54,8 @@ public class Game implements Runnable, Serializable {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        //Fill buildings array with buildings
-        try{
-            new BuildingFactory().loadHousesFromXML();
-            new BuildingFactory().loadKeyHousesFromXML();
-            new BuildingFactory().loadStarHousesFromXML();
-            new BuildingFactory().loadOutpostsFromXML();
-        } catch (ParserConfigurationException e){
-            e.printStackTrace();
-        }
+
+        Market market = new Market();
 
         Player player = this.players.get(0);
         player.requestAction();

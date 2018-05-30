@@ -19,8 +19,11 @@ public class RulesController implements Initializable {
 
     @FXML private Button previous_btn;
     @FXML private Button next_btn;
-    int pageNumber = 0;
     @FXML private ImageView ruleImage;
+
+
+    private int index = 0;
+    private ArrayList<Image> images = new ArrayList<Image>();
 
     /**
      * This is for loading images to imageViews
@@ -29,33 +32,65 @@ public class RulesController implements Initializable {
      * */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ruleImage.setImage(new Image("client/resources/img/rules_map/rules-0.jpg"));
+
+        Runnable loadImages = () -> {
+            for (int i = 0; i < 15; i++) {
+                Image image =  new Image("client/resources/img/rules_map/rules-" + i + ".jpg");
+                images.add(image);
+            }
+
+            this.updateImage();
+            this.updateButtons();
+        };
+
+        new Thread(loadImages).start();
+
     }
 
     /**
      * This is for handling clicks
-     *
      */
-    @FXML private void next(){
-        pageNumber++;
-        if (pageNumber <= 15){
-            System.out.println("client/resources/img/rules_map/rules-" + pageNumber + ".jpg");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-" + pageNumber + ".jpg"));
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Sorry, this page does not exist.", ButtonType.OK);
-            alert.show();
-        }
+    @FXML private void next() {
+
+        System.out.println("Next");
+
+        if (this.index + 1 > this.images.size()) return;
+
+        this.index++;
+
+        this.updateImage();
+        this.updateButtons();
+
     }
-    @FXML private void previous(){
-        pageNumber--;
-        if (pageNumber < 0){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Sorry this page does not exist.", ButtonType.OK);
-            alert.show();
+
+    @FXML private void previous() {
+        if (this.index - 1 < 0) return;
+        this.index--;
+
+        this.updateImage();
+        this.updateButtons();
+
+    }
+
+    private void updateImage() {
+        this.ruleImage.setImage(this.images.get(this.index));
+    }
+
+    private void updateButtons() {
+
+        if (this.index == 0) {
+            this.previous_btn.setDisable(true);
+            this.next_btn.setDisable(false);
+
+        } else if (this.index == this.images.size() - 1) {
+            this.previous_btn.setDisable(false);
+            this.next_btn.setDisable(true);
+
+        } else {
+            this.previous_btn.setDisable(false);
+            this.next_btn.setDisable(false);
+
         }
-        else{
-            System.out.println("client/resources/img/rules_map/rules-" + pageNumber + ".jpg");
-            ruleImage.setImage(new Image("client/resources/img/rules_map/rules-" + pageNumber + ".jpg"));
-        }
+
     }
 }

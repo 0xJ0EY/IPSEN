@@ -30,8 +30,8 @@
           <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-              <Button fx:id="previous_btn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#previous" prefHeight="60.0" text="Previous" />
-              <Button fx:id="next_btn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#next" text="Next" GridPane.columnIndex="1" />
+              <Button fx:id="previous_btn" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#previous" prefHeight="60.0" text="Previous" />
+              <Button fx:id="next_btn" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#next" text="Next" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -24,33 +24,7 @@ public class BuildingFactory {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder builder = factory.newDocumentBuilder();
 
-    private static ArrayList<House> houses;
-    private static ArrayList<StarHouse> starHouses;
-    private static ArrayList<KeyHouse> keyHouses;
-    private static ArrayList<Outpost> outposts;
-
     public BuildingFactory() throws ParserConfigurationException {
-    }
-
-    /**
-     * This is for generating random houses when game is started.
-     * @return
-     */
-    public House randomHouse() {
-        //TODO random everything
-        if (this.houses.size() == 0) this.loadHousesFromXML();
-
-        int key = (int) (Math.random() * this.houses.size());
-
-        return this.houses.get(key);
-    }
-
-    public Outpost randomOutpost(){
-        if (this.outposts.size() == 0) this.loadOutpostsFromXML();
-
-        int key = (int) (Math.random() * this.outposts.size());
-
-        return this.outposts.get(key);
     }
 
     //create Document for reading building XML
@@ -65,7 +39,7 @@ public class BuildingFactory {
     }
 
     //Read Houses from building XML
-    public void loadHousesFromXML(){
+    public ArrayList<House> loadHousesFromXML(){
         ArrayList<House> housesArrayList = new ArrayList<House>();
 
         Document document = createDocument();
@@ -80,11 +54,11 @@ public class BuildingFactory {
             housesArrayList.add(new House(price, this.fetchPerk(buildingNode)));
         }
 
-        this.houses = housesArrayList;
+        return housesArrayList;
     }
 
     //Read Star Houses from building XML
-    public void loadStarHousesFromXML(){
+    public ArrayList<StarHouse> loadStarHousesFromXML(){
         ArrayList<StarHouse> starHousesArrayList = new ArrayList<StarHouse>();
 
         Document document = createDocument();
@@ -99,11 +73,11 @@ public class BuildingFactory {
 
             starHousesArrayList.add(new StarHouse(price, this.fetchPerk(buildingNode)));
         }
-        this.starHouses = starHousesArrayList;
+        return starHousesArrayList;
     }
 
     //Read Key Houses from building XML
-    public void loadKeyHousesFromXML(){
+    public ArrayList<KeyHouse> loadKeyHousesFromXML(){
         ArrayList<KeyHouse> keyHousesArrayList = new ArrayList<KeyHouse>();
 
         Document document = createDocument();
@@ -119,11 +93,11 @@ public class BuildingFactory {
             keyHousesArrayList.add(new KeyHouse(price, this.fetchPerk(buildingNode)));
         }
 
-        this.keyHouses = keyHousesArrayList;
+        return keyHousesArrayList;
     }
 
     //Read Outposts from building XML
-    public void loadOutpostsFromXML(){
+    public ArrayList<Outpost> loadOutpostsFromXML(){
         ArrayList<Outpost> outpostsArrayList = new ArrayList<Outpost>();
 
         Document document = createDocument();
@@ -139,7 +113,7 @@ public class BuildingFactory {
             outpostsArrayList.add(new Outpost(price, this.fetchPerk(buildingNode)));
         }
 
-        this.outposts = outpostsArrayList;
+        return outpostsArrayList;
     }
 
     /**
@@ -158,40 +132,40 @@ public class BuildingFactory {
             Node perkNode = perkNodes.item(i);
             Element perkElement = (Element) perkNode;
 
-            System.out.println(
-                    "Building: " + buildingElement.getTagName() + "{\n" +
-                    "\tperkElement = " + perkElement.getTextContent() + "\n" +
-                    "\tvalue:" + perkElement.getAttribute("value") + "\n" +
-                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
-            );
+//            System.out.println(
+//                    "Building: " + buildingElement.getTagName() + "{\n" +
+//                    "\tperkElement = " + perkElement.getTextContent() + "\n" +
+//                    "\tvalue:" + perkElement.getAttribute("value") + "\n" +
+//                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
+//            );
             switch (perkElement.getTextContent()){
                 case "CIDER":
                     perks.add(
                         new CiderPerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "POTION":
                     perks.add(
                         new PotionPerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "REROLL":
                     perks.add(
                         new RerollPerk(perkElement.getTextContent())
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "INCOME":
                     perks.add(new IncomePerk(Integer.parseInt(perkElement.getAttribute("value"))));
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "COINS":
                     perks.add(
                         new CoinPerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "AMETHYST":
                     perks.add(
@@ -199,23 +173,23 @@ public class BuildingFactory {
                             Integer.parseInt(perkElement.getAttribute("value"))
                         )
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "ORE":
                     perks.add(
                         new OrePerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "MUSHROOM":
                     perks.add(
                         new MushroomPerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "TRAIN_TO_READY":
                     perks.add(new Train_to_ready_perk());
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "INCOME_FOR_GOODS":
                     perks.add(
@@ -224,15 +198,15 @@ public class BuildingFactory {
                             perkElement.getAttribute("good")
                         )
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "BEDS":
                     perks.add(new BedPerk(Integer.parseInt(perkElement.getAttribute("value"))));
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS":
                     perks.add(new Village_points_perk(Integer.parseInt(perkElement.getAttribute("value"))));
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS_FOR_THINGS":
                     perks.add(
@@ -241,34 +215,34 @@ public class BuildingFactory {
                             perkElement.getAttribute("goods")
                         )
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS_FOR_EMPTY_CAVE":
                     perks.add(
                         new Village_points_for_empty_cave_perk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS_FOR_VILLAGERS":
                     perks.add(
                         new Village_points_for_villagers_perk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "ROPE":
                     perks.add(
                         new RopePerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 case "GAIN_REPUTATION":
                     perks.add(
                         new ReputationPerk()
                     );
-                    System.out.println("Perk implemented");
+//                    System.out.println("Perk implemented");
                     break;
                 default:
-                    System.out.println("Perk is unknown");
+//                    System.out.println("Perk is unknown");
                     break;
             }
         }
