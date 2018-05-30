@@ -6,6 +6,7 @@ import server.sources.models.Market;
 import server.sources.models.Player;
 import server.sources.models.buildings.BuildingFactory;
 import server.sources.models.stories.StoryFactory;
+import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -56,10 +57,6 @@ public class Game implements Runnable, Serializable {
         }
 
         Market market = new Market();
-
-        Player player = this.players.get(0);
-        player.requestAction();
-
     }
 
     public void runGame() throws RemoteException {
@@ -101,8 +98,10 @@ public class Game implements Runnable, Serializable {
 
     }
 
-    private void endGame() {
+    private void endGame() throws RemoteException {
         this.setGameState(GameStates.ENDED);
+
+        this.server.notifyClients(new EndOfGameNotification());
 
         System.out.println("Game ended");
 

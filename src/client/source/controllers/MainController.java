@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class MainController implements ControllerInterface {
 
@@ -34,6 +35,8 @@ public class MainController implements ControllerInterface {
 
     @FXML private AnchorPane rules;
     @FXML public RulesController rulesController;
+
+    @FXML private Text message;
 
     /**
      * This is for assigning tabcontainer.
@@ -65,5 +68,25 @@ public class MainController implements ControllerInterface {
     public Parent show() {
         tabContainer.getSelectionModel().select(0);
         return this.root;
+    }
+
+    public void showMessage(String message) {
+
+        Runnable r = () -> {
+            this.message.setText(message);
+            this.message.setVisible(true);
+
+            try {
+                Thread.sleep(1750);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            this.message.setVisible(false);
+
+        };
+
+        new Thread(r).start();
+
     }
 }

@@ -48,7 +48,7 @@ public class ExploreController implements ControllerInterface {
     @FXML public void clickRun() {
         System.out.println("you clicked run");
         try {
-            client.gameClient.getPlayer().doAction(new RunAction());
+            client.getGameClient().getPlayer().doAction(new RunAction());
             System.out.println("Test");
 
         } catch (RemoteException e) {
