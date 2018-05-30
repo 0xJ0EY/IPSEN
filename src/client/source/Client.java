@@ -20,6 +20,7 @@ public class Client extends Application implements Serializable {
 
     private LoginController login;
     private LobbyController lobby;
+
     private MainController main;
     private ExploreController explore;
 
@@ -155,5 +156,13 @@ public class Client extends Application implements Serializable {
 
     public void setMain(MainController main) {
         this.main = main;
+    }
+
+    public ExploreController getExplore() {
+        return explore;
+    }
+
+    public void setExplore(ExploreController explore) {
+        this.explore = explore;
     }
 }

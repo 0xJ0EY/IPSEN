@@ -66,6 +66,7 @@ public class MainController implements ControllerInterface {
      */
     @Override
     public Parent show() {
+        tabContainer.getSelectionModel().select(0);
         return this.root;
     }
 

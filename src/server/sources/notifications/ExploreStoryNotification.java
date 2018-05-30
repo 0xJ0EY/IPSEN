@@ -9,17 +9,23 @@ import java.rmi.RemoteException;
 public class ExploreStoryNotification implements NotificationInterface {
 
     private Story story;
+    private GameClientInterface target;
 
-    public ExploreStoryNotification(Story story) {
+    public ExploreStoryNotification(GameClientInterface target, Story story) {
+        this.target = target;
         this.story = story;
     }
 
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
-        System.out.println("Dit is een explore notification");
-
-
+        if (this.target.equals(gameClient)) {
+            gameClient.getClient().getExplore().enableTurnButton();
+            gameClient.getClient().getExplore().enableConfirmButton();
+        } else {
+            gameClient.getClient().getExplore().disableTurnButton();
+            gameClient.getClient().getExplore().disableConfirmButton();
+        }
 
         gameClient.getClient().showExplore(this.story);
     }

@@ -59,8 +59,6 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      * @param action
      */
     public void doAction(ActionInterface action) {
-
-        System.out.println(this);
         this.action = action;
     }
 

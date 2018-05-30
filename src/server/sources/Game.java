@@ -2,7 +2,9 @@ package server.sources;
 
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.ServerInterface;
+import server.sources.models.Market;
 import server.sources.models.Player;
+import server.sources.models.buildings.BuildingFactory;
 import server.sources.models.stories.StoryFactory;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
@@ -54,6 +56,7 @@ public class Game implements Runnable, Serializable {
             e.printStackTrace();
         }
 
+        Market market = new Market();
     }
 
     public void runGame() throws RemoteException {
@@ -75,8 +78,6 @@ public class Game implements Runnable, Serializable {
 
                         System.out.println("Execute action");
                         this.server.executeAction(player.getAction());
-
-                        player.pass();
 
                     } catch (RemoteException | InterruptedException e) {
                         e.printStackTrace();
