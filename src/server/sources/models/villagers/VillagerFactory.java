@@ -78,8 +78,6 @@ public class VillagerFactory {
             e.printStackTrace();
         }
 
-        System.out.println(list);
-
         return list;
 
     }
