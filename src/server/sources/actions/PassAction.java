@@ -1,6 +1,5 @@
 package server.sources.actions;
 
-import server.sources.GameClient;
 import server.sources.Server;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;

@@ -24,7 +24,7 @@ public class PlayerTurnNotification implements NotificationInterface {
 
         } else {
             Client client = gameClient.getClient();
-            client.getMain().showMessage(String.format("It\'s %s\'s turn", this.target.getUsername()));
+            client.getMain().showMessage(String.format("It\'s %s\'s turn", this.target.getPlayer().getUsername()));
             client.getMain().menuController.disableTurnButton();
 
         }

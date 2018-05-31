@@ -1,14 +1,19 @@
-package server.sources.models;
+package server.sources.controllers;
 
 import com.sun.xml.internal.xsom.impl.scd.Iterators;
+import server.sources.interfaces.MarketControllerInterface;
+import server.sources.models.Player;
 import server.sources.models.buildings.*;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class Market {
+public class MarketController extends UnicastRemoteObject implements MarketControllerInterface {
 
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<StarHouse> starHouses = new ArrayList<>();
@@ -20,9 +25,13 @@ public class Market {
 
     private ArrayList<Villager> villagers = new ArrayList<>();
 
-    public Market(){
-        try {
+    public MarketController() throws RemoteException {
 
+    }
+
+    public void load() {
+
+        try {
             BuildingFactory bf = new BuildingFactory();
             VillagerFactory vf = new VillagerFactory();
 
@@ -40,6 +49,7 @@ public class Market {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+
     }
 
     //TODO: invullen methods

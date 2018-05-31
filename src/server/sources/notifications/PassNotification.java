@@ -1,6 +1,5 @@
 package server.sources.notifications;
 
-import server.sources.GameClient;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 

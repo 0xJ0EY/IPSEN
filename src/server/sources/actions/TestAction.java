@@ -11,6 +11,10 @@ public class TestAction implements ActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
+
+
+
+
         System.out.println("Dit is een test");
     }
 
