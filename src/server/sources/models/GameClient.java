@@ -1,4 +1,4 @@
-package server.sources;
+package server.sources.models;
 
 import client.source.Client;
 import server.sources.interfaces.*;
@@ -14,7 +14,6 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
 
     private ServerInterface server;
     private Client client;
-    private String username;
     private PlayerInterface player;
 
     private boolean connected = false;
@@ -30,13 +29,11 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
 
     public void connect(String address, String username) throws NotBoundException, MalformedURLException, RemoteException {
         System.out.println("Setting security policy");
-        System.setProperty("java.security.policy", getClass().getResource("client.policy").toString());
+        System.setProperty("java.security.policy", getClass().getResource("../policies/client.policy").toString());
         System.out.println("Set security policy");
 
-        this.username = username;
-
         this.server = (ServerInterface) Naming.lookup("//" + address + "/Server");
-        this.server.registerClient(this);
+        this.server.registerClient(this, username);
         this.connected = true;
 
     }
@@ -46,7 +43,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
         // Only disconnect when connected to a server
         if (this.connected) {
             // Clear gameClient of client
-            this.client.gameClient = new GameClient(this.client);
+            this.client.setGameClient(new GameClient(this.client));
 
             // Send unregister request to the server
             this.server.unregisterClient((GameClientInterface) this);
@@ -69,10 +66,6 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     @Override
     public void receiveNotification(NotificationInterface notification) throws RemoteException {
          notification.execute(this);
-    }
-
-    public String getUsername() throws RemoteException {
-        return this.username;
     }
 
     @Override

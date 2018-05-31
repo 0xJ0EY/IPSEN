@@ -5,11 +5,12 @@ import server.sources.interfaces.NotificationInterface;
 
 import java.rmi.RemoteException;
 
-public class GameStartedNotification implements NotificationInterface {
+public class PassNotification implements NotificationInterface {
+
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
-        // Show main gameController client for everyone
-        gameClient.getClient().showMain();
+        System.out.println("dit is een Pass notificatie");
     }
+
 }

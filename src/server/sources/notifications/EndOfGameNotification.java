@@ -5,11 +5,13 @@ import server.sources.interfaces.NotificationInterface;
 
 import java.rmi.RemoteException;
 
-public class GameStartedNotification implements NotificationInterface {
+public class EndOfGameNotification implements NotificationInterface {
+
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
-        // Show main gameController client for everyone
-        gameClient.getClient().showMain();
+        gameClient.getClient().getMain().showMessage("GameControllerController has ended");
+
     }
+
 }

@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import server.sources.Server;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 
@@ -36,14 +35,14 @@ public class LoginController implements ControllerInterface {
         }
 
         try {
-            this.client.gameClient.connect(address.getText(), username.getText());
+            this.client.getGameClient().connect(address.getText(), username.getText());
             this.client.showLobby();
             return true;
         } catch (ServerFullException e) {
-            this.errorAddress.setText("The game is full.");
+            this.errorAddress.setText("The gameController is full.");
 
         } catch (GameStartedException e) {
-            this.errorAddress.setText("Game has already started.");
+            this.errorAddress.setText("GameControllerController has already started.");
 
         } catch (RemoteException | NotBoundException e) {
             this.errorAddress.setText("Server did not respond.");

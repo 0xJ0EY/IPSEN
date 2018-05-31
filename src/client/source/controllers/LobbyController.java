@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.requests.StartGameRequest;
 
 import java.rmi.RemoteException;
@@ -33,18 +33,20 @@ public class LobbyController implements ControllerInterface {
 
     /**
      * This is for updating a list of connected players in a lobby,
-     * ready to play the game environment.
+     * ready to play the gameController environment.
      * @throws RemoteException
      */
     public void updateLobbyList() throws RemoteException {
-        ArrayList<GameClientInterface> currentClients = this.client.gameClient.getServer().listCurrentClients();
-        ArrayList<String> clientNames = new ArrayList<String>();
 
-        for (GameClientInterface client : currentClients) {
-            clientNames.add(client.getUsername());
+        // Load models
+        ObservableList<String> listItems = FXCollections.observableArrayList();
+        ArrayList<PlayerInterface> players = this.client.getGameClient().getServer().getGameController().listCurrentPlayers();
+
+        for (PlayerInterface player : players) {
+            listItems.add(player.getUsername());
         }
 
-        ObservableList<String> listItems = FXCollections.observableArrayList(clientNames);
+        // Add them in lobby list
         lobbyList.setItems(listItems);
 
     }
@@ -61,17 +63,17 @@ public class LobbyController implements ControllerInterface {
     }
 
     public void onClickStart() throws RemoteException {
-        this.client.gameClient.requestRequest(new StartGameRequest());
+        this.client.getGameClient().requestRequest(new StartGameRequest());
     }
 
     /**
-     * Disconnect the client from the game
+     * Disconnect the client from the gameController
      * @throws RemoteException
      */
     public void onClickDisconnect() throws RemoteException {
 
-        // Disconnect from the game lobby / game
-        this.client.gameClient.disconnect();
+        // Disconnect from the gameController lobby / gameController
+        this.client.getGameClient().disconnect();
 
         // Disable the start button if it was active
         this.disableStartButton();

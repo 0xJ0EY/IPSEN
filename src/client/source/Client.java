@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.sources.GameClient;
+import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
 import java.io.IOException;
@@ -16,19 +16,20 @@ import java.rmi.RemoteException;
 public class Client extends Application implements Serializable {
 
     private Stage stage;
-    public GameClient gameClient;
+    private GameClient gameClient;
 
-    public LoginController login;
+    private LoginController login;
     private LobbyController lobby;
-    public MainController main;
+
+    private MainController main;
     private ExploreController explore;
 
     @Override
     public void start(Stage primaryStage) {
 
-        // Set game client
+        // Set gameController client
         try {
-            this.gameClient = new GameClient(this);
+            this.setGameClient(new GameClient(this));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -55,7 +56,7 @@ public class Client extends Application implements Serializable {
     @Override
     public void stop() throws Exception {
         System.out.println("Disconnect");
-        gameClient.disconnect();
+        getGameClient().disconnect();
         super.stop();
     }
 
@@ -63,8 +64,8 @@ public class Client extends Application implements Serializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/login.fxml"));
         loader.load();
 
-        this.login = loader.getController();
-        this.login.setClient(this);
+        this.setLogin(loader.getController());
+        this.getLogin().setClient(this);
 
     }
 
@@ -81,8 +82,8 @@ public class Client extends Application implements Serializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/main.fxml"));
         loader.load();
 
-        this.main = loader.getController();
-        this.main.setClient(this);
+        this.setMain(loader.getController());
+        this.getMain().setClient(this);
 
     }
 
@@ -95,7 +96,7 @@ public class Client extends Application implements Serializable {
     }
 
     public void showLogin() {
-        this.setScene(this.login.show());
+        this.setScene(this.getLogin().show());
     }
 
     public void showLobby() {
@@ -103,7 +104,7 @@ public class Client extends Application implements Serializable {
     }
 
     public void showMain() {
-        this.setScene(this.main.show());
+        this.setScene(this.getMain().show());
     }
 
     public void showExplore(Story story) {
@@ -131,5 +132,37 @@ public class Client extends Application implements Serializable {
 
     public void setLobby(LobbyController lobby) {
         this.lobby = lobby;
+    }
+
+    public GameClient getGameClient() {
+        return gameClient;
+    }
+
+    public void setGameClient(GameClient gameClient) {
+        this.gameClient = gameClient;
+    }
+
+    public LoginController getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginController login) {
+        this.login = login;
+    }
+
+    public MainController getMain() {
+        return main;
+    }
+
+    public void setMain(MainController main) {
+        this.main = main;
+    }
+
+    public ExploreController getExplore() {
+        return explore;
+    }
+
+    public void setExplore(ExploreController explore) {
+        this.explore = explore;
     }
 }
