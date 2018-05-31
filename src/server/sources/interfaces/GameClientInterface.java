@@ -44,7 +44,7 @@ public interface GameClientInterface extends Remote {
     public Client getClient() throws RemoteException;
 
     /**
-     * Promote the client to owner of the game
+     * Promote the client to owner of the gameController
      * @throws RemoteException
      */
     public void promote() throws RemoteException;

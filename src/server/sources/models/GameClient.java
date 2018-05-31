@@ -1,4 +1,4 @@
-package server.sources;
+package server.sources.models;
 
 import client.source.Client;
 import server.sources.interfaces.*;
@@ -29,7 +29,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
 
     public void connect(String address, String username) throws NotBoundException, MalformedURLException, RemoteException {
         System.out.println("Setting security policy");
-        System.setProperty("java.security.policy", getClass().getResource("client.policy").toString());
+        System.setProperty("java.security.policy", getClass().getResource("../policies/client.policy").toString());
         System.out.println("Set security policy");
 
         this.server = (ServerInterface) Naming.lookup("//" + address + "/Server");

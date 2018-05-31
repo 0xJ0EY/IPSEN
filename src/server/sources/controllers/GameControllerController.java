@@ -1,9 +1,7 @@
-package server.sources;
+package server.sources.controllers;
 
 import server.sources.interfaces.*;
-import server.sources.controllers.MarketController;
 import server.sources.models.Player;
-import server.sources.controllers.StoryController;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
 
@@ -11,7 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class Game extends UnicastRemoteObject implements GameInterface, Runnable {
+public class GameControllerController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
     private enum GameStates { LOBBY, STARTED, RUNNING, ENDED }
 
@@ -28,7 +26,7 @@ public class Game extends UnicastRemoteObject implements GameInterface, Runnable
     private StoryController stories = new StoryController();
     private MarketController market = new MarketController();
 
-    public Game(ServerInterface server) throws RemoteException {
+    public GameControllerController(ServerInterface server) throws RemoteException {
         this.server = server;
 
         // Load the market
@@ -101,7 +99,7 @@ public class Game extends UnicastRemoteObject implements GameInterface, Runnable
 
         this.server.notifyClients(new EndOfGameNotification());
 
-        System.out.println("Game ended");
+        System.out.println("GameControllerController ended");
 
     }
 

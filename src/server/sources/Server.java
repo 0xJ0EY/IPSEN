@@ -1,5 +1,6 @@
 package server.sources;
 
+import server.sources.controllers.GameControllerController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
@@ -24,13 +25,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private ServerState state = ServerState.OFFLINE;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
-    private Game game = new Game((ServerInterface) this);
+    private GameControllerController gameController = new GameControllerController((ServerInterface) this);
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
 
         System.out.println("Setting security policy");
-        System.setProperty("java.security.policy", getClass().getResource("server.policy").toString());
+        System.setProperty("java.security.policy", getClass().getResource("policies/server.policy").toString());
         System.out.println("Set security policy");
 
         LocateRegistry.createRegistry(this.SERVER_PORT);
@@ -51,13 +52,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         Player player = new Player(username);
 
         // Link GameClient & Player
-        player.setGame(this.game);
+        player.setGameController(this.gameController);
         player.setGameClient(gameClient);
 
         gameClient.setPlayer(player);
 
         // Set player
-        this.game.players.add(player);
+        this.gameController.players.add(player);
         this.gameClients.add(gameClient);
 
         this.promoteOwner();
@@ -68,7 +69,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
-        this.game.removePlayer(gameClient);
+        this.gameController.removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
         this.promoteOwner();
@@ -114,17 +115,17 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public GameInterface getGame() {
-        return game;
+    public GameControllerInterface getGameController() {
+        return gameController;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setGameController(GameControllerController gameController) {
+        this.gameController = gameController;
     }
 
     public void startGame() {
         this.updateState(ServerState.RUNNING);
-        new Thread(this.game).start();
+        new Thread(this.gameController).start();
     }
 
     private void updateState(ServerState state) {

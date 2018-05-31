@@ -1,11 +1,7 @@
 package server.sources.interfaces;
 
-import server.sources.exceptions.ServerFullException;
-
-import javax.swing.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 public interface ServerInterface extends Remote {
 
@@ -19,6 +15,6 @@ public interface ServerInterface extends Remote {
 
     public void executeAction(ActionInterface action) throws RemoteException;
 
-    public GameInterface getGame() throws RemoteException;
+    public GameControllerInterface getGameController() throws RemoteException;
 
 }
