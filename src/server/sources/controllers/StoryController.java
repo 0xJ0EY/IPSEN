@@ -20,7 +20,7 @@ public class StoryController extends UnicastRemoteObject implements StoryControl
         this.stories = storyFactory.loadStoriesFromXML();
     }
 
-    public Story randomStory() {
+    public Story randomStory() throws RemoteException {
         int index = (int) Math.round(Math.random() * stories.size());
 
         Story story = stories.get(index);
@@ -29,7 +29,7 @@ public class StoryController extends UnicastRemoteObject implements StoryControl
         return story;
     }
 
-    public Story storyAt(int index) {
+    public Story storyAt(int index) throws RemoteException {
         return stories.get(index);
     }
 
