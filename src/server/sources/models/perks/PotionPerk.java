@@ -5,9 +5,4 @@ package server.sources.models.perks;
  */
 public class PotionPerk implements Perk {
 
-    private int value;
-
-    public PotionPerk(int value) {
-        this.value = value;
-    }
 }

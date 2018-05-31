@@ -157,7 +157,7 @@ public class BuildingFactory {
                     break;
                 case "POTION":
                     perks.add(
-                        new PotionPerk(Integer.parseInt(perkElement.getAttribute("value")))
+                        new PotionPerk()
                     );
 //                    System.out.println("Perk implemented");
                     break;

@@ -62,14 +62,6 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(villager);
     }
 
-    public void salary(){
-
-    }
-
-    public ArrayList<Villager> getVillagers() {
-        return this.villagers;
-    }
-
     public ArrayList<House> getHouses() {
         return this.houses;
     }
