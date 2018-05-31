@@ -10,17 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c4d369;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.TurnController">
    <children>
-      <HBox prefWidth="500" alignment="bottom_left" layoutX="0" layoutY="0" spacing="10" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-         <Text id="turn-label" text="Turn: ">
-            <font>
-               <Font size="25.0" />
-            </font></Text>
-         <Text id="player-name" text="test">
-            <font>
-               <Font size="25.0" />
-            </font></Text>
+      <HBox prefHeight="38.0" prefWidth="446.0" spacing="20" styleClass="header_display" stylesheets="@../css/header_display.css">
+         <children>
+            <Label text="Turn:" />
+            <Label fx:id="player_name" text="Label" />
+         </children>
       </HBox>
       <GridPane alignment="center" hgap="300" layoutY="50" vgap="10">
          <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
