@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import server.sources.actions.ExploreStoryAction;
 import server.sources.actions.PassAction;
 import server.sources.actions.TestAction;
+import server.sources.interfaces.GameClientInterface;
 
 import java.rmi.RemoteException;
 
@@ -17,7 +18,10 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void explore() throws RemoteException {
-        client.getGameClient().requestAction(new ExploreStoryAction(this.client.getGameClient()));
+
+        // TODO Make VillagerSelection overwritable with something like a builder only villager selection
+        client.getVillagerSelection().setVillagerAction(new ExploreStoryAction(this.client.getGameClient()));
+        client.showVillagerSelection();
 
         System.out.println("Send action explore");
 
@@ -28,8 +32,9 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void build() throws RemoteException {
+
         client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send action build");
+        System.out.println("Send build action");
 
     }
 

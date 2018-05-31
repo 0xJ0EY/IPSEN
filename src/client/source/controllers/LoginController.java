@@ -39,10 +39,10 @@ public class LoginController implements ControllerInterface {
             this.client.showLobby();
             return true;
         } catch (ServerFullException e) {
-            this.errorAddress.setText("The gameController is full.");
+            this.errorAddress.setText("The game is full.");
 
         } catch (GameStartedException e) {
-            this.errorAddress.setText("GameControllerController has already started.");
+            this.errorAddress.setText("Game has already started.");
 
         } catch (RemoteException | NotBoundException e) {
             this.errorAddress.setText("Server did not respond.");

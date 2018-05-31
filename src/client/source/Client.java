@@ -1,6 +1,7 @@
 package client.source;
 
 import client.source.controllers.*;
+import client.source.controllers.villager.VillagerSelectionController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +25,8 @@ public class Client extends Application implements Serializable {
     private MainController main;
     private ExploreController explore;
 
+    private VillagerSelectionController villagerSelection;
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -40,6 +43,7 @@ public class Client extends Application implements Serializable {
             this.loadLobby();
             this.loadMain();
             this.loadExplore();
+            this.loadVillagerSelection();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,6 +55,8 @@ public class Client extends Application implements Serializable {
         this.showLogin();
 
         this.stage.show();
+
+        System.out.println(villagerSelection);
     }
 
     @Override
@@ -64,8 +70,8 @@ public class Client extends Application implements Serializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/login.fxml"));
         loader.load();
 
-        this.setLogin(loader.getController());
-        this.getLogin().setClient(this);
+        this.login = loader.getController();
+        this.login.setClient(this);
 
     }
 
@@ -73,8 +79,8 @@ public class Client extends Application implements Serializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/lobby.fxml"));
         loader.load();
 
-        this.setLobby(loader.getController());
-        this.getLobby().setClient(this);
+        this.lobby = loader.getController();
+        this.lobby.setClient(this);
 
     }
 
@@ -82,9 +88,8 @@ public class Client extends Application implements Serializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/main.fxml"));
         loader.load();
 
-        this.setMain(loader.getController());
-        this.getMain().setClient(this);
-
+        this.main = loader.getController();
+        this.main.setClient(this);
     }
 
     private void loadExplore() throws IOException {
@@ -93,6 +98,14 @@ public class Client extends Application implements Serializable {
 
         this.explore = loader.getController();
         this.explore.setClient(this);
+    }
+
+    private void loadVillagerSelection() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/villager_selection.fxml"));
+        loader.load();
+
+        this.villagerSelection = loader.getController();
+        this.villagerSelection.setClient(this);
     }
 
     public void showLogin() {
@@ -105,6 +118,10 @@ public class Client extends Application implements Serializable {
 
     public void showMain() {
         this.setScene(this.getMain().show());
+    }
+
+    public void showVillagerSelection() {
+        this.setScene(this.getVillagerSelection().show());
     }
 
     public void showExplore(Story story) {
@@ -122,16 +139,8 @@ public class Client extends Application implements Serializable {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public LobbyController getLobby() {
         return lobby;
-    }
-
-    public void setLobby(LobbyController lobby) {
-        this.lobby = lobby;
     }
 
     public GameClient getGameClient() {
@@ -146,23 +155,23 @@ public class Client extends Application implements Serializable {
         return login;
     }
 
-    public void setLogin(LoginController login) {
-        this.login = login;
-    }
-
     public MainController getMain() {
         return main;
-    }
-
-    public void setMain(MainController main) {
-        this.main = main;
     }
 
     public ExploreController getExplore() {
         return explore;
     }
 
-    public void setExplore(ExploreController explore) {
-        this.explore = explore;
+    public Stage getStage() {
+        return stage;
+    }
+
+    public VillagerSelectionController getVillagerSelection() {
+        return villagerSelection;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
