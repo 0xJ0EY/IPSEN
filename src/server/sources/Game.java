@@ -116,11 +116,13 @@ public class Game extends UnicastRemoteObject implements GameInterface, Runnable
 
     }
 
-    public void removePlayer(GameClientInterface gameClient) {
+    public void removePlayer(GameClientInterface gameClient) throws RemoteException {
 
-        for (Player player : this.players) {
-            if (player.equals(gameClient)) {
-                this.players.remove(player);
+        for (int i = 0; i < this.players.size(); i++) {
+            Player player = this.players.get(i);
+
+            if (player.getGameClient().equals(gameClient)) {
+                this.players.remove(i);
             }
         }
 
