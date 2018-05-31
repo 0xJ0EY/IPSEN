@@ -2,7 +2,9 @@ package server.sources.models.villagers;
 
 import server.sources.models.Dice;
 
-public class Lantern {
+import java.io.Serializable;
+
+public class Lantern implements Serializable {
 
     private int cost;
     private int amount;

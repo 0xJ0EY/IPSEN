@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import server.sources.actions.ExploreStoryAction;
 import server.sources.actions.PassAction;
 import server.sources.actions.TestAction;
+import server.sources.interfaces.GameClientInterface;
 
 import java.rmi.RemoteException;
 
@@ -28,7 +29,18 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void build() throws RemoteException {
-        client.getGameClient().getPlayer().doAction(new TestAction());
+
+
+        client.getVillagerSelection().setVillagerAction(new ExploreStoryAction(this.client.getGameClient()));
+
+        client.showVillagerSelection();
+
+
+//        GameClientInterface target = client.getGameClient();
+//        client.getGameClient().requestRequest(new SelectVillagersRequest(target, new ExploreStoryAction(target)));
+
+
+//        client.getGameClient().getPlayer().doAction(new TestAction());
         System.out.println("Send action build");
 
     }

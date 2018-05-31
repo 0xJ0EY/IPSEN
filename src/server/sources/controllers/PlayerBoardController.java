@@ -1,21 +1,58 @@
 package server.sources.controllers;
 
+import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.models.villagers.BuilderVillager;
+import server.sources.models.villagers.Lantern;
+import server.sources.models.villagers.TrainerVillager;
 import server.sources.models.villagers.Villager;
 
-import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class PlayerBoardController implements Serializable {
+public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
 
     private ArrayList<Villager> villagers = new ArrayList<>();
 
-    public Villager getVillager(int index) {
+    public PlayerBoardController() throws RemoteException {
+        ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
+
+        lanterns.add(new Lantern(3, 2));
+        lanterns.add(new Lantern(4, 4));
+
+
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), false, false));
+
+    }
+
+    @Override
+    public ArrayList<Villager> listVillagers() throws RemoteException {
+        return this.villagers;
+    }
+
+    @Override
+    public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
+        ArrayList<Villager> available = new ArrayList<Villager>();
+
+        for (Villager villager : this.villagers) {
+            if (villager.isUseable()) {
+                available.add(villager);
+            }
+        }
+
+        return available;
+    }
+
+    @Override
+    public Villager getVillager(int index) throws RemoteException {
         return villagers.get(index);
     }
 
-    public void addVillager(Villager villager) {
+    @Override
+    public void addVillager(Villager villager) throws RemoteException {
         villagers.add(villager);
     }
-
 
 }
