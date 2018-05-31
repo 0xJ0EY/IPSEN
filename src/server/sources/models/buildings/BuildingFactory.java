@@ -139,6 +139,16 @@ public class BuildingFactory {
 //                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
 //            );
             switch (perkElement.getTextContent()){
+                case "REPLENISHABLE_PERK":
+                    perks.add(
+                            new ReplenishableGoodPerk(perkElement.getAttribute("good"))
+                    );
+                    break;
+                case "HARVESTABLE_PERK":
+                    perks.add(
+                            new HarvestableGoodPerk(perkElement.getAttribute("good"))
+                    );
+                    break;
                 case "CIDER":
                     perks.add(
                         new CiderPerk(Integer.parseInt(perkElement.getAttribute("value")))
@@ -164,26 +174,6 @@ public class BuildingFactory {
                 case "COINS":
                     perks.add(
                         new CoinPerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
-                    break;
-                case "AMETHYST":
-                    perks.add(
-                        new AmethystPerk(
-                            Integer.parseInt(perkElement.getAttribute("value"))
-                        )
-                    );
-//                    System.out.println("Perk implemented");
-                    break;
-                case "ORE":
-                    perks.add(
-                        new OrePerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
-                    break;
-                case "MUSHROOM":
-                    perks.add(
-                        new MushroomPerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
 //                    System.out.println("Perk implemented");
                     break;
@@ -226,12 +216,6 @@ public class BuildingFactory {
                 case "VILLAGE_POINTS_FOR_VILLAGERS":
                     perks.add(
                         new villagePointsForVillagersPerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
-                    break;
-                case "ROPE":
-                    perks.add(
-                        new RopePerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
 //                    System.out.println("Perk implemented");
                     break;

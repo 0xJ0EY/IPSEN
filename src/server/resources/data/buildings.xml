@@ -24,15 +24,15 @@
         <price>4</price>
         <perks>
             <perk>TRAIN_TO_READY</perk>
-            <perk value="1">POTION</perk>
+            <perk>POTION</perk>
             <perk value="2">COINS</perk>
         </perks>
     </house>
     <house>
         <price>7</price>
         <perks>
-            <perk value="1">CIDER</perk>
-            <perk value="2">AMETHYST</perk>
+            <perk good="CIDER">REPLENISHABLE_PERK</perk>
+            <perk good="AMETHYST">HARVESTABLE_PERK</perk>
         </perks>
     </house>
     <house>
@@ -47,19 +47,19 @@
         <perks>
             <perk>REROLL</perk>
             <perk>TRAIN_TO_READY</perk>
-            <perk good="fish" value="3">VILLAGE_POINTS_FOR_THINGS</perk>
+            <perk good="FISH" value="3">VILLAGE_POINTS_FOR_THINGS</perk>
         </perks>
     </house>
     <house>
         <price>3</price>
         <perks>
-            <perk value="2">ORE</perk>
+            <perk good="ORE">REPLENISHABLE_PERK</perk>
         </perks>
     </house>
     <house>
         <price>4</price>
         <perks>
-            <perk value="1">MUSHROOM</perk>
+            <perk good="AMETHYST">HARVESTABLE_PERK</perk>
             <perk value="2">COINS</perk>
         </perks>
     </house>
@@ -186,7 +186,7 @@
         <price>11</price>
         <perks>
             <perk value="1">CIDER</perk>
-            <perk value="3">AMETHYST</perk>
+            <perk good="AMETHYST">HARVESTABLE_PERK</perk>
         </perks>
     </outpost>
     <outpost>
@@ -200,7 +200,7 @@
     <outpost>
         <price>7</price>
         <perks>
-            <perk value="2">ROPE</perk>
+            <perk good="ROPE">REPLENISHABLE_PERK</perk>
             <perk value="1">CIDER</perk>
         </perks>
     </outpost>
@@ -214,7 +214,7 @@
     <outpost>
         <price>4</price>
         <perks>
-            <perk value="1">ROPE</perk>
+            <perk good="POT">HARVESTABLE_PERK</perk>
             <perk value="1">CIDER</perk>
         </perks>
     </outpost>
@@ -229,7 +229,7 @@
     <outpost>
         <price>7</price>
         <perks>
-            <perk value="2">AMETHYST</perk>
+            <perk good="MUSHROOM">REPLENISHABLE_PERK</perk>
             <perk value="1">POTION</perk>
         </perks>
     </outpost>
