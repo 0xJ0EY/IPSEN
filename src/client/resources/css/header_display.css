@@ -1,0 +1,5 @@
+.header_display{
+    -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;
+    -fx-background-color: #FFF;
+    -fx-font-size: 25px;
+}
