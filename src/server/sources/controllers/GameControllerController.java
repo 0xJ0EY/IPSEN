@@ -1,18 +1,15 @@
-package server.sources;
+package server.sources.controllers;
 
-import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.ServerInterface;
-import server.sources.models.MarketController;
+import server.sources.interfaces.*;
 import server.sources.models.Player;
-import server.sources.models.stories.StoryController;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class Game implements Runnable, Serializable {
+public class GameControllerController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
     private enum GameStates { LOBBY, STARTED, RUNNING, ENDED }
 
@@ -29,7 +26,7 @@ public class Game implements Runnable, Serializable {
     private StoryController stories = new StoryController();
     private MarketController market = new MarketController();
 
-    public Game(ServerInterface server) {
+    public GameControllerController(ServerInterface server) throws RemoteException {
         this.server = server;
 
         // Load the market
@@ -102,7 +99,7 @@ public class Game implements Runnable, Serializable {
 
         this.server.notifyClients(new EndOfGameNotification());
 
-        System.out.println("Game ended");
+        System.out.println("GameControllerController ended");
 
     }
 
@@ -117,11 +114,13 @@ public class Game implements Runnable, Serializable {
 
     }
 
-    public void removePlayer(GameClientInterface gameClient) {
+    public void removePlayer(GameClientInterface gameClient) throws RemoteException {
 
-        for (Player player : this.players) {
-            if (player.equals(gameClient)) {
-                this.players.remove(player);
+        for (int i = 0; i < this.players.size(); i++) {
+            Player player = this.players.get(i);
+
+            if (player.getGameClient().equals(gameClient)) {
+                this.players.remove(i);
             }
         }
 
@@ -145,11 +144,20 @@ public class Game implements Runnable, Serializable {
         this.gameState = gameState;
     }
 
-    public StoryController getStories() {
-        return stories;
+    @Override
+    public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException {
+        // Im casting some black magic right here
+        return (ArrayList<PlayerInterface>) (ArrayList<?>) this.players;
+
     }
 
-    public MarketController getMarket() {
-        return market;
+    @Override
+    public StoryControllerInterface getStories() throws RemoteException {
+        return (StoryControllerInterface) stories;
+    }
+
+    @Override
+    public MarketControllerInterface getMarket() throws RemoteException {
+        return (MarketControllerInterface) market;
     }
 }

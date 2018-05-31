@@ -24,4 +24,6 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public void doAction(ActionInterface action) throws RemoteException;
 
+    public String getUsername() throws RemoteException;
+
 }

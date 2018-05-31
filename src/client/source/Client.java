@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.sources.GameClient;
+import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class Client extends Application implements Serializable {
     @Override
     public void start(Stage primaryStage) {
 
-        // Set game client
+        // Set gameController client
         try {
             this.setGameClient(new GameClient(this));
         } catch (RemoteException e) {

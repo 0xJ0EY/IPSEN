@@ -188,12 +188,12 @@ public class BuildingFactory {
 //                    System.out.println("Perk implemented");
                     break;
                 case "TRAIN_TO_READY":
-                    perks.add(new Train_to_ready_perk());
+                    perks.add(new TrainToReadyPerk());
 //                    System.out.println("Perk implemented");
                     break;
                 case "INCOME_FOR_GOODS":
                     perks.add(
-                        new Income_for_goods_perk(
+                        new IncomeForGoodsPerk(
                             Integer.parseInt(perkElement.getAttribute("value")),
                             perkElement.getAttribute("good")
                         )
@@ -205,12 +205,12 @@ public class BuildingFactory {
 //                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS":
-                    perks.add(new Village_points_perk(Integer.parseInt(perkElement.getAttribute("value"))));
+                    perks.add(new villagePointsPerk(Integer.parseInt(perkElement.getAttribute("value"))));
 //                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS_FOR_THINGS":
                     perks.add(
-                        new Village_points_for_things_perk(
+                        new villagePointsForThingsPerk(
                             Integer.parseInt(perkElement.getAttribute("value")),
                             perkElement.getAttribute("goods")
                         )
@@ -219,13 +219,13 @@ public class BuildingFactory {
                     break;
                 case "VILLAGE_POINTS_FOR_EMPTY_CAVE":
                     perks.add(
-                        new Village_points_for_empty_cave_perk(Integer.parseInt(perkElement.getAttribute("value")))
+                        new VillagePointsForEmptyCavePerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
 //                    System.out.println("Perk implemented");
                     break;
                 case "VILLAGE_POINTS_FOR_VILLAGERS":
                     perks.add(
-                        new Village_points_for_villagers_perk(Integer.parseInt(perkElement.getAttribute("value")))
+                        new villagePointsForVillagersPerk(Integer.parseInt(perkElement.getAttribute("value")))
                     );
 //                    System.out.println("Perk implemented");
                     break;

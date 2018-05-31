@@ -1,11 +1,11 @@
-package server.sources.models;
+package server.sources.controllers;
 
 import server.sources.models.villagers.Villager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PlayerBoard implements Serializable {
+public class PlayerBoardController implements Serializable {
 
     private ArrayList<Villager> villagers = new ArrayList<>();
 
