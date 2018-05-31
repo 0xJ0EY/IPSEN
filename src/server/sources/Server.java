@@ -66,6 +66,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.notifyClients(new UpdatePlayerListNotification());
     }
 
+
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
@@ -114,11 +115,19 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     }
 
+    /**
+     * Return the current Game as a interface so that the client can retrieve data via Java RMI
+     * @return GameControllerInterface
+     */
     @Override
     public GameControllerInterface getGameController() {
         return gameController;
     }
 
+    /**
+     * Set the gameController
+     * @param gameController
+     */
     public void setGameController(GameControllerController gameController) {
         this.gameController = gameController;
     }
