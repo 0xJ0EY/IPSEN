@@ -43,21 +43,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public void registerClient(GameClientInterface gameClient) throws ServerFullException, GameStartedException, RemoteException {
+    public void registerClient(GameClientInterface gameClient, String username) throws ServerFullException, GameStartedException, RemoteException {
         if (this.gameClients.size() >= this.SERVER_MAX_PLAYER) throw new ServerFullException();
 
         if (this.state != ServerState.LOBBY) throw new GameStartedException();
 
-        Player player = new Player();
+        Player player = new Player(username);
 
         // Link GameClient & Player
-        player.setGame(this.getGame());
+        player.setGame(this.game);
         player.setGameClient(gameClient);
 
         gameClient.setPlayer(player);
 
         // Set player
-        getGame().players.add(player);
+        this.game.players.add(player);
         this.gameClients.add(gameClient);
 
         this.promoteOwner();
@@ -68,7 +68,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
-        this.getGame().removePlayer(gameClient);
+        this.game.removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
         this.promoteOwner();
@@ -114,25 +114,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public ArrayList<GameClientInterface> listCurrentClients() {
-        return this.gameClients;
-    }
-
-    public void startGame() {
-        this.updateState(ServerState.RUNNING);
-        new Thread(getGame()).start();
-    }
-
-    private void updateState(ServerState state) {
-        this.state = state;
-    }
-
-    public Game getGame() {
+    public GameInterface getGame() {
         return game;
     }
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public void startGame() {
+        this.updateState(ServerState.RUNNING);
+        new Thread(this.game).start();
+    }
+
+    private void updateState(ServerState state) {
+        this.state = state;
     }
 
     public void save() {

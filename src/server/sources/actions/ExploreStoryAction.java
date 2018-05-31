@@ -21,7 +21,7 @@ public class ExploreStoryAction implements ActionInterface {
     @Override
     public void execute(Server server) throws RemoteException {
 
-        this.story = server.getGame().getStories().randomStory();
+//        this.story = server.getGame().getStories().randomStory();
 
         System.out.println("Generated new story");
     }

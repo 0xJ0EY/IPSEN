@@ -1,6 +1,7 @@
 package server.sources.models;
 
 import server.sources.Game;
+import server.sources.controllers.PlayerBoardController;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
@@ -11,7 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Player extends UnicastRemoteObject implements PlayerInterface {
 
-    public PlayerBoard board = new PlayerBoard();
+    public PlayerBoardController board = new PlayerBoardController();
     public Game game;
 
     private GameClientInterface gameClient;
@@ -20,8 +21,10 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     private boolean passed = false;
 
-    public Player() throws RemoteException {
+    private String username;
 
+    public Player(String username) throws RemoteException {
+        this.username = username;
     }
 
     public GameClientInterface getGameClient() {
@@ -43,7 +46,6 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     public void requestAction() throws RemoteException {
         this.action = null;
         game.server.notifyClients(new PlayerTurnNotification(this.gameClient));
-
     }
 
     public ActionInterface getAction() {
@@ -62,6 +64,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         this.action = action;
     }
 
+    public String getUsername() throws RemoteException {
+        return this.username;
+    }
 
     public void resetAfterRound() {
         this.passed = false;

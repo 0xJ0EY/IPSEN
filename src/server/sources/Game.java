@@ -1,18 +1,17 @@
 package server.sources;
 
-import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.ServerInterface;
-import server.sources.models.MarketController;
+import server.sources.interfaces.*;
+import server.sources.controllers.MarketController;
 import server.sources.models.Player;
-import server.sources.models.stories.StoryController;
+import server.sources.controllers.StoryController;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class Game implements Runnable, Serializable {
+public class Game extends UnicastRemoteObject implements GameInterface, Runnable {
 
     private enum GameStates { LOBBY, STARTED, RUNNING, ENDED }
 
@@ -29,7 +28,7 @@ public class Game implements Runnable, Serializable {
     private StoryController stories = new StoryController();
     private MarketController market = new MarketController();
 
-    public Game(ServerInterface server) {
+    public Game(ServerInterface server) throws RemoteException {
         this.server = server;
 
         // Load the market
@@ -145,11 +144,20 @@ public class Game implements Runnable, Serializable {
         this.gameState = gameState;
     }
 
-    public StoryController getStories() {
-        return stories;
+    @Override
+    public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException {
+        // Im casting some black magic right here
+        return (ArrayList<PlayerInterface>) (ArrayList<?>) this.players;
+
     }
 
-    public MarketController getMarket() {
-        return market;
+    @Override
+    public StoryControllerInterface getStories() throws RemoteException {
+        return (StoryControllerInterface) stories;
+    }
+
+    @Override
+    public MarketControllerInterface getMarket() throws RemoteException {
+        return (MarketControllerInterface) market;
     }
 }

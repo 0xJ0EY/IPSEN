@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerInterface;
+import server.sources.models.Player;
 import server.sources.requests.StartGameRequest;
 
 import java.rmi.RemoteException;
@@ -39,16 +41,14 @@ public class LobbyController implements ControllerInterface {
     public void updateLobbyList() throws RemoteException {
 
         // Load models
-        ArrayList<GameClientInterface> currentClients = this.client.getGameClient().getServer().listCurrentClients();
-        ArrayList<String> clientNames = new ArrayList<String>();
+        ObservableList<String> listItems = FXCollections.observableArrayList();
+        ArrayList<PlayerInterface> players = this.client.getGameClient().getServer().getGame().listCurrentPlayers();
 
-        // Get the models username for the view
-        for (GameClientInterface client : currentClients) {
-            clientNames.add(client.getUsername());
+        for (PlayerInterface player : players) {
+            listItems.add(player.getUsername());
         }
 
         // Add them in lobby list
-        ObservableList<String> listItems = FXCollections.observableArrayList(clientNames);
         lobbyList.setItems(listItems);
 
     }

@@ -14,7 +14,6 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
 
     private ServerInterface server;
     private Client client;
-    private String username;
     private PlayerInterface player;
 
     private boolean connected = false;
@@ -33,10 +32,8 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
         System.setProperty("java.security.policy", getClass().getResource("client.policy").toString());
         System.out.println("Set security policy");
 
-        this.username = username;
-
         this.server = (ServerInterface) Naming.lookup("//" + address + "/Server");
-        this.server.registerClient(this);
+        this.server.registerClient(this, username);
         this.connected = true;
 
     }
@@ -69,10 +66,6 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     @Override
     public void receiveNotification(NotificationInterface notification) throws RemoteException {
          notification.execute(this);
-    }
-
-    public String getUsername() throws RemoteException {
-        return this.username;
     }
 
     @Override

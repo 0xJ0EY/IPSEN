@@ -30,13 +30,6 @@ public interface GameClientInterface extends Remote {
     public void receiveNotification(NotificationInterface notification) throws RemoteException;
 
     /**
-     * Return the set username
-     * @return username
-     * @throws RemoteException
-     */
-    public String getUsername() throws RemoteException;
-
-    /**
      * Return the server interface if available
      * @return ServerInterface
      * @throws RemoteException
