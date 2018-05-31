@@ -21,7 +21,7 @@ public class StoryController extends UnicastRemoteObject implements StoryControl
     }
 
     public Story randomStory() throws RemoteException {
-        int index = (int) Math.round(Math.random() * stories.size());
+        int index = (int) Math.floor(Math.random() * stories.size());
 
         Story story = stories.get(index);
         stories.remove(story);

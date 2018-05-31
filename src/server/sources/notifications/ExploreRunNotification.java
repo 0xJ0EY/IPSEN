@@ -10,8 +10,7 @@ public class ExploreRunNotification implements NotificationInterface {
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
         // Show main gameController client for everyone
-
-        System.out.println("Hallo");
         gameClient.getClient().showMain();
+        System.out.println("Hallo");
     }
 }
