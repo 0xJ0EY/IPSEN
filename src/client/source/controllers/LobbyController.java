@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.requests.StartGameRequest;
 
 import java.rmi.RemoteException;
@@ -33,22 +33,20 @@ public class LobbyController implements ControllerInterface {
 
     /**
      * This is for updating a list of connected players in a lobby,
-     * ready to play the game environment.
+     * ready to play the gameController environment.
      * @throws RemoteException
      */
     public void updateLobbyList() throws RemoteException {
 
         // Load models
-        ArrayList<GameClientInterface> currentClients = this.client.getGameClient().getServer().listCurrentClients();
-        ArrayList<String> clientNames = new ArrayList<String>();
+        ObservableList<String> listItems = FXCollections.observableArrayList();
+        ArrayList<PlayerInterface> players = this.client.getGameClient().getServer().getGameController().listCurrentPlayers();
 
-        // Get the models username for the view
-        for (GameClientInterface client : currentClients) {
-            clientNames.add(client.getUsername());
+        for (PlayerInterface player : players) {
+            listItems.add(player.getUsername());
         }
 
         // Add them in lobby list
-        ObservableList<String> listItems = FXCollections.observableArrayList(clientNames);
         lobbyList.setItems(listItems);
 
     }
@@ -69,12 +67,12 @@ public class LobbyController implements ControllerInterface {
     }
 
     /**
-     * Disconnect the client from the game
+     * Disconnect the client from the gameController
      * @throws RemoteException
      */
     public void onClickDisconnect() throws RemoteException {
 
-        // Disconnect from the game lobby / game
+        // Disconnect from the gameController lobby / gameController
         this.client.getGameClient().disconnect();
 
         // Disable the start button if it was active

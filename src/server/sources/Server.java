@@ -1,5 +1,6 @@
 package server.sources;
 
+import server.sources.controllers.GameControllerController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
@@ -24,13 +25,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     private ServerState state = ServerState.OFFLINE;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
-    private Game game = new Game((ServerInterface) this);
+    private GameControllerController gameController = new GameControllerController((ServerInterface) this);
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
 
         System.out.println("Setting security policy");
-        System.setProperty("java.security.policy", getClass().getResource("server.policy").toString());
+        System.setProperty("java.security.policy", getClass().getResource("policies/server.policy").toString());
         System.out.println("Set security policy");
 
         LocateRegistry.createRegistry(this.SERVER_PORT);
@@ -43,21 +44,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public void registerClient(GameClientInterface gameClient) throws ServerFullException, GameStartedException, RemoteException {
+    public void registerClient(GameClientInterface gameClient, String username) throws ServerFullException, GameStartedException, RemoteException {
         if (this.gameClients.size() >= this.SERVER_MAX_PLAYER) throw new ServerFullException();
 
         if (this.state != ServerState.LOBBY) throw new GameStartedException();
 
-        Player player = new Player();
+        Player player = new Player(username);
 
         // Link GameClient & Player
-        player.setGame(this.getGame());
+        player.setGameController(this.gameController);
         player.setGameClient(gameClient);
 
         gameClient.setPlayer(player);
 
         // Set player
-        getGame().players.add(player);
+        this.gameController.players.add(player);
         this.gameClients.add(gameClient);
 
         this.promoteOwner();
@@ -68,7 +69,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
-        this.getGame().removePlayer(gameClient);
+        this.gameController.removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
         this.promoteOwner();
@@ -114,25 +115,21 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public ArrayList<GameClientInterface> listCurrentClients() {
-        return this.gameClients;
+    public GameControllerInterface getGameController() {
+        return gameController;
+    }
+
+    public void setGameController(GameControllerController gameController) {
+        this.gameController = gameController;
     }
 
     public void startGame() {
         this.updateState(ServerState.RUNNING);
-        new Thread(getGame()).start();
+        new Thread(this.gameController).start();
     }
 
     private void updateState(ServerState state) {
         this.state = state;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 
     public void save() {
