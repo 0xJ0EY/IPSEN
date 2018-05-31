@@ -1,6 +1,5 @@
 package server.sources.controllers;
 
-import com.sun.xml.internal.xsom.impl.scd.Iterators;
 import server.sources.interfaces.MarketControllerInterface;
 import server.sources.models.Player;
 import server.sources.models.buildings.*;
@@ -54,7 +53,6 @@ public class MarketController extends UnicastRemoteObject implements MarketContr
 
     //TODO: invullen methods
     public void refreshHouses(Player player){
-
         for (int i=0; i<availableHouses.length; i++) {
             availableHouses[i] = randomHouse();
         }

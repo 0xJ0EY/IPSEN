@@ -1,5 +1,10 @@
 package server.sources.models.villagers;
 
+import client.source.components.villager.TypeAllroundComponent;
+import client.source.components.villager.TypeDefaultComponent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 
 public class AllroundVillager extends Villager implements Trainable, Buildable {
@@ -17,4 +22,10 @@ public class AllroundVillager extends Villager implements Trainable, Buildable {
     public void train() {
 
     }
+
+    @Override
+    public AnchorPane getType() {
+        return new TypeAllroundComponent();
+    }
+
 }

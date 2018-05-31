@@ -4,6 +4,7 @@ import server.sources.controllers.GameControllerController;
 import server.sources.controllers.PlayerBoardController;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerBoardControllerInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.notifications.PlayerTurnNotification;
 
@@ -66,6 +67,15 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     public String getUsername() throws RemoteException {
         return this.username;
+    }
+
+    /**
+     * Return the PlayerBoardControllerInterface so it can be used for RMI communicaton
+     * @return
+     */
+    @Override
+    public PlayerBoardControllerInterface getPlayerBoard() {
+        return (PlayerBoardController) this.board;
     }
 
     public void resetAfterRound() {
