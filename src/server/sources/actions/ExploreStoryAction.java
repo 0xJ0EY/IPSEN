@@ -27,6 +27,8 @@ public class ExploreStoryAction implements VillagerActionInterface {
 
         this.story = server.getGameController().getStories().randomStory();
 
+        // TODO: Maybe bind villagers to the story?
+
         System.out.println("Generated new story");
     }
 

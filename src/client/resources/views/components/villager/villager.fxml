@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -12,5 +13,6 @@
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lanterns" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0" />
       <AnchorPane fx:id="type" layoutY="8.0" prefHeight="50.0" prefWidth="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button layoutY="194.0" mnemonicParsing="false" onAction="#onClickSelect" prefHeight="60.0" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </fx:root>

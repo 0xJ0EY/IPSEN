@@ -43,30 +43,49 @@ public class VillagerSelectionController implements ControllerInterface {
 
 
     public void retrieveVillagers() throws RemoteException {
-        this.villagerComponents = new ArrayList<VillagerComponent>();
         this.villagers = client.getGameClient().getPlayer().getPlayerBoard().listAvailableVillagers();
-
     }
 
     private void updateVillagersView() {
+
+        this.villagerComponents = new ArrayList<VillagerComponent>();
         this.villagerContainer.getChildren().clear();
 
         System.out.println(this.villagers);
 
         for (Villager villager : this.villagers) {
-            this.villagerContainer.getChildren().add(new VillagerComponent(villager));
+
+            VillagerComponent villagerComponent = new VillagerComponent(villager);
+            this.villagerComponents.add(villagerComponent);
+            this.villagerContainer.getChildren().add(villagerComponent);
         }
     }
 
     @FXML
     private void onClickSelect() {
-        System.out.println("Select");
-
         try {
-            client.getGameClient().getPlayer().doAction(action);
+            ArrayList<Villager> selected = this.getSelectedVillagers();
+
+            this.action.setSelectedVillagers(selected);
+            this.client.getGameClient().getPlayer().doAction(this.action);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private ArrayList<Villager> getSelectedVillagers() {
+        ArrayList<Villager> selected = new ArrayList<Villager>();
+
+        for (VillagerComponent villagerComponent : this.villagerComponents) {
+
+            if (villagerComponent.isSelected()) {
+                selected.add(villagerComponent.getVillager());
+            }
+            
+        }
+
+        return selected;
     }
 
     public void setClient(Client client) {

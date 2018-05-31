@@ -18,7 +18,10 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void explore() throws RemoteException {
-        client.getGameClient().requestAction(new ExploreStoryAction(this.client.getGameClient()));
+
+        // TODO Make VillagerSelection overwritable with something like a builder only villager selection
+        client.getVillagerSelection().setVillagerAction(new ExploreStoryAction(this.client.getGameClient()));
+        client.showVillagerSelection();
 
         System.out.println("Send action explore");
 
@@ -30,18 +33,8 @@ public class TurnController {
      */
     @FXML private void build() throws RemoteException {
 
-
-        client.getVillagerSelection().setVillagerAction(new ExploreStoryAction(this.client.getGameClient()));
-
-        client.showVillagerSelection();
-
-
-//        GameClientInterface target = client.getGameClient();
-//        client.getGameClient().requestRequest(new SelectVillagersRequest(target, new ExploreStoryAction(target)));
-
-
-//        client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send action build");
+        client.getGameClient().getPlayer().doAction(new TestAction());
+        System.out.println("Send build action");
 
     }
 

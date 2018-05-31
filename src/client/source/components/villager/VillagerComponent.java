@@ -7,11 +7,12 @@ import javafx.scene.text.Text;
 import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class VillagerComponent extends AnchorPane {
 
     private Villager villager;
+
+    private boolean selected;
 
     @FXML AnchorPane background;
 
@@ -36,15 +37,17 @@ public class VillagerComponent extends AnchorPane {
         this.type.getChildren().setAll(villager.getType());
     }
 
-    // TODO: Remove this
-    private String getRandomHexString(int numchars){
-        Random r = new Random();
-        StringBuffer sb = new StringBuffer();
-        while(sb.length() < numchars){
-            sb.append(Integer.toHexString(r.nextInt()));
-        }
-
-        return sb.toString().substring(0, numchars);
+    @FXML
+    private void onClickSelect() {
+        // TODO: Show indicator
+        this.selected = !this.selected;
     }
 
+    public boolean isSelected() {
+        return this.selected;
+    }
+
+    public Villager getVillager() {
+        return villager;
+    }
 }
