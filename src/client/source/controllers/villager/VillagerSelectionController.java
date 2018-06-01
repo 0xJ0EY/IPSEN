@@ -67,14 +67,14 @@ public class VillagerSelectionController implements ControllerInterface {
             ArrayList<Villager> selected = this.getSelectedVillagers();
 
             this.action.setSelectedVillagers(selected);
-            this.client.getGameClient().getPlayer().doAction(this.action);
+            this.client.getGameClient().requestAction(this.action);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
     }
 
-    private ArrayList<Villager> getSelectedVillagers() {
+    public ArrayList<Villager> getSelectedVillagers() {
         ArrayList<Villager> selected = new ArrayList<Villager>();
 
         for (VillagerComponent villagerComponent : this.villagerComponents) {

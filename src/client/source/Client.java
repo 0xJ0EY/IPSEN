@@ -1,12 +1,14 @@
 package client.source;
 
 import client.source.controllers.*;
+import client.source.controllers.villager.ExplorePartyController;
 import client.source.controllers.villager.VillagerSelectionController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.actions.ExploreStoryAction;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
@@ -26,6 +28,7 @@ public class Client extends Application implements Serializable {
     private ExploreController explore;
 
     private VillagerSelectionController villagerSelection;
+    private ExplorePartyController explorePartyController;
 
     @Override
     public void start(Stage primaryStage) {
@@ -44,6 +47,7 @@ public class Client extends Application implements Serializable {
             this.loadMain();
             this.loadExplore();
             this.loadVillagerSelection();
+            this.loadParty();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,6 +112,14 @@ public class Client extends Application implements Serializable {
         this.villagerSelection.setClient(this);
     }
 
+    private void loadParty() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/party_roll_dice.fxml"));
+        loader.load();
+
+        this.explorePartyController = loader.getController();
+        this.explorePartyController.setClient(this);
+    }
+
     public void showLogin() {
         this.setScene(this.getLogin().show());
     }
@@ -127,6 +139,15 @@ public class Client extends Application implements Serializable {
     public void showExplore(Story story) {
         this.explore.setExploreStory(story);
         this.setScene((this.explore.show()));
+    }
+
+    public void showParty(Story story){
+        try {
+            this.explorePartyController.setStory(story);
+            this.setScene(this.explorePartyController.show());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setScene(Parent root) {
@@ -161,10 +182,6 @@ public class Client extends Application implements Serializable {
 
     public ExploreController getExplore() {
         return explore;
-    }
-
-    public Stage getStage() {
-        return stage;
     }
 
     public VillagerSelectionController getVillagerSelection() {
