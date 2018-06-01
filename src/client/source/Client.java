@@ -133,7 +133,7 @@ public class Client extends Application implements Serializable {
         Scene scene = stage.getScene();
 
         if (scene == null) {
-            stage.setScene(new Scene(root, 1000 ,600));
+            stage.setScene(new Scene(root, 680 ,700));
         } else {
             scene.setRoot(root);
         }

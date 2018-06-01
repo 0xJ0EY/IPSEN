@@ -1,5 +1,8 @@
 package server.sources.controllers;
 
+import server.sources.models.Goods.Good;
+import server.sources.models.buildings.House;
+import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
 import server.sources.models.villagers.BuilderVillager;
 import server.sources.models.villagers.Lantern;
@@ -13,6 +16,10 @@ import java.util.ArrayList;
 public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
 
     private ArrayList<Villager> villagers = new ArrayList<>();
+    private ArrayList<House> houses = new ArrayList<>();
+    private ArrayList<Outpost> outposts = new ArrayList<>();
+    private ArrayList<Good> goods = new ArrayList<>();
+    private int ciders, barrels, coins;
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -55,4 +62,27 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(villager);
     }
 
+    public ArrayList<House> getHouses() {
+        return this.houses;
+    }
+
+    public ArrayList<Outpost> getOutposts() {
+        return this.outposts;
+    }
+
+    public ArrayList<Good> getGoods(){
+        return this.goods;
+    }
+
+    public int getCoins() {
+        return this.coins;
+    }
+
+    public int getBarrels() {
+        return this.barrels;
+    }
+
+    public int getCiders() {
+        return this.ciders;
+    }
 }
