@@ -1,14 +1,13 @@
 package client.source;
 
 import client.source.controllers.*;
-import client.source.controllers.villager.ExplorePartyController;
+import client.source.controllers.ExplorePartyController;
 import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.sources.actions.ExploreStoryAction;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 

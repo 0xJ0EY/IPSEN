@@ -1,6 +1,7 @@
-package client.source.controllers.villager;
+package client.source.controllers;
 
 import client.source.Client;
+import client.source.components.party.PartyVillagerComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.controllers.ControllerInterface;
 import javafx.fxml.FXML;
@@ -22,8 +23,7 @@ public class ExplorePartyController implements ControllerInterface {
     private Client client;
     private Story story;
     private ArrayList<Villager> party;
-    private ArrayList<VillagerComponent> villagerComponents;
-    private ArrayList<Dice> dices;
+    private ArrayList<PartyVillagerComponent> partyVillagerComponents;
 
     @Override
     public Parent show() throws RemoteException {
@@ -49,16 +49,16 @@ public class ExplorePartyController implements ControllerInterface {
 
     private void updatePartyView() {
 
-        this.villagerComponents = new ArrayList<VillagerComponent>();
+        this.partyVillagerComponents = new ArrayList<PartyVillagerComponent>();
         this.villagerContainer.getChildren().clear();
 
         System.out.println(this.party);
 
         for (Villager villager : this.party) {
 
-            VillagerComponent villagerComponent = new VillagerComponent(villager);
-            this.villagerComponents.add(villagerComponent);
-            this.villagerContainer.getChildren().add(villagerComponent);
+            PartyVillagerComponent partyVillagerComponent = new PartyVillagerComponent(villager);
+            this.partyVillagerComponents.add(partyVillagerComponent);
+            this.villagerContainer.getChildren().add(partyVillagerComponent);
         }
     }
 

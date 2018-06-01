@@ -6,7 +6,7 @@ import client.source.controllers.LobbyController;
 import client.source.controllers.LoginController;
 import client.source.controllers.MainController;
 import client.source.controllers.VillagerSelectionController;
-import client.source.controllers.villager.ExplorePartyController;
+import client.source.controllers.ExplorePartyController;
 import javafx.fxml.FXMLLoader;
 import server.sources.models.stories.Story;
 
