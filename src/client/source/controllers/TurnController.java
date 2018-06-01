@@ -1,11 +1,12 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.factories.AllVillagerSelectionFactory;
+import client.source.factories.BuilderVillagerSelectionFactory;
+import client.source.factories.TrainerVillagerSelectionFactory;
+import client.source.factories.VillagerSelectionFactory;
 import javafx.fxml.FXML;
-import server.sources.actions.ExploreStoryAction;
-import server.sources.actions.PassAction;
-import server.sources.actions.TestAction;
-import server.sources.interfaces.GameClientInterface;
+import server.sources.actions.*;
 
 import java.rmi.RemoteException;
 
@@ -19,11 +20,9 @@ public class TurnController {
      */
     @FXML private void explore() throws RemoteException {
 
-        // TODO Make VillagerSelection overwritable with something like a builder only villager selection
+        client.getVillagerSelection().setFactory(new AllVillagerSelectionFactory());
         client.getVillagerSelection().setVillagerAction(new ExploreStoryAction(this.client.getGameClient()));
         client.showVillagerSelection();
-
-        System.out.println("Send action explore");
 
     }
 
@@ -33,8 +32,9 @@ public class TurnController {
      */
     @FXML private void build() throws RemoteException {
 
-        client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send build action");
+        client.getVillagerSelection().setFactory(new BuilderVillagerSelectionFactory());
+        client.getVillagerSelection().setVillagerAction(new BuildAction());
+        client.showVillagerSelection();
 
     }
 
@@ -66,8 +66,9 @@ public class TurnController {
      */
     @FXML private void train() throws RemoteException {
 
-        client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send action train");
+        client.getVillagerSelection().setFactory(new TrainerVillagerSelectionFactory());
+        client.getVillagerSelection().setVillagerAction(new TrainerAction());
+        client.showVillagerSelection();
 
     }
 

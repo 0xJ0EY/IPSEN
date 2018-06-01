@@ -26,7 +26,7 @@ public class AboveController {
     }
 
     public void getVillagers() throws RemoteException {
-        pbc.listVillagers();
+        pbc.listAvailableVillagers();
     }
 
     public void getAvailableVillagers() throws RemoteException {

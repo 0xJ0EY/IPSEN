@@ -3,6 +3,7 @@ package client.source.controllers.villager;
 import client.source.Client;
 import client.source.components.villager.VillagerComponent;
 import client.source.controllers.ControllerInterface;
+import client.source.factories.VillagerSelectionFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
@@ -20,30 +21,25 @@ public class VillagerSelectionController implements ControllerInterface {
 
     private VillagerActionInterface action;
 
-    private ArrayList<Villager> villagers;
+    protected ArrayList<Villager> villagers;
+
+    protected Client client;
 
     private ArrayList<VillagerComponent> villagerComponents;
 
-    private Client client;
+    private VillagerSelectionFactory factory;
 
     public Parent show() {
 
-        try {
-            this.retrieveVillagers();
-
-
-            this.updateVillagersView();
-
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.retrieveVillagers();
+        this.updateVillagersView();
 
         return this.root;
     }
 
 
-    public void retrieveVillagers() throws RemoteException {
-        this.villagers = client.getGameClient().getPlayer().getPlayerBoard().listAvailableVillagers();
+    public void retrieveVillagers() {
+        this.villagers = factory.getVillagerList();
     }
 
     private void updateVillagersView() {
@@ -90,6 +86,11 @@ public class VillagerSelectionController implements ControllerInterface {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void setFactory(VillagerSelectionFactory factory) {
+        this.factory = factory;
+        this.factory.setClient(this.client);
     }
 
     public void setVillagerAction(VillagerActionInterface action) {

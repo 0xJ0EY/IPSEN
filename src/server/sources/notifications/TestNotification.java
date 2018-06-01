@@ -11,6 +11,7 @@ public class TestNotification  implements NotificationInterface {
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
         System.out.println("Dit is een test notification");
+        gameClient.getClient().showMain();
 
     }
 

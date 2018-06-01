@@ -4,10 +4,7 @@ import server.sources.models.Goods.Good;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
-import server.sources.models.villagers.BuilderVillager;
-import server.sources.models.villagers.Lantern;
-import server.sources.models.villagers.TrainerVillager;
-import server.sources.models.villagers.Villager;
+import server.sources.models.villagers.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -35,21 +32,34 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     @Override
-    public ArrayList<Villager> listVillagers() throws RemoteException {
+    public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
         return this.villagers;
     }
 
     @Override
-    public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
-        ArrayList<Villager> available = new ArrayList<Villager>();
+    public ArrayList<Villager> listAvailableBuilderVillagers() throws RemoteException {
+        ArrayList<Villager> builders = new ArrayList<Villager>();
 
         for (Villager villager : this.villagers) {
-            if (villager.isUseable()) {
-                available.add(villager);
+            if (villager instanceof Buildable) {
+                builders.add(villager);
             }
         }
 
-        return available;
+        return builders;
+    }
+
+    @Override
+    public ArrayList<Villager> listAvailableTrainerVillagers() throws RemoteException {
+        ArrayList<Villager> trainers = new ArrayList<Villager>();
+
+        for (Villager villager : this.villagers) {
+            if (villager instanceof Trainable) {
+                trainers.add(villager);
+            }
+        }
+
+        return trainers;
     }
 
     @Override
