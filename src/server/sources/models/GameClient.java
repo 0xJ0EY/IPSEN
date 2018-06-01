@@ -82,6 +82,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     public void promote() throws RemoteException {
         this.owner = true;
         this.client.getLobby().enableStartButton();
+        this.client.getLobby().enableLoadButton();
         this.client.getMain().menuController.enableSettingsButton();
     }
 

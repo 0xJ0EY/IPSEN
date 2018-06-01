@@ -10,7 +10,7 @@ public class EndOfGameNotification implements NotificationInterface {
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
-        gameClient.getClient().getMain().showMessage("GameControllerController has ended");
+        gameClient.getClient().getMain().showMessage("GameController has ended");
 
     }
 

@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class GameControllerController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
+public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
     private enum GameStates { LOBBY, STARTED, RUNNING, ENDED }
 
@@ -26,7 +26,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
     private StoryController stories = new StoryController();
     private MarketController market = new MarketController();
 
-    public GameControllerController(ServerInterface server) throws RemoteException {
+    public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
 
         // Load the market
@@ -99,7 +99,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
 
         this.server.notifyClients(new EndOfGameNotification());
 
-        System.out.println("GameControllerController ended");
+        System.out.println("GameController ended");
 
     }
 

@@ -1,22 +1,40 @@
 package server.sources.notifications;
 
+import server.sources.controllers.GameController;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-import java.io.FileOutputStream;
 import java.rmi.RemoteException;
 
 public class SaveGameNotification implements NotificationInterface {
 
-
     private final String DS = File.separator;
     private byte[] bytes;
 
-    public SaveGameNotification(byte[] bytes) {
-        this.bytes = bytes;
+    public SaveGameNotification(GameController gameController) {
+        this.bytes = this.gameControllerToBytes(gameController);
+    }
+
+    private byte[] gameControllerToBytes(GameController gameController) {
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+
+        try {
+            // Create byte array from the GameController object
+            out = new ObjectOutputStream(bos);
+            out.writeObject(gameController);
+            out.flush();
+
+            return bos.toByteArray();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new byte[0];
     }
 
     @Override

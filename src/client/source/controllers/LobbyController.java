@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
 import server.sources.interfaces.PlayerInterface;
+import server.sources.requests.LoadGameRequest;
 import server.sources.requests.StartGameRequest;
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -22,6 +25,8 @@ public class LobbyController implements ControllerInterface {
     @FXML private ListView lobbyList;
 
     @FXML private Button buttonStart;
+
+    @FXML private Button buttonLoad;
 
     /**
      * For setting a client
@@ -62,14 +67,44 @@ public class LobbyController implements ControllerInterface {
         buttonStart.setDisable(true);
     }
 
-    public void onClickStart() throws RemoteException {
+    public void enableLoadButton() {
+        buttonLoad.setDisable(false);
+    }
+
+    public
+    void disableLoadButton() {
+        buttonLoad.setDisable(true);
+    }
+
+    @FXML
+    void onClickStart() throws RemoteException {
         this.client.getGameClient().requestRequest(new StartGameRequest());
+    }
+
+    @FXML
+    public void onClickLoad() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select save game");
+
+        // Set filter for only .uml files
+        FileChooser.ExtensionFilter filters = new FileChooser.ExtensionFilter("Save games", ".uml");
+        fileChooser.getExtensionFilters().add(filters);
+
+        File file = fileChooser.showOpenDialog(client.getStage());
+
+        try {
+            this.client.getGameClient().requestRequest(new LoadGameRequest(file));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Disconnect the client from the gameController
      * @throws RemoteException
      */
+    @FXML
     public void onClickDisconnect() throws RemoteException {
 
         // Disconnect from the gameController lobby / gameController
@@ -77,6 +112,9 @@ public class LobbyController implements ControllerInterface {
 
         // Disable the start button if it was active
         this.disableStartButton();
+
+        // Disable the load button if it was active
+        this.disableLoadButton();
 
         // Disable the settings button if it was active
         this.client.getMain().menuController.disableSettingsButton();

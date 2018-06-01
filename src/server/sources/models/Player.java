@@ -1,6 +1,6 @@
 package server.sources.models;
 
-import server.sources.controllers.GameControllerController;
+import server.sources.controllers.GameController;
 import server.sources.controllers.PlayerBoardController;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     public PlayerBoardController board = new PlayerBoardController();
-    public GameControllerController gameController;
+    public GameController gameController;
 
     private transient GameClientInterface gameClient;
 
@@ -83,7 +83,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     }
 
 
-    public void setGameController(GameControllerController gameController) {
+    public void setGameController(GameController gameController) {
         this.gameController = gameController;
     }
 }

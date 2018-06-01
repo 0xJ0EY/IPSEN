@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-image: url('/client/resources/img/background.jpg');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.LobbyController">
+<HBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-image: url('/client/resources/img/background.jpg');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.LobbyController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
             <ListView fx:id="lobbyList" layoutY="233.0" prefHeight="200.0" prefWidth="200.0" />
             <Button fx:id="buttonStart" disable="true" layoutY="441.0" mnemonicParsing="false" onAction="#onClickStart" text="Start" />
             <Button layoutX="113.0" layoutY="441.0" mnemonicParsing="false" onAction="#onClickDisconnect" text="Disconnect" />
+            <Button fx:id="buttonLoad" disable="true" layoutY="474.0" mnemonicParsing="false" onAction="#onClickLoad" text="Load" />
          </children>
       </Pane>
    </children>

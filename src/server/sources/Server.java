@@ -1,10 +1,9 @@
 package server.sources;
 
-import server.sources.controllers.GameControllerController;
+import server.sources.controllers.GameController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
-import server.sources.models.GameClient;
 import server.sources.models.Player;
 import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
@@ -24,11 +23,11 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     private final int SERVER_PORT = 1099;
 
-    private enum ServerState { OFFLINE, LOBBY, RUNNING, ENDED }
+    private enum ServerState { OFFLINE, LOBBY, LOADED, RUNNING, ENDED }
     private ServerState state = ServerState.OFFLINE;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
-    private GameControllerController gameController = new GameControllerController((ServerInterface) this);
+    private GameController gameController = new GameController((ServerInterface) this);
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -138,30 +137,18 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     public void save(GameClientInterface target) {
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutput out = null;
-
         try {
-            // Create byte array from the GameController object
-            out = new ObjectOutputStream(bos);
-            out.writeObject(this.gameController);
-            out.flush();
-
-            // Send the byte array of the object to the client via a notification
-            target.receiveNotification(new SaveGameNotification(bos.toByteArray()));
-
-            System.out.printf("[System] Send the byte array");
-
-        } catch (IOException e) {
+            target.receiveNotification(new SaveGameNotification(this.gameController));
+        } catch (RemoteException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                bos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
+    }
+
+    public void load(GameController gameController) {
+        this.updateState(ServerState.LOADED);
+
+        this.gameController = gameController;
     }
 
     public static void main(String[] args) throws Exception {
