@@ -35,12 +35,24 @@ public class VillagerComponent extends AnchorPane {
         }
 
         this.type.getChildren().setAll(villager.getType());
+
+        this.background.setStyle(
+                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-position: center center;" +
+                "-fx-background-size: 110 200");
+
     }
 
     @FXML
     private void onClickSelect() {
-        // TODO: Show indicator
         this.selected = !this.selected;
+
+        if(this.selected){
+            showIndicator();
+        } else {
+            hideIndicator();
+        }
     }
 
     public boolean isSelected() {
@@ -49,5 +61,23 @@ public class VillagerComponent extends AnchorPane {
 
     public Villager getVillager() {
         return villager;
+    }
+
+    private void showIndicator(){
+        this.background.setStyle(
+                "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);" +
+                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-position: center center;" +
+                "-fx-background-size: 115 205");
+    }
+
+    private void hideIndicator(){
+        this.background.setStyle(
+                "-fx-effect: dropshadow(three-pass-box, white, 00, 0, 0, 0);" +
+                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-position: center center;" +
+                "-fx-background-size: 110 200");
     }
 }
