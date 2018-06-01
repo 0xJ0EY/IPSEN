@@ -13,6 +13,8 @@ public class TypeTrainerComponent extends AnchorPane {
         loader.setRoot(this);
         loader.setController(this);
 
+
+
         try {
             loader.load();
         } catch (IOException e) {
