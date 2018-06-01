@@ -78,6 +78,9 @@ public class LobbyController implements ControllerInterface {
         // Disable the start button if it was active
         this.disableStartButton();
 
+        // Disable the settings button if it was active
+        this.client.getMain().menuController.disableSettingsButton();
+
         // Return the client to the login screen
         this.client.showLogin();
     }

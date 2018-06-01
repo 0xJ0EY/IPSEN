@@ -16,7 +16,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     public PlayerBoardController board = new PlayerBoardController();
     public GameControllerController gameController;
 
-    private GameClientInterface gameClient;
+    private transient GameClientInterface gameClient;
 
     private ActionInterface action = null;
 

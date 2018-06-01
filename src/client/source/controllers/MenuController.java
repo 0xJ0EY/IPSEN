@@ -54,6 +54,14 @@ public class MenuController {
         this.turnButton.setDisable(true);
     }
 
+    public void enableSettingsButton() {
+        this.settingsButton.setDisable(false);
+    }
+
+    public void disableSettingsButton() {
+        this.settingsButton.setDisable(true);
+    }
+
     /**
      * This is for assigning a tab container.
      * @param tabContainer

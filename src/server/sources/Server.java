@@ -7,6 +7,10 @@ import server.sources.interfaces.*;
 import server.sources.models.Player;
 import server.sources.notifications.UpdatePlayerListNotification;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -124,14 +128,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         return gameController;
     }
 
-    /**
-     * Set the gameController
-     * @param gameController
-     */
-    public void setGameController(GameControllerController gameController) {
-        this.gameController = gameController;
-    }
-
     public void startGame() {
         this.updateState(ServerState.RUNNING);
         new Thread(this.gameController).start();
@@ -142,6 +138,25 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     public void save() {
+        // Write gameController to a file
+        try {
+            String path = System.getProperty("user.home");
+            String filename = "REEEEEEEEEE.UML";
+
+            File file = new File(path + File.separator + filename);
+
+            FileOutputStream fis = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fis);
+
+            oos.writeObject(this.gameController);
+
+            oos.close();
+            fis.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
