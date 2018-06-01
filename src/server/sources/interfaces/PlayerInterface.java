@@ -1,7 +1,5 @@
 package server.sources.interfaces;
 
-import server.sources.notifications.PlayerTurnNotification;
-
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
