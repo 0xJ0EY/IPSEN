@@ -19,7 +19,7 @@ public class ExploreController implements ControllerInterface {
 
     private Story exploreStory;
 
-    @FXML Parent root;
+    @FXML private Parent root;
     @FXML private TextArea story;
     @FXML private HBox hbox;
     @FXML private Button runButton;
@@ -60,6 +60,9 @@ public class ExploreController implements ControllerInterface {
 
     @FXML public void clickConfirm() {
         System.out.println("you clicked confirm");
+
+        client.showParty(this.exploreStory);
+
     }
 
     public void setExploreStory(Story exploreStory) {
