@@ -2,9 +2,9 @@ package client.source;
 
 import client.source.controllers.*;
 import client.source.controllers.villager.ExplorePartyController;
-import client.source.controllers.villager.VillagerSelectionController;
+import client.source.controllers.VillagerSelectionController;
+import client.source.factories.ControllerFactory;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,7 +12,6 @@ import server.sources.actions.ExploreStoryAction;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
@@ -28,10 +27,23 @@ public class Client extends Application implements Serializable {
     private ExploreController explore;
 
     private VillagerSelectionController villagerSelection;
-    private ExplorePartyController explorePartyController;
+    private ExplorePartyController exploreParty;
 
     @Override
     public void start(Stage primaryStage) {
+
+        ControllerFactory controllerFactory = new ControllerFactory(this);
+
+        this.stage = primaryStage;
+        this.stage.setTitle("Above and Below");
+
+        // Load the views and set the controllers
+        this.login = controllerFactory.createLogin();
+        this.lobby = controllerFactory.createLobby();
+        this.main = controllerFactory.createMain();
+        this.explore = controllerFactory.createExplore();
+        this.villagerSelection = controllerFactory.createVillagerSelection();
+        this.exploreParty = controllerFactory.createExploreParty();
 
         // Set gameController client
         try {
@@ -39,28 +51,9 @@ public class Client extends Application implements Serializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-        // Load all possible views
-        try {
-            this.loadLogin();
-            this.loadLobby();
-            this.loadMain();
-            this.loadExplore();
-            this.loadVillagerSelection();
-            this.loadParty();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        this.stage = primaryStage;
-        this.stage.setTitle("Above and Below");
-
         this.showLogin();
 
         this.stage.show();
-
-        System.out.println(villagerSelection);
     }
 
     @Override
@@ -68,56 +61,6 @@ public class Client extends Application implements Serializable {
         System.out.println("Disconnect");
         getGameClient().disconnect();
         super.stop();
-    }
-
-    private void loadLogin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/login.fxml"));
-        loader.load();
-
-        this.login = loader.getController();
-        this.login.setClient(this);
-
-    }
-
-    private void loadLobby() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/lobby.fxml"));
-        loader.load();
-
-        this.lobby = loader.getController();
-        this.lobby.setClient(this);
-
-    }
-
-    private void loadMain() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/main.fxml"));
-        loader.load();
-
-        this.main = loader.getController();
-        this.main.setClient(this);
-    }
-
-    private void loadExplore() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/explore.fxml"));
-        loader.load();
-
-        this.explore = loader.getController();
-        this.explore.setClient(this);
-    }
-
-    private void loadVillagerSelection() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/villager_selection.fxml"));
-        loader.load();
-
-        this.villagerSelection = loader.getController();
-        this.villagerSelection.setClient(this);
-    }
-
-    private void loadParty() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/views/party_roll_dice.fxml"));
-        loader.load();
-
-        this.explorePartyController = loader.getController();
-        this.explorePartyController.setClient(this);
     }
 
     public void showLogin() {
@@ -143,8 +86,8 @@ public class Client extends Application implements Serializable {
 
     public void showParty(Story story){
         try {
-            this.explorePartyController.setStory(story);
-            this.setScene(this.explorePartyController.show());
+            this.exploreParty.setStory(story);
+            this.setScene(this.exploreParty.show());
         } catch (RemoteException e) {
             e.printStackTrace();
         }

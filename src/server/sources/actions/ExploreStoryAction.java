@@ -1,8 +1,6 @@
 package server.sources.actions;
 
-import client.source.controllers.villager.VillagerSelectionController;
 import server.sources.Server;
-import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;

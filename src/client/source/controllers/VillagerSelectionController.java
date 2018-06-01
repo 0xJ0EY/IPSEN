@@ -1,4 +1,4 @@
-package client.source.controllers.villager;
+package client.source.controllers;
 
 import client.source.Client;
 import client.source.components.villager.VillagerComponent;
