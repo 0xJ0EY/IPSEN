@@ -141,7 +141,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         // Write gameController to a file
         try {
             String path = System.getProperty("user.home");
-            String filename = "REEEEEEEEEE.UML";
+            String filename = "save_game.uml";
 
             File file = new File(path + File.separator + filename);
 
@@ -156,7 +156,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 

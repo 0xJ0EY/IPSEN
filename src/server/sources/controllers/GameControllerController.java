@@ -15,7 +15,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
 
     public ArrayList<Player> players = new ArrayList<Player>();
 
-    public ServerInterface server;
+    public transient ServerInterface server;
     private GameStates gameState = GameStates.LOBBY;
 
     private final int MAX_ROUNDS = 7;

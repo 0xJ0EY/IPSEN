@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 public class StoryController extends UnicastRemoteObject implements StoryControllerInterface {
 
-    private StoryFactory storyFactory = new StoryFactory();
     private ArrayList<Story> stories;
 
     public StoryController() throws RemoteException {
     }
 
     public void load() {
+        StoryFactory storyFactory = new StoryFactory();
         this.stories = storyFactory.loadStoriesFromXML();
     }
 
