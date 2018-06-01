@@ -4,13 +4,12 @@ import server.sources.controllers.GameControllerController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
+import server.sources.models.GameClient;
 import server.sources.models.Player;
+import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -137,24 +136,30 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.state = state;
     }
 
-    public void save() {
-        // Write gameController to a file
+    public void save(GameClientInterface target) {
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+
         try {
-            String path = System.getProperty("user.home");
-            String filename = "save_game.uml";
+            // Create byte array from the GameController object
+            out = new ObjectOutputStream(bos);
+            out.writeObject(this.gameController);
+            out.flush();
 
-            File file = new File(path + File.separator + filename);
+            // Send the byte array of the object to the client via a notification
+            target.receiveNotification(new SaveGameNotification(bos.toByteArray()));
 
-            FileOutputStream fis = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fis);
-
-            oos.writeObject(this.gameController);
-
-            oos.close();
-            fis.close();
+            System.out.printf("[System] Send the byte array");
 
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                bos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

@@ -16,6 +16,6 @@ public class SettingsController {
 
     @FXML
     private void onClickSave() throws RemoteException {
-        client.getGameClient().requestRequest(new SaveGameRequest());
+        client.getGameClient().requestRequest(new SaveGameRequest(client.getGameClient()));
     }
 }
