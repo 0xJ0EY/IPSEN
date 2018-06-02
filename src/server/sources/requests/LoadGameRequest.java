@@ -45,7 +45,9 @@ public class LoadGameRequest implements RequestInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
+        System.out.println("[System] Loading save game");
         server.load(this.gameControllerFromBytes(this.bytes));
+        System.out.println("[System] Save game loaded");
     }
 
 }

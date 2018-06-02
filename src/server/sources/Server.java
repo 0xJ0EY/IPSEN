@@ -8,7 +8,6 @@ import server.sources.models.Player;
 import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
 
-import java.io.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -149,6 +148,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.updateState(ServerState.LOADED);
 
         this.gameController = gameController;
+
+        // Switch to the loaded lobby screen
     }
 
     public static void main(String[] args) throws Exception {

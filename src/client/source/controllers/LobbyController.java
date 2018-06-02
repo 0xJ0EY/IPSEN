@@ -88,10 +88,12 @@ public class LobbyController implements ControllerInterface {
         fileChooser.setTitle("Select save game");
 
         // Set filter for only .uml files
-        FileChooser.ExtensionFilter filters = new FileChooser.ExtensionFilter("Save games", ".uml");
+        FileChooser.ExtensionFilter filters = new FileChooser.ExtensionFilter("Save games", "*.uml");
         fileChooser.getExtensionFilters().add(filters);
 
         File file = fileChooser.showOpenDialog(client.getStage());
+
+        if (file == null) return;
 
         try {
             this.client.getGameClient().requestRequest(new LoadGameRequest(file));
