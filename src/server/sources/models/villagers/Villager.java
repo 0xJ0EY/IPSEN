@@ -4,7 +4,6 @@ import client.source.components.villager.TypeDefaultComponent;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import server.sources.models.Dice;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,10 +24,6 @@ public class Villager implements Serializable {
 
     }
 
-    public void rollDiceForLanterns() {
-        Dice dice = new Dice();
-    }
-
     //TODO: moet nog bedden weghalen
     public void rest(){
         if (injured) {
@@ -36,6 +31,16 @@ public class Villager implements Serializable {
             tired = true;
         } else if (tired) {
             tired = false;
+        }
+    }
+    
+    private void calculateLanters(int thrown){
+
+        // TODO: 02/06/2018 work in progresss 
+        
+        int amount = 0;
+        for (Lantern lantern: lanterns) { 
+            amount = lantern.getAmount(thrown);
         }
     }
 

@@ -14,11 +14,14 @@ public class Lantern implements Serializable {
         this.amount = amount;
     }
 
-    public int earn(Dice dice){
+    public int getAmount(int thrown) {
 
-        // TODO: Explore implementation
-        return 0;
-
+        // TODO: 02/06/2018 think this one is done 
+        
+        if (thrown>this.cost){
+            return amount;
+        }else{
+            return 0;
+        }
     }
-
 }

@@ -55,4 +55,8 @@ public class PartyVillagerComponent extends VBox {
             }
         );
     }
+
+    public void calculateLanterns(Dice dice, Villager villager){
+        // TODO: 02/06/2018 THIS
+    }
 }
