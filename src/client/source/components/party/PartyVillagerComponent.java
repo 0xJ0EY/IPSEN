@@ -3,6 +3,7 @@ package client.source.components.party;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -16,10 +17,11 @@ public class PartyVillagerComponent extends VBox {
     private Villager villager;
     private Dice dice;
 
-    @FXML VBox villagerBox;
-    @FXML AnchorPane background;
-    @FXML AnchorPane type;
-    @FXML Button roll;
+    @FXML private VBox villagerBox;
+    @FXML private AnchorPane background;
+    @FXML private AnchorPane type;
+    @FXML private Button roll;
+    @FXML private Label rolled;
 
     public PartyVillagerComponent(Villager villager) {
         this.villager = villager;
@@ -45,17 +47,12 @@ public class PartyVillagerComponent extends VBox {
                         "-fx-background-size: 110 200"
         );
 
-        this.roll = new Button();
-        roll.setText("ROLL DICE");
-        roll.setPrefWidth(110);
-        roll.setPrefHeight(50);
 
         this.roll.setOnMouseClicked( e -> {
             dice.roll();
-            System.out.println(dice.returnValue());
-                }
+            this.rolled.setText("You rolled: " + dice.returnValue());
+            roll.setDisable(true);
+            }
         );
-
-        villagerBox.getChildren().add(roll);
     }
 }

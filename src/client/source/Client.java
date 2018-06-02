@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.sources.models.GameClient;
+import server.sources.models.stories.Choice;
 import server.sources.models.stories.Story;
 
 import java.io.Serializable;
@@ -83,11 +84,12 @@ public class Client extends Application implements Serializable {
         this.setScene((this.explore.show()));
     }
 
-    public void showParty(Story story){
+    public void showParty(Story story, Choice choice) {
         try {
             this.exploreParty.setStory(story);
+            this.exploreParty.setChoice(choice);
             this.setScene(this.exploreParty.show());
-        } catch (RemoteException e) {
+        } catch (RemoteException e){
             e.printStackTrace();
         }
     }
