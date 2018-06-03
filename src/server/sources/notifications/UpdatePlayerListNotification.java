@@ -2,18 +2,18 @@ package server.sources.notifications;
 
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
+import server.sources.interfaces.PlayerInterface;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class UpdatePlayerListNotification implements NotificationInterface {
 
-
-    private ArrayList<GameClientInterface> gameClients;
+    private ArrayList<PlayerInterface> players;
 
     // Set the current list of game clients
-    public UpdatePlayerListNotification(ArrayList<GameClientInterface> gameClients) {
-        this.gameClients = gameClients;
+    public UpdatePlayerListNotification(ArrayList<PlayerInterface> players) {
+        this.players = players;
     }
 
     /**
@@ -25,7 +25,7 @@ public class UpdatePlayerListNotification implements NotificationInterface {
     public void execute(GameClientInterface gameClient) {
 
         try {
-            gameClient.getClient().clientObserver.setState(this.gameClients);
+            gameClient.getClient().clientObserver.setState(this.players);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

@@ -8,7 +8,7 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
@@ -29,7 +29,7 @@ public class Client extends Application implements Serializable {
 
     private VillagerSelectionController villagerSelection;
 
-    public Observer<ArrayList<GameClientInterface>> clientObserver = new Observer<>();
+    public Observer<ArrayList<PlayerInterface>> clientObserver = new Observer<>();
 
     @Override
     public void start(Stage primaryStage) {
@@ -40,6 +40,8 @@ public class Client extends Application implements Serializable {
         this.stage.setTitle("Above and Below");
 
         // Load the views and set the controllers
+
+        // TODO: Only start loading the controllers when they are actually required.
         this.login = controllerFactory.createLogin();
         this.lobby = controllerFactory.createLobby();
         this.main = controllerFactory.createMain();
@@ -66,11 +68,11 @@ public class Client extends Application implements Serializable {
     }
 
     public void showLogin() {
-        this.setScene(this.getLogin().show());
+        this.setScene(this.login.show());
     }
 
     public void showLobby() {
-        this.setScene(this.getLobby().show());
+        this.setScene(this.lobby.show());
     }
 
     public void showMain() {
@@ -96,10 +98,6 @@ public class Client extends Application implements Serializable {
         }
     }
 
-    public LobbyController getLobby() {
-        return lobby;
-    }
-
     public GameClient getGameClient() {
         return gameClient;
     }
@@ -108,9 +106,6 @@ public class Client extends Application implements Serializable {
         this.gameClient = gameClient;
     }
 
-    public LoginController getLogin() {
-        return login;
-    }
 
     public MainController getMain() {
         return main;

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerInterface;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -74,14 +75,6 @@ public class MenuController implements Observable {
         this.turnButton.setDisable(true);
     }
 
-    public void enableSettingsButton() {
-        this.settingsButton.setDisable(false);
-    }
-
-    public void disableSettingsButton() {
-        this.settingsButton.setDisable(true);
-    }
-
     /**
      * This is for assigning a tab container.
      * @param tabContainer
@@ -97,17 +90,22 @@ public class MenuController implements Observable {
 
     @Override
     public void updateObserver() {
-        ArrayList<GameClientInterface> clients = this.client.clientObserver.getState();
+        ArrayList<PlayerInterface> players = this.client.clientObserver.getState();
         this.playerItems.clear();
 
-        if (clients == null) return;
 
-        for (GameClientInterface client : clients) {
+        for (PlayerInterface player : players) {
             try {
-                playerItems.add(client.getPlayer().getUsername());
+                playerItems.add(player.getUsername());
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
+        }
+
+        try {
+            this.settingsButton.setDisable(!this.client.getGameClient().isOwner());
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 }

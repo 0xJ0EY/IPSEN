@@ -5,6 +5,7 @@ import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
 import server.sources.models.Player;
+import server.sources.notifications.LobbyNotification;
 import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
 
@@ -64,7 +65,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         this.promoteOwner();
 
-        this.notifyClients(new UpdatePlayerListNotification(this.gameClients));
+        ArrayList<PlayerInterface> players = (ArrayList<PlayerInterface>) (ArrayList<?>) this.gameController.players;
+
+        // Update target client
+        gameClient.receiveNotification(new LobbyNotification());
+
+        // Update all clients
+        this.notifyClients(new UpdatePlayerListNotification(players));
     }
 
 
@@ -74,9 +81,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.gameController.removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
+        // Maybe promote a new owner
         this.promoteOwner();
 
-        this.notifyClients(new UpdatePlayerListNotification(this.gameClients));
+        ArrayList<PlayerInterface> players = (ArrayList<PlayerInterface>) (ArrayList<?>) this.gameController.players;
+
+        this.notifyClients(new UpdatePlayerListNotification(players));
     }
 
     /**
@@ -144,12 +154,24 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     }
 
-    public void load(GameController gameController) {
+    public void load(GameController gameController) throws RemoteException {
+
+        if (gameController.players.size() != this.gameController.players.size()) {
+            System.out.println("[System] Amount of players dont match");
+
+            return;
+        }
+
         this.updateState(ServerState.LOADED);
 
-        this.gameController = gameController;
+        for (PlayerInterface player : gameController.players ) {
+            for (GameClientInterface gameClient : this.gameClients) {
+                gameClient.setPlayer(player);
+                player.setGameClient(gameClient);
+            }
+        }
 
-        // Switch to the loaded lobby screen
+        this.startGame();
     }
 
     public static void main(String[] args) throws Exception {

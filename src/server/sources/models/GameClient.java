@@ -81,9 +81,11 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
     @Override
     public void promote() throws RemoteException {
         this.owner = true;
-        this.client.getLobby().enableStartButton();
-        this.client.getLobby().enableLoadButton();
-        this.client.getMain().menuController.enableSettingsButton();
+    }
+
+    @Override
+    public boolean isOwner() throws RemoteException {
+        return this.owner;
     }
 
     @Override

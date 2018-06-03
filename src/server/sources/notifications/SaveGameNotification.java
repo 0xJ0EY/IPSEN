@@ -41,13 +41,13 @@ public class SaveGameNotification implements NotificationInterface {
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
         this.writeBytesToFile();
-        gameClient.getClient().getMain().showMessage("Save file written to desktop");
+        gameClient.getClient().getMain().showMessage("Save file written to documents");
 
     }
 
     private void writeBytesToFile() {
 
-        String path = System.getProperty("user.home") + DS + "Desktop";
+        String path = System.getProperty("user.home") + DS + "Documents";
         String file = "save_game.uml";
 
         String filepath = path + DS + file;

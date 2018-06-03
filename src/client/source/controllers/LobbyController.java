@@ -20,15 +20,15 @@ import java.util.ArrayList;
 
 public class LobbyController implements ControllerInterface, Observable {
 
-    private Client client;
+    protected Client client;
 
-    @FXML private Parent root;
+    @FXML protected Parent root;
 
-    @FXML private ListView lobbyList;
+    @FXML protected ListView lobbyList;
 
-    @FXML private Button buttonStart;
+    @FXML protected Button buttonStart;
 
-    @FXML private Button buttonLoad;
+    @FXML protected Button buttonLoad;
 
     private ObservableList<String> listItems = FXCollections.observableArrayList();
 
@@ -36,7 +36,7 @@ public class LobbyController implements ControllerInterface, Observable {
      * For setting a client
      * @param client
      */
-    public void registerClient(Client client) {
+    public void registerClient(Client client) throws RemoteException {
         this.client = client;
 
         // Register the client as observer
@@ -50,40 +50,27 @@ public class LobbyController implements ControllerInterface, Observable {
 
     @Override
     public void updateObserver() {
-        ArrayList<GameClientInterface> clients = this.client.clientObserver.getState();
+        ArrayList<PlayerInterface> players = this.client.clientObserver.getState();
         this.listItems.clear();
 
-        if (clients == null) return;
-
-        for (GameClientInterface client : clients) {
+        for (PlayerInterface player : players) {
             try {
-                listItems.add(client.getPlayer().getUsername());
+                listItems.add(player.getUsername());
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }
+
+        try {
+            buttonStart.setDisable(!this.client.getGameClient().isOwner());
+            buttonLoad.setDisable(!this.client.getGameClient().isOwner());
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * This is for enabling and disabling buttons
-     */
-    public void enableStartButton() {
-        buttonStart.setDisable(false);
-    }
-
-    public void disableStartButton() {
-        buttonStart.setDisable(true);
-    }
-
-    public void enableLoadButton() {
-        buttonLoad.setDisable(false);
-    }
-
-    public
-    void disableLoadButton() {
-        buttonLoad.setDisable(true);
-    }
-
+    
     @FXML
     void onClickStart() throws RemoteException {
         this.client.getGameClient().requestRequest(new StartGameRequest());
@@ -98,6 +85,16 @@ public class LobbyController implements ControllerInterface, Observable {
         // Set filter for only .uml files
         FileChooser.ExtensionFilter filters = new FileChooser.ExtensionFilter("Save games", "*.uml");
         fileChooser.getExtensionFilters().add(filters);
+
+        // Set default directory to ~/Documents
+        String directory = System.getProperty("user.home") + File.separator + "Documents";
+        File defaultDir = new File(directory);
+
+        if (!defaultDir.canRead()) {
+            defaultDir = new File("/");
+        }
+
+        fileChooser.setInitialDirectory(defaultDir);
 
         File file = fileChooser.showOpenDialog(client.getStage());
 
@@ -119,15 +116,6 @@ public class LobbyController implements ControllerInterface, Observable {
 
         // Disconnect from the gameController lobby / gameController
         this.client.getGameClient().disconnect();
-
-        // Disable the start button if it was active
-        this.disableStartButton();
-
-        // Disable the load button if it was active
-        this.disableLoadButton();
-
-        // Disable the settings button if it was active
-        this.client.getMain().menuController.disableSettingsButton();
 
         // Return the client to the login screen
         this.client.showLogin();

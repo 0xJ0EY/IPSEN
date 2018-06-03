@@ -1,11 +1,7 @@
 package client.source.factories;
 
 import client.source.Client;
-import client.source.controllers.ExploreController;
-import client.source.controllers.LobbyController;
-import client.source.controllers.LoginController;
-import client.source.controllers.MainController;
-import client.source.controllers.VillagerSelectionController;
+import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -40,7 +36,7 @@ public class ControllerFactory {
 
     /**
      * Load the view and controller of lobby
-     * @return the assinged controller
+     * @return the assigned controller
      */
     public LobbyController createLobby() {
         LobbyController lobby = null;

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
+    private static final long serialVersionUID = 1337L;
+
     private enum GameStates { LOBBY, STARTED, RUNNING, ENDED }
 
     public ArrayList<Player> players = new ArrayList<Player>();
@@ -50,7 +52,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.setGameState(GameStates.STARTED);
 
         // Send everyone to the main screen
-        System.out.println("Send notification");
+        System.out.println("[System] Game started");
         this.server.notifyClients(new GameStartedNotification());
 
     }
@@ -115,6 +117,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     public void removePlayer(GameClientInterface gameClient) throws RemoteException {
+        if (gameClient.getPlayer() == null) return;
 
         for (int i = 0; i < this.players.size(); i++) {
             Player player = this.players.get(i);
