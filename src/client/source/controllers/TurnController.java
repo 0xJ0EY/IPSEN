@@ -83,7 +83,7 @@ public class TurnController {
 
     }
 
-    public void setClient(Client client) {
+    public void registerClient(Client client) {
         this.client = client;
     }
 }

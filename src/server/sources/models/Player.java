@@ -1,6 +1,6 @@
 package server.sources.models;
 
-import server.sources.controllers.GameControllerController;
+import server.sources.controllers.GameController;
 import server.sources.controllers.PlayerBoardController;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
@@ -10,13 +10,18 @@ import server.sources.notifications.PlayerTurnNotification;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.UUID;
 
 public class Player extends UnicastRemoteObject implements PlayerInterface {
 
-    public PlayerBoardController board = new PlayerBoardController();
-    public GameControllerController gameController;
+    private static final long serialVersionUID = 1337L;
 
-    private GameClientInterface gameClient;
+    public PlayerBoardController board = new PlayerBoardController();
+    public GameController gameController;
+
+    private transient GameClientInterface gameClient;
+
+    private String colour = "";
 
     private ActionInterface action = null;
 
@@ -25,6 +30,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     private String username;
 
     public Player(String username) throws RemoteException {
+        this.colour = UUID.randomUUID().toString();
         this.username = username;
     }
 
@@ -83,7 +89,11 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     }
 
 
-    public void setGameController(GameControllerController gameController) {
+    public void setGameController(GameController gameController) {
         this.gameController = gameController;
+    }
+
+    public String getColour() {
+        return colour;
     }
 }

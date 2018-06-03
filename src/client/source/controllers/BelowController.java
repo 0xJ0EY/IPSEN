@@ -6,7 +6,7 @@ public class BelowController {
 
     private Client client;
 
-    public void setClient(Client client) {
+    public void registerClient(Client client) {
         this.client = client;
     }
 

@@ -4,15 +4,18 @@ import client.source.controllers.*;
 import client.source.controllers.ExplorePartyController;
 import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
+import client.source.observers.Observer;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Client extends Application implements Serializable {
 
@@ -28,6 +31,8 @@ public class Client extends Application implements Serializable {
     private VillagerSelectionController villagerSelection;
     private ExplorePartyController exploreParty;
 
+    public Observer<ArrayList<PlayerInterface>> clientObserver = new Observer<>();
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -37,6 +42,8 @@ public class Client extends Application implements Serializable {
         this.stage.setTitle("Above and Below");
 
         // Load the views and set the controllers
+
+        // TODO: Only start loading the controllers when they are actually required.
         this.login = controllerFactory.createLogin();
         this.lobby = controllerFactory.createLobby();
         this.main = controllerFactory.createMain();
@@ -63,11 +70,11 @@ public class Client extends Application implements Serializable {
     }
 
     public void showLogin() {
-        this.setScene(this.getLogin().show());
+        this.setScene(this.login.show());
     }
 
     public void showLobby() {
-        this.setScene(this.getLobby().show());
+        this.setScene(this.lobby.show());
     }
 
     public void showMain() {
@@ -81,6 +88,10 @@ public class Client extends Application implements Serializable {
     public void showExplore(Story story) {
         this.explore.setExploreStory(story);
         this.setScene((this.explore.show()));
+    }
+
+    public Stage getStage() {
+        return this.stage;
     }
 
     public void showParty(Story story){
@@ -102,10 +113,6 @@ public class Client extends Application implements Serializable {
         }
     }
 
-    public LobbyController getLobby() {
-        return lobby;
-    }
-
     public GameClient getGameClient() {
         return gameClient;
     }
@@ -114,9 +121,6 @@ public class Client extends Application implements Serializable {
         this.gameClient = gameClient;
     }
 
-    public LoginController getLogin() {
-        return login;
-    }
 
     public MainController getMain() {
         return main;
