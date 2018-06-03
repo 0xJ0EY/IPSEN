@@ -71,9 +71,4 @@ public class Villager implements Serializable {
         return background;
     }
 
-    // TODO: 03/06/2018 Remove
-
-    public boolean isTired() {
-        return tired;
-    }
 }
