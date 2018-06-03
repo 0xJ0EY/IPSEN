@@ -46,7 +46,7 @@ public class AboveController {
     }
 
     public void getBarrels() {
-        pbc.getBarrels();
+        pbc.getCiders();
     }
 
     public void getCiders() {
