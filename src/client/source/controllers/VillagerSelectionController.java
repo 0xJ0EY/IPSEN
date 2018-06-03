@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.villagers.Villager;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 

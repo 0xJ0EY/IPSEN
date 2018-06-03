@@ -70,4 +70,10 @@ public class Villager implements Serializable {
     public String getBackground() {
         return background;
     }
+
+    // TODO: 03/06/2018 Remove
+
+    public boolean isTired() {
+        return tired;
+    }
 }

@@ -3,12 +3,14 @@ package client.source.components.party;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import server.sources.models.stories.Option;
+import server.sources.models.stories.Reward;
 
 import java.io.IOException;
 
 public class OptionButtonComponent extends Button {
 
     private Option option;
+
 
     public OptionButtonComponent(Option option){
         this.option = option;
@@ -26,6 +28,12 @@ public class OptionButtonComponent extends Button {
 
         this.setText("Explore "+option.getCost());
         this.setDisable(true);
+
+        this.setOnMouseClicked( e-> {
+            for (Reward reward:option.getRewards()) {
+                reward.execute();
+            }
+        });
     }
 
     public void enableOption(int lanterns){
@@ -33,4 +41,5 @@ public class OptionButtonComponent extends Button {
             this.setDisable(false);
         }
     }
+
 }
