@@ -14,11 +14,11 @@
             <Font size="36.0" />
          </font></Label>
       <FlowPane fx:id="villagerContainer" columnHalignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-      <Label fx:id="currentLanterns" prefHeight="60" text="Hier komt het gegooide aantal lanterns als het meezit" textAlignment="CENTER" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="currentLanterns" prefHeight="60" text="" textAlignment="CENTER" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="36.0" />
          </font></Label>
-      <HBox fx:id="optionButtons" alignment="CENTER" layoutY="293.0" prefHeight="60.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox fx:id="optionButtons" alignment="CENTER" layoutY="293.0" prefHeight="60.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
 
          </children>

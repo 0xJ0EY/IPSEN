@@ -1,11 +1,13 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.components.party.OptionButtonComponent;
 import client.source.components.party.PartyVillagerComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.controllers.ControllerInterface;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,6 +36,8 @@ public class ExplorePartyController implements ControllerInterface {
     private Choice choice;
     private ArrayList<Villager> party;
     private ArrayList<PartyVillagerComponent> partyVillagerComponents;
+    private ArrayList<OptionButtonComponent> optionButtonComponents;
+    private int totalLanternScore;
 
     @Override
     public Parent show() throws RemoteException {
@@ -67,26 +71,39 @@ public class ExplorePartyController implements ControllerInterface {
         this.currentLanterns.setAlignment(Pos.CENTER);
         this.choiceLabel.setAlignment(Pos.CENTER);
 
+        this.totalLanternScore = 0;
+        this.currentLanterns.setText("");
+
         this.choiceLabel.setText(this.choice.getDescription());
 
         this.partyVillagerComponents = new ArrayList<PartyVillagerComponent>();
+        this.optionButtonComponents = new ArrayList<OptionButtonComponent>();
         this.villagerContainer.getChildren().clear();
+        this.optionButtons.getChildren().clear();
 
         for (Villager villager : this.party) {
 
-            PartyVillagerComponent partyVillagerComponent = new PartyVillagerComponent(villager);
+            PartyVillagerComponent partyVillagerComponent = new PartyVillagerComponent(villager, this);
             this.partyVillagerComponents.add(partyVillagerComponent);
             this.villagerContainer.getChildren().add(partyVillagerComponent);
         }
 
         for (Option option : this.choice.getOptions()){
-            Button btn = new Button("Explore " + option.getCost());
-            btn.setPrefHeight(60.0);
-            btn.setMinWidth(120.0);
-            btn.setDisable(true);
-            this.optionButtons.getChildren().add(btn);
+
+            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option);
+            this.optionButtonComponents.add(optionButtonComponent);
+            this.optionButtons.getChildren().add(optionButtonComponent);
         }
 
+    }
+
+    public void updateLanternScore(int lanternScore){
+        this.totalLanternScore += lanternScore;
+        this.currentLanterns.setText("Total number of lanterns: " + totalLanternScore);
+
+        for (OptionButtonComponent optionButtonComponent : optionButtonComponents) {
+            optionButtonComponent.enableOption(this.totalLanternScore);
+        }
     }
 
     public void onClickRun(){

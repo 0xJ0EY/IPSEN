@@ -1,18 +1,20 @@
 package client.source.components.party;
 
+import client.source.controllers.ExplorePartyController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import server.sources.models.Dice;
 import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
 
 public class PartyVillagerComponent extends VBox {
+
+    private ExplorePartyController explorePartyController;
 
     private Villager villager;
     private Dice dice;
@@ -23,9 +25,10 @@ public class PartyVillagerComponent extends VBox {
     @FXML private Button roll;
     @FXML private Label rolled;
 
-    public PartyVillagerComponent(Villager villager) {
+    public PartyVillagerComponent(Villager villager, ExplorePartyController explorePartyController) {
         this.villager = villager;
         this.dice = new Dice();
+        this.explorePartyController = explorePartyController;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/villager.fxml"));
 
@@ -51,12 +54,9 @@ public class PartyVillagerComponent extends VBox {
         this.roll.setOnMouseClicked( e -> {
             dice.roll();
             this.rolled.setText("You rolled: " + dice.returnValue());
+            this.explorePartyController.updateLanternScore(this.villager.calculateLanters(dice));
             roll.setDisable(true);
             }
         );
-    }
-
-    public void calculateLanterns(Dice dice, Villager villager){
-        // TODO: 02/06/2018 THIS
     }
 }

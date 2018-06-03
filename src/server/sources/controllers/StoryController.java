@@ -24,7 +24,8 @@ public class StoryController extends UnicastRemoteObject implements StoryControl
         int index = (int) Math.floor(Math.random() * stories.size());
 
         Story story = stories.get(index);
-        stories.remove(story);
+//        TODO: uncomment this
+//        stories.remove(story);
 
         return story;
     }
