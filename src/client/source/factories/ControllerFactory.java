@@ -50,7 +50,7 @@ public class ControllerFactory {
             loader.load();
 
             lobby = loader.getController();
-            lobby.setClient(this.client);
+            lobby.registerClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }

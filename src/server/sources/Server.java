@@ -64,7 +64,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         this.promoteOwner();
 
-        this.notifyClients(new UpdatePlayerListNotification());
+        this.notifyClients(new UpdatePlayerListNotification(this.gameClients));
     }
 
 
@@ -76,7 +76,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         this.promoteOwner();
 
-        this.notifyClients(new UpdatePlayerListNotification());
+        this.notifyClients(new UpdatePlayerListNotification(this.gameClients));
     }
 
     /**

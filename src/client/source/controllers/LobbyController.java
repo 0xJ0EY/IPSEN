@@ -1,6 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.observers.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
+import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.requests.LoadGameRequest;
 import server.sources.requests.StartGameRequest;
@@ -16,7 +18,7 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class LobbyController implements ControllerInterface {
+public class LobbyController implements ControllerInterface, Observable {
 
     private Client client;
 
@@ -28,32 +30,36 @@ public class LobbyController implements ControllerInterface {
 
     @FXML private Button buttonLoad;
 
+    private ObservableList<String> listItems = FXCollections.observableArrayList();
+
     /**
      * For setting a client
      * @param client
      */
-    public void setClient(Client client) {
+    public void registerClient(Client client) {
         this.client = client;
+
+        // Register the client as observer
+        this.client.clientObserver.attach(this);
     }
 
-    /**
-     * This is for updating a list of connected players in a lobby,
-     * ready to play the gameController environment.
-     * @throws RemoteException
-     */
-    public void updateLobbyList() throws RemoteException {
+    @FXML
+    public void initialize() {
+        this.lobbyList.setItems(this.listItems);
+    }
 
-        // Load models
-        ObservableList<String> listItems = FXCollections.observableArrayList();
-        ArrayList<PlayerInterface> players = this.client.getGameClient().getServer().getGameController().listCurrentPlayers();
+    @Override
+    public void updateObserver() {
+        ArrayList<GameClientInterface> clients = this.client.clientObserver.getState();
+        this.listItems.clear();
 
-        for (PlayerInterface player : players) {
-            listItems.add(player.getUsername());
+        for (GameClientInterface client : clients) {
+            try {
+                listItems.add(client.getPlayer().getUsername());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
-
-        // Add them in lobby list
-        lobbyList.setItems(listItems);
-
     }
 
     /**

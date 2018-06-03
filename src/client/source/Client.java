@@ -3,15 +3,18 @@ package client.source;
 import client.source.controllers.*;
 import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
+import client.source.observers.Observer;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.interfaces.GameClientInterface;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class Client extends Application implements Serializable {
 
@@ -25,6 +28,8 @@ public class Client extends Application implements Serializable {
     private ExploreController explore;
 
     private VillagerSelectionController villagerSelection;
+
+    public Observer<ArrayList<GameClientInterface>> clientObserver = new Observer<>();
 
     @Override
     public void start(Stage primaryStage) {
