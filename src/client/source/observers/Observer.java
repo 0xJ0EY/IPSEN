@@ -1,5 +1,7 @@
 package client.source.observers;
 
+import javafx.application.Platform;
+
 import java.util.ArrayList;
 
 public class Observer <T> {
@@ -25,7 +27,7 @@ public class Observer <T> {
 
     public void notifyAllObservers() {
         for (Observable observer : this.observers) {
-            observer.updateObserver();
+            Platform.runLater(() -> observer.updateObserver());
         }
     }
 }

@@ -53,6 +53,8 @@ public class LobbyController implements ControllerInterface, Observable {
         ArrayList<GameClientInterface> clients = this.client.clientObserver.getState();
         this.listItems.clear();
 
+        if (clients == null) return;
+
         for (GameClientInterface client : clients) {
             try {
                 listItems.add(client.getPlayer().getUsername());

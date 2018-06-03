@@ -1,13 +1,24 @@
 package client.source.controllers;
 
+import client.source.Client;
+import client.source.observers.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
+import server.sources.interfaces.GameClientInterface;
 
-public class MenuController {
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+public class MenuController implements Observable {
 
     private enum Tabs { ABOVE, BELOW, MARKET, TURN, SETTINGS, RULES }
+
+    private Client client;
 
     private TabPane tabContainer;
 
@@ -15,6 +26,15 @@ public class MenuController {
 
     @FXML private Button turnButton;
     @FXML private Button settingsButton;
+
+    @FXML private ListView playerList;
+
+    private ObservableList<String> playerItems = FXCollections.observableArrayList();
+
+
+    @FXML public void initialize() {
+        this.playerList.setItems(playerItems);
+    }
 
     /**
      * These methods are used for opening a selected tab.
@@ -70,4 +90,24 @@ public class MenuController {
         this.tabContainer = tabContainer;
     }
 
+    public void registerClient(Client client) {
+        this.client = client;
+        this.client.clientObserver.attach(this);
+    }
+
+    @Override
+    public void updateObserver() {
+        ArrayList<GameClientInterface> clients = this.client.clientObserver.getState();
+        this.playerItems.clear();
+
+        if (clients == null) return;
+
+        for (GameClientInterface client : clients) {
+            try {
+                playerItems.add(client.getPlayer().getUsername());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

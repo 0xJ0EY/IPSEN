@@ -51,11 +51,12 @@ public class MainController implements ControllerInterface {
      * @param client
      */
     public void setClient(Client client) {
-        aboveController.setClient(client);
-        belowController.setClient(client);
-        marketController.setClient(client);
-        turnController.setClient(client);
-        settingsController.setClient(client);
+        menuController.registerClient(client);
+        aboveController.registerClient(client);
+        belowController.registerClient(client);
+        marketController.registerClient(client);
+        turnController.registerClient(client);
+        settingsController.registerClient(client);
 
         this.client = client;
     }
