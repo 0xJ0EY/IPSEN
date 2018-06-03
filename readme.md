@@ -2,6 +2,7 @@
 
 TODO
  - Add state to the server (Half done)
+ - Add message to the saving error
  - Scale rules image with client width 
  - All the actions we still have to do
  - Market intergration
