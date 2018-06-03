@@ -86,13 +86,15 @@ public class MenuController implements Observable {
     public void registerClient(Client client) {
         this.client = client;
         this.client.clientObserver.attach(this);
+        this.client.turnObserver.attach(this);
     }
 
     @Override
     public void updateObserver() {
+
+        // Update player list
         ArrayList<PlayerInterface> players = this.client.clientObserver.getState();
         this.playerItems.clear();
-
 
         for (PlayerInterface player : players) {
             try {
@@ -104,6 +106,20 @@ public class MenuController implements Observable {
 
         try {
             this.settingsButton.setDisable(!this.client.getGameClient().isOwner());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        // Show or hide turn buttons
+        PlayerInterface target = this.client.turnObserver.getState();
+
+        // No target, so its not even worth going here
+        if (target == null) return;
+
+        try {
+            boolean turn = target.getGameClient().equals(this.client.getGameClient());
+            this.turnButton.setDisable(!turn);
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }

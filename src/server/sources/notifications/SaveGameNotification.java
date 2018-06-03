@@ -41,7 +41,7 @@ public class SaveGameNotification implements NotificationInterface {
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
         this.writeBytesToFile();
-        gameClient.getClient().getMain().showMessage("Save file written to documents");
+        gameClient.getClient().showMessage("Save file written to documents");
 
     }
 

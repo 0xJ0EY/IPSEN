@@ -1,6 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -9,11 +10,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import server.sources.actions.RunAction;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.models.stories.Story;
 
 import java.rmi.RemoteException;
 
-public class ExploreController implements ControllerInterface {
+public class ExploreController implements ControllerInterface, Observable {
 
     private Client client;
 
@@ -43,6 +45,8 @@ public class ExploreController implements ControllerInterface {
 
     public void setClient(Client client) {
         this.client = client;
+
+        this.client.turnObserver.attach(this);
     }
 
     @FXML public void clickRun() {
@@ -65,23 +69,23 @@ public class ExploreController implements ControllerInterface {
 
     }
 
+    @Override
+    public void updateObserver() {
+        PlayerInterface target = this.client.turnObserver.getState();
+
+        try {
+            boolean turn = this.client.getGameClient().equals(target.getGameClient());
+            this.runButton.setDisable(!turn);
+            this.confirmButton.setDisable(!turn);
+
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void setExploreStory(Story exploreStory) {
         this.exploreStory = exploreStory;
-    }
-
-    public void enableTurnButton() {
-        this.runButton.setDisable(false);
-    }
-
-    public void disableTurnButton() {
-        this.runButton.setDisable(true);
-    }
-
-    public void enableConfirmButton() {
-        this.confirmButton.setDisable(false);
-    }
-
-    public void disableConfirmButton() {
-        this.confirmButton.setDisable(true);
     }
 }
