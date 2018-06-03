@@ -39,13 +39,13 @@ public class TurnController {
     }
 
     /**
-     * This allows user to do labour action in order to get coins
+     * This allows user to do labor action in order to get coins
      * @throws RemoteException
      */
-    @FXML private void labour() throws RemoteException {
+    @FXML private void labor() throws RemoteException {
 
         client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send action labour");
+        System.out.println("Send action labor");
 
     }
 

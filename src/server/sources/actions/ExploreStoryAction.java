@@ -1,7 +1,6 @@
 package server.sources.actions;
 
 import server.sources.Server;
-import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
@@ -26,8 +25,7 @@ public class ExploreStoryAction implements VillagerActionInterface {
     public void execute(Server server) throws RemoteException {
 
         this.story = server.getGameController().getStories().randomStory();
-
-        // TODO: Maybe bind villagers to the story?
+        this.story.setVillagers(selectedVillagers);
 
         System.out.println("Generated new story");
     }

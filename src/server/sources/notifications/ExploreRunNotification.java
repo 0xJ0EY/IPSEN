@@ -11,6 +11,5 @@ public class ExploreRunNotification implements NotificationInterface {
 
         // Show main gameController client for everyone
         gameClient.getClient().showMain();
-        System.out.println("Hallo");
     }
 }

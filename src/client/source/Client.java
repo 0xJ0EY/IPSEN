@@ -1,6 +1,7 @@
 package client.source;
 
 import client.source.controllers.*;
+import client.source.controllers.ExplorePartyController;
 import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
 import client.source.observers.Observer;
@@ -28,6 +29,7 @@ public class Client extends Application implements Serializable {
     private ExploreController explore;
 
     private VillagerSelectionController villagerSelection;
+    private ExplorePartyController exploreParty;
 
     public Observer<ArrayList<PlayerInterface>> clientObserver = new Observer<>();
 
@@ -47,6 +49,7 @@ public class Client extends Application implements Serializable {
         this.main = controllerFactory.createMain();
         this.explore = controllerFactory.createExplore();
         this.villagerSelection = controllerFactory.createVillagerSelection();
+        this.exploreParty = controllerFactory.createExploreParty();
 
         // Set gameController client
         try {
@@ -54,7 +57,6 @@ public class Client extends Application implements Serializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
         this.showLogin();
 
         this.stage.show();
@@ -88,6 +90,19 @@ public class Client extends Application implements Serializable {
         this.setScene((this.explore.show()));
     }
 
+    public Stage getStage() {
+        return this.stage;
+    }
+
+    public void showParty(Story story){
+        try {
+            this.exploreParty.setStory(story);
+            this.setScene(this.exploreParty.show());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setScene(Parent root) {
         Scene scene = stage.getScene();
 
@@ -113,10 +128,6 @@ public class Client extends Application implements Serializable {
 
     public ExploreController getExplore() {
         return explore;
-    }
-
-    public Stage getStage() {
-        return stage;
     }
 
     public VillagerSelectionController getVillagerSelection() {
