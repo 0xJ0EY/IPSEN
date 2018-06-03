@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class MarketController extends UnicastRemoteObject implements MarketControllerInterface {
 
+    private static final long serialVersionUID = 1337L;
+
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<StarHouse> starHouses = new ArrayList<>();
     private ArrayList<KeyHouse> keyHouses = new ArrayList<>();

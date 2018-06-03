@@ -50,6 +50,12 @@ public interface GameClientInterface extends Remote {
     public void promote() throws RemoteException;
 
     /**
+     * Get if the client is the owner or not
+     * @throws RemoteException
+     */
+    public boolean isOwner() throws RemoteException;
+
+    /**
      * Return the player object if there is one, else return null
      * @return Player
      * @throws RemoteException

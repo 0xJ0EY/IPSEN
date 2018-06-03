@@ -9,13 +9,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class GameControllerController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
+public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
+
+    private static final long serialVersionUID = 1337L;
 
     private enum GameStates { LOBBY, STARTED, RUNNING, ENDED }
 
     public ArrayList<Player> players = new ArrayList<Player>();
 
-    public ServerInterface server;
+    public transient ServerInterface server;
     private GameStates gameState = GameStates.LOBBY;
 
     private final int MAX_ROUNDS = 7;
@@ -26,7 +28,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
     private StoryController stories = new StoryController();
     private MarketController market = new MarketController();
 
-    public GameControllerController(ServerInterface server) throws RemoteException {
+    public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
 
         // Load the market
@@ -50,7 +52,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
         this.setGameState(GameStates.STARTED);
 
         // Send everyone to the main screen
-        System.out.println("Send notification");
+        System.out.println("[System] Game started");
         this.server.notifyClients(new GameStartedNotification());
 
     }
@@ -99,7 +101,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
 
         this.server.notifyClients(new EndOfGameNotification());
 
-        System.out.println("GameControllerController ended");
+        System.out.println("GameController ended");
 
     }
 
@@ -115,6 +117,7 @@ public class GameControllerController extends UnicastRemoteObject implements Gam
     }
 
     public void removePlayer(GameClientInterface gameClient) throws RemoteException {
+        if (gameClient.getPlayer() == null) return;
 
         for (int i = 0; i < this.players.size(); i++) {
             Player player = this.players.get(i);

@@ -51,9 +51,6 @@ public class RulesController implements Initializable {
      * This is for handling clicks
      */
     @FXML private void next() {
-
-        System.out.println("Next");
-
         if (this.index + 1 > this.images.size()) return;
 
         this.index++;

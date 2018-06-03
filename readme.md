@@ -1,7 +1,6 @@
 ## Above and Below  
 
 TODO
- - Saving and loading (Requirement)
  - Add state to the server (Half done)
  - Scale rules image with client width 
  - All the actions we still have to do

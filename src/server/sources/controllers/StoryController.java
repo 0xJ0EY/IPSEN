@@ -10,13 +10,15 @@ import java.util.ArrayList;
 
 public class StoryController extends UnicastRemoteObject implements StoryControllerInterface {
 
-    private StoryFactory storyFactory = new StoryFactory();
+    private static final long serialVersionUID = 1337L;
+
     private ArrayList<Story> stories;
 
     public StoryController() throws RemoteException {
     }
 
     public void load() {
+        StoryFactory storyFactory = new StoryFactory();
         this.stories = storyFactory.loadStoriesFromXML();
     }
 
@@ -24,8 +26,7 @@ public class StoryController extends UnicastRemoteObject implements StoryControl
         int index = (int) Math.floor(Math.random() * stories.size());
 
         Story story = stories.get(index);
-//        TODO: uncomment this
-//        stories.remove(story);
+        stories.remove(story);
 
         return story;
     }

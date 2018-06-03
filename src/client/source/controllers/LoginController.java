@@ -36,7 +36,6 @@ public class LoginController implements ControllerInterface {
 
         try {
             this.client.getGameClient().connect(address.getText(), username.getText());
-            this.client.showLobby();
             return true;
         } catch (ServerFullException e) {
             this.errorAddress.setText("The game is full.");

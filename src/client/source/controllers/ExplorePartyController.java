@@ -40,8 +40,9 @@ public class ExplorePartyController implements ControllerInterface {
     private int totalLanternScore;
 
     @Override
-    public Parent show() throws RemoteException {
+    public Parent show() {
 
+        // TODO: Maybe make this possible with observers (Should be easy)
         this.retrieveParty();
 
         this.updatePartyView();
@@ -108,7 +109,7 @@ public class ExplorePartyController implements ControllerInterface {
 
     public void onClickRun(){
         try {
-            client.getGameClient().getPlayer().doAction(new RunAction(client.getVillagerSelection().getSelectedVillagers()));
+            client.getGameClient().getPlayer().doAction(new RunAction(party));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
