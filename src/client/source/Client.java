@@ -10,8 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Story;
+import client.source.factories.VillagerSelectionFactory;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -22,34 +24,21 @@ public class Client extends Application implements Serializable {
     private Stage stage;
     private GameClient gameClient;
 
-    private LoginController login;
-    private LobbyController lobby;
+    private ControllerFactory controllerFactory;
 
     private MainController main;
-    private ExploreController explore;
 
-    private VillagerSelectionController villagerSelection;
-    private ExplorePartyController exploreParty;
-
+    public Observer<String> messageObserver = new Observer<>();
+    public Observer<PlayerInterface> turnObserver = new Observer<>();
     public Observer<ArrayList<PlayerInterface>> clientObserver = new Observer<>();
 
     @Override
     public void start(Stage primaryStage) {
 
-        ControllerFactory controllerFactory = new ControllerFactory(this);
+        controllerFactory = new ControllerFactory(this);
 
         this.stage = primaryStage;
         this.stage.setTitle("Above and Below");
-
-        // Load the views and set the controllers
-
-        // TODO: Only start loading the controllers when they are actually required.
-        this.login = controllerFactory.createLogin();
-        this.lobby = controllerFactory.createLobby();
-        this.main = controllerFactory.createMain();
-        this.explore = controllerFactory.createExplore();
-        this.villagerSelection = controllerFactory.createVillagerSelection();
-        this.exploreParty = controllerFactory.createExploreParty();
 
         // Set gameController client
         try {
@@ -70,24 +59,30 @@ public class Client extends Application implements Serializable {
     }
 
     public void showLogin() {
-        this.setScene(this.login.show());
+        this.setScene(controllerFactory.createLogin().show());
     }
 
     public void showLobby() {
-        this.setScene(this.lobby.show());
+        this.setScene(controllerFactory.createLobby().show());
     }
 
     public void showMain() {
-        this.setScene(this.getMain().show());
+        this.main = controllerFactory.createMain();
+        this.setScene(this.main.show());
     }
 
-    public void showVillagerSelection() {
-        this.setScene(this.getVillagerSelection().show());
+    public void showVillagerSelection(VillagerSelectionFactory factory, VillagerActionInterface action) {
+        VillagerSelectionController selection = controllerFactory.createVillagerSelection();
+        selection.setFactory(factory);
+        selection.setVillagerAction(action);
+
+        this.setScene(selection.show());
     }
 
     public void showExplore(Story story) {
-        this.explore.setExploreStory(story);
-        this.setScene((this.explore.show()));
+        ExploreController explore = controllerFactory.createExplore();
+        explore.setExploreStory(story);
+        this.setScene(explore.show());
     }
 
     public Stage getStage() {
@@ -95,12 +90,9 @@ public class Client extends Application implements Serializable {
     }
 
     public void showParty(Story story){
-        try {
-            this.exploreParty.setStory(story);
-            this.setScene(this.exploreParty.show());
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        ExplorePartyController party = controllerFactory.createExploreParty();
+        party.setStory(story);
+        this.setScene(party.show());
     }
 
     private void setScene(Parent root) {
@@ -121,20 +113,11 @@ public class Client extends Application implements Serializable {
         this.gameClient = gameClient;
     }
 
-
-    public MainController getMain() {
-        return main;
-    }
-
-    public ExploreController getExplore() {
-        return explore;
-    }
-
-    public VillagerSelectionController getVillagerSelection() {
-        return villagerSelection;
-    }
-
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void showMessage(String message) {
+        this.main.showMessage(message);
     }
 }

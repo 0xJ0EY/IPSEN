@@ -1,6 +1,5 @@
 package server.sources.notifications;
 
-import client.source.Client;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 
@@ -17,16 +16,16 @@ public class PlayerTurnNotification implements NotificationInterface {
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
+        gameClient.getClient().turnObserver.setState(target.getPlayer());
+
         if (this.target.equals(gameClient)) {
-            Client client = gameClient.getClient();
-            client.getMain().showMessage("It\'s your turn");
-            client.getMain().menuController.enableTurnButton();
+            gameClient.getClient().messageObserver.setState("It's your turn");
 
         } else {
-            Client client = gameClient.getClient();
-            client.getMain().showMessage(String.format("It\'s %s\'s turn", this.target.getPlayer().getUsername()));
-            client.getMain().menuController.disableTurnButton();
 
+            gameClient.getClient().messageObserver.setState(
+                    String.format("It\'s %s\'s turn", this.target.getPlayer().getUsername())
+            );
         }
 
     }

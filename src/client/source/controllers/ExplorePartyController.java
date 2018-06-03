@@ -26,8 +26,9 @@ public class ExplorePartyController implements ControllerInterface {
     private ArrayList<PartyVillagerComponent> partyVillagerComponents;
 
     @Override
-    public Parent show() throws RemoteException {
+    public Parent show() {
 
+        // TODO: Maybe make this possible with observers (Should be easy)
         this.retrieveParty();
 
         this.updatePartyView();
@@ -51,8 +52,6 @@ public class ExplorePartyController implements ControllerInterface {
 
         this.partyVillagerComponents = new ArrayList<PartyVillagerComponent>();
         this.villagerContainer.getChildren().clear();
-
-        System.out.println(this.party);
 
         for (Villager villager : this.party) {
 

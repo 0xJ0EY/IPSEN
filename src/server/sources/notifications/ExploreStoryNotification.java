@@ -20,15 +20,6 @@ public class ExploreStoryNotification implements NotificationInterface {
 
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
-
-        if (this.target.equals(gameClient)) {
-            gameClient.getClient().getExplore().enableTurnButton();
-            gameClient.getClient().getExplore().enableConfirmButton();
-        } else {
-            gameClient.getClient().getExplore().disableTurnButton();
-            gameClient.getClient().getExplore().disableConfirmButton();
-        }
-
         gameClient.getClient().showExplore(this.story);
     }
 }
