@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
+import server.sources.models.stories.Choice;
 import server.sources.models.stories.Story;
 import client.source.factories.VillagerSelectionFactory;
 
@@ -89,9 +90,11 @@ public class Client extends Application {
         return this.stage;
     }
 
-    public void showParty(Story story){
+
+    public void showParty(Story story, Choice choice){
         ExplorePartyController party = controllerFactory.createExploreParty();
         party.setStory(story);
+        party.setChoice(choice);
         this.setScene(party.show());
     }
 
@@ -120,4 +123,5 @@ public class Client extends Application {
     public void showMessage(String message) {
         this.main.showMessage(message);
     }
+
 }

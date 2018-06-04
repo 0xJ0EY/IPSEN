@@ -1,11 +1,12 @@
 package client.source.components.party;
 
+import client.source.controllers.ExplorePartyController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import server.sources.models.Dice;
 import server.sources.models.villagers.Villager;
 
@@ -13,17 +14,21 @@ import java.io.IOException;
 
 public class PartyVillagerComponent extends VBox {
 
+    private ExplorePartyController explorePartyController;
+
     private Villager villager;
     private Dice dice;
 
-    @FXML VBox villagerBox;
-    @FXML AnchorPane background;
-    @FXML AnchorPane type;
-    @FXML Button roll;
+    @FXML private VBox villagerBox;
+    @FXML private AnchorPane background;
+    @FXML private AnchorPane type;
+    @FXML private Button roll;
+    @FXML private Label rolled;
 
-    public PartyVillagerComponent(Villager villager) {
+    public PartyVillagerComponent(Villager villager, ExplorePartyController explorePartyController) {
         this.villager = villager;
         this.dice = new Dice();
+        this.explorePartyController = explorePartyController;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/villager.fxml"));
 
@@ -45,17 +50,13 @@ public class PartyVillagerComponent extends VBox {
                         "-fx-background-size: 110 200"
         );
 
-        this.roll = new Button();
-        roll.setText("ROLL DICE");
-        roll.setPrefWidth(110);
-        roll.setPrefHeight(50);
 
         this.roll.setOnMouseClicked( e -> {
             dice.roll();
-            System.out.println(dice.returnValue());
-                }
+            this.rolled.setText("You rolled: " + dice.returnValue());
+            this.explorePartyController.updateLanternScore(this.villager.calculateLanters(dice));
+            roll.setDisable(true);
+            }
         );
-
-        villagerBox.getChildren().add(roll);
     }
 }

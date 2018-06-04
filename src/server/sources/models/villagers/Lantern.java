@@ -1,7 +1,5 @@
 package server.sources.models.villagers;
 
-import server.sources.models.Dice;
-
 import java.io.Serializable;
 
 public class Lantern implements Serializable {
@@ -14,11 +12,11 @@ public class Lantern implements Serializable {
         this.amount = amount;
     }
 
-    public int earn(Dice dice){
-
-        // TODO: Explore implementation
-        return 0;
-
+    public int getAmount(int thrown) {
+        if (thrown>this.cost){
+            return amount;
+        }else{
+            return 0;
+        }
     }
-
 }
