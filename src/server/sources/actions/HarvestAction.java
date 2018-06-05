@@ -15,6 +15,12 @@ public class HarvestAction implements VillagerActionInterface {
     private GameClientInterface target;
     private ArrayList<Villager> selectedVillagers;
 
+    /**
+     * geeft de client van de speler die het uitvoert mee
+     *
+     * @param target
+     * @author Jan Douwe
+     */
     public HarvestAction(GameClientInterface target){
         this.target = target;
     }

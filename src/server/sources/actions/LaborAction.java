@@ -17,16 +17,24 @@ public class LaborAction implements VillagerActionInterface {
     private GameClientInterface target;
 
     public LaborAction(GameClientInterface target){
+
+        System.out.println("target = " + target);
+
         this.target = target;
     }
 
     @Override
     public void execute(Server server) throws RemoteException {
-        for(int i = 0; i < selectedVillagers.size(); i++){
-            selectedVillagers.get(i).tire();
-            firstLaborCider();
+        System.out.println(target.getPlayer().getPlayerBoard().getCoins());
 
-        }
+//        for(int i = 0; i < selectedVillagers.size(); i++){
+//            selectedVillagers.get(i).tire();
+//            firstLaborCider();
+//
+//            target.getPlayer().getPlayerBoard().addCoins(1);
+//        }
+//
+//        System.out.println(target.getPlayer().getPlayerBoard().getCoins());
     }
 
     @Override

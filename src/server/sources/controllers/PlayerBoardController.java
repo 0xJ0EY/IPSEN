@@ -72,6 +72,12 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(villager);
     }
 
+    @Override
+    public void addCoins(int amount) throws RemoteException {
+        if (amount > 0) return;
+        this.coins += amount;
+    }
+
     public ArrayList<House> getHouses() {
         return this.houses;
     }
@@ -84,6 +90,14 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.goods;
     }
 
+    /**
+     * Get current amount of coins
+     *
+     * Khajiit  has wares, if you have coin
+     * @return int of current amount
+     * @throws RemoteException
+     */
+    @Override
     public int getCoins() {
         return this.coins;
     }
@@ -97,6 +111,6 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     public void addCider(){
-        this.ciders = this.ciders + 1;
+        this.ciders += 1;
     }
 }
