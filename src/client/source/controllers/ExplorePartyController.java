@@ -91,7 +91,7 @@ public class ExplorePartyController implements ControllerInterface {
 
         for (Option option : this.choice.getOptions()){
 
-            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option);
+            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option, client);
             this.optionButtonComponents.add(optionButtonComponent);
             this.optionButtons.getChildren().add(optionButtonComponent);
         }

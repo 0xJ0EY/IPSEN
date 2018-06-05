@@ -1,18 +1,19 @@
 package client.source.components.party;
 
+import client.source.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Reward;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class OptionButtonComponent extends Button {
 
     private Option option;
 
-
-    public OptionButtonComponent(Option option){
+    public OptionButtonComponent(Option option, Client client){
         this.option = option;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/optionButton.fxml"));
@@ -31,7 +32,11 @@ public class OptionButtonComponent extends Button {
 
         this.setOnMouseClicked( e-> {
             for (Reward reward:option.getRewards()) {
-                reward.execute();
+                try {
+                    reward.execute(client);
+                } catch (RemoteException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }

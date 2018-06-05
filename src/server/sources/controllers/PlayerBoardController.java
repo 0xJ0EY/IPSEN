@@ -1,6 +1,6 @@
 package server.sources.controllers;
 
-import server.sources.models.Goods.Good;
+import server.sources.models.Goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
@@ -18,7 +18,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
-    private int ciders, barrels, coins;
+    private int ciders, potions, coins;
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -31,6 +31,62 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), false, false));
 
+    }
+
+    public void addCider(int cider) {
+        this.ciders += cider;
+    }
+
+    public void addPotion(int potion) {
+        this.potions += potion;
+    }
+
+    public void addCoin(int coin) {
+        this.coins += coin;
+    }
+
+    public void payCoin(int coin){
+        this.coins -= coin;
+    }
+
+    public void usePotion(int potion){
+        this.potions -= potion;
+    }
+
+    public void useCider(int cider){
+        this.ciders -= cider;
+    }
+
+    public void addGood(String good){
+        switch (good){
+            case "MUSHROOM":
+                this.goods.add(new MushroomGood());
+                break;
+            case "FISH":
+                this.goods.add(new FishGood());
+                break;
+            case "FRUIT":
+                this.goods.add(new FruitGood());
+                break;
+            case "AMETHYST":
+                this.goods.add(new AmethystGood());
+                break;
+            case "PAPER":
+                this.goods.add(new PaperGood());
+                break;
+            case "POT":
+                this.goods.add(new PotGood());
+                break;
+            case "ROPE":
+                this.goods.add(new RopeGood());
+                break;
+            case "ORE":
+                this.goods.add(new OreGood());
+                break;
+            default:
+                System.out.println("no good added");
+                break;
+        }
     }
 
     @Override
@@ -103,8 +159,8 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.coins;
     }
 
-    public int getBarrels() {
-        return this.barrels;
+    public int getPotions() {
+        return this.potions;
     }
 
     public int getCiders() {

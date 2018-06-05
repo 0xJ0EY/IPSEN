@@ -45,8 +45,8 @@ public class AboveController {
         pbc.getCoins();
     }
 
-    public void getBarrels() {
-        pbc.getBarrels();
+    public void getPotions() {
+        pbc.getPotions();
     }
 
     public void getCiders() {

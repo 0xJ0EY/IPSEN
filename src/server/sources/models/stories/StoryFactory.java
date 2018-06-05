@@ -122,7 +122,7 @@ public class StoryFactory {
             Node rewardNode = rewardNodes.item(i);
             Element rewardElement = (Element) rewardNode;
 
-            rewards.add(new Reward(rewardElement.getTextContent()));
+            rewards.add(new Reward(rewardElement));
 
         }
 
