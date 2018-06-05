@@ -4,6 +4,7 @@ import client.source.Client;
 import client.source.components.villager.VillagerComponent;
 import client.source.controllers.ControllerInterface;
 import client.source.factories.VillagerSelectionFactory;
+import client.source.strategies.VillagerSelectionStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
@@ -29,6 +30,8 @@ public class VillagerSelectionController implements ControllerInterface {
     private ArrayList<VillagerComponent> villagerComponents;
 
     private VillagerSelectionFactory factory;
+
+    private VillagerSelectionStrategy strategy;
 
     public Parent show() {
 
@@ -57,14 +60,12 @@ public class VillagerSelectionController implements ControllerInterface {
 
     @FXML
     private void onClickSelect() {
-        try {
-            ArrayList<Villager> selected = this.getSelectedVillagers();
 
-            this.action.setSelectedVillagers(selected);
-            this.client.getGameClient().requestAction(this.action);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        ArrayList<Villager> selected = this.getSelectedVillagers();
+
+        this.action.setSelectedVillagers(selected);
+
+        this.strategy.execute(this.client.getGameClient(), this.action);
 
     }
 
@@ -93,5 +94,9 @@ public class VillagerSelectionController implements ControllerInterface {
 
     public void setVillagerAction(VillagerActionInterface action) {
         this.action = action;
+    }
+
+    public void setStrategy(VillagerSelectionStrategy strategy) {
+        this.strategy = strategy;
     }
 }

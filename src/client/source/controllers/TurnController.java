@@ -4,6 +4,8 @@ import client.source.Client;
 import client.source.factories.AllVillagerSelectionFactory;
 import client.source.factories.BuilderVillagerSelectionFactory;
 import client.source.factories.TrainerVillagerSelectionFactory;
+import client.source.strategies.DoActionStrategy;
+import client.source.strategies.RequestStrategy;
 import javafx.fxml.FXML;
 import server.sources.actions.*;
 
@@ -20,8 +22,9 @@ public class TurnController {
     @FXML private void explore() throws RemoteException {
 
         client.showVillagerSelection(
-                new AllVillagerSelectionFactory(),
-                new ExploreStoryAction(this.client.getGameClient())
+            new AllVillagerSelectionFactory(),
+            new ExploreStoryAction(this.client.getGameClient()),
+            new RequestStrategy()
         );
 
     }
@@ -34,8 +37,9 @@ public class TurnController {
 
 
         client.showVillagerSelection(
-                new BuilderVillagerSelectionFactory(),
-                new BuildAction()
+            new BuilderVillagerSelectionFactory(),
+            new BuildAction(),
+            new RequestStrategy()
         );
 
     }
@@ -47,8 +51,9 @@ public class TurnController {
     @FXML private void labor() throws RemoteException {
 
         client.showVillagerSelection(
-                new AllVillagerSelectionFactory(),
-                new LaborAction(this.client.getGameClient())
+            new AllVillagerSelectionFactory(),
+            new LaborAction(this.client.getGameClient()),
+            new DoActionStrategy()
         );
 
     }
@@ -60,8 +65,9 @@ public class TurnController {
     @FXML private void harvest() throws RemoteException {
 
         client.showVillagerSelection(
-                new AllVillagerSelectionFactory(),
-                new HarvestAction(this.client.getGameClient())
+            new AllVillagerSelectionFactory(),
+            new HarvestAction(this.client.getGameClient()),
+            new DoActionStrategy()
         );
 
     }
@@ -73,8 +79,9 @@ public class TurnController {
     @FXML private void train() throws RemoteException {
 
         client.showVillagerSelection(
-                new TrainerVillagerSelectionFactory(),
-                new TrainerAction()
+            new TrainerVillagerSelectionFactory(),
+            new TrainerAction(),
+            new DoActionStrategy()
         );
 
     }

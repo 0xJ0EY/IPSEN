@@ -8,26 +8,15 @@ import java.rmi.RemoteException;
 
 public class Reward implements Serializable {
 
-    // TODO: 05/06/2018 remove
-//    private String reward;
-
-
     private Element reward;
     private int value;
     private String type;
-
-    // TODO: 05/06/2018 remove
-//    public Reward(String reward) {
-//        this.reward = reward;
-//    }
 
     public Reward(Element rewardElement){
         this.reward = rewardElement;
         this.value = Integer.parseInt(this.reward.getAttribute("value"));
         this.type = this.reward.getAttribute("type");
-        System.out.println("this is the type: "+ type + " and this is the value: " + value);
     }
-
 
     public void execute(Client client) throws RemoteException {
         switch(this.reward.getTextContent()){

@@ -70,7 +70,6 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
                     try {
                         player.requestAction();
-
                         while (!player.hasAction()) {
                             Thread.sleep(100);
                         }
