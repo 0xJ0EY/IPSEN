@@ -27,6 +27,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     private StoryController stories = new StoryController();
     private MarketController market = new MarketController();
+    private ReputationBoardController reputationboard = new ReputationBoardController();
 
     public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -162,5 +163,9 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     @Override
     public MarketControllerInterface getMarket() throws RemoteException {
         return (MarketControllerInterface) market;
+    }
+
+    public ReputationBoardInterface getReputationBoard(){
+        return (ReputationBoardInterface) reputationboard;
     }
 }

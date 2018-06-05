@@ -1,6 +1,6 @@
 package server.sources.models.perks;
 
-import server.sources.models.Goods.Good;
+import server.sources.models.goods.Good;
 
 public class ReplenishableGoodPerk implements Perk {
     Good good;

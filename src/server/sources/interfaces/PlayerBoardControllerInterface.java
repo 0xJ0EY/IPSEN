@@ -19,4 +19,16 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
     public void addVillager(Villager villager) throws RemoteException;
 
+    public void addCoins(int amount) throws RemoteException;
+
+    /**
+     * Get current amout of coins
+     *
+     * Khajiit  has wares, if you have coin
+     * @return int of current amount
+     * @throws RemoteException
+     */
+    public int getCoins() throws RemoteException;
+
+    public void addCider() throws RemoteException;
 }

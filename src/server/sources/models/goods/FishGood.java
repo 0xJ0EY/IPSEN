@@ -1,4 +1,4 @@
-package server.sources.models.Goods;
+package server.sources.models.goods;
 
 public class FishGood implements Good {
     @Override

@@ -4,7 +4,6 @@ import client.source.Client;
 import client.source.factories.AllVillagerSelectionFactory;
 import client.source.factories.BuilderVillagerSelectionFactory;
 import client.source.factories.TrainerVillagerSelectionFactory;
-import client.source.factories.VillagerSelectionFactory;
 import javafx.fxml.FXML;
 import server.sources.actions.*;
 
@@ -47,8 +46,10 @@ public class TurnController {
      */
     @FXML private void labor() throws RemoteException {
 
-        client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send action labor");
+        client.showVillagerSelection(
+                new AllVillagerSelectionFactory(),
+                new LaborAction(this.client.getGameClient())
+        );
 
     }
 
@@ -58,8 +59,10 @@ public class TurnController {
      */
     @FXML private void harvest() throws RemoteException {
 
-        client.getGameClient().getPlayer().doAction(new TestAction());
-        System.out.println("Send action harvest");
+        client.showVillagerSelection(
+                new AllVillagerSelectionFactory(),
+                new HarvestAction(this.client.getGameClient())
+        );
 
     }
 

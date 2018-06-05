@@ -1,6 +1,6 @@
 package server.sources.controllers;
 
-import server.sources.models.Goods.Good;
+import server.sources.models.goods.Good;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
@@ -18,7 +18,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
-    private int ciders, barrels, coins;
+    private int ciders, potions, coins;
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -74,6 +74,12 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(villager);
     }
 
+    @Override
+    public void addCoins(int amount) throws RemoteException {
+        if (amount > 0) return;
+        this.coins += amount;
+    }
+
     public ArrayList<House> getHouses() {
         return this.houses;
     }
@@ -86,15 +92,27 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.goods;
     }
 
+    /**
+     * Get current amount of coins
+     *
+     * Khajiit  has wares, if you have coin
+     * @return int of current amount
+     * @throws RemoteException
+     */
+    @Override
     public int getCoins() {
         return this.coins;
     }
 
-    public int getBarrels() {
-        return this.barrels;
+    public int getPotions() {
+        return this.potions;
     }
 
     public int getCiders() {
         return this.ciders;
+    }
+
+    public void addCider() throws RemoteException {
+        this.ciders += 1;
     }
 }
