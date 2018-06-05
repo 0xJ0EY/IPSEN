@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import server.sources.Server;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 
@@ -27,7 +28,7 @@ public class LoginController implements ControllerInterface {
     @FXML private Label errorUsername;
 
     @FXML
-    private boolean clickConnect() throws RemoteException {
+    private boolean onClickConnect() throws RemoteException {
 
         if (!this.validateUsername(username.getText())) {
             this.errorUsername.setText("Invalid username.");
@@ -37,6 +38,38 @@ public class LoginController implements ControllerInterface {
         try {
             this.client.getGameClient().connect(address.getText(), username.getText());
             return true;
+        } catch (ServerFullException e) {
+            this.errorAddress.setText("The game is full.");
+
+        } catch (GameStartedException e) {
+            this.errorAddress.setText("Game has already started.");
+
+        } catch (RemoteException | NotBoundException e) {
+            this.errorAddress.setText("Server did not respond.");
+            e.printStackTrace();
+
+        } catch (MalformedURLException e) {
+            this.errorAddress.setText("Invalid url.");
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
+    public boolean onClickServer() {
+        // Start a server in the background and connect to it
+
+        if (!this.validateUsername(username.getText())) {
+            this.errorUsername.setText("Invalid username.");
+            return false;
+        }
+
+        try {
+            new Server(new String[0]);
+            this.client.getGameClient().connect("localhost", username.getText());
+            return true;
+
         } catch (ServerFullException e) {
             this.errorAddress.setText("The game is full.");
 
