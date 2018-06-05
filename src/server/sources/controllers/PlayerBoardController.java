@@ -34,8 +34,21 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     @Override
-    public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
+    public ArrayList<Villager> listVillagers() throws RemoteException {
         return this.villagers;
+    }
+
+    @Override
+    public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
+        ArrayList<Villager> usableVillagers = new ArrayList<>();
+
+        for (Villager villager : this.villagers) {
+            if (villager.isUseable()){
+                usableVillagers.add(villager);
+            }
+        }
+
+        return usableVillagers;
     }
 
     @Override
