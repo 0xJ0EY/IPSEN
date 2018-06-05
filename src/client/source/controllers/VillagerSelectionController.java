@@ -1,4 +1,4 @@
-package client.source.controllers.villager;
+package client.source.controllers;
 
 import client.source.Client;
 import client.source.components.villager.VillagerComponent;
@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.villagers.Villager;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -47,8 +48,6 @@ public class VillagerSelectionController implements ControllerInterface {
         this.villagerComponents = new ArrayList<VillagerComponent>();
         this.villagerContainer.getChildren().clear();
 
-        System.out.println(this.villagers);
-
         for (Villager villager : this.villagers) {
 
             VillagerComponent villagerComponent = new VillagerComponent(villager);
@@ -63,14 +62,14 @@ public class VillagerSelectionController implements ControllerInterface {
             ArrayList<Villager> selected = this.getSelectedVillagers();
 
             this.action.setSelectedVillagers(selected);
-            this.client.getGameClient().getPlayer().doAction(this.action);
+            this.client.getGameClient().requestAction(this.action);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
     }
 
-    private ArrayList<Villager> getSelectedVillagers() {
+    public ArrayList<Villager> getSelectedVillagers() {
         ArrayList<Villager> selected = new ArrayList<Villager>();
 
         for (VillagerComponent villagerComponent : this.villagerComponents) {

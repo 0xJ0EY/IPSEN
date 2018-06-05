@@ -25,10 +25,6 @@ public class Villager implements Serializable {
 
     }
 
-    public void rollDiceForLanterns() {
-        Dice dice = new Dice();
-    }
-
     //TODO: moet nog bedden weghalen
     public void rest(){
         if (injured) {
@@ -37,6 +33,16 @@ public class Villager implements Serializable {
         } else if (tired) {
             tired = false;
         }
+    }
+    
+    public int calculateLanters(Dice dice){
+        int amount = 0;
+        for (Lantern lantern: lanterns) {
+            if (lantern.getAmount(dice.returnValue()) > 0){
+                amount = lantern.getAmount(dice.returnValue());
+            }
+        }
+        return amount;
     }
 
     private void generateRandomBackground() {
@@ -64,4 +70,5 @@ public class Villager implements Serializable {
     public String getBackground() {
         return background;
     }
+
 }

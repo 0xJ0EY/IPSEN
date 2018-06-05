@@ -19,9 +19,10 @@ public class TurnController {
      */
     @FXML private void explore() throws RemoteException {
 
-        client.getVillagerSelection().setFactory(new AllVillagerSelectionFactory());
-        client.getVillagerSelection().setVillagerAction(new ExploreStoryAction(this.client.getGameClient()));
-        client.showVillagerSelection();
+        client.showVillagerSelection(
+                new AllVillagerSelectionFactory(),
+                new ExploreStoryAction(this.client.getGameClient())
+        );
 
     }
 
@@ -31,20 +32,24 @@ public class TurnController {
      */
     @FXML private void build() throws RemoteException {
 
-        client.getVillagerSelection().setFactory(new BuilderVillagerSelectionFactory());
-        client.getVillagerSelection().setVillagerAction(new BuildAction());
-        client.showVillagerSelection();
+
+        client.showVillagerSelection(
+                new BuilderVillagerSelectionFactory(),
+                new BuildAction()
+        );
 
     }
 
     /**
-     * This allows user to do labour action in order to get coins
+     * This allows user to do labor action in order to get coins
      * @throws RemoteException
      */
-    @FXML private void labour() throws RemoteException {
-        client.getVillagerSelection().setFactory(new AllVillagerSelectionFactory());
-        client.getVillagerSelection().setVillagerAction(new LaborAction(this.client.getGameClient()));
-        client.showVillagerSelection();
+    @FXML private void labor() throws RemoteException {
+
+        client.showVillagerSelection(
+                new AllVillagerSelectionFactory(),
+                new LaborAction(this.client.getGameClient())
+        );
 
     }
 
@@ -53,9 +58,11 @@ public class TurnController {
      * @throws RemoteException
      */
     @FXML private void harvest() throws RemoteException {
-        client.getVillagerSelection().setFactory(new AllVillagerSelectionFactory());
-        client.getVillagerSelection().setVillagerAction((new HarvestAction(this.client.getGameClient())));
-        client.showVillagerSelection();
+
+        client.showVillagerSelection(
+                new AllVillagerSelectionFactory(),
+                new HarvestAction(this.client.getGameClient())
+        );
 
     }
 
@@ -65,9 +72,10 @@ public class TurnController {
      */
     @FXML private void train() throws RemoteException {
 
-        client.getVillagerSelection().setFactory(new TrainerVillagerSelectionFactory());
-        client.getVillagerSelection().setVillagerAction(new TrainerAction());
-        client.showVillagerSelection();
+        client.showVillagerSelection(
+                new TrainerVillagerSelectionFactory(),
+                new TrainerAction()
+        );
 
     }
 
@@ -82,7 +90,7 @@ public class TurnController {
 
     }
 
-    public void setClient(Client client) {
+    public void registerClient(Client client) {
         this.client = client;
     }
 }

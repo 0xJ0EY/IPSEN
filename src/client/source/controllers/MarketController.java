@@ -19,19 +19,14 @@ public class MarketController {
      *
      * @param client
      */
-    public void setClient(Client client) {
+    public void registerClient(Client client) {
         this.client = client;
     }
 
     public void clickRefreshHouses() {
-        System.out.println("clicked");
 
         try {
             client.getGameClient().requestAction(new RefreshHousesAction());
-
-
-
-
 
         } catch (RemoteException e) {
             e.printStackTrace();

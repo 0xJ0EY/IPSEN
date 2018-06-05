@@ -1,60 +1,85 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <stories>
     <story>
-        <text>Holy shit</text>
+        <text>You step into the thick darkness of the cave, lanterns held high, a thin layer of mist between your feet. Ahead, the cavern wall becomes a steep slope, and you spot what seem to be mushrooms at the top of a high ledge. Do you attempt the climb, or continue searching the cavern floor?</text>
         <choices>
-            <choice description="HolyHolyHolyHolyHolyHolyHoly">
-                <option cost="2">
-                    <reward>VILLAGER</reward>
-                </option>
-                <option cost="5">
-                    <reward>COIN</reward>
-                    <reward>CIDER</reward>
-                    <reward>COIN</reward>
+            <choice description="SEARCH THE CAVERN FLOOR">
+                <option cost="3">
+                    <reward value="1">COIN</reward>
                 </option>
             </choice>
-            <choice description="ShitShitShitShitShitShitShit">
-                <option cost="2">
-                    <reward>COIN</reward>
+            <choice description="CLIMB THE LEDGE">
+                <option cost="4">
+                    <reward value="1">COIN</reward>
+                    <reward type="MUSHROOM" value="1">GOOD</reward>
                 </option>
-                <option cost="3">
-                    <reward>POTION</reward>
-                    <reward>COIN</reward>
-                </option>
-                <option cost="5">
-                    <reward>COIN</reward>
-                    <reward>GOOD</reward>
-                    <reward>COIN</reward>
+                <option cost="7">
+                    <reward value="6">COIN</reward>
+                    <reward type="MUSHROOM" value="2">GOOD</reward>
                 </option>
             </choice>
         </choices>
     </story>
 
     <story>
-        <text>Hello Henk</text>
+        <text>You walk along the edge of a deep ravine. Cold blasts of air erupt from the darkness, and you shiver, wrapping your cloak closer. Soon, you reach a narrow, rope bridge, but it looks to be in poor condition. Do you try to cross or continue on this side of the ravine?</text>
         <choices>
-            <choice description="HelloHelloHelloHelloHello">
-                <option cost="2">
-                    <reward>VILLAGER</reward>
-                </option>
-                <option cost="5">
-                    <reward>COIN</reward>
-                    <reward>CIDER</reward>
-                    <reward>COIN</reward>
+            <choice description="SEARCH ON THIS SIDE OF THE RAVINE">
+                <option cost="3">
+                    <reward value="1">COIN</reward>
                 </option>
             </choice>
-            <choice description="HenkHenkHenkHenkHenk">
-                <option cost="2">
-                    <reward>COIN</reward>
-                </option>
-                <option cost="3">
-                    <reward>POTION</reward>
-                    <reward>COIN</reward>
-                </option>
+            <choice description="CROSS THE ROPE BRIDGE">
                 <option cost="5">
-                    <reward>COIN</reward>
-                    <reward>GOOD</reward>
-                    <reward>COIN</reward>
+                    <reward value="5">COIN</reward>
+                </option>
+                <option cost="7">
+                    <reward value="3">COIN</reward>
+                    <reward type="AMETHYST" value="1">GOOD</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You journey over piles of sharp, grey rocks, slippery from the mist of a trickling waterfall nearby. Far off, you can see a dark opening lined with ancient columns, but the climb to it looks even more treacherous. Do you attempt to reach the columns or search the piles of rocks?</text>
+        <choices>
+            <choice description="SEARCH THE PILES OF ROCKS">
+                <option cost="3">
+                    <reward value="1">COIN</reward>
+                </option>
+            </choice>
+            <choice description="HEAD TOWARDS THE COLUMNS">
+                <option cost="5">
+                    <reward value="2">COIN</reward>
+                    <reward type="ROPE" value="1">GOOD</reward>
+                </option>
+                <option cost="8">
+                    <reward value="3">COIN</reward>
+                    <reward type="AMETHYST" value="2">GOOD</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You follow a well-worn path, holding your torches high. Before long you reach a set of stairs carved into the stone, but the way is blocked by a massive, brown rat, eyes glowing bright red in the darkness. Do you avoid the rat or attempt to pass?</text>
+        <choices>
+            <choice description="AVOID THE RAT">
+                <option cost="3">
+                    <reward value="2">COIN</reward>
+                    <reward value="-1">REPUTATION</reward>
+                </option>
+            </choice>
+            <choice description="FIGHT PAST THE RAT">
+                <option cost="4">
+                    <reward value="1">REPUTATION</reward>
+                    <reward type="FISH" value="1">GOOD</reward>
+                </option>
+                <option cost="7">
+                    <reward value="4">COIN</reward>
+                    <reward type="ORE" value="2">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
                 </option>
             </choice>
         </choices>

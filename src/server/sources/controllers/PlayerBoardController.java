@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
 
+    private static final long serialVersionUID = 1337L;
+
     private ArrayList<Villager> villagers = new ArrayList<>();
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();

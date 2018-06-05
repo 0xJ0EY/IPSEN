@@ -1,30 +1,34 @@
 package server.sources.notifications;
 
-import javafx.application.Platform;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
+import server.sources.interfaces.PlayerInterface;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class UpdatePlayerListNotification implements NotificationInterface {
 
+    private ArrayList<PlayerInterface> players;
+
+    // Set the current list of game clients
+    public UpdatePlayerListNotification(ArrayList<PlayerInterface> players) {
+        this.players = players;
+    }
+
     /**
-     * Update the lobby list
+     * Update the lobby list via the client observer
      * @author Joey de Ruiter
      * @param gameClient
      */
     @Override
     public void execute(GameClientInterface gameClient) {
 
-        // Use a lambda expression to access the JavaFX thread and update the lobby ui
-        Platform.runLater(() -> {
-            try {
-                // Force that every client updates the lobby list
-                gameClient.getClient().getLobby().updateLobbyList();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        });
+        try {
+            gameClient.getClient().clientObserver.setState(this.players);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
 }

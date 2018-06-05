@@ -12,6 +12,7 @@
             <ListView fx:id="lobbyList" layoutY="233.0" prefHeight="200.0" prefWidth="200.0" />
             <Button fx:id="buttonStart" disable="true" layoutY="441.0" mnemonicParsing="false" onAction="#onClickStart" text="Start" />
             <Button layoutX="113.0" layoutY="441.0" mnemonicParsing="false" onAction="#onClickDisconnect" text="Disconnect" />
+            <Button fx:id="buttonLoad" disable="true" layoutY="474.0" mnemonicParsing="false" onAction="#onClickLoad" text="Load" />
          </children>
       </Pane>
    </children>

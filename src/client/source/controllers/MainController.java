@@ -1,13 +1,17 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import server.sources.interfaces.PlayerInterface;
 
-public class MainController implements ControllerInterface {
+import java.rmi.RemoteException;
+
+public class MainController implements ControllerInterface, Observable {
 
     private Client client;
 
@@ -46,18 +50,28 @@ public class MainController implements ControllerInterface {
         this.menuController.assignTabContainer(this.tabContainer);
     }
 
+
+    @Override
+    public void updateObserver() {
+        this.showMessage(this.client.messageObserver.getState());
+    }
+
     /**
      * Of course, for setting client.
      * @param client
      */
     public void setClient(Client client) {
-        aboveController.setClient(client);
-        belowController.setClient(client);
-        marketController.setClient(client);
-        turnController.setClient(client);
-        settingsController.setClient(client);
+        menuController.registerClient(client);
+        aboveController.registerClient(client);
+        belowController.registerClient(client);
+        marketController.registerClient(client);
+        turnController.registerClient(client);
+        settingsController.registerClient(client);
 
         this.client = client;
+
+        // Register this object for the turn callback
+        this.client.messageObserver.attach(this);
     }
 
     /**

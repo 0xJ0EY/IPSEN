@@ -1,10 +1,12 @@
 package server.sources;
 
-import server.sources.controllers.GameControllerController;
+import server.sources.controllers.GameController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
 import server.sources.models.Player;
+import server.sources.notifications.LobbyNotification;
+import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
 
 import java.net.MalformedURLException;
@@ -21,11 +23,11 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     private final int SERVER_PORT = 1099;
 
-    private enum ServerState { OFFLINE, LOBBY, RUNNING, ENDED }
+    private enum ServerState { OFFLINE, LOBBY, LOADED, RUNNING, ENDED }
     private ServerState state = ServerState.OFFLINE;
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
-    private GameControllerController gameController = new GameControllerController((ServerInterface) this);
+    private GameController gameController = new GameController((ServerInterface) this);
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -63,7 +65,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         this.promoteOwner();
 
-        this.notifyClients(new UpdatePlayerListNotification());
+        ArrayList<PlayerInterface> players = (ArrayList<PlayerInterface>) (ArrayList<?>) this.gameController.players;
+
+        // Update target client
+        gameClient.receiveNotification(new LobbyNotification());
+
+        // Update all clients
+        this.notifyClients(new UpdatePlayerListNotification(players));
     }
 
 
@@ -73,9 +81,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.gameController.removePlayer(gameClient);
         this.gameClients.remove(gameClient);
 
+        // Maybe promote a new owner
         this.promoteOwner();
 
-        this.notifyClients(new UpdatePlayerListNotification());
+        ArrayList<PlayerInterface> players = (ArrayList<PlayerInterface>) (ArrayList<?>) this.gameController.players;
+
+        this.notifyClients(new UpdatePlayerListNotification(players));
     }
 
     /**
@@ -124,14 +135,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         return gameController;
     }
 
-    /**
-     * Set the gameController
-     * @param gameController
-     */
-    public void setGameController(GameControllerController gameController) {
-        this.gameController = gameController;
-    }
-
     public void startGame() {
         this.updateState(ServerState.RUNNING);
         new Thread(this.gameController).start();
@@ -141,8 +144,34 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.state = state;
     }
 
-    public void save() {
+    public void save(GameClientInterface target) {
 
+        try {
+            target.receiveNotification(new SaveGameNotification(this.gameController));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void load(GameController gameController) throws RemoteException {
+
+        if (gameController.players.size() != this.gameController.players.size()) {
+            System.out.println("[System] Amount of players dont match");
+
+            return;
+        }
+
+        this.updateState(ServerState.LOADED);
+
+        for (PlayerInterface player : gameController.players ) {
+            for (GameClientInterface gameClient : this.gameClients) {
+                gameClient.setPlayer(player);
+                player.setGameClient(gameClient);
+            }
+        }
+
+        this.startGame();
     }
 
     public static void main(String[] args) throws Exception {
