@@ -49,7 +49,6 @@ public class VillagerSelectionController implements ControllerInterface {
         this.villagerContainer.getChildren().clear();
 
         for (Villager villager : this.villagers) {
-
             VillagerComponent villagerComponent = new VillagerComponent(villager);
             this.villagerComponents.add(villagerComponent);
             this.villagerContainer.getChildren().add(villagerComponent);

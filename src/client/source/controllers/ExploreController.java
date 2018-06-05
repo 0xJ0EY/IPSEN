@@ -73,14 +73,10 @@ public class ExploreController implements ControllerInterface, Observable {
     }
 
     @FXML public void clickConfirm() {
-        System.out.println("you clicked confirm");
-
         RadioButton selected = (RadioButton) radioGroup.getSelectedToggle();
         if(selected.getId().equals("0")){
-            System.out.println(this.exploreStory.getChoices().get(0).getOptions());
             this.choice = this.exploreStory.getChoices().get(0);
         }else{
-            System.out.println(this.exploreStory.getChoices().get(1).getOptions());
             this.choice = this.exploreStory.getChoices().get(1);
         }
 

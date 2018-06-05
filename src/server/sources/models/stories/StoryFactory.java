@@ -16,11 +16,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Deze klasse bouwt een arraylist met verhalen, welke gebruikt worden tijdens een explore actie.
+ *
+ * @author richard
+ */
 public class StoryFactory {
 
     private DocumentBuilderFactory factory;
     private DocumentBuilder builder;
 
+    /**
+     * maakt een storyfactory aan.
+     * @author richard
+     */
     public StoryFactory() {
 
         try {
@@ -33,6 +42,11 @@ public class StoryFactory {
 
     }
 
+    /**
+     * laad de stories uit de xml file en plaatste ze in een arraylist van Story
+     * @return Arraylist
+     * @author richard
+     */
     public ArrayList<Story> loadStoriesFromXML() {
 
         ArrayList<Story> storyArrayList = new ArrayList<Story>();
@@ -108,7 +122,7 @@ public class StoryFactory {
             Node rewardNode = rewardNodes.item(i);
             Element rewardElement = (Element) rewardNode;
 
-            rewards.add(new Reward(rewardElement.getTextContent()));
+            rewards.add(new Reward(rewardElement));
 
         }
 
