@@ -60,7 +60,7 @@ public class Villager implements Serializable {
     }
 
     public void injure() {
-        this.injured = false;
+        this.injured = true;
     }
 
     public AnchorPane getType() {

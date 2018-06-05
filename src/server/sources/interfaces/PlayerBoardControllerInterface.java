@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
+    public ArrayList<Villager> listVillagers() throws RemoteException;
+
     public ArrayList<Villager> listAvailableVillagers() throws RemoteException;
 
     public ArrayList<Villager> listAvailableBuilderVillagers() throws RemoteException;
@@ -31,4 +33,7 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public int getCoins() throws RemoteException;
 
     public void addCider() throws RemoteException;
+
+    public void addGood(String type) throws RemoteException;
+
 }

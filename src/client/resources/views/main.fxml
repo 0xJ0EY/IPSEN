@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MainController">
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MainController">
    <children>
         <fx:include fx:id="menu" source="menu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
