@@ -69,8 +69,8 @@ public class VillagerComponent extends AnchorPane {
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
-                "-fx-background-size: 115 205" +
-                "-fx-size: 115 205");
+                "-fx-background-size: 115 205");
+
     }
 
     private void hideIndicator(){
@@ -79,8 +79,7 @@ public class VillagerComponent extends AnchorPane {
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
-                "-fx-background-size: 110 200" +
-                "-fx-size: 115 205");
+                "-fx-background-size: 110 200");
 
     }
 }

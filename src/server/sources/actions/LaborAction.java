@@ -1,9 +1,9 @@
 package server.sources.actions;
 
 import server.sources.Server;
-import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.NotificationInterface;
-import server.sources.interfaces.VillagerActionInterface;
+import server.sources.controllers.GameController;
+import server.sources.controllers.ReputationBoardController;
+import server.sources.interfaces.*;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.TestNotification;
 
@@ -13,28 +13,36 @@ import java.util.ArrayList;
 public class LaborAction implements VillagerActionInterface {
 
     private ArrayList<Villager> selectedVillagers;
-    private boolean firstLaborAction = true;
     private GameClientInterface target;
+    private ReputationBoardInterface reputationBoard;
 
     public LaborAction(GameClientInterface target){
-
-        System.out.println("target = " + target);
-
         this.target = target;
+
+        try {
+            this.reputationBoard = this.target.getServer().getGameController().getReputationBoard();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void execute(Server server) throws RemoteException {
         System.out.println(target.getPlayer().getPlayerBoard().getCoins());
 
-//        for(int i = 0; i < selectedVillagers.size(); i++){
-//            selectedVillagers.get(i).tire();
-//            firstLaborCider();
-//
-//            target.getPlayer().getPlayerBoard().addCoins(1);
-//        }
-//
-//        System.out.println(target.getPlayer().getPlayerBoard().getCoins());
+//        ReputationBoardInterface reputationBoard = target.
+        PlayerBoardControllerInterface playerBoard = target.getPlayer().getPlayerBoard();
+
+
+        for(int i = 0; i < selectedVillagers.size(); i++){
+            selectedVillagers.get(i).tire();
+
+            firstLaborCider();
+
+            target.getPlayer().getPlayerBoard().addCoins(1);
+        }
+
+        System.out.println(target.getPlayer().getPlayerBoard().getCoins());
     }
 
     @Override
@@ -47,12 +55,12 @@ public class LaborAction implements VillagerActionInterface {
         this.selectedVillagers = villagers;
     }
 
-    private void firstLaborCider(){
-        if (firstLaborAction){
-            //TODO: toevoegen cider bij player
-
-            firstLaborAction = false;
+    private void firstLaborCider() throws RemoteException{
+        if(reputationBoard.hasCider()){
+            reputationBoard.retrieveCider(target.getPlayer());
 
         }
+
     }
+
 }

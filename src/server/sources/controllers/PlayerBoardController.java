@@ -1,6 +1,6 @@
 package server.sources.controllers;
 
-import server.sources.models.Goods.Good;
+import server.sources.models.goods.Good;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
@@ -112,7 +112,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.ciders;
     }
 
-    public void addCider(){
+    public void addCider() throws RemoteException {
         this.ciders += 1;
     }
 }

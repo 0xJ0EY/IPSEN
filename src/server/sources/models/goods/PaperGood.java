@@ -1,4 +1,4 @@
-package server.sources.models.Goods;
+package server.sources.models.goods;
 
 public class PaperGood implements Good {
     @Override

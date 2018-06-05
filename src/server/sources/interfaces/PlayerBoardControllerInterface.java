@@ -29,4 +29,6 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
      * @throws RemoteException
      */
     public int getCoins() throws RemoteException;
+
+    public void addCider() throws RemoteException;
 }

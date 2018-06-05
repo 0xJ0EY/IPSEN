@@ -13,4 +13,6 @@ public interface GameControllerInterface extends Remote, Serializable {
 
     public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException;
 
+    public ReputationBoardInterface getReputationBoard() throws RemoteException;
+
 }
