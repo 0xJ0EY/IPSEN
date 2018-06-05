@@ -1,6 +1,6 @@
 package server.sources.controllers;
 
-import server.sources.models.Goods.*;
+import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
@@ -39,10 +39,6 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     public void addPotion(int potion) {
         this.potions += potion;
-    }
-
-    public void addCoin(int coin) {
-        this.coins += coin;
     }
 
     public void payCoin(int coin){
@@ -143,6 +139,12 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(villager);
     }
 
+    @Override
+    public void addCoins(int amount) throws RemoteException {
+        if (amount > 0) return;
+        this.coins += amount;
+    }
+
     public ArrayList<House> getHouses() {
         return this.houses;
     }
@@ -155,6 +157,14 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.goods;
     }
 
+    /**
+     * Get current amount of coins
+     *
+     * Khajiit  has wares, if you have coin
+     * @return int of current amount
+     * @throws RemoteException
+     */
+    @Override
     public int getCoins() {
         return this.coins;
     }
@@ -165,5 +175,9 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     public int getCiders() {
         return this.ciders;
+    }
+
+    public void addCider() throws RemoteException {
+        this.ciders += 1;
     }
 }

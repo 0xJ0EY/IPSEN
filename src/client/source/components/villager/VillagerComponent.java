@@ -70,6 +70,7 @@ public class VillagerComponent extends AnchorPane {
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 115 205");
+
     }
 
     private void hideIndicator(){
@@ -79,5 +80,6 @@ public class VillagerComponent extends AnchorPane {
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 110 200");
+
     }
 }

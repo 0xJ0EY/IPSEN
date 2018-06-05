@@ -33,7 +33,7 @@ public class Reward implements Serializable {
         switch(this.reward.getTextContent()){
             case "COIN":
                 System.out.println("Coin");
-                client.getGameClient().getPlayer().getPlayerBoard().addCoin(this.value);
+                client.getGameClient().getPlayer().getPlayerBoard().addCoins(this.value);
                 break;
             case "VILLAGER":
                 System.out.println("Villager");
