@@ -30,7 +30,7 @@ public class PartyVillagerComponent extends VBox {
         this.dice = new Dice();
         this.explorePartyController = explorePartyController;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/villager.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/party/villager.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

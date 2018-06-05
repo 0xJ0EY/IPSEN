@@ -24,7 +24,7 @@ public class ControllerFactory {
         LoginController login = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/login.fxml"));
             loader.load();
 
             login = loader.getController();
@@ -44,7 +44,7 @@ public class ControllerFactory {
         LobbyController lobby = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/lobby.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/lobby.fxml"));
             loader.load();
 
             lobby = loader.getController();
@@ -64,7 +64,7 @@ public class ControllerFactory {
         MainController main = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/main.fxml"));
             loader.load();
 
             main = loader.getController();
@@ -84,7 +84,7 @@ public class ControllerFactory {
         ExploreController explore = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/explore.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/explore.fxml"));
             loader.load();
 
             explore = loader.getController();
@@ -104,7 +104,7 @@ public class ControllerFactory {
         VillagerSelectionController villagerSelection = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/villager_selection.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/villager_selection.fxml"));
             loader.load();
 
             villagerSelection = loader.getController();
@@ -120,7 +120,7 @@ public class ControllerFactory {
         ExplorePartyController explorePartyController = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/party_roll_dice.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/party_roll_dice.fxml"));
             loader.load();
 
             explorePartyController = loader.getController();

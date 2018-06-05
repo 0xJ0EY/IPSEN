@@ -10,10 +10,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class VillagerFactory {
@@ -52,7 +50,8 @@ public class VillagerFactory {
         list = new ArrayList<>();
 
         try {
-            Document document = builder.parse(new InputSource(new FileReader(new File("src/server/resources/data/villagers.xml"))));
+            InputStream is = getClass().getClassLoader().getResourceAsStream("server/resources/data/villagers.xml");
+            Document document = builder.parse(is);
             
             NodeList villagers = document.getElementsByTagName("villager");
 

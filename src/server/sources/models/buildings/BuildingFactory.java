@@ -11,9 +11,8 @@ import server.sources.models.perks.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -24,25 +23,24 @@ public class BuildingFactory {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder builder = factory.newDocumentBuilder();
 
-    public BuildingFactory() throws ParserConfigurationException {
-    }
+    private Document document;
 
-    //create Document for reading building XML
-    private Document createDocument(){
-        try{
-            Document document = builder.parse(new InputSource(new FileReader(new File("src/server/resources/data/buildings.xml"))));
-            return document;
-        } catch (IOException | SAXException e){
+    public BuildingFactory() throws ParserConfigurationException {
+
+        try {
+            InputStream is = getClass().getClassLoader().getResourceAsStream("server/resources/data/buildings.xml");
+            this.document = builder.parse(is);
+        } catch (SAXException | IOException e) {
             e.printStackTrace();
-            return null;
         }
+
     }
 
     //Read Houses from building XML
     public ArrayList<House> loadHousesFromXML(){
         ArrayList<House> housesArrayList = new ArrayList<House>();
 
-        Document document = createDocument();
+        System.out.println("document = " + document.getXmlEncoding());
         NodeList house = document.getElementsByTagName("house");
 
         for (int i = 0; i < house.getLength(); i++){
@@ -61,8 +59,6 @@ public class BuildingFactory {
     public ArrayList<StarHouse> loadStarHousesFromXML(){
         ArrayList<StarHouse> starHousesArrayList = new ArrayList<StarHouse>();
 
-        Document document = createDocument();
-
         NodeList house = document.getElementsByTagName("starhouse");
 
         for (int i = 0; i < house.getLength(); ++i) {
@@ -79,8 +75,6 @@ public class BuildingFactory {
     //Read Key Houses from building XML
     public ArrayList<KeyHouse> loadKeyHousesFromXML(){
         ArrayList<KeyHouse> keyHousesArrayList = new ArrayList<KeyHouse>();
-
-        Document document = createDocument();
 
         NodeList house = document.getElementsByTagName("keyhouse");
 
@@ -99,8 +93,6 @@ public class BuildingFactory {
     //Read Outposts from building XML
     public ArrayList<Outpost> loadOutpostsFromXML(){
         ArrayList<Outpost> outpostsArrayList = new ArrayList<Outpost>();
-
-        Document document = createDocument();
 
         NodeList house = document.getElementsByTagName("outpost");
 

@@ -10,10 +10,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -52,7 +49,8 @@ public class StoryFactory {
         ArrayList<Story> storyArrayList = new ArrayList<Story>();
 
         try {
-            Document document = builder.parse(new InputSource(new FileReader(new File("src/server/resources/data/stories.xml"))));
+            InputStream is = getClass().getClassLoader().getResourceAsStream("server/resources/data/stories.xml");
+            Document document = builder.parse(is);
 
             NodeList stories = document.getElementsByTagName("story");
 

@@ -16,7 +16,7 @@ public class OptionButtonComponent extends Button {
     public OptionButtonComponent(Option option, Client client){
         this.option = option;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/optionButton.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/party/optionButton.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

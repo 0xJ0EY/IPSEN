@@ -23,7 +23,7 @@ public class VillagerComponent extends AnchorPane {
     public VillagerComponent(Villager villager) {
         this.villager = villager;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/villager/villager.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

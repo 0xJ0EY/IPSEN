@@ -8,7 +8,7 @@ import java.io.IOException;
 public class TypeAllroundComponent extends AnchorPane {
 
     public TypeAllroundComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/villager/type_allround.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/type_allround.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

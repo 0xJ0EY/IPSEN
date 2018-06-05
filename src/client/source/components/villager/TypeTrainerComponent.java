@@ -8,7 +8,7 @@ import java.io.IOException;
 public class TypeTrainerComponent extends AnchorPane {
 
     public TypeTrainerComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/villager/type_trainer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/type_trainer.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);
