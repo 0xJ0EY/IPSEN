@@ -15,6 +15,7 @@ import server.sources.models.buildings.House;
 import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;

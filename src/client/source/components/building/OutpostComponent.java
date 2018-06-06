@@ -10,6 +10,7 @@ import server.sources.models.buildings.Building;
 import server.sources.models.buildings.Outpost;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 

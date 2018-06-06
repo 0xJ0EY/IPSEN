@@ -1,6 +1,8 @@
 package server.sources.models.goods;
 
-public class RopeGood implements Good {
+import java.io.Serializable;
+
+public class RopeGood implements Good, Serializable {
     @Override
     public String isGood() {
         return "ROPE";
