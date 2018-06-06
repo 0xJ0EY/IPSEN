@@ -9,10 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.VillagerActionInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 
-import java.io.Serializable;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class VillagerSelectionController implements ControllerInterface {
@@ -23,7 +22,7 @@ public class VillagerSelectionController implements ControllerInterface {
 
     private VillagerActionInterface action;
 
-    protected ArrayList<Villager> villagers;
+    protected ArrayList<VillagerInterface> villagers;
 
     protected Client client;
 
@@ -51,9 +50,10 @@ public class VillagerSelectionController implements ControllerInterface {
         this.villagerComponents = new ArrayList<VillagerComponent>();
         this.villagerContainer.getChildren().clear();
 
-        for (Villager villager : this.villagers) {
+        for (VillagerInterface villager : this.villagers) {
             VillagerComponent villagerComponent = new VillagerComponent();
             villagerComponent.setModel(villager);
+            villagerComponent.load();
 
             this.villagerComponents.add(villagerComponent);
             this.villagerContainer.getChildren().add(villagerComponent);
@@ -63,7 +63,7 @@ public class VillagerSelectionController implements ControllerInterface {
     @FXML
     private void onClickSelect() {
 
-        ArrayList<Villager> selected = this.getSelectedVillagers();
+        ArrayList<VillagerInterface> selected = this.getSelectedVillagers();
 
         this.action.setSelectedVillagers(selected);
 
@@ -71,8 +71,8 @@ public class VillagerSelectionController implements ControllerInterface {
 
     }
 
-    public ArrayList<Villager> getSelectedVillagers() {
-        ArrayList<Villager> selected = new ArrayList<Villager>();
+    public ArrayList<VillagerInterface> getSelectedVillagers() {
+        ArrayList<VillagerInterface> selected = new ArrayList<VillagerInterface>();
 
         for (VillagerComponent villagerComponent : this.villagerComponents) {
 

@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import server.sources.actions.ExploreStoryAction;
 import server.sources.actions.RunAction;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
@@ -34,7 +35,7 @@ public class ExplorePartyController implements ControllerInterface {
     private Client client;
     private Story story;
     private Choice choice;
-    private ArrayList<Villager> party;
+    private ArrayList<VillagerInterface> party;
     private ArrayList<PartyVillagerComponent> partyVillagerComponents;
     private ArrayList<OptionButtonComponent> optionButtonComponents;
     private int totalLanternScore;
@@ -82,11 +83,16 @@ public class ExplorePartyController implements ControllerInterface {
         this.villagerContainer.getChildren().clear();
         this.optionButtons.getChildren().clear();
 
-        for (Villager villager : this.party) {
+        for (VillagerInterface villager : this.party) {
 
-            PartyVillagerComponent partyVillagerComponent = new PartyVillagerComponent(villager, this);
-            this.partyVillagerComponents.add(partyVillagerComponent);
-            this.villagerContainer.getChildren().add(partyVillagerComponent);
+            try {
+                PartyVillagerComponent partyVillagerComponent = new PartyVillagerComponent(villager, this);
+                this.partyVillagerComponents.add(partyVillagerComponent);
+                this.villagerContainer.getChildren().add(partyVillagerComponent);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
         }
 
         for (Option option : this.choice.getOptions()){

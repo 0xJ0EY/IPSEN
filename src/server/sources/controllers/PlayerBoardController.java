@@ -1,5 +1,6 @@
 package server.sources.controllers;
 
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
@@ -18,7 +19,10 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
-    private int ciders, potions, coins;
+
+    private int ciders = 2;
+    private int potions = 2;
+    private int coins = 10;
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -26,10 +30,9 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
 
-
-        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
-        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
+        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
 
     }
 
@@ -86,16 +89,50 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     @Override
-    public ArrayList<Villager> listVillagers() throws RemoteException {
-        return this.villagers;
+    public boolean hasCider() throws RemoteException {
+        return this.ciders > 0;
     }
 
     @Override
-    public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
-        ArrayList<Villager> usableVillagers = new ArrayList<>();
+    public boolean hasPotion() throws RemoteException {
+        return this.potions > 0;
+    }
+
+    @Override
+    // TODO: This
+    public boolean hasBeds() throws RemoteException {
+        return true;
+    }
+
+    @Override
+    public void useCider(VillagerInterface villager) throws RemoteException {
+        villager.useCider();
+        this.ciders--;
+    }
+
+    @Override
+    public void usePotion(VillagerInterface villager) throws RemoteException {
+        villager.usePotion();
+        this.potions--;
+    }
+
+    @Override
+    public ArrayList<VillagerInterface> listVillagers() throws RemoteException {
+        ArrayList<VillagerInterface> villagers = new ArrayList<VillagerInterface>();
 
         for (Villager villager : this.villagers) {
-            if (villager.isUseable()){
+            villagers.add(villager);
+        }
+
+        return villagers;
+    }
+
+    @Override
+    public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException {
+        ArrayList<VillagerInterface> usableVillagers = new ArrayList<VillagerInterface>();
+
+        for (Villager villager : this.villagers) {
+            if (villager.isUsable()){
                 usableVillagers.add(villager);
             }
         }
@@ -104,8 +141,8 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     @Override
-    public ArrayList<Villager> listAvailableBuilderVillagers() throws RemoteException {
-        ArrayList<Villager> builders = new ArrayList<Villager>();
+    public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException {
+        ArrayList<VillagerInterface> builders = new ArrayList<VillagerInterface>();
 
         for (Villager villager : this.villagers) {
             if (villager instanceof Buildable) {
@@ -117,8 +154,8 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     @Override
-    public ArrayList<Villager> listAvailableTrainerVillagers() throws RemoteException {
-        ArrayList<Villager> trainers = new ArrayList<Villager>();
+    public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException {
+        ArrayList<VillagerInterface> trainers = new ArrayList<VillagerInterface>();
 
         for (Villager villager : this.villagers) {
             if (villager instanceof Trainable) {

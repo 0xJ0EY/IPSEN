@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
-    public ArrayList<Villager> listVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listVillagers() throws RemoteException;
 
-    public ArrayList<Villager> listAvailableVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException;
 
-    public ArrayList<Villager> listAvailableBuilderVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException;
 
-    public ArrayList<Villager> listAvailableTrainerVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException;
 
     public Villager getVillager(int index) throws RemoteException;
 
@@ -35,5 +35,15 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void addCider() throws RemoteException;
 
     public void addGood(String type) throws RemoteException;
+
+    public boolean hasCider() throws RemoteException;
+
+    public boolean hasPotion() throws RemoteException;
+
+    public boolean hasBeds() throws RemoteException;
+
+    public void useCider(VillagerInterface villager) throws RemoteException;
+
+    public void usePotion(VillagerInterface villager) throws RemoteException;
 
 }

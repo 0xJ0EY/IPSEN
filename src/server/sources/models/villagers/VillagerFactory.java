@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class VillagerFactory {
@@ -26,23 +27,23 @@ public class VillagerFactory {
     }
 
     //TODO: afmaken methods
-    public Villager createVillager(ArrayList<Lantern> lanterns){
-        Villager villager = new Villager(lanterns, false, false );
+    public Villager createVillager(ArrayList<Lantern> lanterns) throws RemoteException {
+        Villager villager = new Villager(lanterns, Villager.VillagerState.USABLE);
         return villager;
     }
 
-    public BuilderVillager createBuilder(ArrayList<Lantern> lanterns){
-        BuilderVillager villager = new BuilderVillager(lanterns, false, false);
+    public BuilderVillager createBuilder(ArrayList<Lantern> lanterns) throws RemoteException {
+        BuilderVillager villager = new BuilderVillager(lanterns, Villager.VillagerState.USABLE);
         return villager;
     }
 
-    public TrainerVillager createTrainer(ArrayList<Lantern> lanterns){
-        TrainerVillager villager = new TrainerVillager(lanterns, false, false);
+    public TrainerVillager createTrainer(ArrayList<Lantern> lanterns) throws RemoteException {
+        TrainerVillager villager = new TrainerVillager(lanterns, Villager.VillagerState.USABLE);
         return villager;
     }
 
-    public AllroundVillager createAllround(ArrayList<Lantern> lanterns){
-        AllroundVillager villager = new AllroundVillager(lanterns, false, false);
+    public AllroundVillager createAllround(ArrayList<Lantern> lanterns) throws RemoteException {
+        AllroundVillager villager = new AllroundVillager(lanterns, Villager.VillagerState.USABLE);
         return villager;
     }
 
@@ -62,13 +63,13 @@ public class VillagerFactory {
                 
                 // Fetch villager type
                 switch (this.fetchType(villagerElement).toUpperCase()){
-                    case "BUILDER" : list.add(new BuilderVillager(fetchLanterns(villagerElement), false, false));
+                    case "BUILDER" : list.add(new BuilderVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
                         break;
-                    case "TRAINER" : list.add(new TrainerVillager(fetchLanterns(villagerElement), false, false));
+                    case "TRAINER" : list.add(new TrainerVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
                         break;
-                    case "ALLROUND" : list.add(new AllroundVillager(fetchLanterns(villagerElement), false, false));
+                    case "ALLROUND" : list.add(new AllroundVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
                         break;
-                    case "VILLAGER" : list.add(new Villager(fetchLanterns(villagerElement), false, false));
+                    case "VILLAGER" : list.add(new Villager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
                         break;
                 }
 

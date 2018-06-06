@@ -4,6 +4,7 @@ import server.sources.Server;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.stories.Story;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.ExploreStoryNotification;
@@ -15,7 +16,7 @@ public class ExploreStoryAction implements VillagerActionInterface {
 
     private Story story;
     private GameClientInterface target;
-    private ArrayList<Villager> selectedVillagers;
+    private ArrayList<VillagerInterface> selectedVillagers;
 
     public ExploreStoryAction(GameClientInterface target) {
         this.target = target;
@@ -36,7 +37,7 @@ public class ExploreStoryAction implements VillagerActionInterface {
     }
 
     @Override
-    public void setSelectedVillagers(ArrayList<Villager> villagers) {
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.selectedVillagers = villagers;
     }
 

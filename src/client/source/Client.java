@@ -90,16 +90,19 @@ public class Client extends Application {
         this.setScene(explore.show());
     }
 
-    public Stage getStage() {
-        return this.stage;
-    }
-
-
     public void showParty(Story story, Choice choice){
         ExplorePartyController party = controllerFactory.createExploreParty();
         party.setStory(story);
         party.setChoice(choice);
         this.setScene(party.show());
+    }
+
+    public void showVillagerRest() {
+        this.setScene(controllerFactory.createVillagerRest().show());
+    }
+
+    public Stage getStage() {
+        return this.stage;
     }
 
     private void setScene(Parent root) {
@@ -120,12 +123,12 @@ public class Client extends Application {
         this.gameClient = gameClient;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public void showMessage(String message) {
         this.main.showMessage(message);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 }

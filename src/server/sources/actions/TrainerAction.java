@@ -3,6 +3,7 @@ package server.sources.actions;
 import server.sources.Server;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.TestNotification;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class TrainerAction implements VillagerActionInterface {
 
-    private ArrayList<Villager> villagers;
+    private ArrayList<VillagerInterface> villagers;
 
     @Override
     public void execute(Server server) throws RemoteException {
@@ -24,7 +25,7 @@ public class TrainerAction implements VillagerActionInterface {
     }
 
     @Override
-    public void setSelectedVillagers(ArrayList<Villager> villagers) {
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.villagers = villagers;
     }
 

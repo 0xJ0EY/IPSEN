@@ -4,6 +4,7 @@ import server.sources.interfaces.*;
 import server.sources.models.Player;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
+import server.sources.notifications.RestPlayerNotification;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -87,6 +88,9 @@ public class GameController extends UnicastRemoteObject implements GameControlle
             } while(!this.roundHasEnded());
 
             for (Player player : this.players) {
+
+                player.getGameClient().receiveNotification(new RestPlayerNotification());
+
                 player.resetAfterRound();
             }
 

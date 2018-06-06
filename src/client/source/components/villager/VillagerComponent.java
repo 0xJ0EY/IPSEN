@@ -4,13 +4,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class VillagerComponent extends AnchorPane {
 
-    private Villager villager;
+    private VillagerInterface villager;
 
     private boolean selected;
 
@@ -31,9 +33,11 @@ public class VillagerComponent extends AnchorPane {
         }
     }
 
-    public void setModel(Villager villager) {
+    public void setModel(VillagerInterface villager) {
         this.villager = villager;
+    }
 
+    public void load()  {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager.fxml"));
 
         loader.setRoot(this);
@@ -45,41 +49,55 @@ public class VillagerComponent extends AnchorPane {
             e.printStackTrace();
         }
 
-        this.type.getChildren().setAll(villager.getType());
+        try {
+            this.type.getChildren().setAll(villager.getType());
 
-        this.background.setStyle(
-            "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
-            "-fx-background-repeat: stretch;" +
-            "-fx-background-position: center center;" +
-            "-fx-background-size: 110 200"
-        );
+            this.background.setStyle(
+                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-repeat: stretch;" +
+                "-fx-background-position: center center;" +
+                "-fx-background-size: 110 200"
+            );
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isSelected() {
         return this.selected;
     }
 
-    public Villager getVillager() {
+    public VillagerInterface getVillager() {
         return villager;
     }
 
     private void showIndicator(){
-        this.background.setStyle(
+        try {
+            this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);" +
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
-                "-fx-background-size: 115 205");
+                "-fx-background-size: 115 205"
+            );
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
 
     private void hideIndicator(){
-        this.background.setStyle(
+        try {
+            this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, white, 00, 0, 0, 0);" +
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
-                "-fx-background-size: 110 200");
+                "-fx-background-size: 110 200"
+            );
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
     }
 }
