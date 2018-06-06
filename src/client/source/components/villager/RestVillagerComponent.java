@@ -1,5 +1,6 @@
 package client.source.components.villager;
 
+import client.source.controllers.VillagerRestController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -13,14 +14,16 @@ import java.rmi.RemoteException;
 
 public class RestVillagerComponent extends AnchorPane {
 
-    private VillagerInterface villager;
-    private PlayerBoardControllerInterface playerBoard;
-
-    private boolean slept = false;
-
     @FXML private Button ciderButton;
     @FXML private Button potionButton;
     @FXML private Button sleepButton;
+
+    private VillagerInterface villager;
+    private PlayerBoardControllerInterface playerBoard;
+
+    private VillagerRestController controller;
+
+    private boolean slept = false;
 
     public void setPlayerBoard(PlayerBoardControllerInterface playerBoard) {
         this.playerBoard = playerBoard;
@@ -28,6 +31,10 @@ public class RestVillagerComponent extends AnchorPane {
 
     public void setModel(VillagerInterface villager) {
         this.villager = villager;
+    }
+
+    public void setController(VillagerRestController controller) {
+        this.controller = controller;
     }
 
     public void load() {
@@ -42,15 +49,11 @@ public class RestVillagerComponent extends AnchorPane {
             e.printStackTrace();
         }
 
-        this.update();
     }
 
-    public void update() {
-        try {
-            boolean hasCider = this.playerBoard.hasCider();
-            boolean hasPotion = this.playerBoard.hasPotion();
-            boolean hasBeds = this.playerBoard.hasBeds();
+    public void update(boolean hasCider, boolean hasPotion, boolean hasBeds) {
 
+        try {
             this.ciderButton.setDisable(!(hasCider && this.villager.canUseCider()));
             this.potionButton.setDisable(!(hasPotion && this.villager.canUsePotion()));
             this.sleepButton.setDisable(!(hasBeds && this.villager.canSleep() && !this.slept));
@@ -63,7 +66,7 @@ public class RestVillagerComponent extends AnchorPane {
     @FXML public void onClickCider() {
         try {
             this.playerBoard.useCider(this.villager);
-            this.update();
+            this.controller.update();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -72,7 +75,7 @@ public class RestVillagerComponent extends AnchorPane {
     @FXML public void onClickPotion() {
         try {
             this.playerBoard.usePotion(this.villager);
-            this.update();
+            this.controller.update();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -83,7 +86,7 @@ public class RestVillagerComponent extends AnchorPane {
         System.out.println("Sleep");
 
         this.slept = true;
-        this.update();
+        this.controller.update();
     }
 
 }

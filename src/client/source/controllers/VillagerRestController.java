@@ -31,7 +31,7 @@ public class VillagerRestController implements ControllerInterface {
 
         this.fetchVillagers();
 
-        this.updateView();
+        this.load();
 
         return this.root;
     }
@@ -45,7 +45,7 @@ public class VillagerRestController implements ControllerInterface {
     }
 
 
-    public void updateView() {
+    public void load() {
         this.villagerComponents = new ArrayList<RestVillagerComponent>();
         villagerContainer.getChildren().clear();
 
@@ -54,11 +54,31 @@ public class VillagerRestController implements ControllerInterface {
 
             villagerComponent.setPlayerBoard(this.playerBoard);
             villagerComponent.setModel(villager);
+            villagerComponent.setController(this);
             villagerComponent.load();
 
             this.villagerComponents.add(villagerComponent);
             this.villagerContainer.getChildren().add(villagerComponent);
         }
+
+        this.update();
+    }
+
+    public void update() {
+
+        try {
+            boolean hasCider = this.playerBoard.hasCider();
+            boolean hasPotion = this.playerBoard.hasPotion();
+            boolean hasBeds = this.playerBoard.hasBeds();
+
+            for (RestVillagerComponent villagerComponent : villagerComponents) {
+                villagerComponent.update(hasCider, hasPotion, hasBeds);
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void setClient(Client client) {
