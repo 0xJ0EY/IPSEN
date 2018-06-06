@@ -42,6 +42,8 @@ public class Client extends Application {
         this.stage = primaryStage;
         this.stage.setTitle("Above and Below");
 
+        this.main = controllerFactory.createMain();
+
         // Set gameController client
         try {
             this.setGameClient(new GameClient(this));
@@ -69,7 +71,6 @@ public class Client extends Application {
     }
 
     public void showMain() {
-        this.main = controllerFactory.createMain();
         this.setScene(this.main.show());
     }
 

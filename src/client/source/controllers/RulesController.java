@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class RulesController implements Initializable {
+public class RulesController {
 
     @FXML private Button previous_btn;
     @FXML private Button next_btn;
@@ -27,11 +27,8 @@ public class RulesController implements Initializable {
 
     /**
      * This is for loading images to imageViews
-     *  @param location
-     *  @param resources
      * */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize() {
 
         Runnable loadImages = () -> {
             for (int i = 0; i < 15; i++) {
