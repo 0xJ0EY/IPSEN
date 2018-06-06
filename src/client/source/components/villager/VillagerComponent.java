@@ -20,7 +20,18 @@ public class VillagerComponent extends AnchorPane {
 
     @FXML AnchorPane type;
 
-    public VillagerComponent(Villager villager) {
+    @FXML
+    private void onClickSelect() {
+        this.selected = !this.selected;
+
+        if(this.selected){
+            showIndicator();
+        } else {
+            hideIndicator();
+        }
+    }
+
+    public void setModel(Villager villager) {
         this.villager = villager;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager.fxml"));
@@ -37,22 +48,11 @@ public class VillagerComponent extends AnchorPane {
         this.type.getChildren().setAll(villager.getType());
 
         this.background.setStyle(
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
-                "-fx-background-repeat: stretch;" +
-                "-fx-background-position: center center;" +
-                "-fx-background-size: 110 200");
-
-    }
-
-    @FXML
-    private void onClickSelect() {
-        this.selected = !this.selected;
-
-        if(this.selected){
-            showIndicator();
-        } else {
-            hideIndicator();
-        }
+            "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+            "-fx-background-repeat: stretch;" +
+            "-fx-background-position: center center;" +
+            "-fx-background-size: 110 200"
+        );
     }
 
     public boolean isSelected() {
