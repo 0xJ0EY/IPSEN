@@ -24,7 +24,7 @@
         </VBox>
         <HBox>
             <children>
-                <Button prefWidth="180" fx:id="clickBuyHouse" onAction="#buyStarHouse" text="Buy" />
+                <Button prefWidth="180" fx:id="clickBuyHouse" onAction="#buildStarHouse" text="Build" />
             </children>
         </HBox>
     </children>

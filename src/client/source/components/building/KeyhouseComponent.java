@@ -33,9 +33,9 @@ public class KeyhouseComponent extends VBox {
     Label info_label;
 
 
-    public KeyhouseComponent(KeyHouse house){
+    public KeyhouseComponent(KeyHouse keyHouse){
 
-        this.building = house;
+        this.building = keyHouse;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/keyhouse.fxml"));
 
@@ -52,14 +52,14 @@ public class KeyhouseComponent extends VBox {
     }
 
     @FXML
-    private void buyKeyhouse() {
+    private void buildKeyhouse() {
         // TODO: Show indicator
         try {
             if (!this.building.canBuy(client.getGameClient().getPlayer())){
                 System.out.println("You don't have enough coins.");
             }
             else{
-                client.getGameClient().getPlayer().getPlayerBoard().addHouse((House) this.building);
+                client.getGameClient().getPlayer().getPlayerBoard().addHouse((KeyHouse) this.building);
                 System.out.println("You've build a starhouse.");
                 System.out.print(Arrays.toString(client.getGameClient().getPlayer().getPlayerBoard().getHouses().toArray()));
             }

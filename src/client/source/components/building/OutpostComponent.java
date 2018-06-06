@@ -55,7 +55,7 @@ public class OutpostComponent extends VBox {
      * @author Robin Silvério
      */
     @FXML
-    private void buyOutpost() {
+    private void buildOutpost() {
         // TODO: Show indicator
         try {
             if (!this.building.canBuy(client.getGameClient().getPlayer())){

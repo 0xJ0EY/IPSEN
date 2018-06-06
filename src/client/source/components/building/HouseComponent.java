@@ -60,7 +60,7 @@ public class HouseComponent extends VBox {
      * @author Robin Silvério
      */
     @FXML
-    private void buyHouse() {
+    private void buildHouse() {
         // TODO: Show indicator
         try {
             if (!this.building.canBuy(client.getGameClient().getPlayer())){
