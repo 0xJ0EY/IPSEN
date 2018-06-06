@@ -189,7 +189,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     public ArrayList<Outpost> getOutposts() {
         return this.outposts;
     }
-    public void addOutposts(Outpost outpost){
+    public void addOutpost(Outpost outpost){
         this.outposts.add(outpost);
     }
 

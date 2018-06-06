@@ -2,6 +2,7 @@ package client.source.factories;
 
 import client.source.Client;
 import client.source.components.building.HouseComponent;
+import client.source.components.building.OutpostComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 import server.sources.models.stories.Story;
@@ -112,6 +113,7 @@ public class ControllerFactory {
             build = loader.getController();
             build.setClient(this.client);
             HouseComponent.setClient(this.client);
+            OutpostComponent.setClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }

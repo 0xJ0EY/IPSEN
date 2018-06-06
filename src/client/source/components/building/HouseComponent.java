@@ -17,6 +17,7 @@ import server.sources.models.villagers.Villager;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by robin on 2-6-2018.
@@ -24,7 +25,6 @@ import java.util.ArrayList;
 public class HouseComponent extends VBox {
 
     private static Client client;
-    private PlayerBoardControllerInterface playerBoard;
     private Building building;
 
     @FXML
@@ -48,8 +48,6 @@ public class HouseComponent extends VBox {
         try {
             loader.load();
             info_label.setText(this.building.toString());
-//            playerBoard = client.getGameClient().getPlayer().getPlayerBoard();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,7 +55,7 @@ public class HouseComponent extends VBox {
     }
 
     /**
-     * For handling clickEvents when user buys a house.
+     * For handling clickEvents when user builds a house with selected villager.
      * @author Robin Silvério
      */
     @FXML
@@ -68,7 +66,9 @@ public class HouseComponent extends VBox {
                 System.out.println("You don't have enough coins.");
             }
             else{
-                System.out.println("You've build a house. Hello World");
+                client.getGameClient().getPlayer().getPlayerBoard().addHouse((House) this.building);
+                System.out.println("You've build a house.");
+                System.out.print(Arrays.toString(client.getGameClient().getPlayer().getPlayerBoard().getHouses().toArray()));
             }
         } catch (RemoteException e) {
             e.printStackTrace();

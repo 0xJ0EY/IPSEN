@@ -36,9 +36,12 @@ public class Building implements Serializable {
         try {
             if (player.getPlayerBoard().getCoins() < price)
                 return false;
+            player.getPlayerBoard().payCoin(price);
+            System.out.println(player.getPlayerBoard().getCoins() + "Coins remaining");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
         return true;
     }
 

@@ -1,5 +1,6 @@
 package client.source.components.building;
 
+import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -9,12 +10,15 @@ import server.sources.models.buildings.Building;
 import server.sources.models.buildings.Outpost;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.Arrays;
 
 /**
  * Created by robin on 3-6-2018.
  */
 public class OutpostComponent extends VBox {
 
+    private static Client client;
     private Building building;
 
     @FXML
@@ -45,9 +49,28 @@ public class OutpostComponent extends VBox {
 
     }
 
+    /**
+     * For handling clickEvents when user builds an outpost with a selected villager.
+     * @author Robin Silvério
+     */
     @FXML
     private void buyOutpost() {
         // TODO: Show indicator
-        System.out.println("You've build an outpost. Hello World");
+        try {
+            if (!this.building.canBuy(client.getGameClient().getPlayer())){
+                System.out.println("You don't have enough coins.");
+            }
+            else{
+                client.getGameClient().getPlayer().getPlayerBoard().addOutpost((Outpost) this.building);
+                System.out.println("You've build an outpost. Hello World");
+                System.out.print(Arrays.toString(client.getGameClient().getPlayer().getPlayerBoard().getOutposts().toArray()));
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setClient(Client c){
+        client = c;
     }
 }
