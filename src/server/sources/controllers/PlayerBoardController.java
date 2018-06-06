@@ -80,11 +80,13 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         this.coins += amount;
     }
 
-    public ArrayList<House> getHouses() {
+    @Override
+    public ArrayList<House> getHouses() throws RemoteException{
         return this.houses;
     }
 
-    public ArrayList<Outpost> getOutposts() {
+    @Override
+    public ArrayList<Outpost> getOutposts()throws RemoteException {
         return this.outposts;
     }
 

@@ -1,5 +1,7 @@
 package server.sources.interfaces;
 
+import server.sources.models.buildings.House;
+import server.sources.models.buildings.Outpost;
 import server.sources.models.villagers.Villager;
 
 import java.io.Serializable;
@@ -20,6 +22,10 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void addVillager(Villager villager) throws RemoteException;
 
     public void addCoins(int amount) throws RemoteException;
+
+    public ArrayList<House> getHouses() throws RemoteException;
+
+    public ArrayList<Outpost> getOutposts() throws RemoteException;
 
     /**
      * Get current amout of coins

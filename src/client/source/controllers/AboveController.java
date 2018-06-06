@@ -33,11 +33,11 @@ public class AboveController {
         pbc.listAvailableVillagers();
     }
 
-    public void getHouses() {
+    public void getHouses() throws RemoteException{
         pbc.getHouses();
     }
 
-    public void getOutposts() {
+    public void getOutposts() throws RemoteException{
         pbc.getOutposts();
     }
 

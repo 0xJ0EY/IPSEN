@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
+import server.sources.models.buildings.Building;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Story;
 import client.source.factories.VillagerSelectionFactory;
@@ -84,6 +85,12 @@ public class Client extends Application {
         ExploreController explore = controllerFactory.createExplore();
         explore.setExploreStory(story);
         this.setScene(explore.show());
+    }
+
+    public void showHarvestSelection(ArrayList<Building> harvestBuildings){
+        HarvestController harvest = controllerFactory.createHarvestSelection();
+        harvest.setBuildings(harvestBuildings);
+        this.setScene(harvest.show());
     }
 
     public Stage getStage() {

@@ -116,6 +116,22 @@ public class ControllerFactory {
         return villagerSelection;
     }
 
+    public HarvestController createHarvestSelection(){
+        HarvestController harvestSelection = null;
+
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/harvest.fxml"));
+            loader.load();
+
+            harvestSelection = loader.getController();
+            harvestSelection.setClient(this.client);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return  harvestSelection;
+    }
+
     public ExplorePartyController createExploreParty() {
         ExplorePartyController explorePartyController = null;
 
