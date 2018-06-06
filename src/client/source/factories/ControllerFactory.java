@@ -97,6 +97,27 @@ public class ControllerFactory {
     }
 
     /**
+     * Load the view and controller of build
+     * @return the assinged controller
+     * @author Robin Silvério
+     */
+    public BuildController createBuild() {
+        BuildController build = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/build_market.fxml"));
+            loader.load();
+
+            build = loader.getController();
+            build.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return build;
+    }
+
+    /**
      * Load the view and controller of villager selection
      * @return the assinged controller
      */

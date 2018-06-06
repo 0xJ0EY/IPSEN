@@ -33,4 +33,18 @@ public class Building implements Serializable {
         // TODO: Check if builder can actually buy the building
         return true;
     }
+
+    /**
+     * This is necessary to add information on a card
+     */
+    @Override
+    public String toString(){
+        String perk = "";
+
+        for (Perk p : perks){
+            perk += p.toString() + "\n";
+        }
+
+        return "Price: " + this.price + "\n" + perk;
+    }
 }
