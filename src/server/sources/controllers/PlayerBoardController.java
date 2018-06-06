@@ -1,5 +1,6 @@
 package server.sources.controllers;
 
+import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
@@ -18,7 +19,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
-    private int ciders, potions, coins = 5;
+    private int ciders, potions, coins = 5; // This is only for testing coins.
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -85,11 +86,23 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         }
     }
 
+    /**
+     * This is for listing villagers on playerboard when player enters a game environment.
+     * @author Jan Douwe Sminia
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<Villager> listVillagers() throws RemoteException {
         return this.villagers;
     }
 
+    /**
+     * This is for listing still available villagers on playerboard after an action is made.
+     * @author Jan Douwe Sminia
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<Villager> listAvailableVillagers() throws RemoteException {
         ArrayList<Villager> usableVillagers = new ArrayList<>();
@@ -103,6 +116,12 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return usableVillagers;
     }
 
+    /**
+     * This is for listing available villagers on playerboard, only to use for build action.
+     * @author Jan Douwe Sminia
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<Villager> listAvailableBuilderVillagers() throws RemoteException {
         ArrayList<Villager> builders = new ArrayList<Villager>();
@@ -116,6 +135,12 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return builders;
     }
 
+    /**
+     * This is for listing available villagers on playerboard, only to use for train action.
+     * @author Jan Douwe Sminia
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<Villager> listAvailableTrainerVillagers() throws RemoteException {
         ArrayList<Villager> trainers = new ArrayList<Villager>();
@@ -134,6 +159,11 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return villagers.get(index);
     }
 
+    /**
+     * This is for adding new trained villagers to playerboard.
+     * @param villager
+     * @throws RemoteException
+     */
     @Override
     public void addVillager(Villager villager) throws RemoteException {
         villagers.add(villager);
@@ -145,12 +175,22 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         this.coins += amount;
     }
 
+    /**
+     * For retrieving houses. Mostly with a purpose to add newly build houses.
+     * @return
+     */
     public ArrayList<House> getHouses() {
         return this.houses;
+    }
+    public void addHouse(House house){
+        this.houses.add(house);
     }
 
     public ArrayList<Outpost> getOutposts() {
         return this.outposts;
+    }
+    public void addOutposts(Outpost outpost){
+        this.outposts.add(outpost);
     }
 
     public ArrayList<Good> getGoods(){
