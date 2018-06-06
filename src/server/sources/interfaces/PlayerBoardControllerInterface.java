@@ -23,6 +23,12 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
     public void addCoins(int amount) throws RemoteException;
 
+    public void addCider() throws RemoteException;
+
+    public void addGood(String type) throws RemoteException;
+    
+    public void addPotion() throws RemoteException;
+
     /**
      * Get current amout of coins
      *
@@ -32,8 +38,7 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
      */
     public int getCoins() throws RemoteException;
 
-    public void addCider() throws RemoteException;
+    public int getCiders() throws RemoteException;
 
-    public void addGood(String type) throws RemoteException;
-
+    public int getPotions() throws RemoteException;
 }

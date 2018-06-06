@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 public class CatVillager extends Villager {
 
+
     public CatVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
+
         super(lanterns, injured, tired);
     }
 
