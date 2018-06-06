@@ -17,11 +17,10 @@ import server.sources.models.stories.Choice;
 import server.sources.models.stories.Story;
 import client.source.factories.VillagerSelectionFactory;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class Client extends Application implements Serializable {
+public class Client extends Application {
 
     private Stage stage;
     private GameClient gameClient;
