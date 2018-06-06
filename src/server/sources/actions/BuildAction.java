@@ -22,9 +22,7 @@ public class BuildAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        // TODO: Maybe bind villagers to the story?
-
-        System.out.println("Bought new house or outpost.");
+        
     }
 
     @Override
