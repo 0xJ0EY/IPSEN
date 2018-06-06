@@ -20,7 +20,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
     private int ciders, potions;
-    private int coins = 50; // This is only for testing coins.
+    private int coins = 1000; // This is only for testing coins.
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();

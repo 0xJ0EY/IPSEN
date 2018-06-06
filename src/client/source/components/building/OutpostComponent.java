@@ -63,7 +63,7 @@ public class OutpostComponent extends VBox {
             }
             else{
                 client.getGameClient().getPlayer().getPlayerBoard().addOutpost((Outpost) this.building);
-                System.out.println("You've build an outpost. Hello World");
+                System.out.println("You've build an outpost.");
                 System.out.print(Arrays.toString(client.getGameClient().getPlayer().getPlayerBoard().getOutposts().toArray()));
             }
         } catch (RemoteException e) {
