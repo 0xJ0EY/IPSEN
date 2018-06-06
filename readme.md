@@ -9,3 +9,4 @@ TODO
  - End of round, recieving rewards etc..
  - Advancement tracker
  - .JAR, .EXE, (.APP / DMG) Builds 
+ - VillagerRest (Bedden/slapen implementeren)
