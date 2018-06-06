@@ -34,6 +34,7 @@ public class Reward implements Serializable {
                 }
                 break;
             case "REPUTATION":
+                // TODO: 06/06/2018 this 
                 break;
             case "POTION":
                 client.getGameClient().getPlayer().getPlayerBoard().addPotion();

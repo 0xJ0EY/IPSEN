@@ -46,12 +46,6 @@ public class VillagerFactory {
         return villager;
     }
 
-    public OilGirlVillager createOilGirlVillager() {
-        ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
-        lanterns.add(new Lantern(2, 3));
-        return new OilGirlVillager(lanterns, false, false);
-    }
-
     public ArrayList<Villager> createFromXml() {
         list = new ArrayList<>();
 
@@ -136,5 +130,11 @@ public class VillagerFactory {
         lanterns.add(new Lantern(1, 1));
         lanterns.add(new Lantern(4, 3));
         return new CatVillager(lanterns, false, false);
+    }
+
+    public OilGirlVillager createOilGirlVillager() {
+        ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
+        lanterns.add(new Lantern(2, 3));
+        return new OilGirlVillager(lanterns, false, false);
     }
 }

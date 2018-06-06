@@ -14,6 +14,7 @@ import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Choice;
+import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
 import client.source.factories.VillagerSelectionFactory;
 
@@ -90,6 +91,12 @@ public class Client extends Application {
         this.setScene(explore.show());
     }
 
+    public void showRewards(Option option) {
+        RewardController rewards = controllerFactory.createRewardView();
+        rewards.setRewards(option.getRewards());
+        this.setScene(rewards.show());
+    }
+
     public Stage getStage() {
         return this.stage;
     }
@@ -127,5 +134,4 @@ public class Client extends Application {
     public void showMessage(String message) {
         this.main.showMessage(message);
     }
-
 }

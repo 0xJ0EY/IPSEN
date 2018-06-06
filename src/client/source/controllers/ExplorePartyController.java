@@ -5,6 +5,7 @@ import client.source.components.party.OptionButtonComponent;
 import client.source.components.party.PartyVillagerComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.controllers.ControllerInterface;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

@@ -41,7 +41,7 @@ public class OptionButtonComponent extends Button {
                     e1.printStackTrace();
                 }
             }
-            client.showRewards();
+            client.showRewards(option);
         });
     }
 

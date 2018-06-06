@@ -138,6 +138,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     @Override
     public void addVillager(Villager villager) throws RemoteException {
+        villager.tire();
         villagers.add(villager);
     }
 
