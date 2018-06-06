@@ -78,6 +78,7 @@ public class RestVillagerComponent extends AnchorPane {
         }
     }
 
+    // TODO: Bed implementation
     @FXML public void onClickSleep() {
         System.out.println("Sleep");
 

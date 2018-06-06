@@ -5,6 +5,7 @@ import client.source.components.villager.RestVillagerComponent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
+import server.sources.actions.RestVillagerAction;
 import server.sources.interfaces.PlayerBoardControllerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
@@ -71,7 +72,10 @@ public class VillagerRestController implements ControllerInterface {
         }
     }
 
-    @FXML private void onClickSelect() {
+    @FXML private void onClickSelect() throws RemoteException {
+
+        this.client.getGameClient().getPlayer().doAction(new RestVillagerAction());
+        this.client.showMain();
 
     }
 }

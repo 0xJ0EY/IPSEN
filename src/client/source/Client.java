@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class Client extends Application {
+public class Client extends Application implements Serializable {
 
     private Stage stage;
     private GameClient gameClient;

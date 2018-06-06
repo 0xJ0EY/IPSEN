@@ -9,6 +9,11 @@ public class RestPlayerNotification implements NotificationInterface {
 
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
+
+        // Clear everyone's access to the turn page
+        gameClient.getClient().turnObserver.setState(null);
+
+        // Show villager main screen
         gameClient.getClient().showVillagerRest();
     }
 
