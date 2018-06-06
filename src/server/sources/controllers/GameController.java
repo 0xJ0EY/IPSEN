@@ -89,9 +89,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
             for (Player player : this.players) {
 
-                player.getGameClient().receiveNotification(new RestPlayerNotification());
-
                 player.resetAfterRound();
+
+                // Let the player select who they want to let rest
+                player.getGameClient().receiveNotification(new RestPlayerNotification());
             }
 
             this.turn = 0;
