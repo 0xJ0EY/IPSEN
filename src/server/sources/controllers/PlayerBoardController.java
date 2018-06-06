@@ -18,7 +18,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
-    private int ciders, potions, coins;
+    private int ciders, potions, coins = 5;
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();

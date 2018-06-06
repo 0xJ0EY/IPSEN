@@ -1,11 +1,15 @@
 package client.source.components.building;
 
+import client.source.Client;
 import client.source.controllers.BuildController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.models.Player;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.villagers.Villager;
@@ -19,6 +23,8 @@ import java.util.ArrayList;
  */
 public class HouseComponent extends VBox {
 
+    private static Client client;
+    private PlayerBoardControllerInterface playerBoard;
     private Building building;
 
     @FXML
@@ -42,16 +48,35 @@ public class HouseComponent extends VBox {
         try {
             loader.load();
             info_label.setText(this.building.toString());
+//            playerBoard = client.getGameClient().getPlayer().getPlayerBoard();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+    /**
+     * For handling clickEvents when user buys a house.
+     * @author Robin Silvério
+     */
     @FXML
     private void buyHouse() {
         // TODO: Show indicator
-        System.out.println("You've build a house. Hello World");
+        try {
+            if (!this.building.canBuy(client.getGameClient().getPlayer())){
+                System.out.println("You don't have enough coins.");
+            }
+            else{
+                System.out.println("You've build a house. Hello World");
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setClient(Client c){
+        client = c;
     }
 
 }
