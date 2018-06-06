@@ -34,7 +34,7 @@ public class Building implements Serializable {
     public boolean canBuy(PlayerInterface player) {
         // TODO: Check if builder can actually buy the building
         try {
-            if (player.getPlayerBoard().getCoins() <= price)
+            if (player.getPlayerBoard().getCoins() < price)
                 return false;
         } catch (RemoteException e) {
             e.printStackTrace();
