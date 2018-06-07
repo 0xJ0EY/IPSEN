@@ -1,6 +1,10 @@
 package client.source.factories;
 
 import client.source.Client;
+import client.source.components.building.HouseComponent;
+import client.source.components.building.KeyhouseComponent;
+import client.source.components.building.OutpostComponent;
+import client.source.components.building.StarhouseComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -110,6 +114,31 @@ public class ControllerFactory {
         }
 
         return reward;
+    }
+
+    /**
+     * Load the view and controller of build
+     * @return the assinged controller
+     * @author Robin Silvério
+     */
+    public BuildController createBuild() {
+        BuildController build = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/build_market.fxml"));
+            loader.load();
+
+            build = loader.getController();
+            build.setClient(this.client);
+            HouseComponent.setClient(this.client);
+            StarhouseComponent.setClient(this.client);
+            KeyhouseComponent.setClient(this.client);
+            OutpostComponent.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return build;
     }
 
     /**

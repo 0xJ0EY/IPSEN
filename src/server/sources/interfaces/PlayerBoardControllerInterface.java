@@ -1,5 +1,8 @@
 package server.sources.interfaces;
 
+import server.sources.models.buildings.Building;
+import server.sources.models.buildings.House;
+import server.sources.models.buildings.Outpost;
 import server.sources.models.villagers.Villager;
 
 import java.io.Serializable;
@@ -41,4 +44,15 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public int getCiders() throws RemoteException;
 
     public int getPotions() throws RemoteException;
+
+    public void payCoin(int price) throws RemoteException;
+
+    public void addHouse(House building) throws RemoteException;
+
+    public ArrayList<House> getHouses() throws RemoteException;
+
+    public void addOutpost(Outpost building) throws RemoteException;
+
+    public ArrayList<Outpost> getOutposts() throws RemoteException;
+
 }
