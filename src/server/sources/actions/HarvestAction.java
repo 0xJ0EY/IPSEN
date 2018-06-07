@@ -21,7 +21,7 @@ public class HarvestAction implements VillagerActionInterface {
 
     private GameClientInterface target;
     private ArrayList<Villager> selectedVillagers;
-    private ArrayList<Building> harvestBuildings;
+    private ArrayList<Building> harvestBuildings = new ArrayList<>();
 
     /**
      * geeft de client van de speler die het uitvoert mee
@@ -42,7 +42,7 @@ public class HarvestAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        for(int i = 0; i < this.harvestBuildings.size(); i++){
+        for(int i = 0; i < this.selectedVillagers.size(); i++){
             target.getClient().showHarvestSelection(harvestBuildings);
 
         }
@@ -65,7 +65,7 @@ public class HarvestAction implements VillagerActionInterface {
      * @throws RemoteException
      * @author Jan Douwe
      */
-    public void selectHarvestable() throws RemoteException{
+    private void selectHarvestable() throws RemoteException{
         ArrayList<House> house = target.getPlayer().getPlayerBoard().getHouses();
 
         for (int i = 0; i < house.size(); i++){

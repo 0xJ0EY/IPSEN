@@ -51,9 +51,12 @@ public class HarvestController implements ControllerInterface {
     public void confirmSelection(){
         for (int i = 0; i < perkComponents.size(); i++){
             if (perkComponents.get(i).isSelected()){
-                perkComponents.get(.)
+                perkComponents.get(i);
+
             }
+
         }
+
     }
 
     public void onlyOneTrue(PerkComponent component){

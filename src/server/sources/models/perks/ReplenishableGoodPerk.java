@@ -11,6 +11,8 @@ public class ReplenishableGoodPerk implements Perk, Harvastable {
     public ReplenishableGoodPerk(String good){
         this.goodsLeft = 1;
 
+        System.out.println("good = " + good);
+
         switch (good.toUpperCase()){
             case "MUSHROOM" : this.good = new MushroomGood();
                 break;

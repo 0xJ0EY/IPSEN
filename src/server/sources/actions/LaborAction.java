@@ -28,7 +28,7 @@ public class LaborAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        System.out.println(target.getPlayer().getPlayerBoard().getCoins());
+        System.out.println("" + target.getPlayer().getPlayerBoard().getCoins());
 
 //        ReputationBoardInterface reputationBoard = target.
         PlayerBoardControllerInterface playerBoard = target.getPlayer().getPlayerBoard();
@@ -40,9 +40,10 @@ public class LaborAction implements VillagerActionInterface {
             firstLaborCider();
 
             target.getPlayer().getPlayerBoard().addCoins(1);
+
         }
 
-        System.out.println(target.getPlayer().getPlayerBoard().getCoins());
+        System.out.println("" + target.getPlayer().getPlayerBoard().getCoins());
     }
 
     @Override

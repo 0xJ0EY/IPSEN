@@ -6,6 +6,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class MushroomComponent extends AnchorPane {
+
+
     public MushroomComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/mushroomPerk.fxml"));
 
