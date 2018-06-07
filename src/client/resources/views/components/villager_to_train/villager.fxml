@@ -12,6 +12,6 @@
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lanterns" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0" />
       <AnchorPane fx:id="type" layoutY="8.0" prefHeight="50.0" prefWidth="35.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-      <Button alignment="CENTER" layoutY="190.0" mnemonicParsing="false" prefWidth="110.0" text="Train" />
+      <Button fx:id="trainBtn" alignment="CENTER" layoutY="190.0" mnemonicParsing="false" prefWidth="110.0" text="Train" />
    </children>
 </fx:root>

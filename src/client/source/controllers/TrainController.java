@@ -4,6 +4,7 @@ import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 
 import java.rmi.RemoteException;
 
@@ -16,6 +17,14 @@ public class TrainController implements ControllerInterface {
     @FXML
     private Parent root;
     @FXML private Button refreshButton;
+
+    /**
+     * Here are all villagerscontainers declared to stock villagers cards in villager market.
+     */
+    @FXML private FlowPane villagersContainer;
+    @FXML private FlowPane trainerVillagersContainer;
+    @FXML private FlowPane builderVillagersContainer;
+    @FXML private FlowPane allroundVillagersContainer;
 
 
     @Override
@@ -36,15 +45,19 @@ public class TrainController implements ControllerInterface {
 
 
     private void retrieveVillagers() throws  RemoteException {
+
     }
 
     private void retrieveTrainerVillagers() throws RemoteException {
+
     }
 
     private void retrieveBuilderVillagers() throws RemoteException {
+
     }
 
     private void retrieveAllroundVillagers() throws RemoteException {
+
     }
 
     private void updateVillagersView() {

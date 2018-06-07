@@ -29,6 +29,31 @@
             </Label>
             <FlowPane fx:id="villagersContainer" hgap="5" prefHeight="121.0" prefWidth="746.0" vgap="5" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
             <!-- End of villagers section -->
+            <!-- Trainervillager section -->
+            <Label text="Trainer villagers" textFill="#ff1212" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+            <FlowPane fx:id="trainerVillagersContainer" hgap="5" prefHeight="146.0" prefWidth="839.0" vgap="5" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <!-- End of trainerVillagers section -->
+
+            <!-- Buildervillagers section -->
+            <Label text="Builder villagers" textFill="#ff1212" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+            <FlowPane fx:id="builderVillagersContainer" hgap="5" prefHeight="137.0" prefWidth="750.0" vgap="5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <!-- End of buildervillagers section -->
+
+            <!-- Allround villagers section -->
+            <Label text="Starhouses" textFill="#ff0e0e" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+            <FlowPane fx:id="allroundVillagersContainer" hgap="5" prefHeight="150.0" vgap="5" GridPane.columnIndex="0" GridPane.rowIndex="6" />
         </GridPane>
     </content>
 </ScrollPane>
