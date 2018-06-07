@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import server.sources.interfaces.PlayerBoardControllerInterface;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -65,7 +64,7 @@ public class RestVillagerComponent extends AnchorPane {
 
     @FXML public void onClickCider() {
         try {
-            this.playerBoard.useCider(this.villager);
+            this.villager.useCider();
             this.controller.update();
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -74,19 +73,22 @@ public class RestVillagerComponent extends AnchorPane {
 
     @FXML public void onClickPotion() {
         try {
-            this.playerBoard.usePotion(this.villager);
+            this.villager.usePotion();
             this.controller.update();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    // TODO: Bed implementation
     @FXML public void onClickSleep() {
-        System.out.println("Sleep");
+        try {
+            this.villager.sleep();
+            this.slept = true;
 
-        this.slept = true;
-        this.controller.update();
+            this.controller.update();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
 }
