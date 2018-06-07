@@ -20,7 +20,7 @@ public class VillagerComponent extends AnchorPane {
 
 
 
-    public VillagerComponent(Villager villager_type) {
+    public VillagerComponent(Villager villager) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager_to_train/villager.fxml"));
 
@@ -33,17 +33,18 @@ public class VillagerComponent extends AnchorPane {
             e.printStackTrace();
         }
 
-        switch (villager_type.getClass().getSimpleName()){
+        switch (villager.getClass().getSimpleName()){
             case "TrainerVillager":
-                this.villager = (TrainerVillager) villager_type;
-                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/feather.png')");
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Feather.png')");
+                break;
+            case "BuilderVillager":
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Hammer.png')");
                 break;
             default:
-                this.villager = villager_type;
-                System.out.println("A common villager has been stocked.");
+                break;
         }
 
-        this.villager = villager_type;
+        this.villager = villager;
 
         this.background.setStyle(
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
@@ -55,7 +56,6 @@ public class VillagerComponent extends AnchorPane {
 
     @FXML
     private void trainBtn(){
-        System.out.println("You trained " + this.villager + ". Yay!!!");
+        System.out.println("Clicked on train button");
     }
-
 }

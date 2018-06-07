@@ -57,9 +57,11 @@ public class TrainController implements ControllerInterface {
         try {
             this.retrieveVillagers();
             this.retrieveTrainerVillagers();
+            this.retrieveBuilderVillagers();
 
             this.updateVillagersView();
             this.updateTrainersView();
+            this.updateBuilderVillagersView();
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -157,23 +159,53 @@ public class TrainController implements ControllerInterface {
         return trainers;
     }
 
-//
-//    private void retrieveBuilderVillagers() throws RemoteException {
-//
-//    }
-//
-//    private void retrieveAllroundVillagers() throws RemoteException {
-//
-//    }
-//
-//    private void updateVillagersView() {
-//    }
-//    private void updateTrainerVillagersView() {
-//    }
-//    private void updateBuilderVillagersView() {
-//    }
-//    private void updateAllroundVillagersView() {
-//    }
+    /**
+     * For getting all builderVillagers
+     * @throws RemoteException
+     * @author Robin Silvério
+     */
+    private void retrieveBuilderVillagers() throws RemoteException {
+        this.builders = setBuildersToArrayList();
+    }
+
+    private void updateBuilderVillagersView() {
+        this.builderComponents = new ArrayList<VillagerComponent>();
+        this.builderVillagersContainer.getChildren().clear();
+
+
+        for (int i = 0; i < this.builders.size(); i++) {
+
+            VillagerComponent builderComponent = new VillagerComponent(this.builders.get(i));
+            this.builderComponents.add(builderComponent);
+            this.builderVillagersContainer.getChildren().add(builderComponent);
+        }
+    }
+
+    private ArrayList<BuilderVillager> setBuildersToArrayList() {
+        ArrayList<BuilderVillager> builders = new ArrayList<BuilderVillager>();
+
+        for (int i = 0; i < 5; i++) {
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            builders.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        }
+
+        return builders;
+    }
+
+
+    /**
+     * For retrieving all allroundvillagers
+     * @throws RemoteException
+     * @author Robin Silvério
+     */
+    private void retrieveAllroundVillagers() throws RemoteException {
+
+    }
+
+
+    private void updateAllroundVillagersView() {
+    }
 
     public static void setClient(Client c) {
         client = c;
