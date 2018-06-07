@@ -19,7 +19,7 @@ public class Reward implements Serializable {
         this.value = Integer.parseInt(this.reward.getAttribute("value"));
         this.type = this.reward.getAttribute("type");
     }
-
+    
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         switch(this.reward.getTextContent()){
             case "COIN":
