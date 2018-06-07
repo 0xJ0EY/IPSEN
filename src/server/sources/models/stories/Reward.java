@@ -2,7 +2,9 @@ package server.sources.models.stories;
 
 import client.source.Client;
 import org.w3c.dom.Element;
-import server.sources.models.villagers.*;
+import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.VillagerInterface;
+import server.sources.strategies.villagers.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.Serializable;
@@ -21,53 +23,57 @@ public class Reward implements Serializable {
     }
     
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
+
+
+        PlayerBoardControllerInterface playerBoard = client.getGameClient().getPlayer().getPlayerBoard();
+
         switch(this.reward.getTextContent()){
             case "COIN":
                 client.getGameClient().getPlayer().getPlayerBoard().addCoins(this.value);
                 break;
             case "VILLAGER":
-                client.getGameClient().getPlayer().getPlayerBoard().addVillager(rewardVillager(this.type));
+
+                AddVillagerStrategy reward = this.rewardVillager(this.type);
+                playerBoard.executeVillagerStrategy(reward);
+
                 break;
             case "GOOD":
-                for (int i = 0; i<this.value; i++) {
-                    client.getGameClient().getPlayer().getPlayerBoard().addGood(this.type);
+                for (int i = 0; i < this.value; i++) {
+                    playerBoard.addGood(this.type);
                 }
                 break;
             case "REPUTATION":
                 // TODO: 06/06/2018 this 
                 break;
             case "POTION":
-                client.getGameClient().getPlayer().getPlayerBoard().addPotion();
+                playerBoard.addPotion();
                 break;
             case "CIDER":
-                client.getGameClient().getPlayer().getPlayerBoard().addCider();
+                playerBoard.addCider();
                 break;
         }
     }
 
-    private Villager rewardVillager(String type) throws ParserConfigurationException {
-        VillagerFactory vf = new VillagerFactory();
-        Villager villager;
+    private AddVillagerStrategy rewardVillager(String type) throws ParserConfigurationException {
 
         switch (type){
             case "TIN":
-                villager = vf.createTinVillager();
-                break;
+                return new AddTinVillagerStrategy();
+
             case "OIL":
-                villager = vf.createOilGirlVillager();
-                break;
+                return new AddOilGirlVillagerStrategy();
+
             case "CAT":
-                villager = vf.createCatVillager();
-                break;
+                return new AddCatVillagerStrategy();
+
             case "FISH":
-                villager = vf.createFishVillager();
-                break;
+                return new AddFishVillagerStrategy();
+
             default:
-                villager = null;
                 System.out.println("fout in stories.xml");
+                return null;
         }
 
-        return villager;
     }
 
     public Element getReward() {

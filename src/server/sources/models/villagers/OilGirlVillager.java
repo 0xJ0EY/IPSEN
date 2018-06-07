@@ -1,11 +1,12 @@
 package server.sources.models.villagers;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class OilGirlVillager extends Villager {
 
-    public OilGirlVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
-        super(lanterns, injured, tired);
+    public OilGirlVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
+        super(lanterns, state);
     }
 
     //TODO: fixing method

@@ -4,12 +4,13 @@ import client.source.components.villager.TypeBuilderComponent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class BuilderVillager extends Villager implements Buildable{
+public class BuilderVillager extends Villager implements Buildable {
 
-    public BuilderVillager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
-        super(lanterns, injured, tired);
+    public BuilderVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
+        super(lanterns, state);
     }
 
     @Override

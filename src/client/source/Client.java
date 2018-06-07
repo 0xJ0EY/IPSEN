@@ -7,6 +7,7 @@ import client.source.factories.ControllerFactory;
 import client.source.observers.Observer;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,7 +19,6 @@ import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
 import client.source.factories.VillagerSelectionFactory;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -102,16 +102,19 @@ public class Client extends Application {
         this.setScene(build.show());
     }
 
-    public Stage getStage() {
-        return this.stage;
-    }
-
-
     public void showParty(Story story, Choice choice){
         ExplorePartyController party = controllerFactory.createExploreParty();
         party.setStory(story);
         party.setChoice(choice);
         this.setScene(party.show());
+    }
+
+    public void showVillagerRest() {
+        this.setScene(controllerFactory.createVillagerRest().show());
+    }
+
+    public Stage getStage() {
+        return this.stage;
     }
 
     private void setScene(Parent root) {
@@ -120,7 +123,7 @@ public class Client extends Application {
         if (scene == null) {
             stage.setScene(new Scene(root, 680 ,700));
         } else {
-            scene.setRoot(root);
+            Platform.runLater(() -> scene.setRoot(root));
         }
     }
 
@@ -132,11 +135,12 @@ public class Client extends Application {
         this.gameClient = gameClient;
     }
 
+    public void showMessage(String message) {
+        this.main.showMessage(message);
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void showMessage(String message) {
-        this.main.showMessage(message);
-    }
 }

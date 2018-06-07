@@ -88,7 +88,6 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         this.passed = false;
     }
 
-
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
     }
