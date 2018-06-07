@@ -73,4 +73,6 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
     public void useBed() throws RemoteException;
 
+    public void endOfRound() throws RemoteException;
+
 }

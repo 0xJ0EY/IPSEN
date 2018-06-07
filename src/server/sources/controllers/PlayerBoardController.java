@@ -271,4 +271,14 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     public int getCiders() {
         return this.ciders;
     }
+
+    public void endOfRound() throws RemoteException {
+        // Recalculate available beds
+
+        // Reset all villagers
+        for (Villager villager : this.villagers) {
+            villager.endOfRound();
+        }
+
+    }
 }

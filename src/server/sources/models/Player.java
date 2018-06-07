@@ -81,7 +81,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      */
     @Override
     public PlayerBoardControllerInterface getPlayerBoard() {
-        return (PlayerBoardController) this.board;
+        return (PlayerBoardControllerInterface) this.board;
     }
 
     public void resetAfterRound() {

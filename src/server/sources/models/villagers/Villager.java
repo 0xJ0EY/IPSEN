@@ -116,7 +116,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
      * @throws RemoteException
      */
     @Override
-    public void reset() throws RemoteException {
+    public void endOfRound() throws RemoteException {
         this.slept = false;
     }
 }

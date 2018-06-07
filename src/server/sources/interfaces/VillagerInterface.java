@@ -35,6 +35,6 @@ public interface VillagerInterface extends Serializable, Remote {
 
     public String getBackground() throws RemoteException;
 
-    public void reset() throws RemoteException;
+    public void endOfRound() throws RemoteException;
 
 }
