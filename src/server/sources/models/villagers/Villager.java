@@ -8,7 +8,6 @@ import server.sources.interfaces.PlayerBoardControllerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Dice;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -19,15 +18,24 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     protected ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
 
-    private VillagerState state;
+    protected VillagerState state;
 
     protected String background;
+
+    protected PlayerBoardControllerInterface playerBoard;
+
+    protected boolean slept = false;
 
     public Villager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
         this.lanterns = lanterns;
         this.state = state;
 
         this.generateRandomBackground();
+    }
+
+    @Override
+    public void setPlayerBoard(PlayerBoardControllerInterface playerBoard) throws RemoteException {
+        this.playerBoard = playerBoard;
     }
 
     private void generateRandomBackground() throws RemoteException {
@@ -46,17 +54,12 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         return amount;
     }
 
-    public void rest(PlayerBoardControllerInterface playerBoard) throws RemoteException {
-        if (state != VillagerState.TIRED) return;
-        this.state = VillagerState.USABLE;
-    }
-
     public boolean isUsable() throws RemoteException {
         return this.state == VillagerState.USABLE;
     }
 
     public boolean canSleep() throws RemoteException {
-        return this.state != VillagerState.USABLE;
+        return this.state != VillagerState.USABLE && !this.slept;
     }
 
     public boolean canUseCider() throws RemoteException {
@@ -81,6 +84,20 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         this.state = VillagerState.TIRED;
     }
 
+    public void sleep() throws RemoteException {
+        if (state == VillagerState.USABLE) return;
+
+        // Tired -> usable
+        if (state == VillagerState.TIRED) this.state = VillagerState.USABLE;
+
+        // Injured -> Tired
+        if (state == VillagerState.INJURED) this.state = VillagerState.TIRED;
+
+        this.slept = true;
+
+        this.playerBoard.useBed();
+    }
+
     public void injure() throws RemoteException {
         this.state = VillagerState.INJURED;
     }
@@ -93,4 +110,13 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         return background;
     }
 
+    /**
+     * Set some of the local variable to the default beginning of round values.
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
+    @Override
+    public void reset() throws RemoteException {
+        this.slept = false;
+    }
 }

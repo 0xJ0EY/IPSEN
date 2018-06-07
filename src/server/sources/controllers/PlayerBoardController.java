@@ -25,6 +25,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private int ciders = 2;
     private int potions = 2;
     private int coins = 10;
+    private int beds = 3;
 
     public PlayerBoardController() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -32,9 +33,14 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
 
+        // TODO: A nice implementation of this
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
+
+        for (Villager villager : villagers) {
+            villager.setPlayerBoard(this);
+        }
 
     }
 
@@ -109,21 +115,23 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
 
     @Override
-    // TODO: This
     public boolean hasBeds() throws RemoteException {
-        return true;
+        return this.beds > 0;
     }
 
     @Override
-    public void useCider(VillagerInterface villager) throws RemoteException {
-        villager.useCider();
+    public void useCider() throws RemoteException {
         this.ciders--;
     }
 
     @Override
-    public void usePotion(VillagerInterface villager) throws RemoteException {
-        villager.usePotion();
+    public void usePotion() throws RemoteException {
         this.potions--;
+    }
+
+    @Override
+    public void useBed() throws RemoteException {
+        this.beds--;
     }
 
     @Override
@@ -207,6 +215,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     @Override
     public void addVillager(Villager villager) throws RemoteException {
         villager.tire();
+        villager.setPlayerBoard(this);
         villagers.add((Villager) villager);
     }
 
