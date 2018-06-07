@@ -103,12 +103,8 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     }
 
     @Override
-    public void addReputatoin() throws RemoteException {
-        reputation += 1;
+    public void changeReputation(int amount) throws RemoteException {
+        this.reputation += amount;
     }
 
-    @Override
-    public void removeReputation() throws RemoteException {
-        reputation -= 1;
-    }
 }

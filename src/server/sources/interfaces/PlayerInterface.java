@@ -28,8 +28,6 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public int getReputation() throws RemoteException;
 
-    public void addReputatoin() throws RemoteException;
-
-    public void removeReputation() throws RemoteException;
+    public void changeReputation(int amount) throws RemoteException;
 
 }

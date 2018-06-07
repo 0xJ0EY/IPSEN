@@ -9,8 +9,8 @@
                     <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
                     <reward value="-1">REPUTATION</reward>
-                    <reward value="1">BARREL</reward>
-                    <reward value="1">CIDER</reward>
+                    <reward>CIDER</reward>
+                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="CLIMB THE LEDGE">
@@ -34,9 +34,9 @@
                     <reward value="6">COIN</reward>
                     <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="1">REPUTATION</reward>
-                    <reward value="1">BARREL</reward>
-                    <reward value="1">CIDER</reward>
+                    <reward value="-1">REPUTATION</reward>
+                    <reward>CIDER</reward>
+                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="CROSS THE ROPE BRIDGE">
@@ -60,8 +60,8 @@
                     <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
                     <reward value="-1">REPUTATION</reward>
-                    <reward value="1">BARREL</reward>
-                    <reward value="1">CIDER</reward>
+                    <reward>CIDER</reward>
+                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="HEAD TOWARDS THE COLUMNS">
@@ -85,9 +85,9 @@
                     <reward value="6">COIN</reward>
                     <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="1">REPUTATION</reward>
-                    <reward value="1">BARREL</reward>
-                    <reward value="1">CIDER</reward>
+                    <reward value="-1">REPUTATION</reward>
+                    <reward>CIDER</reward>
+                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="FIGHT PAST THE RAT">
