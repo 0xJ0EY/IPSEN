@@ -75,7 +75,7 @@ public class TrainController implements ControllerInterface {
     }
 
     /**
-     * From getting all villagers
+     * For getting all villagers
      * @throws RemoteException
      * @author: Robin Silvério
      */
@@ -118,10 +118,20 @@ public class TrainController implements ControllerInterface {
         return villagers;
     }
 
+    /**
+     * For getting all trainerVillagers
+     * @throws RemoteException
+     * @author Robin Silvério
+     */
     private void retrieveTrainerVillagers() throws RemoteException {
         this.trainers = setTrainersToArrayList();
     }
 
+
+    /**
+     * For updating all trainervillagers to its containers.
+     * @author: Robin Silvério
+     */
     private void updateTrainersView() {
         this.trainerComponents = new ArrayList<TypeTrainerComponent>();
         this.trainerVillagersContainer.getChildren().clear();
@@ -136,7 +146,7 @@ public class TrainController implements ControllerInterface {
     }
 
     /**
-     * This is for setting an ArrayList of trainerVillagers, retrieving it from a villagerfactory.
+     * This is for setting an ArrayList of trainerVillagers
      * @return villagers arrayLists met trainer Villagers
      * @author: Robin Silvério
      */
