@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-image: url('/client/resources/img/background.jpg');" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.LoginController">
+<HBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-image: url('/client/resources/img/background.jpg');" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.LoginController">
    <children>
       <Pane maxHeight="368.0" prefHeight="368.0" prefWidth="200.0">
          <children>
@@ -19,12 +19,13 @@
             </Pane>
             <Pane layoutY="104.0">
                <children>
-                  <Label layoutY="-10.0" prefHeight="17.0" prefWidth="200.0" style="-fx-font-size: 20;" text="Username" textFill="white"/>
+                  <Label layoutY="-10.0" prefHeight="17.0" prefWidth="200.0" style="-fx-font-size: 20;" text="Username" textFill="white" />
                   <TextField fx:id="username" layoutY="17.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" text="Test" />
                   <Label fx:id="errorUsername" layoutY="43.0" prefHeight="17.0" prefWidth="200.0" style="-fx-font-size: 15" textFill="RED" />
                </children>
             </Pane>
-            <Button layoutX="140.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickConnect" text="Connect" textAlignment="RIGHT" />
+            <Button layoutX="140.0" layoutY="175.0" mnemonicParsing="false" onAction="#onClickConnect" text="Connect" textAlignment="RIGHT" />
+            <Button layoutY="175.0" mnemonicParsing="false" onAction="#onClickServer" text="Start server" textAlignment="RIGHT" />
          </children>
       </Pane>
    </children>

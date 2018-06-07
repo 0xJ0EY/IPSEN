@@ -7,16 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Dice;
 import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class PartyVillagerComponent extends VBox {
 
     private ExplorePartyController explorePartyController;
 
-    private Villager villager;
+    private VillagerInterface villager;
     private Dice dice;
 
     @FXML private VBox villagerBox;
@@ -25,12 +27,12 @@ public class PartyVillagerComponent extends VBox {
     @FXML private Button roll;
     @FXML private Label rolled;
 
-    public PartyVillagerComponent(Villager villager, ExplorePartyController explorePartyController) {
+    public PartyVillagerComponent(VillagerInterface villager, ExplorePartyController explorePartyController) throws RemoteException {
         this.villager = villager;
         this.dice = new Dice();
         this.explorePartyController = explorePartyController;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/villager.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/party/villager.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);
@@ -54,7 +56,12 @@ public class PartyVillagerComponent extends VBox {
         this.roll.setOnMouseClicked( e -> {
             dice.roll();
             this.rolled.setText("You rolled: " + dice.returnValue());
-            this.explorePartyController.updateLanternScore(this.villager.calculateLanters(dice));
+
+            try {
+                this.explorePartyController.updateLanternScore(this.villager.calculateLanters(dice));
+            } catch (RemoteException ex) {
+                ex.printStackTrace();
+            }
             roll.setDisable(true);
             }
         );

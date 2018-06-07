@@ -1,58 +1,52 @@
 package server.sources.models.perks;
 
-import javafx.scene.layout.AnchorPane;
 import server.sources.models.goods.*;
 
-public class HarvestableGoodPerk implements Perk, Harvastable{
+public class HarvestableGoodPerk implements Perk {
     private Good good;
 
-    private int goodsLeft;
-
     public HarvestableGoodPerk(String good){
-        this.goodsLeft = 2;
-
-        switch (good.toUpperCase()){
-            case "MUSHROOM" : this.good = new MushroomGood();
+        switch (good){
+            case "AMETHYST":
+                this.good = new AmethystGood();
                 break;
-            case "FISH" : this.good = new FishGood();
+            case "PAPER":
+                this.good = new PaperGood();
                 break;
-            case "FRUIT" : this.good = new FruitGood();
+            case "FISH":
+                this.good = new FishGood();
                 break;
-            case "PAPER" : this.good = new PaperGood();
+            case "FRUIT":
+                this.good = new FruitGood();
                 break;
-            case "POT" : this.good = new PotGood();
+            case "MUSHROOM":
+                this.good = new MushroomGood();
                 break;
-            case "ROPE" : this.good = new MushroomGood();
+            case "ORE":
+                this.good = new OreGood();
                 break;
-            case "ORE" : this.good = new MushroomGood();
+            case "POT":
+                this.good = new PotGood();
                 break;
-            case "AMETHYST" : this.good = new MushroomGood();
+            case "ROPE":
+                this.good = new RopeGood();
+                break;
+            case "CIDER":
+                this.good = new CiderGood();
+                break;
+            default:
+                this.good = null;
                 break;
         }
-
     }
 
+    /**
+     * This is only for setting information stats on building card.
+     * @return Informatie van statistieken over dat building card
+     * @author Robin Silvério
+     */
     @Override
-    public boolean canHarvest() {
-        if (this.goodsLeft > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    @Override
-    public AnchorPane getGoodComponent() {
-        return good.getGood();
-    }
-
-    @Override
-    public Good Harvest() {
-        return this.good;
-    }
-
-    public int getGoodsLeft(){
-        return this.goodsLeft;
+    public String toString() {
+        return "Harvestable: " + this.good.isGood();
     }
 }

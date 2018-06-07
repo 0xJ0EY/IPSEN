@@ -3,7 +3,10 @@ package server.sources.models.goods;
 import client.source.components.harvest.FruitComponent;
 import javafx.scene.layout.AnchorPane;
 
-public class FruitGood  implements Good {
+import java.io.Serializable;
+
+public class FruitGood  implements Good, Serializable {
+
     @Override
     public String isGood() {
         return "FRUIT";

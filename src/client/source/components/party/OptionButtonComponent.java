@@ -1,21 +1,23 @@
 package client.source.components.party;
 
+import client.source.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Reward;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class OptionButtonComponent extends Button {
 
     private Option option;
 
-
-    public OptionButtonComponent(Option option){
+    public OptionButtonComponent(Option option, Client client){
         this.option = option;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/party/optionButton.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/party/optionButton.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);
@@ -29,10 +31,15 @@ public class OptionButtonComponent extends Button {
         this.setText("Explore "+option.getCost());
         this.setDisable(true);
 
-        this.setOnMouseClicked( e-> {
+        this.setOnMouseClicked( e -> {
             for (Reward reward:option.getRewards()) {
-                reward.execute();
+                try {
+                    reward.execute(client);
+                } catch (RemoteException | ParserConfigurationException ex) {
+                    ex.printStackTrace();
+                }
             }
+            client.showRewards(option);
         });
     }
 

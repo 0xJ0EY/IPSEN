@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class LaborAction implements VillagerActionInterface {
 
-    private ArrayList<Villager> selectedVillagers;
+    private ArrayList<VillagerInterface> selectedVillagers;
     private GameClientInterface target;
     private ReputationBoardInterface reputationBoard;
 
@@ -28,22 +28,18 @@ public class LaborAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        System.out.println("" + target.getPlayer().getPlayerBoard().getCoins());
 
-//        ReputationBoardInterface reputationBoard = target.
         PlayerBoardControllerInterface playerBoard = target.getPlayer().getPlayerBoard();
 
+        System.out.println(playerBoard.getCoins());
 
         for(int i = 0; i < selectedVillagers.size(); i++){
             selectedVillagers.get(i).tire();
 
-            firstLaborCider();
+            this.firstLaborCider();
 
-            target.getPlayer().getPlayerBoard().addCoins(1);
-
+            playerBoard.addCoins(1);
         }
-
-        System.out.println("" + target.getPlayer().getPlayerBoard().getCoins());
     }
 
     @Override
@@ -52,7 +48,7 @@ public class LaborAction implements VillagerActionInterface {
     }
 
     @Override
-    public void setSelectedVillagers(ArrayList<Villager> villagers) {
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.selectedVillagers = villagers;
     }
 

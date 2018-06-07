@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public interface VillagerActionInterface extends ActionInterface {
 
-    public void setSelectedVillagers(ArrayList<Villager> villagers);
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers);
 
 }

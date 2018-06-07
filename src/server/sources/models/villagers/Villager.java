@@ -4,38 +4,39 @@ import client.source.components.villager.TypeDefaultComponent;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Dice;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class Villager implements Serializable {
+public class Villager extends UnicastRemoteObject implements VillagerInterface {
+
+    public enum VillagerState { USABLE, TIRED, INJURED }
 
     protected ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
-    protected boolean injured;
-    protected boolean tired;
+
+    private VillagerState state;
+
     protected String background;
 
-    public Villager(ArrayList<Lantern> lanterns, boolean injured, boolean tired) {
+    public Villager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
         this.lanterns = lanterns;
-        this.injured = injured;
-        this.tired = tired;
+        this.state = state;
 
         this.generateRandomBackground();
+    }
+
+    private void generateRandomBackground() throws RemoteException {
+        int villager = (int) Math.floor(Math.random() * 5 + 1);
+        this.background = "villagerBackground" + villager + ".png";
 
     }
 
-    //TODO: moet nog bedden weghalen
-    public void rest(){
-        if (injured) {
-            injured = false;
-            tired = true;
-        } else if (tired) {
-            tired = false;
-        }
-    }
-    
-    public int calculateLanters(Dice dice){
+    public int calculateLanters(Dice dice) throws RemoteException {
         int amount = 0;
         for (Lantern lantern: lanterns) {
             if (lantern.getAmount(dice.returnValue()) > 0){
@@ -45,29 +46,50 @@ public class Villager implements Serializable {
         return amount;
     }
 
-    private void generateRandomBackground() {
-        int villager = (int) Math.floor(Math.random() * 5 + 1);
-        this.background = "villagerBackground" + villager + ".png";
-
+    public void rest(PlayerBoardControllerInterface playerBoard) throws RemoteException {
+        if (state != VillagerState.TIRED) return;
+        this.state = VillagerState.USABLE;
     }
 
-    public boolean isUseable() {
-        return (!this.injured && !this.tired);
+    public boolean isUsable() throws RemoteException {
+        return this.state == VillagerState.USABLE;
     }
 
-    public void tire() {
-        this.tired = true;
+    public boolean canSleep() throws RemoteException {
+        return this.state != VillagerState.USABLE;
     }
 
-    public void injure() {
-        this.injured = false;
+    public boolean canUseCider() throws RemoteException {
+        return this.state == VillagerState.TIRED;
     }
 
-    public AnchorPane getType() {
+    public boolean canUsePotion() throws RemoteException {
+        return this.state == VillagerState.INJURED;
+    }
+
+    public void tire() throws RemoteException {
+        this.state = VillagerState.TIRED;
+    }
+
+    public void useCider() throws RemoteException {
+        if (state != VillagerState.TIRED) return;
+        this.state = VillagerState.USABLE;
+    }
+
+    public void usePotion() throws RemoteException {
+        if (state != VillagerState.INJURED) return;
+        this.state = VillagerState.TIRED;
+    }
+
+    public void injure() throws RemoteException {
+        this.state = VillagerState.INJURED;
+    }
+
+    public AnchorPane getType() throws RemoteException {
         return new TypeDefaultComponent();
     }
 
-    public String getBackground() {
+    public String getBackground() throws RemoteException {
         return background;
     }
 

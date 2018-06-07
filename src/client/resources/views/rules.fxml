@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: cadetblue" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: cadetblue" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
    <children>
        <ScrollPane fx:id="rulesScrollpane" fitToWidth="true" layoutX="100" prefHeight="540" prefViewportWidth="0.5" prefWidth="600" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <content>

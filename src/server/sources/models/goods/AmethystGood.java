@@ -3,7 +3,10 @@ package server.sources.models.goods;
 import client.source.components.harvest.AmethystComponent;
 import javafx.scene.layout.AnchorPane;
 
-public class AmethystGood implements Good {
+import java.io.Serializable;
+
+public class AmethystGood implements Good, Serializable {
+
     @Override
     public String isGood() {
         return "AMETHYST";

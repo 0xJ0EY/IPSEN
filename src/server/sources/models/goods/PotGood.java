@@ -3,7 +3,9 @@ package server.sources.models.goods;
 import client.source.components.harvest.ClayPotComponent;
 import javafx.scene.layout.AnchorPane;
 
-public class PotGood implements Good {
+import java.io.Serializable;
+
+public class PotGood implements Good, Serializable {
     @Override
     public String isGood() {
         return "POT";

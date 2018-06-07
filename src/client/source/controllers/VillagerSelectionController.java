@@ -3,13 +3,14 @@ package client.source.controllers;
 import client.source.Client;
 import client.source.components.villager.VillagerComponent;
 import client.source.factories.VillagerSelectionFactory;
+import client.source.strategies.VillagerSelectionStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.VillagerActionInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class VillagerSelectionController implements ControllerInterface {
@@ -20,13 +21,15 @@ public class VillagerSelectionController implements ControllerInterface {
 
     private VillagerActionInterface action;
 
-    protected ArrayList<Villager> villagers;
+    protected ArrayList<VillagerInterface> villagers;
 
     protected Client client;
 
     private ArrayList<VillagerComponent> villagerComponents;
 
     private VillagerSelectionFactory factory;
+
+    private VillagerSelectionStrategy strategy;
 
     public Parent show() {
 
@@ -46,9 +49,11 @@ public class VillagerSelectionController implements ControllerInterface {
         this.villagerComponents = new ArrayList<>();
         this.villagerContainer.getChildren().clear();
 
-        for (Villager villager : this.villagers) {
+        for (VillagerInterface villager : this.villagers) {
+            VillagerComponent villagerComponent = new VillagerComponent();
+            villagerComponent.setModel(villager);
+            villagerComponent.load();
 
-            VillagerComponent villagerComponent = new VillagerComponent(villager);
             this.villagerComponents.add(villagerComponent);
             this.villagerContainer.getChildren().add(villagerComponent);
         }
@@ -56,19 +61,17 @@ public class VillagerSelectionController implements ControllerInterface {
 
     @FXML
     private void onClickSelect() {
-        try {
-            ArrayList<Villager> selected = this.getSelectedVillagers();
 
-            this.action.setSelectedVillagers(selected);
-            this.client.getGameClient().requestAction(this.action);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        ArrayList<VillagerInterface> selected = this.getSelectedVillagers();
+
+        this.action.setSelectedVillagers(selected);
+
+        this.strategy.execute(this.client.getGameClient(), this.action);
 
     }
 
-    private ArrayList<Villager> getSelectedVillagers() {
-        ArrayList<Villager> selected = new ArrayList<>();
+    public ArrayList<VillagerInterface> getSelectedVillagers() {
+        ArrayList<VillagerInterface> selected = new ArrayList<VillagerInterface>();
 
         for (VillagerComponent villagerComponent : this.villagerComponents) {
 
@@ -92,5 +95,9 @@ public class VillagerSelectionController implements ControllerInterface {
 
     public void setVillagerAction(VillagerActionInterface action) {
         this.action = action;
+    }
+
+    public void setStrategy(VillagerSelectionStrategy strategy) {
+        this.strategy = strategy;
     }
 }

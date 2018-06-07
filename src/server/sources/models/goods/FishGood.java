@@ -3,7 +3,9 @@ package server.sources.models.goods;
 import client.source.components.harvest.FishComponent;
 import javafx.scene.layout.AnchorPane;
 
-public class FishGood implements Good {
+import java.io.Serializable;
+
+public class FishGood implements Good, Serializable {
     @Override
     public String isGood() {
         return "FISH";

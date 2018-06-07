@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import server.sources.actions.RunAction;
+import server.sources.actions.RewardAction;
 
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
@@ -55,6 +56,7 @@ public class ExploreController implements ControllerInterface, Observable {
             vBox.getChildren().addAll(rbtn, hBoxLanterns);
             hbox.getChildren().addAll(vBox);
         }
+        this.updateObserver();
         return this.root;
     }
 
@@ -73,20 +75,15 @@ public class ExploreController implements ControllerInterface, Observable {
     }
 
     @FXML public void clickConfirm() {
-        System.out.println("you clicked confirm");
-
         RadioButton selected = (RadioButton) radioGroup.getSelectedToggle();
+
         if(selected.getId().equals("0")){
-            System.out.println(this.exploreStory.getChoices().get(0).getOptions());
             this.choice = this.exploreStory.getChoices().get(0);
         }else{
-            System.out.println(this.exploreStory.getChoices().get(1).getOptions());
             this.choice = this.exploreStory.getChoices().get(1);
         }
 
-        System.out.println( radioGroup.getSelectedToggle());
         client.showParty(this.exploreStory, this.choice);
-
     }
 
     @Override
@@ -94,7 +91,14 @@ public class ExploreController implements ControllerInterface, Observable {
         PlayerInterface target = this.client.turnObserver.getState();
 
         try {
-            boolean turn = this.client.getGameClient().equals(target.getGameClient());
+            boolean turn;
+
+            try {
+                turn = this.client.getGameClient().equals(target.getGameClient());
+            } catch (NullPointerException e) {
+                turn = false;
+            }
+
             this.runButton.setDisable(!turn);
             this.confirmButton.setDisable(!turn);
 

@@ -4,6 +4,8 @@ import server.sources.interfaces.*;
 import server.sources.models.Player;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
+import server.sources.notifications.MessageNotification;
+import server.sources.notifications.RestPlayerNotification;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -53,7 +55,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.setGameState(GameStates.STARTED);
 
         // Send everyone to the main screen
-        System.out.println("[System] Game started");
+        System.out.println("[Game] Started");
         this.server.notifyClients(new GameStartedNotification());
 
     }
@@ -70,7 +72,6 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
                     try {
                         player.requestAction();
-
                         while (!player.hasAction()) {
                             Thread.sleep(100);
                         }
@@ -87,13 +88,51 @@ public class GameController extends UnicastRemoteObject implements GameControlle
                 this.turn++;
             } while(!this.roundHasEnded());
 
-            for (Player player : this.players) {
-                player.resetAfterRound();
-            }
+            this.restVillagers();
 
             this.turn = 0;
             this.round++;
+
+            this.server.notifyClients(new MessageNotification("u all gay"));
         }
+
+    }
+
+    private void restVillagers() throws RemoteException {
+        boolean hasAction = true;
+
+        for (Player player : players) {
+            player.resetAfterRound();
+            player.getGameClient().receiveNotification(new RestPlayerNotification());
+            player.requestAction();
+        }
+
+        do {
+
+            hasAction = true;
+
+            try {
+
+                for (Player player : players) {
+                    System.out.println("REEEE");
+
+
+                    System.out.println("player.hasAction() = " + player.hasAction());
+
+                    if (!player.hasAction()) hasAction = false;
+
+
+                    System.out.println("hasAction = " + hasAction);
+                }
+
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("hasAction = " + hasAction);
+
+        } while (!hasAction);
 
     }
 
@@ -102,7 +141,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
         this.server.notifyClients(new EndOfGameNotification());
 
-        System.out.println("GameController ended");
+        System.out.println("[Game] Ended");
 
     }
 

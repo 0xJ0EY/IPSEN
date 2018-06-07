@@ -10,4 +10,14 @@ public class BedPerk implements Perk {
     public BedPerk(int value) {
         this.value = value;
     }
+
+    /**
+     * This is only for setting information stats on building card.
+     * @return Informatie van statistieken over dat building card
+     * @author Robin Silvério
+     */
+    @Override
+    public String toString(){
+        return this.getClass().getSimpleName().substring(0, 3) + ": " + this.value;
+    }
 }
