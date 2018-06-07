@@ -77,11 +77,13 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     public void useCider() throws RemoteException {
         if (state != VillagerState.TIRED) return;
         this.state = VillagerState.USABLE;
+        this.playerBoard.useCider();
     }
 
     public void usePotion() throws RemoteException {
         if (state != VillagerState.INJURED) return;
         this.state = VillagerState.TIRED;
+        this.playerBoard.usePotion();
     }
 
     public void sleep() throws RemoteException {

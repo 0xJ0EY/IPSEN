@@ -1,12 +1,14 @@
 package server.sources.controllers;
 
 
+import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
 import server.sources.models.villagers.*;
+import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
 import java.rmi.RemoteException;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
 
     private static final long serialVersionUID = 1337L;
+
+    private PlayerInterface player;
 
     private ArrayList<Villager> villagers = new ArrayList<>();
     private ArrayList<House> houses = new ArrayList<>();
@@ -27,7 +31,9 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private int coins = 10;
     private int beds = 3;
 
-    public PlayerBoardController() throws RemoteException {
+    public PlayerBoardController(PlayerInterface player) throws RemoteException {
+        this.player = player;
+
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
 
         lanterns.add(new Lantern(3, 2));
@@ -56,14 +62,6 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     public void payCoin(int coin){
         this.coins -= coin;
-    }
-
-    public void usePotion(int potion){
-        this.potions -= potion;
-    }
-
-    public void useCider(int cider){
-        this.ciders -= cider;
     }
 
     public void addGood(String good){
@@ -122,16 +120,19 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     @Override
     public void useCider() throws RemoteException {
         this.ciders--;
+        this.updateObserver();
     }
 
     @Override
     public void usePotion() throws RemoteException {
         this.potions--;
+        this.updateObserver();
     }
 
     @Override
     public void useBed() throws RemoteException {
         this.beds--;
+        this.updateObserver();
     }
 
     @Override
@@ -217,6 +218,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villager.tire();
         villager.setPlayerBoard(this);
         villagers.add((Villager) villager);
+        this.updateObserver();
     }
 
     @Override
@@ -228,6 +230,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     public void addCoins(int amount) throws RemoteException {
         if (amount > 0) return;
         this.coins += amount;
+        this.updateObserver();
     }
 
     /**
@@ -237,8 +240,10 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     public ArrayList<House> getHouses() {
         return this.houses;
     }
+
     public void addHouse(House house){
         this.houses.add(house);
+        this.updateObserver();
     }
 
     public ArrayList<Outpost> getOutposts() {
@@ -246,6 +251,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
     public void addOutpost(Outpost outpost){
         this.outposts.add(outpost);
+        this.updateObserver();
     }
 
     public ArrayList<Good> getGoods(){
@@ -268,6 +274,10 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.potions;
     }
 
+    public int getBeds() {
+        return this.beds;
+    }
+
     public int getCiders() {
         return this.ciders;
     }
@@ -280,5 +290,13 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
             villager.endOfRound();
         }
 
+    }
+
+    private void updateObserver() {
+        try {
+            this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

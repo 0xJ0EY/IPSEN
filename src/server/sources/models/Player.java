@@ -16,7 +16,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     private static final long serialVersionUID = 1337L;
 
-    public PlayerBoardController board = new PlayerBoardController();
+    public PlayerBoardController board = new PlayerBoardController(this);
     public GameController gameController;
 
     private transient GameClientInterface gameClient;
