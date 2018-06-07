@@ -26,9 +26,6 @@ public class Villager implements Serializable {
 
     }
 
-    public boolean canTrain(PlayerInterface player){
-        return true;
-    }
 
     //TODO: moet nog bedden weghalen
     public void rest(){
