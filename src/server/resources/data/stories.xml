@@ -34,7 +34,7 @@
                     <reward value="6">COIN</reward>
                     <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="-1">REPUTATION</reward>
+                    <reward value="1">REPUTATION</reward>
                     <reward value="1">BARREL</reward>
                     <reward value="1">CIDER</reward>
                 </option>
@@ -85,7 +85,7 @@
                     <reward value="6">COIN</reward>
                     <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="-1">REPUTATION</reward>
+                    <reward value="1">REPUTATION</reward>
                     <reward value="1">BARREL</reward>
                     <reward value="1">CIDER</reward>
                 </option>

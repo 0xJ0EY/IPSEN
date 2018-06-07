@@ -2,6 +2,7 @@ package server.sources.models.stories;
 
 import client.source.Client;
 import org.w3c.dom.Element;
+import server.sources.models.ReputationBoard;
 import server.sources.models.villagers.*;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,7 +35,13 @@ public class Reward implements Serializable {
                 }
                 break;
             case "REPUTATION":
-                // TODO: 06/06/2018 this 
+                if(value == 1){
+                    client.getGameClient().getPlayer().addReputatoin();
+                }else{
+                    client.getGameClient().getPlayer().removeReputation();
+                }
+                System.out.println(client.getGameClient().getPlayer().getReputation());
+                System.out.println();
                 break;
             case "POTION":
                 client.getGameClient().getPlayer().getPlayerBoard().addPotion();
