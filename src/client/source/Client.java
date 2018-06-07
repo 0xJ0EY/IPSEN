@@ -90,6 +90,11 @@ public class Client extends Application {
         this.setScene(explore.show());
     }
 
+    public void showBuild(){
+        BuildController build = controllerFactory.createBuild();
+        this.setScene(build.show());
+    }
+
     public Stage getStage() {
         return this.stage;
     }

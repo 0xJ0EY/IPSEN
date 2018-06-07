@@ -12,4 +12,14 @@ public class villagePointsForThingsPerk implements Perk {
         this.value = value;
         this.good = good;
     }
+
+    /**
+     * This is only for setting information stats on building card.
+     * @return Informatie van statistieken over dat building card
+     * @author Robin Silvério
+     */
+    @Override
+    public String toString() {
+        return "VP for things: " + this.good + "(" + this.value + ")";
+    }
 }

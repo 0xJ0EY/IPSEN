@@ -1,6 +1,8 @@
 package server.sources.models.goods;
 
-public class FishGood implements Good {
+import java.io.Serializable;
+
+public class FishGood implements Good, Serializable {
     @Override
     public String isGood() {
         return "FISH";

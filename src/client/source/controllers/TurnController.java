@@ -38,7 +38,7 @@ public class TurnController {
 
         client.showVillagerSelection(
             new BuilderVillagerSelectionFactory(),
-            new BuildAction(),
+            new BuildAction(this.client.getGameClient()),
             new RequestStrategy()
         );
 
