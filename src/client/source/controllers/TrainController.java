@@ -1,21 +1,15 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.components.villager_to_train.TypeAllroundComponent;
-import client.source.components.villager_to_train.TypeBuilderComponent;
-import client.source.components.villager_to_train.TypeTrainerComponent;
 import client.source.components.villager_to_train.VillagerComponent;
-import client.source.factories.VillagerSelectionFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import server.sources.models.villagers.*;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by robin on 7-6-2018.
@@ -51,9 +45,9 @@ public class TrainController implements ControllerInterface {
 
 
     private ArrayList<VillagerComponent> villagerComponents;
-    private ArrayList<TypeTrainerComponent> trainerComponents;
-    private ArrayList<TypeBuilderComponent> builderComponents;
-    private ArrayList<TypeAllroundComponent> allrounderComponents;
+    private ArrayList<VillagerComponent> trainerComponents;
+    private ArrayList<VillagerComponent> builderComponents;
+    private ArrayList<VillagerComponent> allrounderComponents;
 
     ArrayList<Lantern> lanterns;
 
@@ -133,15 +127,15 @@ public class TrainController implements ControllerInterface {
      * @author: Robin Silvério
      */
     private void updateTrainersView() {
-        this.trainerComponents = new ArrayList<TypeTrainerComponent>();
+        this.trainerComponents = new ArrayList<VillagerComponent>();
         this.trainerVillagersContainer.getChildren().clear();
 
 
         for (int i = 0; i < this.trainers.size(); i++) {
 
-            TypeTrainerComponent villagerComponent = new TypeTrainerComponent(this.trainers.get(i));
-            this.trainerComponents.add(villagerComponent);
-            this.trainerVillagersContainer.getChildren().add(villagerComponent);
+            VillagerComponent trainerComponent = new VillagerComponent(this.trainers.get(i));
+            this.trainerComponents.add(trainerComponent);
+            this.trainerVillagersContainer.getChildren().add(trainerComponent);
         }
     }
 

@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root fx:id="background" prefHeight="200.0" prefWidth="110.0" style="-fx-background-color: red;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="background" prefHeight="150.0" prefWidth="110.0" style="-fx-background-color: red;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lanterns" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0" />
       <AnchorPane fx:id="type" layoutY="8.0" prefHeight="50.0" prefWidth="35.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-      <Button fx:id="trainBtn" alignment="CENTER" layoutY="190.0" mnemonicParsing="false" prefWidth="110.0" text="Train" />
+      <Button fx:id="trainBtn" onAction="#trainBtn" alignment="CENTER" layoutY="190.0" mnemonicParsing="false" prefWidth="110.0" text="Train" />
    </children>
 </fx:root>
