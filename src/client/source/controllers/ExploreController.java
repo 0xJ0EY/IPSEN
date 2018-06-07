@@ -91,7 +91,14 @@ public class ExploreController implements ControllerInterface, Observable {
         PlayerInterface target = this.client.turnObserver.getState();
 
         try {
-            boolean turn = this.client.getGameClient().equals(target.getGameClient());
+            boolean turn;
+
+            try {
+                turn = this.client.getGameClient().equals(target.getGameClient());
+            } catch (NullPointerException e) {
+                turn = false;
+            }
+
             this.runButton.setDisable(!turn);
             this.confirmButton.setDisable(!turn);
 

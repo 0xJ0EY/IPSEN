@@ -4,6 +4,7 @@ import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.models.villagers.Villager;
+import server.sources.strategies.villagers.AddVillagerStrategy;
 
 import java.io.Serializable;
 import java.rmi.Remote;
@@ -12,17 +13,19 @@ import java.util.ArrayList;
 
 public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
-    public ArrayList<Villager> listVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listVillagers() throws RemoteException;
 
-    public ArrayList<Villager> listAvailableVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException;
 
-    public ArrayList<Villager> listAvailableBuilderVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException;
 
-    public ArrayList<Villager> listAvailableTrainerVillagers() throws RemoteException;
+    public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException;
 
-    public Villager getVillager(int index) throws RemoteException;
+    public VillagerInterface getVillager(int index) throws RemoteException;
 
     public void addVillager(Villager villager) throws RemoteException;
+
+    public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException;
 
     public void addCoins(int amount) throws RemoteException;
 
@@ -54,5 +57,15 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void addOutpost(Outpost building) throws RemoteException;
 
     public ArrayList<Outpost> getOutposts() throws RemoteException;
+
+    public boolean hasCider() throws RemoteException;
+
+    public boolean hasPotion() throws RemoteException;
+
+    public boolean hasBeds() throws RemoteException;
+
+    public void useCider(VillagerInterface villager) throws RemoteException;
+
+    public void usePotion(VillagerInterface villager) throws RemoteException;
 
 }

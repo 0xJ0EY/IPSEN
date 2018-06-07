@@ -5,6 +5,7 @@ import client.source.controllers.VillagerSelectionController;
 import server.sources.Server;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.NotificationInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.ExploreRunNotification;
 
@@ -13,15 +14,15 @@ import java.util.ArrayList;
 
 public class RunAction implements ActionInterface {
 
-    private ArrayList<Villager> selectedVillagers;
+    private ArrayList<VillagerInterface> selectedVillagers;
 
-    public RunAction(ArrayList<Villager> selectedVillagers){
+    public RunAction(ArrayList<VillagerInterface> selectedVillagers){
         this.selectedVillagers = selectedVillagers;
     }
 
     @Override
     public void execute(Server server) throws RemoteException {
-        for (Villager villager: selectedVillagers) {
+        for (VillagerInterface villager: selectedVillagers) {
             villager.tire();
         }
     }

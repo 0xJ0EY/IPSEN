@@ -177,4 +177,20 @@ public class ControllerFactory {
         return explorePartyController;
     }
 
+    public VillagerRestController createVillagerRest() {
+        VillagerRestController villagerRestController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/villager_resting.fxml"));
+            loader.load();
+
+            villagerRestController = loader.getController();
+            villagerRestController.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return villagerRestController;
+    }
+
 }
