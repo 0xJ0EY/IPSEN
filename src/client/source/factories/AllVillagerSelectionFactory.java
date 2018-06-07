@@ -1,6 +1,7 @@
 package client.source.factories;
 
 import client.source.Client;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 
 import java.rmi.RemoteException;
@@ -14,7 +15,7 @@ public class AllVillagerSelectionFactory extends VillagerSelectionFactory {
         this.client = client;
     }
 
-    public ArrayList<Villager> getVillagerList() {
+    public ArrayList<VillagerInterface> getVillagerList() {
         try {
             return client.getGameClient().getPlayer().getPlayerBoard().listAvailableVillagers();
         } catch (RemoteException e) {

@@ -4,6 +4,7 @@ import server.sources.Server;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.TestNotification;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class HarvestAction implements VillagerActionInterface {
 
     private GameClientInterface target;
-    private ArrayList<Villager> selectedVillagers;
+    private ArrayList<VillagerInterface> selectedVillagers;
 
     /**
      * geeft de client van de speler die het uitvoert mee
@@ -31,7 +32,7 @@ public class HarvestAction implements VillagerActionInterface {
     }
 
     @Override
-    public void setSelectedVillagers(ArrayList<Villager> villagers) {
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.selectedVillagers = villagers;
     }
 

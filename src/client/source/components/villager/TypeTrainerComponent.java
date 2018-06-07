@@ -4,8 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class TypeTrainerComponent extends AnchorPane {
+public class TypeTrainerComponent extends AnchorPane implements Serializable {
 
     public TypeTrainerComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/type_trainer.fxml"));

@@ -31,14 +31,12 @@ public class OptionButtonComponent extends Button {
         this.setText("Explore "+option.getCost());
         this.setDisable(true);
 
-        this.setOnMouseClicked( e-> {
+        this.setOnMouseClicked( e -> {
             for (Reward reward:option.getRewards()) {
                 try {
                     reward.execute(client);
-                } catch (RemoteException e1) {
-                    e1.printStackTrace();
-                } catch (ParserConfigurationException e1) {
-                    e1.printStackTrace();
+                } catch (RemoteException | ParserConfigurationException ex) {
+                    ex.printStackTrace();
                 }
             }
             client.showRewards(option);

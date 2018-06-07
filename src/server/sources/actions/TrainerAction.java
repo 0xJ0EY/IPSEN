@@ -4,6 +4,7 @@ import server.sources.Server;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.TrainNotification;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class TrainerAction implements VillagerActionInterface {
 
     private GameClientInterface target;
-    private ArrayList<Villager> villagers;
+    private ArrayList<VillagerInterface> villagers;
 
     public TrainerAction(GameClientInterface target) {
         this.target = target;
@@ -30,7 +31,7 @@ public class TrainerAction implements VillagerActionInterface {
     }
 
     @Override
-    public void setSelectedVillagers(ArrayList<Villager> villagers) {
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.villagers = villagers;
     }
 

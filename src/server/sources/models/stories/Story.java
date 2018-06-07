@@ -1,5 +1,6 @@
 package server.sources.models.stories;
 
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ public class Story implements Serializable {
 
     private String story;
     private ArrayList<Choice> choices;
-    private ArrayList<Villager> villagers;
+    private ArrayList<VillagerInterface> villagers;
 
     public Story(String story, ArrayList<Choice> choices) {
         this.story = story;
@@ -24,11 +25,11 @@ public class Story implements Serializable {
         return choices;
     }
 
-    public ArrayList<Villager> getVillagers() {
+    public ArrayList<VillagerInterface> getVillagers() {
         return villagers;
     }
 
-    public void setVillagers(ArrayList<Villager> villagers) {
+    public void setVillagers(ArrayList<VillagerInterface> villagers) {
         this.villagers = villagers;
     }
 }

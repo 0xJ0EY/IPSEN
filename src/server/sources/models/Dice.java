@@ -2,7 +2,9 @@ package server.sources.models;
 
 import server.sources.models.villagers.Villager;
 
-public class Dice {
+import java.io.Serializable;
+
+public class Dice implements Serializable {
 
     private int value;
     private Villager villager;

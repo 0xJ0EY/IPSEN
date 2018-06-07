@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class LaborAction implements VillagerActionInterface {
 
-    private ArrayList<Villager> selectedVillagers;
+    private ArrayList<VillagerInterface> selectedVillagers;
     private GameClientInterface target;
     private ReputationBoardInterface reputationBoard;
 
@@ -50,7 +50,7 @@ public class LaborAction implements VillagerActionInterface {
     }
 
     @Override
-    public void setSelectedVillagers(ArrayList<Villager> villagers) {
+    public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.selectedVillagers = villagers;
     }
 
