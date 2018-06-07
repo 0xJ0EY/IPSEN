@@ -2,7 +2,9 @@ package server.sources.models.stories;
 
 import client.source.Client;
 import org.w3c.dom.Element;
+import server.sources.models.villagers.*;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
@@ -17,33 +19,55 @@ public class Reward implements Serializable {
         this.value = Integer.parseInt(this.reward.getAttribute("value"));
         this.type = this.reward.getAttribute("type");
     }
-
-    public void execute(Client client) throws RemoteException {
+    
+    public void execute(Client client) throws RemoteException, ParserConfigurationException {
         switch(this.reward.getTextContent()){
             case "COIN":
-                System.out.println("Coin");
                 client.getGameClient().getPlayer().getPlayerBoard().addCoins(this.value);
                 break;
             case "VILLAGER":
-                System.out.println("Villager");
+                client.getGameClient().getPlayer().getPlayerBoard().addVillager(rewardVillager(this.type));
                 break;
             case "GOOD":
-                System.out.println("Good");
                 for (int i = 0; i<this.value; i++) {
                     client.getGameClient().getPlayer().getPlayerBoard().addGood(this.type);
-                    System.out.println("added good: " + type);
                 }
                 break;
             case "REPUTATION":
-                System.out.println("Reputation");
+                // TODO: 06/06/2018 this 
                 break;
             case "POTION":
-                System.out.println("Potion");
+                client.getGameClient().getPlayer().getPlayerBoard().addPotion();
                 break;
             case "CIDER":
-                System.out.println("Cider");
+                client.getGameClient().getPlayer().getPlayerBoard().addCider();
                 break;
         }
+    }
+
+    private Villager rewardVillager(String type) throws ParserConfigurationException {
+        VillagerFactory vf = new VillagerFactory();
+        Villager villager;
+
+        switch (type){
+            case "TIN":
+                villager = vf.createTinVillager();
+                break;
+            case "OIL":
+                villager = vf.createOilGirlVillager();
+                break;
+            case "CAT":
+                villager = vf.createCatVillager();
+                break;
+            case "FISH":
+                villager = vf.createFishVillager();
+                break;
+            default:
+                villager = null;
+                System.out.println("fout in stories.xml");
+        }
+
+        return villager;
     }
 
     public Element getReward() {

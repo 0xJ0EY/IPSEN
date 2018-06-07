@@ -35,12 +35,14 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     }
 
-    public void addCider(int cider) {
-        this.ciders += cider;
+    @Override
+    public void addCider() throws RemoteException {
+        this.ciders += 1;
     }
 
-    public void addPotion(int potion) {
-        this.potions += potion;
+    @Override
+    public void addPotion() throws RemoteException {
+        this.potions += 1;
     }
 
     public void payCoin(int coin){
@@ -167,6 +169,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
      */
     @Override
     public void addVillager(Villager villager) throws RemoteException {
+        villager.tire();
         villagers.add(villager);
     }
 
@@ -216,9 +219,5 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     public int getCiders() {
         return this.ciders;
-    }
-
-    public void addCider() throws RemoteException {
-        this.ciders += 1;
     }
 }

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Reward;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
@@ -36,8 +37,11 @@ public class OptionButtonComponent extends Button {
                     reward.execute(client);
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
+                } catch (ParserConfigurationException e1) {
+                    e1.printStackTrace();
                 }
             }
+            client.showRewards(option);
         });
     }
 

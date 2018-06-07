@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import server.sources.actions.RunAction;
+import server.sources.actions.RewardAction;
 
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
@@ -55,6 +56,7 @@ public class ExploreController implements ControllerInterface, Observable {
             vBox.getChildren().addAll(rbtn, hBoxLanterns);
             hbox.getChildren().addAll(vBox);
         }
+        this.updateObserver();
         return this.root;
     }
 
@@ -74,15 +76,14 @@ public class ExploreController implements ControllerInterface, Observable {
 
     @FXML public void clickConfirm() {
         RadioButton selected = (RadioButton) radioGroup.getSelectedToggle();
+
         if(selected.getId().equals("0")){
             this.choice = this.exploreStory.getChoices().get(0);
         }else{
             this.choice = this.exploreStory.getChoices().get(1);
         }
 
-        System.out.println( radioGroup.getSelectedToggle());
         client.showParty(this.exploreStory, this.choice);
-
     }
 
     @Override

@@ -7,6 +7,7 @@ import client.source.components.building.OutpostComponent;
 import client.source.components.building.StarhouseComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import server.sources.models.stories.Story;
 
 import java.io.IOException;
@@ -14,7 +15,6 @@ import java.io.IOException;
 public class ControllerFactory {
 
     private Client client;
-    private Story story;
 
     public ControllerFactory(Client client) {
         this.client = client;
@@ -98,6 +98,22 @@ public class ControllerFactory {
         }
 
         return explore;
+    }
+
+    public RewardController createRewardView(){
+        RewardController reward = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/reward.fxml"));
+            loader.load();
+
+            reward = loader.getController();
+            reward.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return reward;
     }
 
     /**
