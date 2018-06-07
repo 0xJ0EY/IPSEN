@@ -55,15 +55,17 @@ public class TrainController implements ControllerInterface {
     private ArrayList<TypeBuilderComponent> builderComponents;
     private ArrayList<TypeAllroundComponent> allrounderComponents;
 
-    ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
+    ArrayList<Lantern> lanterns;
 
     @Override
     public Parent show() {
 
         try {
             this.retrieveVillagers();
+            this.retrieveTrainerVillagers();
 
             this.updateVillagersView();
+            this.updateTrainersView();
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -72,15 +74,19 @@ public class TrainController implements ControllerInterface {
         return this.root;
     }
 
-
+    /**
+     * From getting all villagers
+     * @throws RemoteException
+     * @author: Robin Silvério
+     */
     public void retrieveVillagers() throws RemoteException {
-        for(int i = 0; i < 4; i++){
-            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
-            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
-            this.villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), false, false));
-        }
+        this.villagers = setVillagersToArrayList();
     }
 
+    /**
+     * For updating all common villagers to its containers.
+     * @author: Robin Silvério
+     */
     private void updateVillagersView() {
         this.villagerComponents = new ArrayList<VillagerComponent>();
         this.villagersContainer.getChildren().clear();
@@ -94,23 +100,59 @@ public class TrainController implements ControllerInterface {
         }
     }
 
-//    /**
-//     * This is for setting an ArrayList of villagers, retrieving it from a villagerfactory.
-//     * @return
-//     * @author: Robin Silvério
-//     */
-//    private ArrayList<Villager> setVillagersToArrayList(){
-//
-//        ArrayList<Villager> villagers = new ArrayList<Villager>();
-//
-//        villagers = factory.getVillagerList();
-//
-//        return villagers;
-//    }
+    /**
+     * This is for setting an ArrayList of villagers, retrieving it from a villagerfactory.
+     * @return
+     * @author: Robin Silvério
+     */
+    private ArrayList<Villager> setVillagersToArrayList(){
 
-//    private void retrieveTrainerVillagers() throws RemoteException {
-//
-//    }
+        ArrayList<Villager> villagers = new ArrayList<Villager>();
+        lanterns = new ArrayList<Lantern>();
+        for(int i = 0; i < 5; i++){
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        }
+
+        return villagers;
+    }
+
+    private void retrieveTrainerVillagers() throws RemoteException {
+        this.trainers = setTrainersToArrayList();
+    }
+
+    private void updateTrainersView() {
+        this.trainerComponents = new ArrayList<TypeTrainerComponent>();
+        this.trainerVillagersContainer.getChildren().clear();
+
+
+        for (int i = 0; i < this.trainers.size(); i++) {
+
+            TypeTrainerComponent villagerComponent = new TypeTrainerComponent(this.trainers.get(i));
+            this.trainerComponents.add(villagerComponent);
+            this.trainerVillagersContainer.getChildren().add(villagerComponent);
+        }
+    }
+
+    /**
+     * This is for setting an ArrayList of trainerVillagers, retrieving it from a villagerfactory.
+     * @return villagers arrayLists met trainer Villagers
+     * @author: Robin Silvério
+     */
+    private ArrayList<TrainerVillager> setTrainersToArrayList(){
+
+        ArrayList<TrainerVillager> trainers = new ArrayList<TrainerVillager>();
+        lanterns = new ArrayList<Lantern>();
+        for(int i = 0; i < 5; i++){
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            trainers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        }
+
+        return trainers;
+    }
+
 //
 //    private void retrieveBuilderVillagers() throws RemoteException {
 //
