@@ -58,10 +58,12 @@ public class TrainController implements ControllerInterface {
             this.retrieveVillagers();
             this.retrieveTrainerVillagers();
             this.retrieveBuilderVillagers();
+            this.retrieveAllroundVillagers();
 
             this.updateVillagersView();
             this.updateTrainersView();
             this.updateBuilderVillagersView();
+            this.updateAllroundVillagersView();
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -200,12 +202,35 @@ public class TrainController implements ControllerInterface {
      * @author Robin Silvério
      */
     private void retrieveAllroundVillagers() throws RemoteException {
-
+        this.allrounders = setAllroundVillagersToArrayList();
     }
 
+    private ArrayList<AllroundVillager> setAllroundVillagersToArrayList() {
+        ArrayList<AllroundVillager> allroundVillagers = new ArrayList<AllroundVillager>();
+
+        for (int i = 0; i < 5; i++) {
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
+            allroundVillagers.add(new AllroundVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+        }
+
+        return allroundVillagers;
+    }
 
     private void updateAllroundVillagersView() {
+        this.allrounderComponents = new ArrayList<VillagerComponent>();
+        this.allroundVillagersContainer.getChildren().clear();
+
+
+        for (int i = 0; i < this.allrounders.size(); i++) {
+
+            VillagerComponent allroundComponent = new VillagerComponent(this.allrounders.get(i));
+            this.allrounderComponents.add(allroundComponent);
+            this.allroundVillagersContainer.getChildren().add(allroundComponent);
+        }
     }
+
+
 
     public static void setClient(Client c) {
         client = c;

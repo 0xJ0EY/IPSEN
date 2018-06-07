@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import server.sources.models.villagers.AllroundVillager;
 import server.sources.models.villagers.TrainerVillager;
 import server.sources.models.villagers.Villager;
 
@@ -40,6 +41,8 @@ public class VillagerComponent extends AnchorPane {
             case "BuilderVillager":
                 this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Hammer.png')");
                 break;
+            case "AllroundVillager":
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/allround.png')");
             default:
                 break;
         }
