@@ -3,6 +3,7 @@ package server.sources.interfaces;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
+import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
@@ -48,6 +49,8 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
     public int getPotions() throws RemoteException;
 
+    public ArrayList<Good> getGoods() throws RemoteException;
+
     public void payCoin(int price) throws RemoteException;
 
     public void addHouse(House building) throws RemoteException;
@@ -64,8 +67,10 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
     public boolean hasBeds() throws RemoteException;
 
-    public void useCider(VillagerInterface villager) throws RemoteException;
+    public void useCider() throws RemoteException;
 
-    public void usePotion(VillagerInterface villager) throws RemoteException;
+    public void usePotion() throws RemoteException;
+
+    public void useBed() throws RemoteException;
 
 }
