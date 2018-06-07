@@ -41,7 +41,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     private void generateRandomBackground() throws RemoteException {
         int villager = (int) Math.floor(Math.random() * 5 + 1);
         this.background = "villagerBackground" + villager + ".png";
-        
+
     }
 
     public int calculateLanters(Dice dice) throws RemoteException {

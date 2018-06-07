@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.*;
 
 import java.rmi.RemoteException;
@@ -35,13 +36,13 @@ public class TrainController implements ControllerInterface {
      * @author Robin Silvério
      */
 
-    private ArrayList<Villager> villagers = new ArrayList<Villager>();
+    private ArrayList<VillagerInterface> villagers = new ArrayList<VillagerInterface>();
     private VillagerFactory factory;
 
 
-    private ArrayList<TrainerVillager> trainers = new ArrayList<TrainerVillager>();
-    private ArrayList<BuilderVillager> builders = new ArrayList<BuilderVillager>();
-    private ArrayList<AllroundVillager> allrounders = new ArrayList<AllroundVillager>();
+    private ArrayList<VillagerInterface> trainers = new ArrayList<VillagerInterface>();
+    private ArrayList<VillagerInterface> builders = new ArrayList<VillagerInterface>();
+    private ArrayList<VillagerInterface> allrounders = new ArrayList<VillagerInterface>();
 
 
     private ArrayList<VillagerComponent> villagerComponents;
@@ -103,14 +104,18 @@ public class TrainController implements ControllerInterface {
      * @return
      * @author: Robin Silvério
      */
-    private ArrayList<Villager> setVillagersToArrayList(){
+    private ArrayList<VillagerInterface> setVillagersToArrayList(){
 
-        ArrayList<Villager> villagers = new ArrayList<Villager>();
+        ArrayList<VillagerInterface> villagers = new ArrayList<VillagerInterface>();
         lanterns = new ArrayList<Lantern>();
         for(int i = 0; i < 5; i++){
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
-            villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), false, false));
+            try {
+                villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return villagers;
@@ -148,14 +153,18 @@ public class TrainController implements ControllerInterface {
      * @return villagers arrayLists met trainer Villagers
      * @author: Robin Silvério
      */
-    private ArrayList<TrainerVillager> setTrainersToArrayList(){
+    private ArrayList<VillagerInterface> setTrainersToArrayList(){
 
-        ArrayList<TrainerVillager> trainers = new ArrayList<TrainerVillager>();
+        ArrayList<VillagerInterface> trainers = new ArrayList<VillagerInterface>();
         lanterns = new ArrayList<Lantern>();
         for(int i = 0; i < 5; i++){
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
-            trainers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+            try {
+                trainers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return trainers;
@@ -183,13 +192,17 @@ public class TrainController implements ControllerInterface {
         }
     }
 
-    private ArrayList<BuilderVillager> setBuildersToArrayList() {
-        ArrayList<BuilderVillager> builders = new ArrayList<BuilderVillager>();
+    private ArrayList<VillagerInterface> setBuildersToArrayList() {
+        ArrayList<VillagerInterface> builders = new ArrayList<VillagerInterface>();
 
         for (int i = 0; i < 5; i++) {
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
-            builders.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+            try {
+                builders.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return builders;
@@ -205,13 +218,17 @@ public class TrainController implements ControllerInterface {
         this.allrounders = setAllroundVillagersToArrayList();
     }
 
-    private ArrayList<AllroundVillager> setAllroundVillagersToArrayList() {
-        ArrayList<AllroundVillager> allroundVillagers = new ArrayList<AllroundVillager>();
+    private ArrayList<VillagerInterface> setAllroundVillagersToArrayList() {
+        ArrayList<VillagerInterface> allroundVillagers = new ArrayList<VillagerInterface>();
 
         for (int i = 0; i < 5; i++) {
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
             lanterns.add(new Lantern((int)(Math.random() * 10) + 1, (int)(Math.random() * 5) + 1));
-            allroundVillagers.add(new AllroundVillager((ArrayList<Lantern>) lanterns.clone(), false, false));
+            try {
+                allroundVillagers.add(new AllroundVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return allroundVillagers;
