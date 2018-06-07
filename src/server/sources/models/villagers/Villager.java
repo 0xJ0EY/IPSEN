@@ -4,6 +4,7 @@ import client.source.components.villager.TypeDefaultComponent;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.models.Dice;
 
 import java.io.Serializable;
@@ -23,6 +24,10 @@ public class Villager implements Serializable {
 
         this.generateRandomBackground();
 
+    }
+
+    public boolean canTrain(PlayerInterface player){
+        return true;
     }
 
     //TODO: moet nog bedden weghalen

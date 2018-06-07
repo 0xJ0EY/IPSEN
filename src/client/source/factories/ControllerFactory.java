@@ -5,6 +5,7 @@ import client.source.components.building.HouseComponent;
 import client.source.components.building.KeyhouseComponent;
 import client.source.components.building.OutpostComponent;
 import client.source.components.building.StarhouseComponent;
+import client.source.components.villager_to_train.VillagerComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -150,10 +151,7 @@ public class ControllerFactory {
 
             trainController = loader.getController();
             trainController.setClient(this.client);
-//            HouseComponent.setClient(this.client);
-//            StarhouseComponent.setClient(this.client);
-//            KeyhouseComponent.setClient(this.client);
-//            OutpostComponent.setClient(this.client);
+            VillagerComponent.setClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }

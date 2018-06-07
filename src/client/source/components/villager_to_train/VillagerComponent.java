@@ -1,5 +1,6 @@
 package client.source.components.villager_to_train;
 
+import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -10,9 +11,11 @@ import server.sources.models.villagers.TrainerVillager;
 import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class VillagerComponent extends AnchorPane {
 
+    private static Client client;
     private Villager villager;
     @FXML AnchorPane background;
     @FXML AnchorPane type;
@@ -59,6 +62,14 @@ public class VillagerComponent extends AnchorPane {
 
     @FXML
     private void trainBtn(){
-        System.out.println("Clicked on train button");
+        try {
+            System.out.println(client.getGameClient().getPlayer().getUsername());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setClient(Client c){
+        client = c;
     }
 }
