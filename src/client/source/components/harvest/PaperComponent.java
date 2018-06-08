@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class PaperComponent extends AnchorPane implements Serializable {
     public PaperComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/paperPerk.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/harvest/paperPerk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

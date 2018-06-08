@@ -1,4 +1,4 @@
-package client.source.components.reward;
+package client.source.components.villager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,14 +7,14 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class CatComponent extends VBox {
+public class TypeCatComponent extends VBox {
 
     @FXML private AnchorPane background;
     @FXML private AnchorPane type;
 
-    public CatComponent() {
+    public TypeCatComponent() {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/reward/cat_villager.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/cat_villager.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

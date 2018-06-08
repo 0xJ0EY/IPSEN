@@ -37,7 +37,7 @@ public class KeyhouseComponent extends VBox {
 
         this.building = keyHouse;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/keyhouse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/keyhouse.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

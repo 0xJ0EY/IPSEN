@@ -42,6 +42,9 @@ public class MainController implements ControllerInterface, Observable {
 
     @FXML private Text message;
 
+
+    private Thread messageThread;
+
     /**
      * This is for assigning tabcontainer.
      */
@@ -85,6 +88,7 @@ public class MainController implements ControllerInterface, Observable {
     }
 
     public void showMessage(String message) {
+        if (this.messageThread != null && this.messageThread.isAlive()) this.messageThread.interrupt();
 
         Runnable r = () -> {
             this.message.setText(message);
@@ -93,14 +97,15 @@ public class MainController implements ControllerInterface, Observable {
             try {
                 Thread.sleep(1750);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println("Message interrupted");
+            } finally {
+                this.message.setVisible(false);
             }
-
-            this.message.setVisible(false);
 
         };
 
-        new Thread(r).start();
+        this.messageThread = new Thread(r);
+        this.messageThread.start();
 
     }
 }

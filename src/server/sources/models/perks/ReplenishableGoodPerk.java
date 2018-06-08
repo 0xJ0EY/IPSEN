@@ -7,39 +7,8 @@ public class ReplenishableGoodPerk implements Perk, Harvastable {
     private Good good;
     private int amountLeft = 1;
 
-    public ReplenishableGoodPerk(String good){
-        switch (good){
-            case "AMETHYST":
-                this.good = new AmethystGood();
-                break;
-            case "PAPER":
-                this.good = new PaperGood();
-                break;
-            case "FISH":
-                this.good = new FishGood();
-                break;
-            case "FRUIT":
-                this.good = new FruitGood();
-                break;
-            case "MUSHROOM":
-                this.good = new MushroomGood();
-                break;
-            case "ORE":
-                this.good = new OreGood();
-                break;
-            case "POT":
-                this.good = new PotGood();
-                break;
-            case "ROPE":
-                this.good = new RopeGood();
-                break;
-            case "CIDER":
-                this.good = new CiderGood();
-                break;
-            default:
-                this.good = null;
-                break;
-        }
+    public ReplenishableGoodPerk(Good good){
+        this.good = good;
     }
 
     /**
@@ -70,11 +39,6 @@ public class ReplenishableGoodPerk implements Perk, Harvastable {
     public Good harvestGood() {
         amountLeft--;
         return good;
-    }
-
-    public void ik(){
-        int i = 0;
-        i--;
     }
 
     public void replenishGood(){

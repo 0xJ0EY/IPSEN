@@ -1,6 +1,7 @@
 package server.sources.controllers;
 
 import server.sources.interfaces.*;
+import server.sources.models.Market;
 import server.sources.models.Player;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
@@ -28,7 +29,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private int turn = 0;
 
     private StoryController stories = new StoryController();
-    private MarketController market = new MarketController();
+    private Market market = new Market();
     private ReputationBoardController reputationboard = new ReputationBoardController();
 
     public GameController(ServerInterface server) throws RemoteException {
@@ -90,10 +91,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
             this.restVillagers();
 
+            this.endOfRound();
+
             this.turn = 0;
             this.round++;
-
-            this.server.notifyClients(new MessageNotification("u all gay"));
         }
 
     }
@@ -114,23 +115,13 @@ public class GameController extends UnicastRemoteObject implements GameControlle
             try {
 
                 for (Player player : players) {
-                    System.out.println("REEEE");
-
-
-                    System.out.println("player.hasAction() = " + player.hasAction());
-
                     if (!player.hasAction()) hasAction = false;
-
-
-                    System.out.println("hasAction = " + hasAction);
                 }
 
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            System.out.println("hasAction = " + hasAction);
 
         } while (!hasAction);
 
@@ -179,6 +170,27 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         return hasEnded;
     }
 
+    /**
+     * Replenish stores, Reset villagers, etc.. after the round.
+     * @author Joey de Ruiter
+     */
+    private void endOfRound() {
+        try {
+            // Reset turn
+            this.turn = 0;
+
+            // Reset villagers, so they can sleep again
+            for (Player player : this.players) {
+                player.getPlayerBoard().endOfRound();
+            }
+
+
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     private boolean gameHasEnded() {
         return this.round >= this.MAX_ROUNDS;
     }
@@ -200,8 +212,8 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     @Override
-    public MarketControllerInterface getMarket() throws RemoteException {
-        return (MarketControllerInterface) market;
+    public MarketInterface getMarket() throws RemoteException {
+        return (MarketInterface) market;
     }
 
     public ReputationBoardInterface getReputationBoard(){

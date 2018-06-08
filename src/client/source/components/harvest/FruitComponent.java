@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class FruitComponent extends AnchorPane implements Serializable {
     public FruitComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/fruitPerk.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/harvest/fruitPerk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class FishComponent extends AnchorPane implements Serializable {
     public FishComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/fishPerk.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/harvest/fishPerk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

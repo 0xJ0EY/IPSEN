@@ -5,10 +5,9 @@ import client.source.components.building.HouseComponent;
 import client.source.components.building.KeyhouseComponent;
 import client.source.components.building.OutpostComponent;
 import client.source.components.building.StarhouseComponent;
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import server.sources.models.stories.Story;
 
 import java.io.IOException;
 
@@ -141,6 +140,23 @@ public class ControllerFactory {
         return build;
     }
 
+    public TrainController createTrain() {
+        TrainController trainController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/train_market.fxml"));
+            loader.load();
+
+            trainController = loader.getController();
+            trainController.setClient(this.client);
+            TrainerVillagerComponent.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return trainController;
+    }
+
     /**
      * Load the view and controller of villager selection
      * @return the assinged controller
@@ -165,7 +181,7 @@ public class ControllerFactory {
         HarvestController harvestSelection = null;
 
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/harvest.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/harvest.fxml"));
             loader.load();
 
             harvestSelection = loader.getController();

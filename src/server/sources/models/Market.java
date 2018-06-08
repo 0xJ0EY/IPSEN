@@ -1,22 +1,18 @@
-package server.sources.controllers;
+package server.sources.models;
 
-import client.source.controllers.SellGoodController;
-import javafx.fxml.FXML;
-import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.MarketControllerInterface;
-import server.sources.models.Player;
+import server.sources.controllers.GoodOnSale;
+import server.sources.interfaces.MarketInterface;
+
 import server.sources.models.buildings.*;
-import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class MarketController extends UnicastRemoteObject implements MarketControllerInterface {
+public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private static final long serialVersionUID = 1337L;
 
@@ -31,7 +27,7 @@ public class MarketController extends UnicastRemoteObject implements MarketContr
 
     private ArrayList<Villager> villagers = new ArrayList<>();
 
-    public MarketController() throws RemoteException {
+    public Market() throws RemoteException {
 
     }
 
