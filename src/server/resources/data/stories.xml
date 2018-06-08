@@ -31,7 +31,10 @@
         <choices>
             <choice description="SEARCH ON THIS SIDE OF THE RAVINE">
                 <option cost="0">
-
+                    <reward value="6">COIN</reward>
+                    <reward type="MUSHROOM" value="1">GOOD</reward>
+                    <reward type="TIN" value="1">VILLAGER</reward>
+                    <reward value="-1">REPUTATION</reward>
                     <reward>CIDER</reward>
                     <reward>POTION</reward>
                 </option>
@@ -55,7 +58,10 @@
                 <option cost="0">
                     <reward value="6">COIN</reward>
                     <reward type="MUSHROOM" value="1">GOOD</reward>
-
+                    <reward type="TIN" value="1">VILLAGER</reward>
+                    <reward value="-1">REPUTATION</reward>
+                    <reward>CIDER</reward>
+                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="HEAD TOWARDS THE COLUMNS">
@@ -76,10 +82,12 @@
         <choices>
             <choice description="AVOID THE RAT">
                 <option cost="0">
-
+                    <reward value="6">COIN</reward>
+                    <reward type="MUSHROOM" value="1">GOOD</reward>
                     <reward type="TIN" value="1">VILLAGER</reward>
                     <reward value="-1">REPUTATION</reward>
-
+                    <reward>CIDER</reward>
+                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="FIGHT PAST THE RAT">
