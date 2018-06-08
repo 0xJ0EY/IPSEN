@@ -1,6 +1,6 @@
 package server.sources.models.villagers;
 
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

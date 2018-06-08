@@ -2,8 +2,7 @@ package server.sources.models.stories;
 
 import client.source.Client;
 import org.w3c.dom.Element;
-import server.sources.interfaces.PlayerBoardControllerInterface;
-import server.sources.interfaces.VillagerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.strategies.villagers.*;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,7 +24,7 @@ public class Reward implements Serializable {
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
 
 
-        PlayerBoardControllerInterface playerBoard = client.getGameClient().getPlayer().getPlayerBoard();
+        PlayerBoardInterface playerBoard = client.getGameClient().getPlayer().getPlayerBoard();
 
         switch(this.reward.getTextContent()){
             case "COIN":

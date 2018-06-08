@@ -1,11 +1,11 @@
 package server.sources.strategies.villagers;
 
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.io.Serializable;
 
 public interface AddVillagerStrategy extends Serializable {
 
-    public void execute(PlayerBoardControllerInterface playerboard);
+    public void execute(PlayerBoardInterface playerboard);
 
 }

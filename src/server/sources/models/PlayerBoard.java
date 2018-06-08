@@ -1,12 +1,13 @@
-package server.sources.controllers;
+package server.sources.models;
 
 
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
+import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
@@ -15,7 +16,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
+public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
     private static final long serialVersionUID = 1337L;
 
@@ -25,13 +26,14 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
+    private ArrayList<Building> harvestBuildings;
 
     private int ciders = 2;
     private int potions = 2;
     private int coins = 10;
     private int beds = 3;
 
-    public PlayerBoardController(PlayerInterface player) throws RemoteException {
+    public PlayerBoard(PlayerInterface player) throws RemoteException {
         this.player = player;
 
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -234,11 +236,8 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         this.updateObserver();
     }
 
-    /**
-     * For retrieving houses. Mostly with a purpose to add newly build houses.
-     * @return
-     */
-    public ArrayList<House> getHouses() {
+    @Override
+    public ArrayList<House> getHouses() throws RemoteException{
         return this.houses;
     }
 
@@ -247,7 +246,8 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         this.updateObserver();
     }
 
-    public ArrayList<Outpost> getOutposts() {
+    @Override
+    public ArrayList<Outpost> getOutposts()throws RemoteException {
         return this.outposts;
     }
     public void addOutpost(Outpost outpost){
@@ -298,6 +298,28 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
             this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ArrayList<Building> getHarvestBuildings() {
+        this.checkHarvestBuildings();
+        return this.harvestBuildings;
+    }
+
+    private void checkHarvestBuildings() {
+        this.harvestBuildings = new ArrayList<>();
+
+        for (int i = 0; i < houses.size(); i++){
+            if (houses.get(i).getGoodComponent() != null && houses.get(i).getHarvastable().amountLeft() > 0){
+                harvestBuildings.add(houses.get(i));
+            }
+        }
+
+        for (int i = 0; i < outposts.size(); i++){
+            if (outposts.get(i).getGoodComponent() != null && outposts.get(i).getHarvastable().amountLeft() > 0){
+                harvestBuildings.add(outposts.get(i));
+            }
         }
     }
 }

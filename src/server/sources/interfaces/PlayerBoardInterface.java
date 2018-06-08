@@ -12,7 +12,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface PlayerBoardControllerInterface extends Remote, Serializable {
+public interface PlayerBoardInterface extends Remote, Serializable {
 
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException;
 
@@ -35,6 +35,7 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void addGood(String type) throws RemoteException;
     
     public void addPotion() throws RemoteException;
+
 
     /**
      * Get current amout of coins
@@ -74,6 +75,8 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void usePotion() throws RemoteException;
 
     public void useBed() throws RemoteException;
+
+    public ArrayList<Building> getHarvestBuildings() throws RemoteException;
 
     public void endOfRound() throws RemoteException;
 

@@ -36,7 +36,7 @@ public class OutpostComponent extends VBox {
 
         this.building = outpost;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/outpost.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/outpost.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

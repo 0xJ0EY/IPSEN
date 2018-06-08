@@ -9,7 +9,7 @@ public interface GameControllerInterface extends Remote, Serializable {
 
     public StoryControllerInterface getStories() throws RemoteException;
 
-    public MarketControllerInterface getMarket() throws RemoteException;
+    public MarketInterface getMarket() throws RemoteException;
 
     public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException;
 

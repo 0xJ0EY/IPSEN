@@ -2,15 +2,15 @@ package server.sources.notifications;
 
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.rmi.RemoteException;
 
 public class UpdatePlayerBoardNotification implements NotificationInterface {
 
-    private PlayerBoardControllerInterface playerboard;
+    private PlayerBoardInterface playerboard;
 
-    public UpdatePlayerBoardNotification(PlayerBoardControllerInterface playerboard) {
+    public UpdatePlayerBoardNotification(PlayerBoardInterface playerboard) {
         this.playerboard = playerboard;
     }
 

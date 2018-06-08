@@ -4,7 +4,7 @@ import client.source.Client;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.rmi.RemoteException;
 
@@ -15,7 +15,7 @@ public class AboveController implements Observable {
     @FXML Label labelCiders;
     @FXML Label labelPotions;
 
-    private PlayerBoardControllerInterface playerBoard;
+    private PlayerBoardInterface playerBoard;
 
     private Client client;
 

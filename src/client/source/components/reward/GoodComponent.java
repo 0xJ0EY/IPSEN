@@ -1,4 +1,6 @@
 package client.source.components.reward;
 
-public class GoodComponent {
+import javafx.scene.layout.AnchorPane;
+
+public class GoodComponent extends AnchorPane {
 }
