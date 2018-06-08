@@ -24,9 +24,4 @@ public class AllroundVillager extends Villager implements Trainable, Buildable {
 
     }
 
-    @Override
-    public AnchorPane getType() {
-        return new TypeAllroundComponent();
-    }
-
 }

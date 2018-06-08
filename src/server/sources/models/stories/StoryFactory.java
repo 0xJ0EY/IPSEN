@@ -120,7 +120,7 @@ public class StoryFactory {
         for (int i = 0; i < rewardNodes.getLength(); i++) {
             Node rewardNode = rewardNodes.item(i);
             Element rewardElement = (Element) rewardNode;
-            String type = rewardElement.getAttribute("type");
+            String type = rewardElement.getAttribute("villagerType");
             int value;
 
             switch (rewardElement.getTextContent()){

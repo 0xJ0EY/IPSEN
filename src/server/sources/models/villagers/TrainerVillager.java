@@ -19,8 +19,4 @@ public class TrainerVillager extends Villager implements Trainable {
 
     }
 
-    @Override
-    public AnchorPane getType() {
-        return new TypeTrainerComponent();
-    }
 }

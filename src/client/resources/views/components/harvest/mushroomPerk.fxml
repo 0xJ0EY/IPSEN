@@ -4,6 +4,6 @@
 
 
 <fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://java.sun.com/JSP/Page" prefHeight="50.0"
-         prefWidth="50.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/9.0.1">
+         prefWidth="50.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/8.0.141">
 
 </fx:root>

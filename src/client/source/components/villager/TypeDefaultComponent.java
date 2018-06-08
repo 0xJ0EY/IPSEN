@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class TypeDefaultComponent extends AnchorPane implements Serializable {
+public class TypeDefaultComponent extends VillagerType {
 
     public TypeDefaultComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/type_default.fxml"));
