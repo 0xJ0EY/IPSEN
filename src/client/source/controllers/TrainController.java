@@ -1,7 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.components.villager_to_train.VillagerComponent;
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -45,10 +45,10 @@ public class TrainController implements ControllerInterface {
     private ArrayList<VillagerInterface> allrounders = new ArrayList<VillagerInterface>();
 
 
-    private ArrayList<VillagerComponent> villagerComponents;
-    private ArrayList<VillagerComponent> trainerComponents;
-    private ArrayList<VillagerComponent> builderComponents;
-    private ArrayList<VillagerComponent> allrounderComponents;
+    private ArrayList<TrainerVillagerComponent> trainerVillagerComponents;
+    private ArrayList<TrainerVillagerComponent> trainerComponents;
+    private ArrayList<TrainerVillagerComponent> builderComponents;
+    private ArrayList<TrainerVillagerComponent> allrounderComponents;
 
     ArrayList<Lantern> lanterns;
 
@@ -87,15 +87,15 @@ public class TrainController implements ControllerInterface {
      * @author: Robin Silvério
      */
     private void updateVillagersView() {
-        this.villagerComponents = new ArrayList<VillagerComponent>();
+        this.trainerVillagerComponents = new ArrayList<TrainerVillagerComponent>();
         this.villagersContainer.getChildren().clear();
 
 
         for (int i = 0; i < this.villagers.size(); i++) {
 
-            VillagerComponent villagerComponent = new VillagerComponent(this.villagers.get(i));
-            this.villagerComponents.add(villagerComponent);
-            this.villagersContainer.getChildren().add(villagerComponent);
+            TrainerVillagerComponent trainerVillagerComponent = new TrainerVillagerComponent(this.villagers.get(i));
+            this.trainerVillagerComponents.add(trainerVillagerComponent);
+            this.villagersContainer.getChildren().add(trainerVillagerComponent);
         }
     }
 
@@ -136,13 +136,13 @@ public class TrainController implements ControllerInterface {
      * @author: Robin Silvério
      */
     private void updateTrainersView() {
-        this.trainerComponents = new ArrayList<VillagerComponent>();
+        this.trainerComponents = new ArrayList<TrainerVillagerComponent>();
         this.trainerVillagersContainer.getChildren().clear();
 
 
         for (int i = 0; i < this.trainers.size(); i++) {
 
-            VillagerComponent trainerComponent = new VillagerComponent(this.trainers.get(i));
+            TrainerVillagerComponent trainerComponent = new TrainerVillagerComponent(this.trainers.get(i));
             this.trainerComponents.add(trainerComponent);
             this.trainerVillagersContainer.getChildren().add(trainerComponent);
         }
@@ -180,13 +180,13 @@ public class TrainController implements ControllerInterface {
     }
 
     private void updateBuilderVillagersView() {
-        this.builderComponents = new ArrayList<VillagerComponent>();
+        this.builderComponents = new ArrayList<TrainerVillagerComponent>();
         this.builderVillagersContainer.getChildren().clear();
 
 
         for (int i = 0; i < this.builders.size(); i++) {
 
-            VillagerComponent builderComponent = new VillagerComponent(this.builders.get(i));
+            TrainerVillagerComponent builderComponent = new TrainerVillagerComponent(this.builders.get(i));
             this.builderComponents.add(builderComponent);
             this.builderVillagersContainer.getChildren().add(builderComponent);
         }
@@ -235,13 +235,13 @@ public class TrainController implements ControllerInterface {
     }
 
     private void updateAllroundVillagersView() {
-        this.allrounderComponents = new ArrayList<VillagerComponent>();
+        this.allrounderComponents = new ArrayList<TrainerVillagerComponent>();
         this.allroundVillagersContainer.getChildren().clear();
 
 
         for (int i = 0; i < this.allrounders.size(); i++) {
 
-            VillagerComponent allroundComponent = new VillagerComponent(this.allrounders.get(i));
+            TrainerVillagerComponent allroundComponent = new TrainerVillagerComponent(this.allrounders.get(i));
             this.allrounderComponents.add(allroundComponent);
             this.allroundVillagersContainer.getChildren().add(allroundComponent);
         }

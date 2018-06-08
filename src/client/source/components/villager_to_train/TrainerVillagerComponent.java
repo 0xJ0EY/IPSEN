@@ -17,20 +17,17 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 
-public class VillagerComponent extends AnchorPane {
+public class TrainerVillagerComponent extends AnchorPane {
 
     private static Client client;
     private int price = (int) (Math.random()* 20) + 1;
     private VillagerInterface villager;
     @FXML private AnchorPane background;
     @FXML private AnchorPane type;
-    @FXML
-    private Button trainBtn;
+    @FXML private Button trainBtn;
     @FXML private Text price_label;
 
-
-
-    public VillagerComponent(VillagerInterface villager) {
+    public TrainerVillagerComponent(VillagerInterface villager) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager_to_train/villager.fxml"));
 
