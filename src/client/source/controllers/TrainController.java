@@ -69,7 +69,10 @@ public class TrainController implements ControllerInterface, Observable {
         this.villagerContainer.getChildren().clear();
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
-            TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent(this.availableVillagers[i]);
+            TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent();
+            villagerComponent.setModel(this.availableVillagers[i]);
+            villagerComponent.load();
+
             villagerComponent.setOnMouseClicked( e->{
                 villagerComponent.onClickSelect(villagerComponents);
                 this.train.setDisable(false);
