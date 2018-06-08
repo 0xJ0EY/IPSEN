@@ -29,7 +29,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private int turn = 0;
 
     private StoryController stories = new StoryController();
-    private Market market = new Market();
+    private Market market = new Market(this);
     private ReputationBoardController reputationboard = new ReputationBoardController();
 
     public GameController(ServerInterface server) throws RemoteException {

@@ -19,7 +19,7 @@
             </font></Label>
         <FlowPane fx:id="villagerContainer" columnHalignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" >
         </FlowPane>
-        <Button maxHeight="60.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickTrain" prefHeight="60.0" text="TRAIN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Button fx:id="train" disable="true" maxHeight="60.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickTrain" prefHeight="60.0" text="TRAIN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <font>
                 <Font size="36.0" />
             </font></Button>

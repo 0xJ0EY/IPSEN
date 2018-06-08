@@ -1,6 +1,9 @@
 package server.sources.models;
 
+import server.sources.controllers.GameController;
+import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.MarketInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.*;
 import server.sources.models.villagers.Villager;
@@ -24,15 +27,26 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private House[] availableHouses = new House[4];
     private Outpost[] availableOutposts = new Outpost[4];
-    private VillagerInterface[] availableVillagers = new VillagerInterface[5];
+    private Villager[] availableVillagers = new Villager[5];
+
+    private GameController gameController;
 
     public VillagerInterface[] listAvailableVillagers() {
         replenishVillagers();
-        return availableVillagers;
+
+        VillagerInterface[] villagers = new VillagerInterface[this.availableVillagers.length];
+
+        for (int i = 0; i < this.availableVillagers.length; i++) {
+            Villager villager = this.availableVillagers[i];
+
+            villagers[i] = (VillagerInterface) villager;
+        }
+
+        return villagers;
     }
 
-    public Market() throws RemoteException {
-
+    public Market(GameController gameController) throws RemoteException {
+        this.gameController = gameController;
     }
 
     public void load() {
@@ -110,23 +124,22 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         }
     }
 
-    public void buyHouse(Player player, House house){
+    @Override
+    public void buyRemoteVillager(GameClientInterface gameClient, VillagerInterface villagerInterface) throws RemoteException {
 
-    }
+        Player localPlayer = null;
 
-    public void buyOutposts(Player player, House house){
+        // Get local player
+        for (Player player : this.gameController.players) {
+            if (player.getGameClient().equals(gameClient)) {
+                localPlayer = player;
+            }
+        }
 
-    }
-
-    public void buyStarHouse(Player player, House house){
-
-    }
-
-    public void buyKeyHouse(Player player, House house){
-
-    }
-
-    public void buyVillager(Player player, Villager villager){
-
+        for (Villager availableVillager : this.availableVillagers) {
+            if (availableVillager.equals(villagerInterface)) {
+                localPlayer.getPlayerBoard().addVillager(availableVillager);
+            }
+        }
     }
 }

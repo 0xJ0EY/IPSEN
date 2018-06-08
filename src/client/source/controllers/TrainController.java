@@ -3,14 +3,14 @@ package client.source.controllers;
 import client.source.Client;
 import client.source.components.villager_to_train.VillagerComponent;
 import client.source.observers.Observable;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.MarketInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.Market;
-import server.sources.models.villagers.*;
+import server.sources.models.villagers.Villager;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -26,9 +26,12 @@ public class TrainController implements ControllerInterface, Observable {
 
     @FXML private FlowPane villagerContainer;
 
+    @FXML private Button train;
+
     private VillagerInterface[] availableVillagers;
 
     private ArrayList<VillagerComponent> villagerComponents;
+    private PlayerBoardInterface playerboard;
 
     @Override
     public Parent show() {
@@ -65,6 +68,10 @@ public class TrainController implements ControllerInterface, Observable {
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
             VillagerComponent villagerComponent = new VillagerComponent(this.availableVillagers[i]);
+            villagerComponent.setOnMouseClicked( e->{
+                villagerComponent.onClickSelect(villagerComponents);
+                this.train.setDisable(false);
+            });
             this.villagerComponents.add(villagerComponent);
             this.villagerContainer.getChildren().add(villagerComponent);
         }
@@ -76,12 +83,23 @@ public class TrainController implements ControllerInterface, Observable {
     public void setClient(Client client) throws RemoteException {
         this.client = client;
 
+        this.playerboard = client.getGameClient().getPlayer().getPlayerBoard();
+
         this.market = client.getGameClient().getServer().getGameController().getMarket();
 
         this.client.clientObserver.attach(this);
     }
 
-    public void onClickTrain() {
+    public void onClickTrain() throws RemoteException {
         System.out.println("buying");
+
+        for(int i=0; i < villagerComponents.size(); i++){
+            VillagerComponent villager = villagerComponents.get(i);
+            if(villager.isSelected()){
+                market.buyRemoteVillager(client.getGameClient(), villager.getVillager());
+                this.availableVillagers[i] = null;
+                client.showTrainReward(villager);
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ import server.sources.models.Dice;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
@@ -23,6 +24,8 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     protected PlayerBoardInterface playerBoard;
 
     protected boolean slept = false;
+
+    private UUID uuid = UUID.randomUUID();
 
     public Villager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
         this.lanterns = lanterns;
@@ -118,5 +121,15 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     @Override
     public void endOfRound() throws RemoteException {
         this.slept = false;
+    }
+
+    @Override
+    public boolean equals(VillagerInterface villager) throws RemoteException {
+        return this.uuid.equals(villager.getUUID());
+    }
+
+    @Override
+    public UUID getUUID() throws RemoteException {
+        return this.uuid;
     }
 }

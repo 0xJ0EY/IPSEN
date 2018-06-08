@@ -6,6 +6,7 @@ import server.sources.models.Dice;
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.UUID;
 
 public interface VillagerInterface extends Serializable, Remote {
 
@@ -36,5 +37,9 @@ public interface VillagerInterface extends Serializable, Remote {
     public String getBackground() throws RemoteException;
 
     public void endOfRound() throws RemoteException;
+
+    public boolean equals(VillagerInterface villager) throws RemoteException;
+
+    public UUID getUUID() throws RemoteException;
 
 }
