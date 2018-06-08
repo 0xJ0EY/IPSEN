@@ -5,6 +5,7 @@ import client.source.controllers.*;
 import client.source.controllers.ExplorePartyController;
 import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
+import client.source.factories.VillagerSelectionComponentFactory;
 import client.source.observers.Observer;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.application.Application;
@@ -12,13 +13,11 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
 import server.sources.models.Harvest;
-import server.sources.models.buildings.Building;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
@@ -81,12 +80,19 @@ public class Client extends Application {
         this.setScene(this.main.show());
     }
 
-    public void showVillagerSelection(VillagerSelectionFactory factory, VillagerActionInterface action, VillagerSelectionStrategy strategy) {
+    public void showVillagerSelection(
+            VillagerSelectionFactory villagerFactory,
+            VillagerActionInterface action,
+            VillagerSelectionStrategy strategy,
+            VillagerSelectionComponentFactory componentFactory
+    ) {
+
         VillagerSelectionController selection = controllerFactory.createVillagerSelection();
 
-        selection.setFactory(factory);
+        selection.setVillagerFactory(villagerFactory);
         selection.setVillagerAction(action);
         selection.setStrategy(strategy);
+        selection.setComponentFactory(componentFactory);
 
         this.setScene(selection.show());
     }

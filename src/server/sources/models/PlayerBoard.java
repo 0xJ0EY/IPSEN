@@ -41,6 +41,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
 
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+
         // TODO: A nice implementation of this
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
@@ -293,7 +296,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     }
 
-    private void updateObserver() {
+    public void updateObserver() {
         try {
             this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
         } catch (RemoteException e) {

@@ -9,7 +9,7 @@ import server.sources.interfaces.VillagerInterface;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class SelectableVillagerComponent extends VillagerComponent {
+public abstract class SelectableVillagerComponent extends VillagerComponent {
 
     protected boolean selected;
 
@@ -27,18 +27,33 @@ public class SelectableVillagerComponent extends VillagerComponent {
     }
 
     @FXML
-    private void onClickSelect() {
-        this.selected = !this.selected;
+    public abstract void onClickSelect();
 
-        if(this.selected) {
-            showIndicator();
-        } else {
-            hideIndicator();
-        }
+    public void deselect() {
+        this.selected = false;
+        this.update();
+    }
+
+    public void select() {
+        this.selected = true;
+        this.update();
     }
 
     public boolean isSelected() {
         return this.selected;
+    }
+
+    public void toggleSelected() {
+        this.selected = !this.selected;
+        this.update();
+    }
+
+    protected void update() {
+        if (this.selected) {
+            this.showIndicator();
+        } else {
+            this.hideIndicator();
+        }
     }
 
     protected void showIndicator(){
