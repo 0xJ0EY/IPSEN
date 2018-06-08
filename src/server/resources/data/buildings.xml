@@ -31,7 +31,7 @@
     <house>
         <price>7</price>
         <perks>
-            <perk good="CIDER">REPLENISHABLE_PERK</perk>
+            <perk >REROLL_PERK</perk>
             <perk good="AMETHYST">HARVESTABLE_PERK</perk>
         </perks>
     </house>

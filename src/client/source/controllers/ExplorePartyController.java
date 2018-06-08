@@ -99,6 +99,13 @@ public class ExplorePartyController implements ControllerInterface {
         for (Option option : this.choice.getOptions()){
 
             OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option, client);
+
+            try {
+                optionButtonComponent.setServer(client.getGameClient().getServer());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
             this.optionButtonComponents.add(optionButtonComponent);
             this.optionButtons.getChildren().add(optionButtonComponent);
         }
@@ -116,7 +123,9 @@ public class ExplorePartyController implements ControllerInterface {
 
     public void onClickRun(){
         try {
-            client.getGameClient().getPlayer().doAction(new RunAction(party));
+            RunAction run = new RunAction();
+            run.setSelectedVillagers(party);
+            client.getGameClient().getPlayer().doAction(run);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

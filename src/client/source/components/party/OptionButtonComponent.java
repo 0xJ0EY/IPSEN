@@ -3,8 +3,10 @@ package client.source.components.party;
 import client.source.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import server.sources.interfaces.ServerInterface;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Reward;
+import server.sources.notifications.RewardScreenNotification;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.rmi.RemoteException;
 public class OptionButtonComponent extends Button {
 
     private Option option;
+    private ServerInterface server;
 
     public OptionButtonComponent(Option option, Client client){
         this.option = option;
@@ -40,6 +43,11 @@ public class OptionButtonComponent extends Button {
                 }
             }
             client.showRewards(option);
+            try {
+                this.server.notifyClients(new RewardScreenNotification(option));
+            } catch (RemoteException e1) {
+                e1.printStackTrace();
+            }
         });
     }
 
@@ -49,4 +57,7 @@ public class OptionButtonComponent extends Button {
         }
     }
 
+    public void setServer(ServerInterface server) {
+        this.server = server;
+    }
 }

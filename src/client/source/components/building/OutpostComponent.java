@@ -3,6 +3,8 @@ package client.source.components.building;
 import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -36,7 +38,7 @@ public class OutpostComponent extends VBox {
 
         this.building = outpost;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/outpost.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/outpost.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);
@@ -56,10 +58,12 @@ public class OutpostComponent extends VBox {
      */
     @FXML
     private void buildOutpost() {
-        // TODO: Show indicator
+        // This is for displaying a message to warn user for not having enough coins to build a building.
+        Alert alert = new Alert(Alert.AlertType.WARNING, "You don't have enough coins to build an outpost.", ButtonType.OK);
+
         try {
             if (!this.building.canBuy(client.getGameClient().getPlayer())){
-                System.out.println("You don't have enough coins.");
+                alert.show();
             }
             else{
                 client.getGameClient().getPlayer().getPlayerBoard().addOutpost((Outpost) this.building);

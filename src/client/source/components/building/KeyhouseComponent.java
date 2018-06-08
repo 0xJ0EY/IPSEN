@@ -3,6 +3,8 @@ package client.source.components.building;
 import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -37,7 +39,7 @@ public class KeyhouseComponent extends VBox {
 
         this.building = keyHouse;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/keyhouse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/keyhouse.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);
@@ -53,10 +55,12 @@ public class KeyhouseComponent extends VBox {
 
     @FXML
     private void buildKeyhouse() {
-        // TODO: Show indicator
+        // This is for displaying a message to warn user for not having enough coins to build a building.
+        Alert alert = new Alert(Alert.AlertType.WARNING, "You don't have enough coins to build a keyhouse.", ButtonType.OK);
+
         try {
             if (!this.building.canBuy(client.getGameClient().getPlayer())){
-                System.out.println("You don't have enough coins.");
+                alert.show();
             }
             else{
                 client.getGameClient().getPlayer().getPlayerBoard().addHouse((KeyHouse) this.building);

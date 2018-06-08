@@ -1,10 +1,9 @@
 package server.sources.models;
 
 import server.sources.controllers.GameController;
-import server.sources.controllers.PlayerBoardController;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.notifications.PlayerTurnNotification;
 
@@ -16,8 +15,10 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     private static final long serialVersionUID = 1337L;
 
-    public PlayerBoardController board = new PlayerBoardController();
+    public PlayerBoard board = new PlayerBoard(this);
+
     public GameController gameController;
+    public int reputation = 0;
 
     private transient GameClientInterface gameClient;
 
@@ -76,12 +77,17 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     }
 
     /**
-     * Return the PlayerBoardControllerInterface so it can be used for RMI communicaton
+     * Return the PlayerBoardInterface so it can be used for RMI communicaton
      * @return
      */
     @Override
-    public PlayerBoardControllerInterface getPlayerBoard() {
-        return (PlayerBoardController) this.board;
+    public PlayerBoardInterface getPlayerBoard() {
+        return (PlayerBoard) this.board;
+    }
+
+    @Override
+    public int getReputation() throws RemoteException {
+        return this.reputation;
     }
 
     public void resetAfterRound() {
@@ -121,4 +127,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
         return cardBonusses;
     }
+    @Override
+    public void changeReputation(int amount) throws RemoteException {
+        this.reputation += amount;
+    }
+
 }

@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import server.sources.models.goods.*;
 import server.sources.models.perks.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -124,55 +125,43 @@ public class BuildingFactory {
             Node perkNode = perkNodes.item(i);
             Element perkElement = (Element) perkNode;
 
-//            System.out.println(
-//                    "Building: " + buildingElement.getTagName() + "{\n" +
-//                    "\tperkElement = " + perkElement.getTextContent() + "\n" +
-//                    "\tvalue:" + perkElement.getAttribute("value") + "\n" +
-//                    "\tgood: " + perkElement.getAttribute("good") + "\n}"
-//            );
+            Good good = null;
+
             switch (perkElement.getTextContent()){
                 case "REPLENISHABLE_PERK":
-                    perks.add(
-                            new ReplenishableGoodPerk(perkElement.getAttribute("good"))
-                    );
+                    good = this.getGoodFromString(perkElement.getAttribute("good"));
+                    perks.add(new ReplenishableGoodPerk(good));
                     break;
+
                 case "HARVESTABLE_PERK":
-                    perks.add(
-                            new HarvestableGoodPerk(perkElement.getAttribute("good"))
-                    );
+                    good = this.getGoodFromString(perkElement.getAttribute("good"));
+                    perks.add(new HarvestableGoodPerk(good));
                     break;
+
                 case "CIDER":
-                    perks.add(
-                        new CiderPerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new CiderPerk(Integer.parseInt(perkElement.getAttribute("value"))));
                     break;
+
                 case "POTION":
-                    perks.add(
-                        new PotionPerk()
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new PotionPerk());
                     break;
+
                 case "REROLL":
-                    perks.add(
-                        new RerollPerk(perkElement.getTextContent())
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new RerollPerk(perkElement.getTextContent()));
                     break;
+
                 case "INCOME":
                     perks.add(new IncomePerk(Integer.parseInt(perkElement.getAttribute("value"))));
-//                    System.out.println("Perk implemented");
                     break;
+
                 case "COINS":
-                    perks.add(
-                        new CoinPerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new CoinPerk(Integer.parseInt(perkElement.getAttribute("value"))));
                     break;
+
                 case "TRAIN_TO_READY":
                     perks.add(new TrainToReadyPerk());
-//                    System.out.println("Perk implemented");
                     break;
+
                 case "INCOME_FOR_GOODS":
                     perks.add(
                         new IncomeForGoodsPerk(
@@ -180,16 +169,16 @@ public class BuildingFactory {
                             perkElement.getAttribute("good")
                         )
                     );
-//                    System.out.println("Perk implemented");
                     break;
+
                 case "BEDS":
                     perks.add(new BedPerk(Integer.parseInt(perkElement.getAttribute("value"))));
-//                    System.out.println("Perk implemented");
                     break;
+
                 case "VILLAGE_POINTS":
                     perks.add(new villagePointsPerk(Integer.parseInt(perkElement.getAttribute("value"))));
-//                    System.out.println("Perk implemented");
                     break;
+
                 case "VILLAGE_POINTS_FOR_THINGS":
                     perks.add(
                         new villagePointsForThingsPerk(
@@ -197,31 +186,57 @@ public class BuildingFactory {
                             perkElement.getAttribute("goods")
                         )
                     );
-//                    System.out.println("Perk implemented");
                     break;
+
                 case "VILLAGE_POINTS_FOR_EMPTY_CAVE":
-                    perks.add(
-                        new VillagePointsForEmptyCavePerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new VillagePointsForEmptyCavePerk(Integer.parseInt(perkElement.getAttribute("value"))));
                     break;
+
                 case "VILLAGE_POINTS_FOR_VILLAGERS":
-                    perks.add(
-                        new villagePointsForVillagersPerk(Integer.parseInt(perkElement.getAttribute("value")))
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new villagePointsForVillagersPerk(Integer.parseInt(perkElement.getAttribute("value"))));
                     break;
+
                 case "GAIN_REPUTATION":
-                    perks.add(
-                        new ReputationPerk()
-                    );
-//                    System.out.println("Perk implemented");
+                    perks.add(new ReputationPerk());
                     break;
+
                 default:
-//                    System.out.println("Perk is unknown");
                     break;
             }
         }
         return perks;
+    }
+    
+    private Good getGoodFromString(String good) {
+
+        switch (good){
+            case "AMETHYST":
+                return new AmethystGood();
+
+            case "PAPER":
+                return new PaperGood();
+
+            case "FISH":
+                return new FishGood();
+
+            case "FRUIT":
+                return new FruitGood();
+
+            case "MUSHROOM":
+                return new MushroomGood();
+
+            case "ORE":
+                return new OreGood();
+
+            case "POT":
+                return new PotGood();
+
+            case "ROPE":
+                return new RopeGood();
+
+            default:
+                return null;
+        }
+        
     }
 }

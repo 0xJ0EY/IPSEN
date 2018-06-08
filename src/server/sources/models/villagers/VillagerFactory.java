@@ -12,6 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -61,7 +62,7 @@ public class VillagerFactory {
                 Node villagerNode = villagers.item(i);
                 Element villagerElement = (Element) villagerNode; 
                 
-                // Fetch villager type
+                // Fetch villager villagerType
                 switch (this.fetchType(villagerElement).toUpperCase()){
                     case "BUILDER" : list.add(new BuilderVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
                         break;

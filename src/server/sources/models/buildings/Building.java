@@ -1,5 +1,7 @@
 package server.sources.models.buildings;
 
+import javafx.scene.layout.AnchorPane;
+import server.sources.models.perks.Harvastable;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.models.perks.Perk;
 import server.sources.models.Player;
@@ -18,6 +20,8 @@ public class Building implements Serializable {
     private String buildingName;
     private int price;
     private ArrayList<Perk> perks;
+    private Harvastable harvastable = null;
+    private AnchorPane good = null;
 
     /**
      * For creating a building object.
@@ -27,6 +31,14 @@ public class Building implements Serializable {
     public Building(int price, ArrayList<Perk> perks) {
         this.price = price;
         this.perks = perks;
+
+        for (int i = 0; i < perks.size(); i++) {
+            if(perks.get(i)instanceof Harvastable){
+                good = ((Harvastable) perks.get(i)).getGoodComponent();
+                harvastable = ((Harvastable) perks.get(i)).getHarvestable();
+
+            }
+        }
     }
 
     /**
@@ -47,6 +59,14 @@ public class Building implements Serializable {
         return true;
     }
 
+    public ArrayList<Perk> getPerks(){
+        return  this.perks;
+    }
+
+    public AnchorPane getGoodComponent(){
+        return good;
+    }
+
     /**
      * This is necessary to add information on a card
      */
@@ -61,14 +81,18 @@ public class Building implements Serializable {
         return "Price: " + this.price + "\n" + perk;
     }
 
-    public ArrayList<villagePointsPerk> getVillagePointsPerk(){
+    public ArrayList<villagePointsPerk> getVillagePointsPerk() {
         ArrayList<villagePointsPerk> vpPerk = new ArrayList<villagePointsPerk>();
 
-        for (Perk p : this.perks){
+        for (Perk p : this.perks) {
             if (p.getClass().getSimpleName().equals("villagePointsPerk"))
-                vpPerk.add((villagePointsPerk)p);
+                vpPerk.add((villagePointsPerk) p);
         }
 
         return vpPerk;
+    }
+
+    public Harvastable getHarvastable(){
+        return this.harvastable;
     }
 }

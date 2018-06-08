@@ -1,9 +1,8 @@
 package server.sources.controllers;
 
-import server.sources.interfaces.MarketControllerInterface;
+import server.sources.interfaces.MarketInterface;
 import server.sources.models.Player;
 import server.sources.models.buildings.*;
-import server.sources.models.villagers.VillagerFactory;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by robin on 1-6-2018.
  */
-public class BuildMarketController extends UnicastRemoteObject implements MarketControllerInterface {
+public class BuildMarketController extends UnicastRemoteObject implements MarketInterface {
 
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<StarHouse> starHouses = new ArrayList<>();

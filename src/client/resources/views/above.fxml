@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
    <children>
-
+      <Label fx:id="labelBeds" layoutX="14.0" layoutY="331.0" text="Beds: 0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="14.0" />
+      <Label fx:id="labelCiders" layoutX="14.0" layoutY="348.0" text="Ciders: 0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="14.0" />
+      <Label fx:id="labelPotions" layoutX="14.0" layoutY="365.0" text="Potions: 0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" />
+      <FlowPane fx:id="activeVillagers" layoutY="22.0" prefHeight="200.0" prefWidth="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0" />
+      <FlowPane fx:id="injuredVillagers" layoutX="300.0" layoutY="180.0" prefHeight="200.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" />
+      <FlowPane fx:id="tiredVillagers" layoutX="310.0" layoutY="190.0" prefHeight="200.0" prefWidth="300.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

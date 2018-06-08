@@ -1,14 +1,30 @@
 package client.source.controllers;
 
 import client.source.Client;
-import server.sources.controllers.PlayerBoardController;
+import client.source.components.villager.VillagerComponent;
+import client.source.observers.Observable;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import server.sources.interfaces.PlayerBoardInterface;
+import server.sources.interfaces.VillagerInterface;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public class AboveController {
+public class AboveController implements Observable {
+
+    @FXML Label labelBeds;
+    @FXML Label labelCiders;
+    @FXML Label labelPotions;
+
+    @FXML FlowPane activeVillagers;
+    @FXML FlowPane injuredVillagers;
+    @FXML FlowPane tiredVillagers;
+
+    private PlayerBoardInterface playerBoard;
 
     private Client client;
-    private PlayerBoardController pbc = new PlayerBoardController();
 
     public AboveController() throws RemoteException {
     }
@@ -19,38 +35,76 @@ public class AboveController {
      */
     public void registerClient(Client client) {
         this.client = client;
+        this.client.playerBoardObserver.attach(this);
     }
 
-    public void setPbc(PlayerBoardController pbc) {
-        this.pbc = pbc;
+    @Override
+    public void updateObserver() {
+        this.playerBoard = this.client.playerBoardObserver.getState();
+
+        this.updateBeds();
+        this.updateCiders();
+        this.updatePotions();
+        this.updateVillagers();
     }
 
-    public void getVillagers() throws RemoteException {
-        pbc.listAvailableVillagers();
+    private void updateBeds() {
+        try {
+            labelBeds.setText(String.format("Beds: %s", playerBoard.getBeds()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void getAvailableVillagers() throws RemoteException {
-        pbc.listAvailableVillagers();
+    private void updateCiders() {
+        try {
+            labelCiders.setText(String.format("Ciders: %s", playerBoard.getCiders()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void getHouses() {
-        pbc.getHouses();
+    private void updatePotions() {
+        try {
+            labelPotions.setText(String.format("Ciders: %s", playerBoard.getPotions()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void getOutposts() {
-        pbc.getOutposts();
-    }
+    private void updateVillagers() {
 
-    public void getCoins() {
-        pbc.getCoins();
-    }
+        this.activeVillagers.getChildren().clear();
+        this.injuredVillagers.getChildren().clear();
+        this.tiredVillagers.getChildren().clear();
 
-    public void getPotions() {
-        pbc.getPotions();
-    }
+        try {
+            ArrayList<VillagerInterface> villagers = playerBoard.listVillagers();
 
-    public void getCiders() {
-        pbc.getCiders();
-    }
+            for (VillagerInterface villager : villagers) {
 
+                VillagerComponent villagerComponent = new VillagerComponent();
+                villagerComponent.setModel(villager);
+                villagerComponent.load();
+
+                switch (villager.getState()) {
+                    case USABLE:
+                        this.activeVillagers.getChildren().add(villagerComponent);
+                        break;
+
+                    case TIRED:
+                        this.injuredVillagers.getChildren().add(villagerComponent);
+                        break;
+
+                    case INJURED:
+                        this.tiredVillagers.getChildren().add(villagerComponent);
+                        break;
+                }
+            }
+
+            System.out.println(villagers);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }

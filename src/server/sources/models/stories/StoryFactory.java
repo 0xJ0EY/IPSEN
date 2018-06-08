@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import server.sources.models.stories.rewards.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -119,8 +120,35 @@ public class StoryFactory {
         for (int i = 0; i < rewardNodes.getLength(); i++) {
             Node rewardNode = rewardNodes.item(i);
             Element rewardElement = (Element) rewardNode;
+            String type = rewardElement.getAttribute("villagerType");
+            int value;
 
-            rewards.add(new Reward(rewardElement));
+            switch (rewardElement.getTextContent()){
+                case "COIN":
+                    value = Integer.parseInt(rewardElement.getAttribute("value"));
+                    rewards.add(new CoinReward(value));
+                    break;
+                case "VILLAGER":
+                    rewards.add(new VillagerReward(type));
+                    break;
+                case "GOOD":
+                    value = Integer.parseInt(rewardElement.getAttribute("value"));
+                    rewards.add(new GoodReward(type, value));
+                    break;
+                case "REPUTATION":
+                    value = Integer.parseInt(rewardElement.getAttribute("value"));
+                    rewards.add(new ReputationReward(value));
+                    break;
+                case "POTION":
+                    rewards.add(new PotionReward());
+                    break;
+                case "CIDER":
+                    rewards.add(new CiderReward());
+                    break;
+                default:
+                    System.out.println("not a reward");
+                    break;
+            }
 
         }
 
