@@ -1,6 +1,15 @@
 package server.sources.interfaces;
 
-import java.rmi.Remote;
+import server.sources.models.GameClient;
 
-public interface MarketInterface extends Remote {
+import java.io.Serializable;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface MarketInterface extends Remote, Serializable {
+
+    public VillagerInterface[] listAvailableVillagers() throws RemoteException;
+
+    public void buyRemoteVillager(GameClientInterface gameClient, VillagerInterface villagerInterface) throws RemoteException;
+
 }

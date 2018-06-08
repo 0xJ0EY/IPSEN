@@ -21,7 +21,7 @@ public class VillagerReward extends Reward {
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         super.execute(client);
 
-        rewardVillager(type);
+        this.playerBoard.executeVillagerStrategy(this.rewardVillager(type));
     }
 
     private AddVillagerStrategy rewardVillager(String type) {

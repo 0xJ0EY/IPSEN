@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 
 public class SelectableVillagerComponent extends VillagerComponent {
 
-    private boolean selected;
+    protected boolean selected;
 
     public SelectableVillagerComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/selectable_villager.fxml"));
@@ -41,7 +41,7 @@ public class SelectableVillagerComponent extends VillagerComponent {
         return this.selected;
     }
 
-    private void showIndicator(){
+    protected void showIndicator(){
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);" +
@@ -56,7 +56,7 @@ public class SelectableVillagerComponent extends VillagerComponent {
 
     }
 
-    private void hideIndicator(){
+    protected void hideIndicator(){
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, white, 00, 0, 0, 0);" +

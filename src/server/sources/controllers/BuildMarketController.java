@@ -1,6 +1,7 @@
 package server.sources.controllers;
 
 import server.sources.interfaces.MarketInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Player;
 import server.sources.models.buildings.*;
 
@@ -9,10 +10,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+// TODO: 08/06/2018 Probably remove
+
 /**
  * Created by robin on 1-6-2018.
  */
-public class BuildMarketController extends UnicastRemoteObject implements MarketInterface {
+public class BuildMarketController extends UnicastRemoteObject  {
 
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<StarHouse> starHouses = new ArrayList<>();
@@ -22,10 +25,9 @@ public class BuildMarketController extends UnicastRemoteObject implements Market
     private House[] availableHouses = new House[4];
     private Outpost[] availableOutposts = new Outpost[4];
 
-    public BuildMarketController() throws RemoteException{
+    public BuildMarketController() throws RemoteException {
 
     }
-
 
     public void load() {
 

@@ -115,6 +115,22 @@ public class ControllerFactory {
         return reward;
     }
 
+    public TrainRewardController createTrainRewardView(){
+        TrainRewardController trainRewardController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/trainReward.fxml"));
+            loader.load();
+
+            trainRewardController = loader.getController();
+            trainRewardController.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return trainRewardController;
+    }
+
     /**
      * Load the view and controller of build
      * @return the assinged controller
@@ -149,7 +165,6 @@ public class ControllerFactory {
 
             trainController = loader.getController();
             trainController.setClient(this.client);
-            TrainerVillagerComponent.setClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -224,5 +239,4 @@ public class ControllerFactory {
 
         return villagerRestController;
     }
-
 }

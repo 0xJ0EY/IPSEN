@@ -14,8 +14,6 @@ public class TypeTrainerComponent extends VillagerType {
         loader.setRoot(this);
         loader.setController(this);
 
-
-
         try {
             loader.load();
         } catch (IOException e) {

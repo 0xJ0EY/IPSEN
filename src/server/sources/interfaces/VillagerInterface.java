@@ -7,6 +7,7 @@ import server.sources.models.villagers.Villager;
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.UUID;
 
 public interface VillagerInterface extends Serializable, Remote {
 
@@ -43,5 +44,9 @@ public interface VillagerInterface extends Serializable, Remote {
     public boolean isBuilder() throws RemoteException;
 
     public boolean isTrainer() throws RemoteException;
+
+    public boolean equals(VillagerInterface villager) throws RemoteException;
+
+    public UUID getUUID() throws RemoteException;
 
 }
