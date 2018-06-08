@@ -29,6 +29,7 @@ public class ExploreStoryAction implements VillagerActionInterface {
         this.story.setVillagers(selectedVillagers);
 
         System.out.println("Generated new story");
+        System.out.println(this.story.getChoices().get(0).getOptions().get(0).getRewards());
     }
 
     @Override

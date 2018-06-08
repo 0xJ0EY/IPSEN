@@ -234,9 +234,6 @@ public class BuildingFactory {
             case "ROPE":
                 return new RopeGood();
 
-            case "CIDER":
-                return new CiderGood();
-
             default:
                 return null;
         }
