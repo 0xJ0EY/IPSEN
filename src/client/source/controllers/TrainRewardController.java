@@ -1,7 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.components.villager_to_train.VillagerComponent;
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +22,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
     @FXML private Button endTurnButton;
 
     private Client client;
-    private VillagerComponent villager;
+    private TrainerVillagerComponent villager;
 
     @Override
     public Parent show() throws RemoteException {
@@ -48,7 +48,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
         this.client.clientObserver.attach(this);
     }
 
-    public void setTrainReward(VillagerComponent villager) {
+    public void setTrainReward(TrainerVillagerComponent villager) {
         this.villager = villager;
     }
 

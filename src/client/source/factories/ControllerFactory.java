@@ -5,11 +5,9 @@ import client.source.components.building.HouseComponent;
 import client.source.components.building.KeyhouseComponent;
 import client.source.components.building.OutpostComponent;
 import client.source.components.building.StarhouseComponent;
-import client.source.components.villager_to_train.VillagerComponent;
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import server.sources.models.stories.Story;
 
 import java.io.IOException;
 

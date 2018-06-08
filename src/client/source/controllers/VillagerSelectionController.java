@@ -1,6 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.components.villager.SelectableVillagerComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.factories.VillagerSelectionFactory;
 import client.source.strategies.VillagerSelectionStrategy;
@@ -25,7 +26,7 @@ public class VillagerSelectionController implements ControllerInterface {
 
     protected Client client;
 
-    private ArrayList<VillagerComponent> villagerComponents;
+    private ArrayList<SelectableVillagerComponent> villagerComponents;
 
     private VillagerSelectionFactory factory;
 
@@ -50,7 +51,7 @@ public class VillagerSelectionController implements ControllerInterface {
         this.villagerContainer.getChildren().clear();
 
         for (VillagerInterface villager : this.villagers) {
-            VillagerComponent villagerComponent = new VillagerComponent();
+            SelectableVillagerComponent villagerComponent = new SelectableVillagerComponent();
             villagerComponent.setModel(villager);
             villagerComponent.load();
 
@@ -73,7 +74,7 @@ public class VillagerSelectionController implements ControllerInterface {
     public ArrayList<VillagerInterface> getSelectedVillagers() {
         ArrayList<VillagerInterface> selected = new ArrayList<VillagerInterface>();
 
-        for (VillagerComponent villagerComponent : this.villagerComponents) {
+        for (SelectableVillagerComponent villagerComponent : this.villagerComponents) {
 
             if (villagerComponent.isSelected()) {
                 selected.add(villagerComponent.getVillager());

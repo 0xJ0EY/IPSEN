@@ -18,7 +18,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class VillagerComponent extends AnchorPane {
+public class TrainerVillagerComponent extends AnchorPane {
 
     private Client client;
     private int price = (int) (Math.random()* 20) + 1;
@@ -28,8 +28,8 @@ public class VillagerComponent extends AnchorPane {
     @FXML private AnchorPane type;
 
     @FXML
-    public void onClickSelect(ArrayList<VillagerComponent> villagerComponents) {
-        for (VillagerComponent villager: villagerComponents) {
+    public void onClickSelect(ArrayList<TrainerVillagerComponent> villagerComponents) {
+        for (TrainerVillagerComponent villager: villagerComponents) {
             villager.selected = false;
             villager.hideIndicator();
         }
@@ -37,7 +37,7 @@ public class VillagerComponent extends AnchorPane {
         this.showIndicator();
     }
 
-    public VillagerComponent(VillagerInterface villager) {
+    public TrainerVillagerComponent(VillagerInterface villager) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager_to_train/villager.fxml"));
 
@@ -50,10 +50,23 @@ public class VillagerComponent extends AnchorPane {
             e.printStackTrace();
         }
 
+        switch (villager.getClass().getSimpleName()){
+            case "TrainerVillager":
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/trainer.png')");
+                break;
+            case "BuilderVillager":
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/builder.png')");
+                break;
+            case "AllroundVillager":
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/allround.png')");
+            default:
+                break;
+        }
+
         this.villager = villager;
 
         try {
-            this.type.getChildren().setAll(this.villager.getType());
+//            this.type.getChildren().setAll(this.villager.getType());
 
             this.background.setStyle(
                     "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +

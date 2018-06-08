@@ -1,6 +1,6 @@
 package client.source;
 
-import client.source.components.villager_to_train.VillagerComponent;
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import client.source.controllers.ExplorePartyController;
 import client.source.controllers.VillagerSelectionController;
@@ -119,7 +119,7 @@ public class Client extends Application {
         this.setScene(train.show());
     }
 
-    public void showTrainReward(VillagerComponent villager) throws RemoteException {
+    public void showTrainReward(TrainerVillagerComponent villager) throws RemoteException {
         TrainRewardController trainReward = controllerFactory.createTrainRewardView();
         trainReward.setTrainReward(villager);
         this.setScene(trainReward.show());

@@ -1,8 +1,10 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.components.villager_to_train.VillagerComponent;
+import client.source.components.villager.VillagerComponent;
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
+
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -30,7 +32,7 @@ public class TrainController implements ControllerInterface, Observable {
 
     private VillagerInterface[] availableVillagers;
 
-    private ArrayList<VillagerComponent> villagerComponents;
+    private ArrayList<TrainerVillagerComponent> villagerComponents;
     private PlayerBoardInterface playerboard;
 
     @Override
@@ -63,11 +65,11 @@ public class TrainController implements ControllerInterface, Observable {
      * @author: Robin Silvério
      */
     private void updateVillagersView() {
-        this.villagerComponents = new ArrayList<VillagerComponent>();
+        this.villagerComponents = new ArrayList<TrainerVillagerComponent>();
         this.villagerContainer.getChildren().clear();
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
-            VillagerComponent villagerComponent = new VillagerComponent(this.availableVillagers[i]);
+            TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent(this.availableVillagers[i]);
             villagerComponent.setOnMouseClicked( e->{
                 villagerComponent.onClickSelect(villagerComponents);
                 this.train.setDisable(false);
@@ -94,7 +96,7 @@ public class TrainController implements ControllerInterface, Observable {
         System.out.println("buying");
 
         for(int i=0; i < villagerComponents.size(); i++){
-            VillagerComponent villager = villagerComponents.get(i);
+            TrainerVillagerComponent villager = villagerComponents.get(i);
             if(villager.isSelected()){
                 market.buyRemoteVillager(client.getGameClient(), villager.getVillager());
                 this.availableVillagers[i] = null;
