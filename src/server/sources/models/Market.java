@@ -1,6 +1,7 @@
 package server.sources.models;
 
 import server.sources.interfaces.MarketInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.*;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
@@ -19,10 +20,16 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     private ArrayList<KeyHouse> keyHouses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
 
+    private ArrayList<Villager> villagers = new ArrayList<>();
+
     private House[] availableHouses = new House[4];
     private Outpost[] availableOutposts = new Outpost[4];
+    private VillagerInterface[] availableVillagers = new VillagerInterface[5];
 
-    private ArrayList<Villager> villagers = new ArrayList<>();
+    public VillagerInterface[] listAvailableVillagers() {
+        replenishVillagers();
+        return availableVillagers;
+    }
 
     public Market() throws RemoteException {
 
@@ -43,6 +50,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
             for(int i=0; i<availableHouses.length; i++) {
                 availableHouses[i] =  randomHouse();
                 availableOutposts[i] = randomOutpost();
+            }
+            for(int i=0; i<availableVillagers.length; i++) {
+                availableVillagers[i] = randomVillager();
             }
 
         } catch (ParserConfigurationException e) {
@@ -71,6 +81,11 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return this.outposts.get(key);
     }
 
+    private Villager randomVillager(){
+        int key = (int) (Math.random() * this.villagers.size());
+        return this.villagers.get(key);
+    }
+
     public void replenishHouses(){
         //TODO could be at the end of buy action, in this case you can directly give the index of the bought house
         for (Object house:availableHouses) {
@@ -90,7 +105,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     }
 
     public void replenishVillagers(){
-
+        for (int i = 0; i < availableVillagers.length; i++) {
+            availableVillagers[i] = randomVillager();
+        }
     }
 
     public void buyHouse(Player player, House house){

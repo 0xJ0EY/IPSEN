@@ -19,16 +19,11 @@ import java.util.Arrays;
 
 public class VillagerComponent extends AnchorPane {
 
-    private static Client client;
+    private Client client;
     private int price = (int) (Math.random()* 20) + 1;
     private VillagerInterface villager;
     @FXML private AnchorPane background;
     @FXML private AnchorPane type;
-    @FXML
-    private Button trainBtn;
-    @FXML private Text price_label;
-
-
 
     public VillagerComponent(VillagerInterface villager) {
 
@@ -43,24 +38,11 @@ public class VillagerComponent extends AnchorPane {
             e.printStackTrace();
         }
 
-        switch (villager.getClass().getSimpleName()){
-            case "TrainerVillager":
-                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Feather.png')");
-                break;
-            case "BuilderVillager":
-                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Hammer.png')");
-                break;
-            case "AllroundVillager":
-                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/allround.png')");
-            default:
-                break;
-        }
-
         this.villager = villager;
 
-        this.price_label.setText("price: " + Integer.toString(this.price));
-
         try {
+            this.type.getChildren().setAll(this.villager.getType());
+
             this.background.setStyle(
                     "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                     "-fx-background-repeat: stretch;" +
@@ -72,27 +54,7 @@ public class VillagerComponent extends AnchorPane {
 
     }
 
-    @FXML
-    private void trainBtn(){
-
-        Alert alert = new Alert(Alert.AlertType.WARNING, "You don't have enough coins to buy!!", ButtonType.OK);
-
-        try {
-            if (client.getGameClient().getPlayer().getPlayerBoard().getCoins() < price){
-                alert.show();
-            }
-            else{
-                client.getGameClient().getPlayer().getPlayerBoard().payCoin(price);
-                client.getGameClient().getPlayer().getPlayerBoard().addVillager(this.villager);
-                System.out.println("You have trained and recruited a villager.");
-                System.out.println(Arrays.toString(client.getGameClient().getPlayer().getPlayerBoard().listVillagers().toArray()));
-            }
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void setClient(Client c){
-        client = c;
+    public void setClient(Client client){
+        this.client = client;
     }
 }

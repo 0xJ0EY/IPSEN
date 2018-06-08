@@ -151,7 +151,6 @@ public class ControllerFactory {
 
             trainController = loader.getController();
             trainController.setClient(this.client);
-            VillagerComponent.setClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }

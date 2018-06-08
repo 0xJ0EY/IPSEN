@@ -20,7 +20,7 @@ public class GoodReward extends Reward {
     @Override
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         super.execute(client);
-        for(int i=0; i<=value; i++) {
+        for(int i=0; i<value; i++) {
             playerBoard.addGood(type);
         }
     }

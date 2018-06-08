@@ -14,8 +14,6 @@ public class TypeTrainerComponent extends AnchorPane implements Serializable {
         loader.setRoot(this);
         loader.setController(this);
 
-
-
         try {
             loader.load();
         } catch (IOException e) {
