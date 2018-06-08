@@ -18,7 +18,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private static final long serialVersionUID = 1337L;
 
-    private ArrayList<Villager> villagers = new ArrayList<>();
+    private ArrayList<VillagerInterface> villagers = new ArrayList<>();
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
@@ -27,6 +27,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private int ciders = 2;
     private int potions = 2;
     private int coins = 10;
+    private int beds = 3;
+
 
     public PlayerBoard() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
@@ -34,9 +36,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
 
+        // TODO: A nice implementation of this
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
+
+        for (VillagerInterface villager : villagers) {
+            villager.setPlayerBoard(this);
+        }
 
     }
 
@@ -111,28 +118,30 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    // TODO: This
     public boolean hasBeds() throws RemoteException {
-        return true;
+        return this.beds > 0;
     }
 
     @Override
-    public void useCider(VillagerInterface villager) throws RemoteException {
-        villager.useCider();
+    public void useCider() throws RemoteException {
         this.ciders--;
     }
 
     @Override
-    public void usePotion(VillagerInterface villager) throws RemoteException {
-        villager.usePotion();
+    public void usePotion() throws RemoteException {
         this.potions--;
+    }
+
+    @Override
+    public void useBed() throws RemoteException {
+        this.beds--;
     }
 
     @Override
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException {
         ArrayList<VillagerInterface> villagers = new ArrayList<VillagerInterface>();
 
-        for (Villager villager : this.villagers) {
+        for (VillagerInterface villager : this.villagers) {
             villagers.add(villager);
         }
 
@@ -149,7 +158,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException {
         ArrayList<VillagerInterface> usableVillagers = new ArrayList<VillagerInterface>();
 
-        for (Villager villager : this.villagers) {
+        for (VillagerInterface villager : this.villagers) {
             if (villager.isUsable()){
                 usableVillagers.add(villager);
             }
@@ -168,7 +177,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException {
         ArrayList<VillagerInterface> builders = new ArrayList<VillagerInterface>();
 
-        for (Villager villager : this.villagers) {
+        for (VillagerInterface villager : this.villagers) {
             if (villager instanceof Buildable) {
                 builders.add(villager);
             }
@@ -187,7 +196,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException {
         ArrayList<VillagerInterface> trainers = new ArrayList<VillagerInterface>();
 
-        for (Villager villager : this.villagers) {
+        for (VillagerInterface villager : this.villagers) {
             if (villager instanceof Trainable) {
                 trainers.add(villager);
             }
@@ -207,9 +216,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * @throws RemoteException
      */
     @Override
-    public void addVillager(Villager villager) throws RemoteException {
+    public void addVillager(VillagerInterface villager) throws RemoteException {
         villager.tire();
-        villagers.add((Villager) villager);
+        villager.setPlayerBoard(this);
+        villagers.add(villager);
     }
 
     @Override

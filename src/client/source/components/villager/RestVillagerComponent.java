@@ -64,7 +64,7 @@ public class RestVillagerComponent extends AnchorPane {
 
     @FXML public void onClickCider() {
         try {
-            this.playerBoard.useCider(this.villager);
+            this.villager.useCider();
             this.controller.update();
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -73,19 +73,22 @@ public class RestVillagerComponent extends AnchorPane {
 
     @FXML public void onClickPotion() {
         try {
-            this.playerBoard.usePotion(this.villager);
+            this.villager.usePotion();
             this.controller.update();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    // TODO: Bed implementation
     @FXML public void onClickSleep() {
-        System.out.println("Sleep");
+        try {
+            this.villager.sleep();
+            this.slept = true;
 
-        this.slept = true;
-        this.controller.update();
+            this.controller.update();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
 }
