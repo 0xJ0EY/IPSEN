@@ -4,8 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class FishComponent extends AnchorPane {
+public class FishComponent extends AnchorPane implements Serializable {
     public FishComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/fishPerk.fxml"));
 

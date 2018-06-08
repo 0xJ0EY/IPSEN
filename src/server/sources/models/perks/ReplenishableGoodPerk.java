@@ -1,9 +1,11 @@
 package server.sources.models.perks;
 
+import javafx.scene.layout.AnchorPane;
 import server.sources.models.goods.*;
 
-public class ReplenishableGoodPerk implements Perk {
+public class ReplenishableGoodPerk implements Perk, Harvastable {
     private Good good;
+    private int amountLeft = 1;
 
     public ReplenishableGoodPerk(String good){
         switch (good){
@@ -48,5 +50,34 @@ public class ReplenishableGoodPerk implements Perk {
     @Override
     public String toString() {
         return "Replenishable: " + this.good.isGood();
+    }
+
+    public Harvastable getHarvestable(){
+        return this;
+    }
+
+    @Override
+    public int amountLeft() {
+        return amountLeft;
+    }
+
+    @Override
+    public AnchorPane getGoodComponent() {
+        return good.getGood();
+    }
+
+    @Override
+    public Good harvestGood() {
+        amountLeft--;
+        return good;
+    }
+
+    public void ik(){
+        int i = 0;
+        i--;
+    }
+
+    public void replenishGood(){
+        amountLeft = 0;
     }
 }

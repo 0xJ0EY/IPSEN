@@ -6,8 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.VillagerActionInterface;
-import server.sources.models.buildings.Building;
+import server.sources.models.Harvest;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class HarvestController implements ControllerInterface {
@@ -17,26 +18,21 @@ public class HarvestController implements ControllerInterface {
 
     private VillagerActionInterface action;
 
-    protected ArrayList<Building> harvestBuildings;
-    protected ArrayList<PerkComponent> perkComponents;
+    private Harvest harvest;
+    private ArrayList<PerkComponent> perkComponents = new ArrayList<>();
     protected Client client;
 
     @Override
-    public Parent show() {
+    public Parent show() throws RemoteException{
         this.updateBuildingsView();
 
         return root;
 
     }
 
-    public void setBuildings(ArrayList<Building> harvestBuidings){
-        this.harvestBuildings = harvestBuidings;
-
-    }
-
-    private void updateBuildingsView(){
-        for (int i = 0; i < this.harvestBuildings.size(); i ++){
-            perkComponents.add(new PerkComponent(this.harvestBuildings.get(i), this));
+    private void updateBuildingsView() throws RemoteException {
+        for (int i = 0; i < this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().size(); i ++){
+            perkComponents.add(new PerkComponent(this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().get(i), this));
             buildingContainer.getChildren().add(perkComponents.get(i));
 
         }
@@ -48,10 +44,10 @@ public class HarvestController implements ControllerInterface {
     }
 
     @FXML
-    public void confirmSelection(){
+    public void confirmSelection() throws RemoteException{
         for (int i = 0; i < perkComponents.size(); i++){
             if (perkComponents.get(i).isSelected()){
-                perkComponents.get(i);
+                client.getGameClient().getPlayer().getPlayerBoard().getGoods().add(this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().get(i).getHarvastable().harvestGood());
 
             }
 
@@ -70,6 +66,10 @@ public class HarvestController implements ControllerInterface {
 
     public HarvestController getController(){
         return this;
+    }
+
+    public void setHarvest(Harvest harvest){
+        this.harvest = harvest;
     }
 
 }

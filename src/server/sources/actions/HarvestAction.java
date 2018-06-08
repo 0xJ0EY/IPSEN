@@ -5,6 +5,7 @@ import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
 
+import server.sources.models.Harvest;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
@@ -14,14 +15,18 @@ import server.sources.models.perks.Perk;
 import server.sources.models.perks.ReplenishableGoodPerk;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
+import server.sources.notifications.EndOfTurnNotification;
+import server.sources.notifications.ShowHarvestNotification;
 import server.sources.notifications.TestNotification;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class HarvestAction implements VillagerActionInterface {
+public class HarvestAction implements VillagerActionInterface, Serializable {
 
     private GameClientInterface target;
+    private int count = 0;
 
     private ArrayList<Building> harvestBuildings = new ArrayList<>();
     private ArrayList<VillagerInterface> selectedVillagers;
@@ -45,8 +50,20 @@ public class HarvestAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        for(int i = 0; i < this.selectedVillagers.size(); i++){
-            target.getClient().showHarvestSelection(harvestBuildings);
+        this.count++;
+
+    }
+
+    @Override
+    public NotificationInterface update() throws RemoteException {
+
+        if (this.count <= this.selectedVillagers.size()) {
+            // Stuur alle spelers naar de harvest view
+            return new ShowHarvestNotification(new Harvest(selectedVillagers, count));
+
+        } else {
+            // Stuur alle spelers naar de above view (we zijn klaar).
+            return new EndOfTurnNotification();
 
         }
 
@@ -57,10 +74,6 @@ public class HarvestAction implements VillagerActionInterface {
         this.selectedVillagers = villagers;
     }
 
-    @Override
-    public NotificationInterface update() throws RemoteException {
-        return new TestNotification();
-    }
 
     /**
      * deze code zorgt dat alle huizen van de speler waarbij de harvest actie kan uitvoeren in een arraylist komen
@@ -85,10 +98,12 @@ public class HarvestAction implements VillagerActionInterface {
 
         }
 
-//        ArrayList<Perk> tstPerks = new ArrayList<>();
-//        tstPerks.add(new HarvestableGoodPerk("AMETHYST"));
-//        this.harvestBuildings.add(new Building(1, tstPerks));
 
+
+    }
+
+    public ArrayList<Building> getHarvestBuildings(){
+        return this.harvestBuildings;
     }
 
 }

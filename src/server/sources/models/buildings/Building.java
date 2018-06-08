@@ -18,6 +18,7 @@ public class Building implements Serializable {
     private String buildingName;
     private int price;
     private ArrayList<Perk> perks;
+    private Harvastable harvastable = null;
     private AnchorPane good = null;
 
     /**
@@ -32,6 +33,8 @@ public class Building implements Serializable {
         for (int i = 0; i < perks.size(); i++) {
             if(perks.get(i)instanceof Harvastable){
                 good = ((Harvastable) perks.get(i)).getGoodComponent();
+                harvastable = ((Harvastable) perks.get(i)).getHarvestable();
+
             }
         }
     }
@@ -74,5 +77,9 @@ public class Building implements Serializable {
         }
 
         return "Price: " + this.price + "\n" + perk;
+    }
+
+    public Harvastable getHarvastable(){
+        return this.harvastable;
     }
 }

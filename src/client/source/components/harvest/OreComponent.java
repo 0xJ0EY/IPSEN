@@ -4,8 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class OreComponent extends AnchorPane {
+public class OreComponent extends AnchorPane implements Serializable {
     public OreComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/orePerk.fxml"));
 

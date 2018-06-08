@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
+import server.sources.models.Harvest;
 import server.sources.models.buildings.Building;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
@@ -92,10 +93,10 @@ public class Client extends Application {
         this.setScene(explore.show());
     }
 
-    public void showHarvestSelection(ArrayList<Building> harvestBuildings){
-        HarvestController harvest = controllerFactory.createHarvestSelection();
-        harvest.setBuildings(harvestBuildings);
-        this.setScene(harvest.show());
+    public void showHarvestSelection(Harvest harvest) throws RemoteException{
+        HarvestController harvestAction = controllerFactory.createHarvestSelection();
+        harvestAction.setHarvest(harvest);
+        this.setScene(harvestAction.show());
     }
 
     public void showRewards(Option option) {

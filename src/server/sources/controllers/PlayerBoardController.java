@@ -2,10 +2,15 @@ package server.sources.controllers;
 
 
 import server.sources.interfaces.VillagerInterface;
+import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.models.perks.Harvastable;
+import server.sources.models.perks.HarvestableGoodPerk;
+import server.sources.models.perks.Perk;
+import server.sources.models.perks.ReplenishableGoodPerk;
 import server.sources.models.villagers.*;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
@@ -21,6 +26,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
+    private ArrayList<Building> harvestBuildings;
 
     private int ciders = 2;
     private int potions = 2;
@@ -259,5 +265,27 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
 
     public int getCiders() {
         return this.ciders;
+    }
+
+   @Override
+   public ArrayList<Building> getHarvestBuildings() {
+        checkHarvestBuildings();
+        return harvestBuildings;
+    }
+
+    private void checkHarvestBuildings(){
+        harvestBuildings = new ArrayList<>();
+
+        for (int i = 0; i < houses.size(); i++){
+            if (houses.get(i).getGoodComponent() != null && houses.get(i).getHarvastable().amountLeft() > 0){
+                harvestBuildings.add(houses.get(i));
+            }
+        }
+
+        for (int i = 0; i < outposts.size(); i++){
+            if (outposts.get(i).getGoodComponent() != null && outposts.get(i).getHarvastable().amountLeft() > 0){
+                harvestBuildings.add(outposts.get(i));
+            }
+        }
     }
 }

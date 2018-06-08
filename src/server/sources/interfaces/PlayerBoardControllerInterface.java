@@ -3,6 +3,7 @@ package server.sources.interfaces;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
+import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
@@ -34,6 +35,8 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void addGood(String type) throws RemoteException;
     
     public void addPotion() throws RemoteException;
+
+    public ArrayList<Good> getGoods()throws RemoteException;
 
 
     /**
@@ -68,5 +71,7 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
     public void useCider(VillagerInterface villager) throws RemoteException;
 
     public void usePotion(VillagerInterface villager) throws RemoteException;
+
+    public ArrayList<Building> getHarvestBuildings() throws RemoteException;
 
 }

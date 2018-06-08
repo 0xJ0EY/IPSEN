@@ -4,8 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class MushroomComponent extends AnchorPane {
+public class MushroomComponent extends AnchorPane implements Serializable {
 
 
     public MushroomComponent() {
