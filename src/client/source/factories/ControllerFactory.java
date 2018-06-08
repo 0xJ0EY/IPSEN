@@ -195,6 +195,23 @@ public class ControllerFactory {
         return explorePartyController;
     }
 
+    public ScoreboardController createScoreBoard(){
+        ScoreboardController scoreboardController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/scoreboard.fxml"));
+            loader.load();
+
+            scoreboardController = loader.getController();
+            scoreboardController.setClient(this.client);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return scoreboardController;
+    }
+
     public VillagerRestController createVillagerRest() {
         VillagerRestController villagerRestController = null;
 

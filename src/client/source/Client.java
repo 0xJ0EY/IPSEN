@@ -114,6 +114,11 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
+    public void showScoreBoard(){
+        ScoreboardController score = controllerFactory.createScoreBoard();
+        this.setScene(score.show());
+    }
+
     public void showVillagerRest() {
         this.setScene(controllerFactory.createVillagerRest().show());
     }
