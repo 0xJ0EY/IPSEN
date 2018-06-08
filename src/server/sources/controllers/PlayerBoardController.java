@@ -46,6 +46,10 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
 
+        /**
+         * This is only for testing scoreboard.
+         * @author Robin Silvério
+         */
         ArrayList<Perk> perks_1 = new ArrayList<Perk>();
         perks_1.add(new CiderPerk(1));
         perks_1.add(new CoinPerk(2));
@@ -57,9 +61,6 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         perks_2.add(new CoinPerk(2));
         perks_2.add(new villagePointsPerk(3));
         houses.add(new StarHouse(2, perks_2));
-
-
-//        ArrayList<Perk> perks_3 = new ArrayList<Perk>();
 
 
 
@@ -290,7 +291,6 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
             }
         }
 
-        System.out.println(Arrays.toString(tmpPerk.toArray()));
 
         return villagePoints;
     }
