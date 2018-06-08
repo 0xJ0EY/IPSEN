@@ -10,4 +10,4 @@ TODO
  - [ ] Key bindings on turn buttons (important)
  - [ ] JavaDoc
  - [ ] Below & Above view maken
- - [ ] Make it possible to let VillagerSelection only show 1 villager
+ - [x] Make it possible to let VillagerSelection only show 1 villager
