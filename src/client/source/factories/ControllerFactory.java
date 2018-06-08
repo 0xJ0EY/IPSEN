@@ -5,6 +5,7 @@ import client.source.components.building.HouseComponent;
 import client.source.components.building.KeyhouseComponent;
 import client.source.components.building.OutpostComponent;
 import client.source.components.building.StarhouseComponent;
+import client.source.components.villager_to_train.VillagerComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -139,6 +140,23 @@ public class ControllerFactory {
         }
 
         return build;
+    }
+
+    public TrainController createTrain() {
+        TrainController trainController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/train_market.fxml"));
+            loader.load();
+
+            trainController = loader.getController();
+            trainController.setClient(this.client);
+            VillagerComponent.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return trainController;
     }
 
     /**

@@ -24,7 +24,7 @@ public interface PlayerBoardControllerInterface extends Remote, Serializable {
 
     public VillagerInterface getVillager(int index) throws RemoteException;
 
-    public void addVillager(Villager villager) throws RemoteException;
+    public void addVillager(VillagerInterface villager) throws RemoteException;
 
     public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException;
 
