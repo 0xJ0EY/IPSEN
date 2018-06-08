@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.RestVillagerAction;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.villagers.Villager;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class VillagerRestController implements ControllerInterface {
 
     private Client client;
 
-    private PlayerBoardControllerInterface playerBoard;
+    private PlayerBoardInterface playerBoard;
     private ArrayList<VillagerInterface> villagers;
 
     private ArrayList<RestVillagerComponent> villagerComponents;

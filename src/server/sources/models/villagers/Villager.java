@@ -1,10 +1,8 @@
 package server.sources.models.villagers;
 
 import client.source.components.villager.TypeDefaultComponent;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Dice;
 
@@ -22,7 +20,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     protected String background;
 
-    protected PlayerBoardControllerInterface playerBoard;
+    protected PlayerBoardInterface playerBoard;
 
     protected boolean slept = false;
 
@@ -34,7 +32,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     }
 
     @Override
-    public void setPlayerBoard(PlayerBoardControllerInterface playerBoard) throws RemoteException {
+    public void setPlayerBoard(PlayerBoardInterface playerBoard) throws RemoteException {
         this.playerBoard = playerBoard;
     }
 

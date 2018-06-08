@@ -2,7 +2,6 @@ package client.source.controllers;
 
 import client.source.Client;
 import client.source.components.villager.VillagerComponent;
-import client.source.controllers.ControllerInterface;
 import client.source.factories.VillagerSelectionFactory;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.fxml.FXML;
@@ -41,13 +40,13 @@ public class VillagerSelectionController implements ControllerInterface {
     }
 
 
-    public void retrieveVillagers() {
+    private void retrieveVillagers() {
         this.villagers = factory.getVillagerList();
     }
 
     private void updateVillagersView() {
 
-        this.villagerComponents = new ArrayList<VillagerComponent>();
+        this.villagerComponents = new ArrayList<>();
         this.villagerContainer.getChildren().clear();
 
         for (VillagerInterface villager : this.villagers) {
