@@ -1,10 +1,7 @@
 package server.sources.actions;
 
 import server.sources.Server;
-import server.sources.controllers.GameController;
-import server.sources.controllers.ReputationBoardController;
 import server.sources.interfaces.*;
-import server.sources.models.villagers.Villager;
 import server.sources.notifications.TestNotification;
 
 import java.rmi.RemoteException;
@@ -29,7 +26,7 @@ public class LaborAction implements VillagerActionInterface {
     @Override
     public void execute(Server server) throws RemoteException {
 
-        PlayerBoardControllerInterface playerBoard = target.getPlayer().getPlayerBoard();
+        PlayerBoardInterface playerBoard = target.getPlayer().getPlayerBoard();
 
         System.out.println(playerBoard.getCoins());
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class OreComponent extends AnchorPane implements Serializable {
     public OreComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/orePerk.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/harvest/orePerk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

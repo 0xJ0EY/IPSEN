@@ -10,7 +10,7 @@ public class MushroomComponent extends AnchorPane implements Serializable {
 
 
     public MushroomComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/mushroomPerk.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/harvest/mushroomPerk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

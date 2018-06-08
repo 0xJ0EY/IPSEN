@@ -1,4 +1,4 @@
-package server.sources.controllers;
+package server.sources.models;
 
 
 import server.sources.interfaces.VillagerInterface;
@@ -6,11 +6,7 @@ import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
-import server.sources.interfaces.PlayerBoardControllerInterface;
-import server.sources.models.perks.Harvastable;
-import server.sources.models.perks.HarvestableGoodPerk;
-import server.sources.models.perks.Perk;
-import server.sources.models.perks.ReplenishableGoodPerk;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.villagers.*;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
@@ -18,7 +14,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
+public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
     private static final long serialVersionUID = 1337L;
 
@@ -32,7 +28,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     private int potions = 2;
     private int coins = 10;
 
-    public PlayerBoardController() throws RemoteException {
+    public PlayerBoard() throws RemoteException {
         ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
 
         lanterns.add(new Lantern(3, 2));

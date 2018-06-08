@@ -36,7 +36,7 @@ public class StarhouseComponent extends VBox {
 
         this.building = starHouse;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/starhouse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/starhouse.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

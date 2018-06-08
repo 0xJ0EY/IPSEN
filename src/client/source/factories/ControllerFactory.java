@@ -165,7 +165,7 @@ public class ControllerFactory {
         HarvestController harvestSelection = null;
 
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/views/harvest.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/harvest.fxml"));
             loader.load();
 
             harvestSelection = loader.getController();

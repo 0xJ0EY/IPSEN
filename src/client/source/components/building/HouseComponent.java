@@ -1,23 +1,16 @@
 package client.source.components.building;
 
 import client.source.Client;
-import client.source.controllers.BuildController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.PlayerBoardControllerInterface;
-import server.sources.models.Player;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
-import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -41,7 +34,7 @@ public class HouseComponent extends VBox {
     public HouseComponent(House house){
         this.building = house;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/building/house.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/house.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

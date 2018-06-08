@@ -1,14 +1,14 @@
 package client.source.controllers;
 
 import client.source.Client;
-import server.sources.controllers.PlayerBoardController;
+import server.sources.models.PlayerBoard;
 
 import java.rmi.RemoteException;
 
 public class AboveController {
 
     private Client client;
-    private PlayerBoardController pbc = new PlayerBoardController();
+    private PlayerBoard pbc = new PlayerBoard();
 
     public AboveController() throws RemoteException {
     }
@@ -21,7 +21,7 @@ public class AboveController {
         this.client = client;
     }
 
-    public void setPbc(PlayerBoardController pbc) {
+    public void setPbc(PlayerBoard pbc) {
         this.pbc = pbc;
     }
 

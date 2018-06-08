@@ -24,7 +24,7 @@ public class PerkComponent extends AnchorPane {
 
         this.controller = harvestController;
 
-        FXMLLoader  loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/villager/perk.fxml"));
+        FXMLLoader  loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/perk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

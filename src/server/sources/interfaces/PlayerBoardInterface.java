@@ -12,7 +12,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface PlayerBoardControllerInterface extends Remote, Serializable {
+public interface PlayerBoardInterface extends Remote, Serializable {
 
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException;
 

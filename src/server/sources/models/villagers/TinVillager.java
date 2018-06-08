@@ -1,6 +1,6 @@
 package server.sources.models.villagers;
 
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class TinVillager extends Villager {
     }
 
     @Override
-    public void rest(PlayerBoardControllerInterface playerBoard) throws RemoteException {
+    public void rest(PlayerBoardInterface playerBoard) throws RemoteException {
         super.rest(playerBoard);
     }
 

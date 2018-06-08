@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class AmethystComponent extends AnchorPane implements Serializable {
 
     public AmethystComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../resources/views/components/harvest/amethystPerk.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/harvest/amethystPerk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

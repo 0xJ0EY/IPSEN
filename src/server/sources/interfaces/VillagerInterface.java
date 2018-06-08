@@ -11,7 +11,7 @@ public interface VillagerInterface extends Serializable, Remote {
 
     public int calculateLanters(Dice dice) throws RemoteException;
 
-    public void rest(PlayerBoardControllerInterface playerBoard) throws RemoteException;
+    public void rest(PlayerBoardInterface playerBoard) throws RemoteException;
 
     public boolean isUsable() throws RemoteException;
 

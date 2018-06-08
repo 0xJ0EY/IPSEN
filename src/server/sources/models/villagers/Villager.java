@@ -1,14 +1,11 @@
 package server.sources.models.villagers;
 
 import client.source.components.villager.TypeDefaultComponent;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Dice;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -46,7 +43,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         return amount;
     }
 
-    public void rest(PlayerBoardControllerInterface playerBoard) throws RemoteException {
+    public void rest(PlayerBoardInterface playerBoard) throws RemoteException {
         if (state != VillagerState.TIRED) return;
         this.state = VillagerState.USABLE;
     }

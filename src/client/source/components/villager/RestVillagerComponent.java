@@ -5,9 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -19,13 +18,13 @@ public class RestVillagerComponent extends AnchorPane {
     @FXML private Button sleepButton;
 
     private VillagerInterface villager;
-    private PlayerBoardControllerInterface playerBoard;
+    private PlayerBoardInterface playerBoard;
 
     private VillagerRestController controller;
 
     private boolean slept = false;
 
-    public void setPlayerBoard(PlayerBoardControllerInterface playerBoard) {
+    public void setPlayerBoard(PlayerBoardInterface playerBoard) {
         this.playerBoard = playerBoard;
     }
 

@@ -1,6 +1,7 @@
 package server.sources.controllers;
 
 import server.sources.interfaces.*;
+import server.sources.models.Market;
 import server.sources.models.Player;
 import server.sources.notifications.EndOfGameNotification;
 import server.sources.notifications.GameStartedNotification;
@@ -28,7 +29,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private int turn = 0;
 
     private StoryController stories = new StoryController();
-    private MarketController market = new MarketController();
+    private Market market = new Market();
     private ReputationBoardController reputationboard = new ReputationBoardController();
 
     public GameController(ServerInterface server) throws RemoteException {
@@ -200,8 +201,8 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     @Override
-    public MarketControllerInterface getMarket() throws RemoteException {
-        return (MarketControllerInterface) market;
+    public MarketInterface getMarket() throws RemoteException {
+        return (MarketInterface) market;
     }
 
     public ReputationBoardInterface getReputationBoard(){
