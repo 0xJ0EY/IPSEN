@@ -1,10 +1,12 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.components.reward.*;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.FlowPane;
 import server.sources.actions.EndTurnAction;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.models.stories.Reward;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 public class RewardController implements ControllerInterface, Observable {
 
     @FXML private Parent root;
+
+    @FXML private FlowPane rewardComponent;
 
     @FXML private Button endTurnButton;
 
@@ -31,8 +35,17 @@ public class RewardController implements ControllerInterface, Observable {
 
     @Override
     public Parent show() {
+
+        for (Reward reward: rewards) {
+            this.rewardComponent.getChildren().add(rewardType(reward));
+        }
+
         this.updateObserver();
         return this.root;
+    }
+
+    private RewardComponent rewardType(Reward reward) {
+        return reward.getRewardComponent();
     }
 
     @Override

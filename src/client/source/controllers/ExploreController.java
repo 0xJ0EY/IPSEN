@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import server.sources.actions.RunAction;
 import server.sources.actions.RewardAction;
 
+import server.sources.interfaces.ActionInterface;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 
@@ -48,6 +49,9 @@ public class ExploreController implements ControllerInterface, Observable {
             rbtn.setId(""+i);
             rbtn.setText(this.exploreStory.getChoices().get(i).getDescription());
             rbtn.setToggleGroup(radioGroup);
+            rbtn.setOnMouseClicked( e-> {
+                this.confirmButton.setDisable(false);
+            });
             for (Option option: this.exploreStory.getChoices().get(i).getOptions()) {
                 Label lbl = new Label();
                 lbl.setText("Explore " + option.getCost() + "   ");
@@ -68,7 +72,9 @@ public class ExploreController implements ControllerInterface, Observable {
 
     @FXML public void clickRun() {
         try {
-            client.getGameClient().getPlayer().doAction(new RunAction(exploreStory.getVillagers()));
+            RunAction run = new RunAction();
+            run.setSelectedVillagers(exploreStory.getVillagers());
+            client.getGameClient().getPlayer().doAction(run);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -100,8 +106,6 @@ public class ExploreController implements ControllerInterface, Observable {
             }
 
             this.runButton.setDisable(!turn);
-            this.confirmButton.setDisable(!turn);
-
 
         } catch (RemoteException e) {
             e.printStackTrace();
