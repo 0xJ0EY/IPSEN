@@ -20,4 +20,10 @@ public class villagePointsPerk implements Perk {
     public String toString() {
         return "Village Points: " + this.value;
     }
+
+    public int getValue(){
+        return this.value;
+    }
+
+
 }

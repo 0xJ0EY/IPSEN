@@ -95,4 +95,30 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     public String getColour() {
         return colour;
     }
+
+    public int getAmountBuildings(){
+
+        int villagePointsPerBuilding = 0;
+
+        try {
+            villagePointsPerBuilding = (this.getPlayerBoard().getHouses().size() + this.getPlayerBoard().getOutposts().size());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return villagePointsPerBuilding;
+    }
+
+    public int getAmountOfCardBonusses(){
+        int cardBonusses = 0;
+
+        try {
+            cardBonusses = this.getPlayerBoard().getVillagePointsFromAllBuildings();
+        }
+        catch (RemoteException e){
+            e.printStackTrace();
+        }
+
+        return cardBonusses;
+    }
 }

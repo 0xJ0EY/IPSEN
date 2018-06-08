@@ -3,10 +3,12 @@ package server.sources.models.buildings;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.models.perks.Perk;
 import server.sources.models.Player;
+import server.sources.models.perks.villagePointsPerk;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by robin on 24-5-2018.
@@ -57,5 +59,16 @@ public class Building implements Serializable {
         }
 
         return "Price: " + this.price + "\n" + perk;
+    }
+
+    public ArrayList<villagePointsPerk> getVillagePointsPerk(){
+        ArrayList<villagePointsPerk> vpPerk = new ArrayList<villagePointsPerk>();
+
+        for (Perk p : this.perks){
+            if (p.getClass().getSimpleName().equals("villagePointsPerk"))
+                vpPerk.add((villagePointsPerk)p);
+        }
+
+        return vpPerk;
     }
 }

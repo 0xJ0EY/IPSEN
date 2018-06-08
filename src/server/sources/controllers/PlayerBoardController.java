@@ -2,16 +2,23 @@ package server.sources.controllers;
 
 
 import server.sources.interfaces.VillagerInterface;
+import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardControllerInterface;
+import server.sources.models.perks.CiderPerk;
+import server.sources.models.perks.CoinPerk;
+import server.sources.models.perks.Perk;
+import server.sources.models.perks.villagePointsPerk;
 import server.sources.models.villagers.*;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PlayerBoardController extends UnicastRemoteObject implements PlayerBoardControllerInterface {
 
@@ -38,6 +45,23 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
+
+        ArrayList<Perk> perks_1 = new ArrayList<Perk>();
+        perks_1.add(new CiderPerk(1));
+        perks_1.add(new CoinPerk(2));
+        perks_1.add(new villagePointsPerk(3));
+        houses.add(new House(2, perks_1));
+
+        ArrayList<Perk> perks_2 = new ArrayList<Perk>();
+        perks_2.add(new CiderPerk(1));
+        perks_2.add(new CoinPerk(2));
+        perks_2.add(new villagePointsPerk(3));
+        houses.add(new StarHouse(2, perks_2));
+
+
+//        ArrayList<Perk> perks_3 = new ArrayList<Perk>();
+
+
 
         for (VillagerInterface villager : villagers) {
             villager.setPlayerBoard(this);
@@ -247,6 +271,28 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
     }
     public void addOutpost(Outpost outpost){
         this.outposts.add(outpost);
+    }
+
+    public int getVillagePointsFromAllBuildings(){
+
+        int villagePoints = 0;
+        ArrayList<ArrayList<villagePointsPerk>> tmpPerk = new ArrayList<>();
+
+        for (House h : this.houses){
+            tmpPerk.add(h.getVillagePointsPerk());
+        }
+
+        for (int i = 0; i < tmpPerk.size(); i++) {
+            for (int j = 0; j < tmpPerk.get(i).size(); j++) {
+                if (tmpPerk.get(i).get(j).getClass().getSimpleName().equals("villagePointsPerk")){
+                    villagePoints += tmpPerk.get(i).get(j).getValue();
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(tmpPerk.toArray()));
+
+        return villagePoints;
     }
 
     public ArrayList<Good> getGoods(){
