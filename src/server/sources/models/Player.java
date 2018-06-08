@@ -18,6 +18,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     public PlayerBoard board = new PlayerBoard(this);
 
     public GameController gameController;
+    public int reputation = 0;
 
     private transient GameClientInterface gameClient;
 
@@ -84,6 +85,11 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return (PlayerBoard) this.board;
     }
 
+    @Override
+    public int getReputation() throws RemoteException {
+        return this.reputation;
+    }
+
     public void resetAfterRound() {
         this.passed = false;
     }
@@ -95,4 +101,10 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     public String getColour() {
         return colour;
     }
+
+    @Override
+    public void changeReputation(int amount) throws RemoteException {
+        this.reputation += amount;
+    }
+
 }
