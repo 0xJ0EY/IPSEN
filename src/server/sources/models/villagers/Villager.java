@@ -52,6 +52,10 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         return amount;
     }
 
+    public VillagerState getState() throws RemoteException {
+        return this.state;
+    }
+
     public boolean isUsable() throws RemoteException {
         return this.state == VillagerState.USABLE;
     }
@@ -102,10 +106,6 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         this.state = VillagerState.INJURED;
     }
 
-    public AnchorPane getType() throws RemoteException {
-        return new TypeDefaultComponent();
-    }
-
     public String getBackground() throws RemoteException {
         return background;
     }
@@ -118,5 +118,20 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     @Override
     public void endOfRound() throws RemoteException {
         this.slept = false;
+    }
+
+    @Override
+    public boolean isAllround() throws RemoteException {
+        return isBuilder() && isTrainer();
+    }
+
+    @Override
+    public boolean isBuilder() throws RemoteException {
+        return this instanceof Buildable;
+    }
+
+    @Override
+    public boolean isTrainer() throws RemoteException {
+        return this instanceof Trainable;
     }
 }

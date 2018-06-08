@@ -17,9 +17,4 @@ public class BuilderVillager extends Villager implements Buildable {
     public void build() {
 
     }
-
-    @Override
-    public AnchorPane getType() {
-        return new TypeBuilderComponent();
-    }
 }

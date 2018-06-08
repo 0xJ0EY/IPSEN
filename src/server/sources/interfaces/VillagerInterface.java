@@ -2,6 +2,7 @@ package server.sources.interfaces;
 
 import javafx.scene.layout.AnchorPane;
 import server.sources.models.Dice;
+import server.sources.models.villagers.Villager;
 
 import java.io.Serializable;
 import java.rmi.Remote;
@@ -12,6 +13,8 @@ public interface VillagerInterface extends Serializable, Remote {
     public int calculateLanters(Dice dice) throws RemoteException;
 
     public void setPlayerBoard(PlayerBoardInterface playerBoard) throws RemoteException;
+
+    public Villager.VillagerState getState() throws RemoteException;
 
     public boolean isUsable() throws RemoteException;
 
@@ -31,10 +34,14 @@ public interface VillagerInterface extends Serializable, Remote {
 
     public void injure() throws RemoteException;
 
-    public AnchorPane getType() throws RemoteException;
-
     public String getBackground() throws RemoteException;
 
     public void endOfRound() throws RemoteException;
+
+    public boolean isAllround() throws RemoteException;
+
+    public boolean isBuilder() throws RemoteException;
+
+    public boolean isTrainer() throws RemoteException;
 
 }

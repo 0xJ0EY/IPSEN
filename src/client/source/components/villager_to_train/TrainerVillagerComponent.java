@@ -42,10 +42,10 @@ public class TrainerVillagerComponent extends AnchorPane {
 
         switch (villager.getClass().getSimpleName()){
             case "TrainerVillager":
-                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Feather.png')");
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/trainer.png')");
                 break;
             case "BuilderVillager":
-                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/Hammer.png')");
+                this.type.setStyle("-fx-background-image: url('/client/resources/img/type/builder.png')");
                 break;
             case "AllroundVillager":
                 this.type.setStyle("-fx-background-image: url('/client/resources/img/type/allround.png')");

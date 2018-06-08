@@ -19,8 +19,4 @@ public class FishVillager extends Villager implements Buildable {
 
     }
 
-    @Override
-    public AnchorPane getType() {
-        return new TypeBuilderComponent();
-    }
 }

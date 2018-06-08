@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.villagers.Villager;
+import server.sources.models.villagers.Buildable;
+import server.sources.models.villagers.BuilderVillager;
+import server.sources.models.villagers.Trainable;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -19,7 +21,6 @@ public class VillagerComponent extends AnchorPane {
     @FXML protected Text labelType;
 
     @FXML protected AnchorPane type;
-
 
     public VillagerComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager.fxml"));
@@ -40,7 +41,7 @@ public class VillagerComponent extends AnchorPane {
 
     public void load()  {
         try {
-            this.type.getChildren().setAll(villager.getType());
+            this.setType();
 
             this.background.setStyle(
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
@@ -55,5 +56,28 @@ public class VillagerComponent extends AnchorPane {
 
     public VillagerInterface getVillager() {
         return villager;
+    }
+
+    private void setType() {
+
+        try {
+            boolean buildable = this.villager.isBuilder();
+            boolean trainable = this.villager.isTrainer();
+
+            if (buildable && trainable) {
+                this.type.getChildren().setAll(new TypeAllroundComponent());
+
+            } else if (buildable) {
+                this.type.getChildren().setAll(new TypeBuilderComponent());
+
+            } else if (trainable) {
+                this.type.getChildren().setAll(new TypeTrainerComponent());
+
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+
+        }
     }
 }
