@@ -11,6 +11,8 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
@@ -36,6 +38,7 @@ public class Client extends Application {
     public Observer<String> messageObserver = new Observer<>();
     public Observer<PlayerInterface> turnObserver = new Observer<>();
     public Observer<ArrayList<PlayerInterface>> clientObserver = new Observer<>();
+    public Observer<PlayerBoardInterface> playerBoardObserver = new Observer<>();
 
     @Override
     public void start(Stage primaryStage) {

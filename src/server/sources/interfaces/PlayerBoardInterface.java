@@ -50,6 +50,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public int getPotions() throws RemoteException;
 
+    public int getBeds() throws RemoteException;
+
     public ArrayList<Good> getGoods() throws RemoteException;
 
     public void payCoin(int price) throws RemoteException;
@@ -75,5 +77,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public void useBed() throws RemoteException;
 
     public ArrayList<Building> getHarvestBuildings() throws RemoteException;
+
+    public void endOfRound() throws RemoteException;
 
 }

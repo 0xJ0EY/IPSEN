@@ -91,10 +91,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
             this.restVillagers();
 
+            this.endOfRound();
+
             this.turn = 0;
             this.round++;
-
-            this.server.notifyClients(new MessageNotification("u all gay"));
         }
 
     }
@@ -115,23 +115,13 @@ public class GameController extends UnicastRemoteObject implements GameControlle
             try {
 
                 for (Player player : players) {
-                    System.out.println("REEEE");
-
-
-                    System.out.println("player.hasAction() = " + player.hasAction());
-
                     if (!player.hasAction()) hasAction = false;
-
-
-                    System.out.println("hasAction = " + hasAction);
                 }
 
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            System.out.println("hasAction = " + hasAction);
 
         } while (!hasAction);
 
@@ -178,6 +168,27 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         }
 
         return hasEnded;
+    }
+
+    /**
+     * Replenish stores, Reset villagers, etc.. after the round.
+     * @author Joey de Ruiter
+     */
+    private void endOfRound() {
+        try {
+            // Reset turn
+            this.turn = 0;
+
+            // Reset villagers, so they can sleep again
+            for (Player player : this.players) {
+                player.getPlayerBoard().endOfRound();
+            }
+
+
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean gameHasEnded() {

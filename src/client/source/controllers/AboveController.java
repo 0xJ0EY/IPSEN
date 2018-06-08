@@ -1,14 +1,23 @@
 package client.source.controllers;
 
 import client.source.Client;
-import server.sources.models.PlayerBoard;
+import client.source.observers.Observable;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.rmi.RemoteException;
 
-public class AboveController {
+public class AboveController implements Observable {
+
+
+    @FXML Label labelBeds;
+    @FXML Label labelCiders;
+    @FXML Label labelPotions;
+
+    private PlayerBoardInterface playerBoard;
 
     private Client client;
-    private PlayerBoard pbc = new PlayerBoard();
 
     public AboveController() throws RemoteException {
     }
@@ -19,38 +28,39 @@ public class AboveController {
      */
     public void registerClient(Client client) {
         this.client = client;
+        this.client.playerBoardObserver.attach(this);
     }
 
-    public void setPbc(PlayerBoard pbc) {
-        this.pbc = pbc;
+    @Override
+    public void updateObserver() {
+        playerBoard = this.client.playerBoardObserver.getState();
+
+        this.updateBeds();
+        this.updateCiders();
+        this.updatePotions();
     }
 
-    public void getVillagers() throws RemoteException {
-        pbc.listAvailableVillagers();
+    private void updateBeds() {
+        try {
+            labelBeds.setText(String.format("Beds: %s", playerBoard.getBeds()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void getAvailableVillagers() throws RemoteException {
-        pbc.listAvailableVillagers();
+    private void updateCiders() {
+        try {
+            labelCiders.setText(String.format("Ciders: %s", playerBoard.getCiders()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void getHouses() throws RemoteException{
-        pbc.getHouses();
+    private void updatePotions() {
+        try {
+            labelPotions.setText(String.format("Ciders: %s", playerBoard.getPotions()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
-
-    public void getOutposts() throws RemoteException{
-        pbc.getOutposts();
-    }
-
-    public void getCoins() {
-        pbc.getCoins();
-    }
-
-    public void getPotions() {
-        pbc.getPotions();
-    }
-
-    public void getCiders() {
-        pbc.getCiders();
-    }
-
 }
