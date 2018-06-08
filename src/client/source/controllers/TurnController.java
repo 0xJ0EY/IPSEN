@@ -1,9 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.factories.AllVillagerSelectionFactory;
-import client.source.factories.BuilderVillagerSelectionFactory;
-import client.source.factories.TrainerVillagerSelectionFactory;
+import client.source.factories.*;
 import client.source.strategies.DoActionStrategy;
 import client.source.strategies.RequestStrategy;
 import javafx.fxml.FXML;
@@ -24,7 +22,8 @@ public class TurnController {
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new ExploreStoryAction(this.client.getGameClient()),
-            new RequestStrategy()
+            new RequestStrategy(),
+            new MultipleSelectionFactory()
         );
 
     }
@@ -39,7 +38,8 @@ public class TurnController {
         client.showVillagerSelection(
             new BuilderVillagerSelectionFactory(),
             new BuildAction(this.client.getGameClient()),
-            new RequestStrategy()
+            new RequestStrategy(),
+            new SingleSelectionFactory()
         );
 
     }
@@ -53,7 +53,8 @@ public class TurnController {
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new LaborAction(this.client.getGameClient()),
-            new DoActionStrategy()
+            new DoActionStrategy(),
+            new SingleSelectionFactory()
         );
 
     }
@@ -67,7 +68,8 @@ public class TurnController {
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
-            new DoActionStrategy()
+            new DoActionStrategy(),
+            new SingleSelectionFactory()
         );
 
     }
@@ -81,7 +83,8 @@ public class TurnController {
         client.showVillagerSelection(
             new TrainerVillagerSelectionFactory(),
             new TrainerAction(this.client.getGameClient()),
-            new DoActionStrategy()
+            new DoActionStrategy(),
+            new SingleSelectionFactory()
         );
 
     }
@@ -93,7 +96,6 @@ public class TurnController {
     @FXML private void pass() throws RemoteException {
 
         client.getGameClient().getPlayer().doAction(new PassAction(this.client.getGameClient()));
-        System.out.println("Send action pass");
 
     }
 

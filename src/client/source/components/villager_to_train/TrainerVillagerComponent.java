@@ -1,26 +1,13 @@
 package client.source.components.villager_to_train;
 
-import client.source.Client;
-import client.source.components.villager.SelectableVillagerComponent;
-import client.source.components.villager.VillagerComponent;
+import client.source.components.villager.SingleSelectableVillagerComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import server.sources.interfaces.VillagerInterface;
-import server.sources.models.villagers.AllroundVillager;
-import server.sources.models.villagers.TrainerVillager;
-import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class TrainerVillagerComponent extends SelectableVillagerComponent {
+public class TrainerVillagerComponent extends SingleSelectableVillagerComponent {
 
     @FXML
     public void onClickSelect(ArrayList<TrainerVillagerComponent> villagerComponents) {
