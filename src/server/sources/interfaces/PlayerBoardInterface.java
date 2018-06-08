@@ -24,7 +24,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public VillagerInterface getVillager(int index) throws RemoteException;
 
-    public void addVillager(Villager villager) throws RemoteException;
+    public void addVillager(VillagerInterface villager) throws RemoteException;
 
     public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException;
 
@@ -35,8 +35,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public void addGood(String type) throws RemoteException;
     
     public void addPotion() throws RemoteException;
-
-    public ArrayList<Good> getGoods()throws RemoteException;
 
 
     /**
@@ -51,6 +49,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public int getCiders() throws RemoteException;
 
     public int getPotions() throws RemoteException;
+
+    public ArrayList<Good> getGoods() throws RemoteException;
 
     public void payCoin(int price) throws RemoteException;
 
@@ -68,9 +68,11 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public boolean hasBeds() throws RemoteException;
 
-    public void useCider(VillagerInterface villager) throws RemoteException;
+    public void useCider() throws RemoteException;
 
-    public void usePotion(VillagerInterface villager) throws RemoteException;
+    public void usePotion() throws RemoteException;
+
+    public void useBed() throws RemoteException;
 
     public ArrayList<Building> getHarvestBuildings() throws RemoteException;
 

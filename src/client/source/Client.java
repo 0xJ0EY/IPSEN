@@ -110,6 +110,11 @@ public class Client extends Application {
         this.setScene(build.show());
     }
 
+    public void showTrain() {
+        TrainController train = controllerFactory.createTrain();
+        this.setScene(train.show());
+    }
+
     public void showParty(Story story, Choice choice){
         ExplorePartyController party = controllerFactory.createExploreParty();
         party.setStory(story);
