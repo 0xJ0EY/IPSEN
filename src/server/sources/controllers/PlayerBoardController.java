@@ -243,6 +243,7 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         this.outposts.add(outpost);
     }
 
+    @Override
     public ArrayList<Good> getGoods(){
         return this.goods;
     }
@@ -267,8 +268,8 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
         return this.ciders;
     }
 
-   @Override
-   public ArrayList<Building> getHarvestBuildings() {
+    @Override
+    public ArrayList<Building> getHarvestBuildings() {
         checkHarvestBuildings();
         return harvestBuildings;
     }
@@ -288,4 +289,5 @@ public class PlayerBoardController extends UnicastRemoteObject implements Player
             }
         }
     }
+
 }

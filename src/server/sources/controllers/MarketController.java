@@ -1,8 +1,12 @@
 package server.sources.controllers;
 
+import client.source.controllers.SellGoodController;
+import javafx.fxml.FXML;
+import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.MarketControllerInterface;
 import server.sources.models.Player;
 import server.sources.models.buildings.*;
+import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 
@@ -20,6 +24,7 @@ public class MarketController extends UnicastRemoteObject implements MarketContr
     private ArrayList<StarHouse> starHouses = new ArrayList<>();
     private ArrayList<KeyHouse> keyHouses = new ArrayList<>();
     private ArrayList<Outpost> outposts = new ArrayList<>();
+    private ArrayList<GoodOnSale> goodsOnSale = new ArrayList<GoodOnSale>();
 
     private House[] availableHouses = new House[4];
     private Outpost[] availableOutposts = new Outpost[4];
@@ -114,4 +119,9 @@ public class MarketController extends UnicastRemoteObject implements MarketContr
     public void buyVillager(Player player, Villager villager){
 
     }
+
+    public void sellGood(GoodOnSale goodOnSale){
+        this.goodsOnSale.add(goodOnSale);
+    }
+
 }

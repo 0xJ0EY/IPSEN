@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class ReputationBoardController implements ReputationBoardInterface {
 
     private boolean cider = true;
-    private ArrayList<Good> goodsOnSale = new ArrayList<>();
 
     public boolean hasCider(){
         return this.cider;
@@ -27,7 +26,4 @@ public class ReputationBoardController implements ReputationBoardInterface {
         this.cider = true;
     }
 
-    public void setGoodOnSale(Good good, Client target){
-        this.goodsOnSale.add(good);
-    }
 }

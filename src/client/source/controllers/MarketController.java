@@ -34,4 +34,15 @@ public class MarketController {
 
     }
 
+    @FXML
+    public void sellGood() throws RemoteException{
+        this.client.showSellableGoods();
+
+    }
+
+    @FXML
+    public void buyGood(){
+
+    }
+
 }

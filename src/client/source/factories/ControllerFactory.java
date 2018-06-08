@@ -209,4 +209,19 @@ public class ControllerFactory {
         return villagerRestController;
     }
 
+    public SellGoodController createSellGoodController(){
+        SellGoodController sellGoodController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/sellGood.fxml"));
+            loader.load();
+
+            sellGoodController = loader.getController();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return sellGoodController;
+    }
+
 }

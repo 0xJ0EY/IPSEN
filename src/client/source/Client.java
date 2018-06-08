@@ -117,6 +117,11 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
+    public void showSellableGoods() throws RemoteException{
+        SellGoodController goods = controllerFactory.createSellGoodController();
+        this.setScene(goods.show());
+    }
+
     public void showVillagerRest() {
         this.setScene(controllerFactory.createVillagerRest().show());
     }
