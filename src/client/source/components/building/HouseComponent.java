@@ -4,6 +4,8 @@ import client.source.Client;
 import client.source.controllers.BuildController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -61,10 +63,12 @@ public class HouseComponent extends VBox {
      */
     @FXML
     private void buildHouse() {
-        // TODO: Show indicator
+        // This is for displaying a message to warn user for not having enough coins to build a building.
+        Alert alert = new Alert(Alert.AlertType.WARNING, "You don't have enough coins to build a house.", ButtonType.OK);
+
         try {
             if (!this.building.canBuy(client.getGameClient().getPlayer())){
-                System.out.println("You don't have enough coins.");
+                alert.show();
             }
             else{
                 client.getGameClient().getPlayer().getPlayerBoard().addHouse((House) this.building);
