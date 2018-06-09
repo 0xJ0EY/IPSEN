@@ -2,6 +2,9 @@ package client.source.controllers;
 
 import client.source.Client;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
@@ -30,6 +33,8 @@ public class ScoreboardController implements ControllerInterface {
     @FXML private TableColumn<PlayerInterface, String> card_bonus_data;
     @FXML private TableColumn<PlayerInterface, String> total_points_data;
 
+    private ObservableList<PlayerInterface> masterData = FXCollections.observableArrayList();
+
     @Override
     public Parent show() {
 
@@ -40,21 +45,22 @@ public class ScoreboardController implements ControllerInterface {
     public void populateScoreBoard() {
         // TODO: Populate all data in a tableview.
 
-        int totalPoints = 0;
 
         ArrayList<PlayerInterface> players = client.clientObserver.getState();
 
-        for (PlayerInterface player : players){
+        for(PlayerInterface player : players){
+            masterData.add(player);
+        }
 
-            player_data.setCellValueFactory(c -> {
-                SimpleStringProperty pt = null;
-                try {
-                    pt = new SimpleStringProperty(c.getValue().getUsername());
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                return pt;
-            });
+        player_data.setCellValueFactory(c -> {
+            SimpleStringProperty pt = null;
+            try {
+                pt = new SimpleStringProperty(c.getValue().getUsername());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            return pt;
+        });
 
 //            advancement_track_data.setCellValueFactory(c -> {
 //                SimpleStringProperty pt = null;
@@ -65,53 +71,62 @@ public class ScoreboardController implements ControllerInterface {
 //                }
 //                return pt;
 //            });
-            reputation_data.setCellValueFactory(c -> {
-                SimpleStringProperty pt = null;
-                try {
-                    pt = new SimpleStringProperty(Integer.toString(c.getValue().getReputation()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                return pt;
-            });
-            buildings_data.setCellValueFactory(c -> {
-                SimpleStringProperty pt = null;
-
-                try {
-                    pt = new SimpleStringProperty(Integer.toString(c.getValue().getAmountBuildings()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-
-                return pt;
-            });
-            card_bonus_data.setCellValueFactory(c -> {
-                SimpleStringProperty pt = null;
-
-                try {
-                    pt = new SimpleStringProperty(Integer.toString(c.getValue().getAmountOfCardBonusses()));
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-
-                return pt;
-            });
+        reputation_data.setCellValueFactory(c -> {
+            SimpleStringProperty pt = null;
+            try {
+                pt = new SimpleStringProperty(Integer.toString(c.getValue().getReputation()));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            return pt;
+        });
+        buildings_data.setCellValueFactory(c -> {
+            SimpleStringProperty pt = null;
 
             try {
-                totalPoints = player.getAmountBuildings() + player.getReputation() + player.getAmountOfCardBonusses();
+                pt = new SimpleStringProperty(Integer.toString(c.getValue().getAmountBuildings()));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
 
-            int finalTotalPoints = totalPoints;
-            total_points_data.setCellValueFactory(c -> {
-                SimpleStringProperty pt = null;
-                pt = new SimpleStringProperty(Integer.toString(finalTotalPoints));
-                return pt;
-            });
-        }
-        score_table.getSortOrder().add(total_points_data); // This is for sorting a table by total of points. Easily to decide the winner.
-        score_table.getItems().addAll(players);
+            return pt;
+        });
+        card_bonus_data.setCellValueFactory(c -> {
+            SimpleStringProperty pt = null;
+
+            try {
+                pt = new SimpleStringProperty(Integer.toString(c.getValue().getAmountOfCardBonusses()));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            return pt;
+        });
+
+        total_points_data.setCellValueFactory(c -> {
+
+            int totalPoints = 0;
+
+            SimpleStringProperty pt = null;
+
+            try {
+                totalPoints = c.getValue().getAmountBuildings() + c.getValue().getReputation() + c.getValue().getAmountOfCardBonusses();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+            pt = new SimpleStringProperty(Integer.toString(totalPoints));
+            return pt;
+        });
+
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<PlayerInterface> sortedData = new SortedList<>(masterData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(score_table.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        score_table.setItems(sortedData);
     }
 
     public static void setClient(Client c) { client = c; }
