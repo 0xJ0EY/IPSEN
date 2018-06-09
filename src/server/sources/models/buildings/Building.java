@@ -44,6 +44,7 @@ public class Building implements Serializable {
     /**
      * This is for checking if a building is for sale.
      * @param player
+     * @author Robin Silvério
      * */
     public boolean canBuy(PlayerInterface player) {
         // TODO: Check if builder can actually buy the building
@@ -69,6 +70,7 @@ public class Building implements Serializable {
 
     /**
      * This is necessary to add information on a card
+     * @author Robin Silvério
      */
     @Override
     public String toString(){
@@ -81,6 +83,11 @@ public class Building implements Serializable {
         return "Price: " + this.price + "\n" + perk;
     }
 
+    /**
+     * Here we can retrieve only village points perks from one building
+     * @return Arraylist of Village Points perks
+     * @author Robin Silvério
+     */
     public ArrayList<villagePointsPerk> getVillagePointsPerk() {
         ArrayList<villagePointsPerk> vpPerk = new ArrayList<villagePointsPerk>();
 

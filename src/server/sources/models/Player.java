@@ -105,6 +105,12 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return colour;
     }
 
+    /**
+     * With this method, we can retrieve all amount of buildings that a player has build.
+     * Each building represents one village points.
+     * @return VP (Village Points)
+     * @author Robin Silvério
+     */
     public int getAmountBuildings(){
 
         int villagePointsPerBuilding = 0;
@@ -118,6 +124,11 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return villagePointsPerBuilding;
     }
 
+    /**
+     * With this method, we can retrieve all amount of card bonusses that a player can win from each building built.
+     * @return Amount of card bonusses from one building card.
+     * @author Robin Silvério
+     */
     public int getAmountOfCardBonusses(){
         int cardBonusses = 0;
 

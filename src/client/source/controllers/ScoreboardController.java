@@ -33,6 +33,7 @@ public class ScoreboardController implements ControllerInterface {
     @FXML private TableColumn<PlayerInterface, String> card_bonus_data;
     @FXML private TableColumn<PlayerInterface, String> total_points_data;
 
+    // With this observablelist, we can retrieve all scores from each player and populate them in a tableview.
     private ObservableList<PlayerInterface> masterData = FXCollections.observableArrayList();
 
     @Override
@@ -42,6 +43,10 @@ public class ScoreboardController implements ControllerInterface {
         return root;
     }
 
+    /**
+     * This is for populating a scoreboard with all the scores.
+     * @author Robin Silvério
+     */
     public void populateScoreBoard() {
         // TODO: Populate all data in a tableview.
 
@@ -129,5 +134,10 @@ public class ScoreboardController implements ControllerInterface {
         score_table.setItems(sortedData);
     }
 
+    /**
+     * This is for setting a client. How can we retrieve all clients if each of them is not set.
+     * @param c
+     * @author Robin Silvério
+     */
     public static void setClient(Client c) { client = c; }
 }
