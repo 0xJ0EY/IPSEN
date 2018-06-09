@@ -172,7 +172,7 @@ public class BuildingFactory {
                     break;
 
                 case "BEDS":
-                    perks.add(new BedPerk(Integer.parseInt(perkElement.getAttribute("value"))));
+                    perks.add(new BedPerk());
                     break;
 
                 case "VILLAGE_POINTS":

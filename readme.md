@@ -2,7 +2,7 @@
 
 TODO
  - [ ] Add message to the saving error
- - [ ] Fix message of server already started
+ - [x] Fix message of server already started
  - [ ] Scale rules image with client width 
  - [ ] Advancement tracker
  - [ ] Refresh houses
@@ -10,4 +10,4 @@ TODO
  - [ ] Key bindings on turn buttons (important)
  - [ ] JavaDoc
  - [ ] Below & Above view maken
- - [ ] Make it possible to let VillagerSelection only show 1 villager
+ - [x] Make it possible to let VillagerSelection only show 1 villager

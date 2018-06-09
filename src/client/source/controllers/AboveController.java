@@ -102,7 +102,6 @@ public class AboveController implements Observable {
                 }
             }
 
-            System.out.println(villagers);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

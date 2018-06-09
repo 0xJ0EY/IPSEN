@@ -77,7 +77,7 @@ public class LoginController implements ControllerInterface {
             this.errorAddress.setText("Game has already started.");
 
         } catch (RemoteException | NotBoundException e) {
-            this.errorAddress.setText("Server did not respond.");
+            this.errorAddress.setText("Server already running.");
             e.printStackTrace();
 
         } catch (MalformedURLException e) {

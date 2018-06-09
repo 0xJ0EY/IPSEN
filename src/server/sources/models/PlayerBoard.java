@@ -16,6 +16,8 @@ import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardInterface;
+import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
@@ -29,6 +31,8 @@ import java.util.Arrays;
 public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
     private static final long serialVersionUID = 1337L;
+
+    private EndOfRound endOfRound = new EndOfRound(this);
 
     private PlayerInterface player;
 
@@ -50,6 +54,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
+
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
 
         // TODO: A nice implementation of this
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
@@ -78,6 +85,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
             villager.setPlayerBoard(this);
         }
 
+        ArrayList<Perk> perks = new ArrayList<Perk>();
+        perks.add(new BedPerk());
+        perks.add(new BedPerk());
+        perks.add(new BedPerk());
+
+        this.houses.add(new House(0, perks));
+
     }
 
     @Override
@@ -94,36 +108,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.coins -= coin;
     }
 
-    public void addGood(String good){
-        switch (good){
-            case "MUSHROOM":
-                this.goods.add(new MushroomGood());
-                break;
-            case "FISH":
-                this.goods.add(new FishGood());
-                break;
-            case "FRUIT":
-                this.goods.add(new FruitGood());
-                break;
-            case "AMETHYST":
-                this.goods.add(new AmethystGood());
-                break;
-            case "PAPER":
-                this.goods.add(new PaperGood());
-                break;
-            case "POT":
-                this.goods.add(new PotGood());
-                break;
-            case "ROPE":
-                this.goods.add(new RopeGood());
-                break;
-            case "ORE":
-                this.goods.add(new OreGood());
-                break;
-            default:
-                System.out.println("no good added");
-                break;
-        }
+    public void addGood(Good good){
+        this.goods.add(good);
     }
 
     /**
@@ -334,15 +320,17 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     public void endOfRound() throws RemoteException {
         // Recalculate available beds
+        this.beds = endOfRound.countBeds();
 
         // Reset all villagers
         for (Villager villager : this.villagers) {
             villager.endOfRound();
         }
 
+        this.updateObserver();
     }
 
-    private void updateObserver() {
+    public void updateObserver() {
         try {
             this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
         } catch (RemoteException e) {
@@ -370,5 +358,25 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
                 harvestBuildings.add(outposts.get(i));
             }
         }
+    }
+
+    public ArrayList<Perk> getBuildingsPerks() {
+        ArrayList<Perk> perks = new ArrayList<Perk>();
+
+        // Get all perks from houses
+        if (this.houses.size() > 0) {
+            for (House house : this.houses) {
+                perks.addAll(house.getPerks());
+            }
+        }
+
+        // Get all perks from outposts
+        if (this.outposts.size() > 0) {
+            for (Outpost outpost : this.outposts) {
+                perks.addAll(outpost.getPerks());
+            }
+        }
+
+        return perks;
     }
 }

@@ -5,12 +5,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
-public class PaperGood implements Good, Serializable {
-
-    @Override
-    public String isGood() {
-        return "PAPER";
-    }
+public class PaperGood implements Good {
 
     @Override
     public AnchorPane getGood() {

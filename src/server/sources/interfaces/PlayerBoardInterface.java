@@ -32,8 +32,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void addCider() throws RemoteException;
 
-    public void addGood(String type) throws RemoteException;
-    
+    public void addGood(Good good) throws RemoteException;
+
     public void addPotion() throws RemoteException;
 
 
