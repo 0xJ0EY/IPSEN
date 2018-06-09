@@ -18,7 +18,7 @@ public class HarvestableGoodPerk implements Perk, Harvastable {
      */
     @Override
     public String toString() {
-        return "Harvestable: " + this.good.isGood();
+        return "Harvestable: " + good.toString();
     }
 
     @Override

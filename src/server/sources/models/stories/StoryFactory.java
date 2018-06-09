@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import server.sources.models.goods.*;
 import server.sources.models.stories.rewards.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -133,7 +134,10 @@ public class StoryFactory {
                     break;
                 case "GOOD":
                     value = Integer.parseInt(rewardElement.getAttribute("value"));
-                    rewards.add(new GoodReward(type, value));
+
+                    Good good = this.getGoodsFromString(type);
+
+                    rewards.add(new GoodReward(good, value));
                     break;
                 case "REPUTATION":
                     value = Integer.parseInt(rewardElement.getAttribute("value"));
@@ -153,5 +157,37 @@ public class StoryFactory {
         }
 
         return rewards;
+    }
+
+    private Good getGoodsFromString(String text) {
+
+        switch (text){
+            case "MUSHROOM":
+                return new MushroomGood();
+
+            case "FISH":
+                return new FishGood();
+
+            case "FRUIT":
+                return new FruitGood();
+
+            case "AMETHYST":
+                return new AmethystGood();
+
+            case "PAPER":
+                return new PaperGood();
+
+            case "POT":
+                return new PotGood();
+
+            case "ROPE":
+                return new RopeGood();
+
+            case "ORE":
+                return new OreGood();
+
+            default:
+                return null;
+        }
     }
 }

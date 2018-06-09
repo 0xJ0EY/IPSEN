@@ -5,12 +5,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
-public class MushroomGood implements Good, Serializable {
-
-    @Override
-    public String isGood() {
-        return "MUSHROOM";
-    }
+public class MushroomGood implements Good {
 
     @Override
     public AnchorPane getGood() {
