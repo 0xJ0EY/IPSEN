@@ -66,15 +66,15 @@ public class ScoreboardController implements ControllerInterface {
 //                }
 //                return pt;
 //            });
-//            reputation_data.setCellValueFactory(c -> {
-//                SimpleStringProperty pt = null;
-//                try {
-//                    pt = new SimpleStringProperty(c.getValue().getUsername());
-//                } catch (RemoteException e) {
-//                    e.printStackTrace();
-//                }
-//                return pt;
-//            });
+            reputation_data.setCellValueFactory(c -> {
+                SimpleStringProperty pt = null;
+                try {
+                    pt = new SimpleStringProperty(Integer.toString(c.getValue().getReputation()));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                return pt;
+            });
             buildings_data.setCellValueFactory(c -> {
                 SimpleStringProperty pt = null;
 
@@ -99,7 +99,7 @@ public class ScoreboardController implements ControllerInterface {
             });
 
             try {
-                totalPoints = player.getAmountBuildings() + player.getAmountOfCardBonusses();
+                totalPoints = player.getAmountBuildings() + player.getReputation() + player.getAmountOfCardBonusses();
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
