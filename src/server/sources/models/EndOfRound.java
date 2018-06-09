@@ -2,6 +2,8 @@ package server.sources.models;
 
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.buildings.Building;
+import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.Perk;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,17 +17,15 @@ public class EndOfRound implements Serializable {
     }
 
 
-    private ArrayList<Building> retrieveAllBuildings() {
-        ArrayList<Building> buildings = new ArrayList<>();
+    public int countBeds() {
+        ArrayList<Perk> perks = this.playerBoard.getBuildingsPerks();
+        int beds = 0;
 
-        // Retrieve houses
+        for (Perk perk : perks) {
+            if (perk instanceof BedPerk) beds++;
+        }
 
-
-        // Retrieve
-
-
-
-        return buildings;
+        return beds;
     }
 
 

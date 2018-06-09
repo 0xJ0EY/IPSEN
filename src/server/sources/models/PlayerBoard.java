@@ -8,6 +8,8 @@ import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardInterface;
+import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
@@ -54,6 +56,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         for (VillagerInterface villager : villagers) {
             villager.setPlayerBoard(this);
         }
+
+        ArrayList<Perk> perks = new ArrayList<Perk>();
+        perks.add(new BedPerk());
+        perks.add(new BedPerk());
+        perks.add(new BedPerk());
+
+        this.houses.add(new House(0, perks));
 
     }
 
@@ -262,14 +271,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     public void endOfRound() throws RemoteException {
         // Recalculate available beds
-
-
+        this.beds = endOfRound.countBeds();
 
         // Reset all villagers
         for (Villager villager : this.villagers) {
             villager.endOfRound();
         }
 
+        this.updateObserver();
     }
 
     public void updateObserver() {
@@ -300,5 +309,25 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
                 harvestBuildings.add(outposts.get(i));
             }
         }
+    }
+
+    public ArrayList<Perk> getBuildingsPerks() {
+        ArrayList<Perk> perks = new ArrayList<Perk>();
+
+        // Get all perks from houses
+        if (this.houses.size() > 0) {
+            for (House house : this.houses) {
+                perks.addAll(house.getPerks());
+            }
+        }
+
+        // Get all perks from outposts
+        if (this.outposts.size() > 0) {
+            for (Outpost outpost : this.outposts) {
+                perks.addAll(outpost.getPerks());
+            }
+        }
+
+        return perks;
     }
 }
