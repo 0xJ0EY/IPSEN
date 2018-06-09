@@ -5,12 +5,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
-public class AmethystGood implements Good, Serializable {
-
-    @Override
-    public String isGood() {
-        return "AMETHYST";
-    }
+public class AmethystGood implements Good {
 
     @Override
     public AnchorPane getGood() {

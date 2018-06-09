@@ -20,6 +20,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private static final long serialVersionUID = 1337L;
 
+    private EndOfRound endOfRound = new EndOfRound(this);
+
     private PlayerInterface player;
 
     private ArrayList<Villager> villagers = new ArrayList<>();
@@ -69,36 +71,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.coins -= coin;
     }
 
-    public void addGood(String good){
-        switch (good){
-            case "MUSHROOM":
-                this.goods.add(new MushroomGood());
-                break;
-            case "FISH":
-                this.goods.add(new FishGood());
-                break;
-            case "FRUIT":
-                this.goods.add(new FruitGood());
-                break;
-            case "AMETHYST":
-                this.goods.add(new AmethystGood());
-                break;
-            case "PAPER":
-                this.goods.add(new PaperGood());
-                break;
-            case "POT":
-                this.goods.add(new PotGood());
-                break;
-            case "ROPE":
-                this.goods.add(new RopeGood());
-                break;
-            case "ORE":
-                this.goods.add(new OreGood());
-                break;
-            default:
-                System.out.println("no good added");
-                break;
-        }
+    public void addGood(Good good){
+        this.goods.add(good);
     }
 
     /**
@@ -288,6 +262,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     public void endOfRound() throws RemoteException {
         // Recalculate available beds
+
+
 
         // Reset all villagers
         for (Villager villager : this.villagers) {

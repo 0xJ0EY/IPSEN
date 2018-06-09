@@ -2,7 +2,10 @@ package server.sources.models.goods;
 
 import javafx.scene.layout.AnchorPane;
 
-public interface Good {
-    public String isGood();
+import java.io.Serializable;
+
+public interface Good extends Serializable {
+
     public AnchorPane getGood();
+
 }

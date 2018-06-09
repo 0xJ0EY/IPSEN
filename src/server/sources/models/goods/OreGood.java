@@ -5,11 +5,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
-public class OreGood implements Good, Serializable {
-    @Override
-    public String isGood() {
-        return "ORE";
-    }
+public class OreGood implements Good {
 
     @Override
     public AnchorPane getGood() {

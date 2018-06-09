@@ -5,11 +5,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
-public class RopeGood implements Good, Serializable {
-    @Override
-    public String isGood() {
-        return "ROPE";
-    }
+public class RopeGood implements Good {
 
     @Override
     public AnchorPane getGood() {
