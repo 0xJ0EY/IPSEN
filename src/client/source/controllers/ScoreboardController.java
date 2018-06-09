@@ -43,7 +43,6 @@ public class ScoreboardController implements ControllerInterface {
         int totalPoints = 0;
 
         ArrayList<PlayerInterface> players = client.clientObserver.getState();
-        score_table.getItems().addAll(players);
 
         for (PlayerInterface player : players){
 
@@ -111,6 +110,8 @@ public class ScoreboardController implements ControllerInterface {
                 return pt;
             });
         }
+        score_table.getSortOrder().add(total_points_data); // This is for sorting a table by total of points. Easily to decide the winner.
+        score_table.getItems().addAll(players);
     }
 
     public static void setClient(Client c) { client = c; }
