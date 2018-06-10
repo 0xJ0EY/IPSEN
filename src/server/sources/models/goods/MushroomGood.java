@@ -12,4 +12,8 @@ public class MushroomGood implements Good {
         return "mushroom.png";
     }
 
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof MushroomGood;
+    }
 }

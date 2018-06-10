@@ -12,4 +12,8 @@ public class AmethystGood implements Good {
         return "amethyst.png";
     }
 
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof AmethystGood;
+    }
 }

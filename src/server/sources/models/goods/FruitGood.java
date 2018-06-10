@@ -12,4 +12,8 @@ public class FruitGood implements Good {
         return "fruit.png";
     }
 
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof FruitGood;
+    }
 }

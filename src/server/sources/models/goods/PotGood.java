@@ -11,4 +11,9 @@ public class PotGood implements Good {
     public String getBackground() {
         return "pot.png";
     }
+
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof PotGood;
+    }
 }

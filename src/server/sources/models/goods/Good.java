@@ -8,4 +8,6 @@ public interface Good extends Serializable {
 
     public String getBackground();
 
+    public boolean sameInstance(Good good);
+
 }

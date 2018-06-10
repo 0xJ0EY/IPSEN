@@ -13,7 +13,7 @@ public class HarvestableGoodPerk implements Perk, Harvestable {
 
     @Override
     public String getBackground() {
-        return "../goods/" + good.getBackground();
+        return "../good/" + good.getBackground();
     }
 
     public Good getGood() {

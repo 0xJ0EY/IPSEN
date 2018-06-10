@@ -12,4 +12,8 @@ public class RopeGood implements Good {
         return "rope.png";
     }
 
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof RopeGood;
+    }
 }

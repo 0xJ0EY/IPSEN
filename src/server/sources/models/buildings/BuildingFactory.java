@@ -180,7 +180,7 @@ public class BuildingFactory {
 
                 case "VILLAGE_POINTS_FOR_THINGS":
 
-                    good = this.getGoodFromString(perkElement.getAttribute("goods"));
+                    good = this.getGoodFromString(perkElement.getAttribute("good"));
 
                     perks.add(
                         new VillagePointsForGoodsPerk(

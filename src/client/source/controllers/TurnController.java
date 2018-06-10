@@ -60,7 +60,7 @@ public class TurnController {
     }
 
     /**
-     * This allows user to do a harvest action to harvest goods
+     * This allows user to do a harvest action to harvest good
      * @throws RemoteException
      */
     @FXML private void harvest() throws RemoteException {

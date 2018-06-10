@@ -57,6 +57,18 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
 
+        for (int i = 0; i < 5; i++) {
+            this.goods.add(new FruitGood());
+        }
+
+        for (int i = 0; i < 5; i++) {
+            this.goods.add(new AmethystGood());
+        }
+
+        for (int i = 0; i < 5; i++) {
+            this.goods.add(new PaperGood());
+        }
+
         for (VillagerInterface villager : villagers) {
             villager.setPlayerBoard(this);
         }
@@ -347,5 +359,26 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         }
 
         return perks;
+    }
+
+    @Override
+    public ArrayList<Building> getBuildings() throws RemoteException {
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
+
+        return buildings;
+    }
+
+    @Override
+    public void moveGoodToAdvancementTracker(int index) throws RemoteException {
+
+        Good good = this.goods.get(index);
+        this.getAdvancementTracker().addGood(good);
+
+        this.goods.remove(index);
+
+        this.updateObserver();
+
     }
 }

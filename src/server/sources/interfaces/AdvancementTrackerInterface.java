@@ -15,6 +15,8 @@ public interface AdvancementTrackerInterface extends Remote, Serializable {
 
     public int calculatePoints()  throws RemoteException;
 
+    public int getPointsByIndex(int index) throws RemoteException;
+
     public int calculateCoins() throws RemoteException;
 
 }

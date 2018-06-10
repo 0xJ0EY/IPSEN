@@ -11,4 +11,9 @@ public class PaperGood implements Good {
     public String getBackground() {
         return "paper.png";
     }
+
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof PaperGood;
+    }
 }

@@ -12,4 +12,8 @@ public class OreGood implements Good {
         return "ore.png";
     }
 
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof OreGood;
+    }
 }
