@@ -35,5 +35,15 @@ public class EndOfRound implements Serializable {
         return beds;
     }
 
+    public int countCoins() {
+        try {
+            return playerBoard.getAdvancementTracker().calculateCoins();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
 
 }

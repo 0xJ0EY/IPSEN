@@ -1,6 +1,7 @@
 package server.sources.models;
 
 
+import server.sources.interfaces.AdvancementTrackerInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.Building;
@@ -32,6 +33,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
     private ArrayList<Building> harvestBuildings;
+
+    private AdvancementTracker advancementTracker = new AdvancementTracker(this);
 
     private int ciders = 2;
     private int potions = 2;
@@ -271,9 +274,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return this.ciders;
     }
 
+    public AdvancementTrackerInterface getAdvancementTracker() {
+        return this.advancementTracker;
+    }
+
     public void endOfRound() throws RemoteException {
         // Recalculate available beds
         this.beds = endOfRound.countBeds();
+        this.addCoins(endOfRound.countCoins());
 
         // Reset all villagers
         for (Villager villager : this.villagers) {

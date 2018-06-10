@@ -1,5 +1,6 @@
 package server.sources.interfaces;
 
+import server.sources.models.AdvancementTracker;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
@@ -51,6 +52,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public int getPotions() throws RemoteException;
 
     public int getBeds() throws RemoteException;
+
+    public AdvancementTrackerInterface getAdvancementTracker() throws RemoteException;
 
     public ArrayList<Good> getGoods() throws RemoteException;
 
