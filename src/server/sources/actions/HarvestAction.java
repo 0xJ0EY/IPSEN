@@ -8,16 +8,9 @@ import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.Harvest;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
-import server.sources.models.buildings.Outpost;
-import server.sources.models.perks.Harvastable;
-import server.sources.models.perks.HarvestableGoodPerk;
-import server.sources.models.perks.Perk;
-import server.sources.models.perks.ReplenishableGoodPerk;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.villagers.Villager;
 import server.sources.notifications.EndOfTurnNotification;
 import server.sources.notifications.ShowHarvestNotification;
-import server.sources.notifications.TestNotification;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

@@ -8,7 +8,8 @@ import java.io.Serializable;
 public class AmethystGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new AmethystComponent();
+    public String getBackground() {
+        return "amethyst.png";
     }
+
 }

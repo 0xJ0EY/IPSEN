@@ -9,7 +9,7 @@ import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.perks.BedPerk;
-import server.sources.models.perks.Harvastable;
+import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
@@ -309,7 +309,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
                 boolean harvestable = false;
 
                 for (Perk perk : building.listPerks()) {
-                    if (perk instanceof Harvastable) {
+                    if (perk instanceof Harvestable) {
                         harvestable = true;
                     }
                 }

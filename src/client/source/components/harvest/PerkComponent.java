@@ -1,14 +1,9 @@
 package client.source.components.harvest;
 
 import client.source.components.building.BuildingComponent;
-import client.source.components.villager.VillagerComponent;
-import client.source.controllers.HarvestController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import server.sources.models.buildings.Building;
-import server.sources.models.goods.Good;
-import server.sources.models.perks.Harvastable;
 import server.sources.models.perks.Perk;
 
 import java.io.IOException;

@@ -11,21 +11,8 @@ public class CiderPerk implements Perk {
         this.value = value;
     }
 
-<<<<<<< Updated upstream
-    /**
-     * This is only for setting information stats on building card.
-     * @return Informatie van statistieken over dat building card
-     * @author Robin Silvério
-     */
-    @Override
-    public String toString(){
-        return this.getClass().getSimpleName().substring(0, 5) + ": " + this.value;
-    }
-=======
     @Override
     public String getBackground() {
         return "cider_perk.png";
     }
-
->>>>>>> Stashed changes
 }

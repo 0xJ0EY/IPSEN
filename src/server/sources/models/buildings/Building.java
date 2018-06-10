@@ -1,7 +1,7 @@
 package server.sources.models.buildings;
 
 import server.sources.interfaces.BuildingInterface;
-import server.sources.models.perks.Harvastable;
+import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.Perk;
 
 import java.rmi.RemoteException;
@@ -42,7 +42,7 @@ public class Building implements BuildingInterface {
         boolean harvestable = false;
 
         for (Perk perk : this.listPerks()) {
-            if (perk instanceof Harvastable) harvestable = true;
+            if (perk instanceof Harvestable) harvestable = true;
         }
 
         return harvestable;

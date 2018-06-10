@@ -8,7 +8,8 @@ import java.io.Serializable;
 public class RopeGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new RopeComponent();
+    public String getBackground() {
+        return "rope.png";
     }
+
 }

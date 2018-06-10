@@ -8,7 +8,8 @@ import java.io.Serializable;
 public class FishGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new FishComponent();
+    public String getBackground() {
+        return "fish.png";
     }
+
 }

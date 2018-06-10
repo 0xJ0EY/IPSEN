@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class PotGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new ClayPotComponent();
+    public String getBackground() {
+        return "pot.png";
     }
 }

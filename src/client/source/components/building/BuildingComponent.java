@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.BuildingInterface;
-import server.sources.models.perks.Harvastable;
+import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.Perk;
 
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class BuildingComponent extends AnchorPane {
             for (Perk perk : this.building.listPerks()) {
                 PerkComponent perkComponent = null;
 
-                if (perk instanceof Harvastable) {
+                if (perk instanceof Harvestable) {
                     perkComponent = new RefreshablePerkComponent();
                 } else {
                     perkComponent = new PerkComponent();
