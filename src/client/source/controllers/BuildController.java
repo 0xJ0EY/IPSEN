@@ -24,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Created by robin on 1-6-2018.
  */
-public class BuildController implements ControllerInterface {
+public class BuildController implements SelectableControllerInterface {
 
     private Client client;
     private MarketInterface market;

@@ -1,6 +1,7 @@
 package client.source.components.building;
 
 import client.source.controllers.BuildController;
+import client.source.controllers.SelectableControllerInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -14,7 +15,7 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
 
     private boolean selected = false;
 
-    protected BuildController controller;
+    protected SelectableControllerInterface controller;
 
     public SelectableBuildingComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/selectable_building.fxml"));
@@ -93,7 +94,7 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
     }
 
     @FXML
-    public void setController(BuildController controller) {
+    public void setController(SelectableControllerInterface controller) {
         this.controller = controller;
     }
 }

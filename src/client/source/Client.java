@@ -13,11 +13,11 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.actions.HarvestAction;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
-import server.sources.models.Harvest;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
@@ -103,10 +103,11 @@ public class Client extends Application {
         this.setScene(explore.show());
     }
 
-    public void showHarvestSelection(Harvest harvest) throws RemoteException{
-        HarvestController harvestAction = controllerFactory.createHarvestSelection();
-        harvestAction.setHarvest(harvest);
-        this.setScene(harvestAction.show());
+    public void showHarvestSelection(HarvestAction harvestAction) throws RemoteException{
+        HarvestController harvest = controllerFactory.createHarvestSelection();
+        harvest.setHarvest(harvestAction);
+        harvest.load();
+        this.setScene(harvest.show());
     }
 
     public void showRewards(Option option) {

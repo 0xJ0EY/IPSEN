@@ -1,16 +1,16 @@
 package server.sources.notifications;
 
+import server.sources.actions.HarvestAction;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
-import server.sources.models.Harvest;
 
 import java.rmi.RemoteException;
 
 public class ShowHarvestNotification implements NotificationInterface {
 
-    private Harvest harvest;
+    private HarvestAction harvest;
 
-    public ShowHarvestNotification(Harvest harvest) {
+    public ShowHarvestNotification(HarvestAction harvest) {
         this.harvest = harvest;
     }
 

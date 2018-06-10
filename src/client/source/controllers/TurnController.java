@@ -69,7 +69,7 @@ public class TurnController {
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
             new DoActionStrategy(),
-            new SingleSelectionFactory()
+            new MultipleSelectionFactory()
         );
 
     }
