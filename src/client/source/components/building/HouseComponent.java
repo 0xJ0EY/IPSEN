@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import server.sources.actions.EndTurnAction;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 
@@ -67,6 +68,7 @@ public class HouseComponent extends VBox {
                 client.getGameClient().getPlayer().getPlayerBoard().addHouse((House) this.building);
                 System.out.println("You've build a house.");
                 System.out.print(Arrays.toString(client.getGameClient().getPlayer().getPlayerBoard().getHouses().toArray()));
+                client.getGameClient().getPlayer().doAction(new EndTurnAction());
             }
         } catch (RemoteException e) {
             e.printStackTrace();
