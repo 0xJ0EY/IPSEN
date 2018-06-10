@@ -80,4 +80,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void endOfRound() throws RemoteException;
 
+    public void updateObserver() throws RemoteException;
+
 }

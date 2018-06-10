@@ -32,7 +32,7 @@ public class HarvestController implements ControllerInterface {
 
     private void updateBuildingsView() throws RemoteException {
         for (int i = 0; i < this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().size(); i ++){
-            perkComponents.add(new PerkComponent(this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().get(i), this));
+//            perkComponents.add(new PerkComponent(this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().get(i), this));
             buildingContainer.getChildren().add(perkComponents.get(i));
 
         }
@@ -46,10 +46,10 @@ public class HarvestController implements ControllerInterface {
     @FXML
     public void confirmSelection() throws RemoteException{
         for (int i = 0; i < perkComponents.size(); i++){
-            if (perkComponents.get(i).isSelected()){
-                client.getGameClient().getPlayer().getPlayerBoard().getGoods().add(this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().get(i).getHarvastable().harvestGood());
+//            if (perkComponents.get(i).isSelected()){
+//                client.getGameClient().getPlayer().getPlayerBoard().getGoods().add(this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().get(i).getHarvastable().harvestGood());
 
-            }
+//            }
 
         }
 
@@ -57,10 +57,10 @@ public class HarvestController implements ControllerInterface {
 
     public void onlyOneTrue(PerkComponent component){
         for (int i = 0; i < buildingContainer.getChildren().size(); i++){
-            perkComponents.get(i).setFalse();
+//            perkComponents.get(i).setFalse();
 
         }
-        component.setTrue();
+//        component.setTrue();
 
     }
 

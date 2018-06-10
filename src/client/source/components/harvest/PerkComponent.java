@@ -1,30 +1,30 @@
 package client.source.components.harvest;
 
+import client.source.components.building.BuildingComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.controllers.HarvestController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import server.sources.models.buildings.Building;
+import server.sources.models.goods.Good;
 import server.sources.models.perks.Harvastable;
+import server.sources.models.perks.Perk;
 
 import java.io.IOException;
 
 public class PerkComponent extends AnchorPane {
-    private  HarvestController controller;
-    private Building building;
-    private boolean selected = false;
 
-    @FXML AnchorPane backgound;
+    @FXML private AnchorPane background;
 
-    @FXML AnchorPane goodPerk;
+    private BuildingComponent buildingComponent;
 
-    public PerkComponent(Building building, HarvestController harvestController){
-        this.building = building;
+    private Perk perk;
 
-        this.controller = harvestController;
+    public PerkComponent(BuildingComponent buildingComponent){
+        this.buildingComponent = buildingComponent;
 
-        FXMLLoader  loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/perk.fxml"));
+        FXMLLoader  loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/perk.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);
@@ -34,32 +34,22 @@ public class PerkComponent extends AnchorPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        this.goodPerk.getChildren().setAll(building.getGoodComponent());
-
-        this.backgound.setStyle("-fx-background-color: grey");
     }
 
-    @FXML
-    public void selectedGood(){
-        controller.onlyOneTrue(this);
+    public void load() {
+        this.background.setStyle(
+            "-fx-background-image: url('/client/resources/img/perks/" + this.perk.getBackground() + " ');" +
+            "-fx-background-repeat: stretch;" +
+            "-fx-background-position: center center;" +
+            "-fx-background-size: 50 50;"
+        );
     }
 
-    public void setFalse(){
-        selected = false;
-        backgound.setStyle("-fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);");
+    public void setModel(Perk perk) {
+        this.perk = perk;
     }
 
-    public void setTrue(){
-        selected = true;
-        backgound.setStyle("-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
-
+    public Perk getPerk() {
+        return this.perk;
     }
-
-    public boolean isSelected(){
-        return selected;
-    }
-
-
-
 }

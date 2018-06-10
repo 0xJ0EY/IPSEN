@@ -42,4 +42,8 @@ public class HarvestableGoodPerk implements Perk, Harvastable {
         return this;
     }
 
+    @Override
+    public String getBackground() {
+        return null;
+    }
 }

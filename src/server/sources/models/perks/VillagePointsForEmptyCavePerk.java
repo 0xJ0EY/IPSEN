@@ -11,6 +11,7 @@ public class VillagePointsForEmptyCavePerk implements Perk {
         this.value = value;
     }
 
+<<<<<<< Updated upstream
     /**
      * This is only for setting information stats on building card.
      * @return Informatie van statistieken over dat building card
@@ -19,5 +20,10 @@ public class VillagePointsForEmptyCavePerk implements Perk {
     @Override
     public String toString() {
         return "VP for empty cave: " + this.value;
+=======
+    @Override
+    public String getBackground() {
+        return "village_points_for_empty_cave_perk.png";
+>>>>>>> Stashed changes
     }
 }

@@ -84,19 +84,19 @@ public class HarvestAction implements VillagerActionInterface, Serializable {
     private void selectHarvestable() throws RemoteException{
         ArrayList<House> house = target.getPlayer().getPlayerBoard().getHouses();
 
-        for (int i = 0; i < house.size(); i++){
-            if (house.get(i).getGoodComponent() != null)
-            harvestBuildings.add(house.get(i));
-
-        }
-
-        ArrayList<Outpost> outpost = target.getPlayer().getPlayerBoard().getOutposts();
-
-        for (int i = 0; i < outpost.size(); i++){
-            if (outpost.get(i).getGoodComponent() != null)
-                harvestBuildings.add(outpost.get(i));
-
-        }
+//        for (int i = 0; i < house.size(); i++){
+//            if (house.get(i).getGoodComponent() != null)
+//            harvestBuildings.add(house.get(i));
+//
+//        }
+//
+//        ArrayList<Outpost> outpost = target.getPlayer().getPlayerBoard().getOutposts();
+//
+//        for (int i = 0; i < outpost.size(); i++){
+//            if (outpost.get(i).getGoodComponent() != null)
+//                harvestBuildings.add(outpost.get(i));
+//
+//        }
 
 
 

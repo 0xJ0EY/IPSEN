@@ -11,6 +11,7 @@ public class CoinPerk implements Perk {
         this.value = value;
     }
 
+<<<<<<< Updated upstream
     /**
      * This is only for setting information stats on building card.
      * @return Informatie van statistieken over dat building card
@@ -19,5 +20,10 @@ public class CoinPerk implements Perk {
     @Override
     public String toString(){
         return this.getClass().getSimpleName().substring(0, 4) + ": " + this.value;
+=======
+    @Override
+    public String getBackground() {
+        return "coin_perk.png";
+>>>>>>> Stashed changes
     }
 }

@@ -44,4 +44,9 @@ public class ReplenishableGoodPerk implements Perk, Harvastable {
     public void replenishGood(){
         amountLeft = 0;
     }
+
+    @Override
+    public String getBackground() {
+        return null;
+    }
 }

@@ -6,6 +6,7 @@ package server.sources.models.perks;
 public class ReputationPerk implements Perk {
     private final int REPUTATION = 1;
 
+<<<<<<< Updated upstream
     /**
      * This is only for setting information stats on building card.
      * @return Informatie van statistieken over dat building card
@@ -14,5 +15,10 @@ public class ReputationPerk implements Perk {
     @Override
     public String toString() {
         return "GAIN REPUTATION";
+=======
+    @Override
+    public String getBackground() {
+        return "reputation_perk.png";
+>>>>>>> Stashed changes
     }
 }

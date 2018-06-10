@@ -42,7 +42,6 @@ public class MainController implements ControllerInterface, Observable {
 
     @FXML private Text message;
 
-
     private Thread messageThread;
 
     /**
@@ -101,11 +100,9 @@ public class MainController implements ControllerInterface, Observable {
             } finally {
                 this.message.setVisible(false);
             }
-
         };
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
-
     }
 }

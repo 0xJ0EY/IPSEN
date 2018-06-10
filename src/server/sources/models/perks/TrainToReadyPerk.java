@@ -6,6 +6,7 @@ package server.sources.models.perks;
 public class TrainToReadyPerk implements Perk {
     private String perk = "Train to ready";
 
+<<<<<<< Updated upstream
     /**
      * This is only for setting information stats on building card.
      * @return Informatie van statistieken over dat building card
@@ -14,5 +15,10 @@ public class TrainToReadyPerk implements Perk {
     @Override
     public String toString() {
         return perk;
+=======
+    @Override
+    public String getBackground() {
+        return "train_to_ready.png";
+>>>>>>> Stashed changes
     }
 }

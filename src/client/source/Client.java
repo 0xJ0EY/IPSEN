@@ -117,6 +117,7 @@ public class Client extends Application {
 
     public void showBuild(){
         BuildController build = controllerFactory.createBuild();
+        build.load();
         this.setScene(build.show());
     }
 

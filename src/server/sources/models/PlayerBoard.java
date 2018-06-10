@@ -9,6 +9,7 @@ import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.Harvastable;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
@@ -227,7 +228,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return this.houses;
     }
 
-    public void addHouse(House house){
+    public void addHouse(House house) throws RemoteException {
         this.houses.add(house);
         this.updateObserver();
     }
@@ -236,7 +237,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<Outpost> getOutposts()throws RemoteException {
         return this.outposts;
     }
-    public void addOutpost(Outpost outpost){
+
+    public void addOutpost(Outpost outpost) throws RemoteException {
         this.outposts.add(outpost);
         this.updateObserver();
     }
@@ -281,7 +283,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
-    public void updateObserver() {
+    public void updateObserver() throws RemoteException {
         try {
             this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
         } catch (RemoteException e) {
@@ -298,33 +300,41 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private void checkHarvestBuildings() {
         this.harvestBuildings = new ArrayList<>();
 
-        for (int i = 0; i < houses.size(); i++){
-            if (houses.get(i).getGoodComponent() != null && houses.get(i).getHarvastable().amountLeft() > 0){
-                harvestBuildings.add(houses.get(i));
-            }
-        }
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
 
-        for (int i = 0; i < outposts.size(); i++){
-            if (outposts.get(i).getGoodComponent() != null && outposts.get(i).getHarvastable().amountLeft() > 0){
-                harvestBuildings.add(outposts.get(i));
+        try {
+            for (Building building: buildings) {
+                boolean harvestable = false;
+
+                for (Perk perk : building.listPerks()) {
+                    if (perk instanceof Harvastable) {
+                        harvestable = true;
+                    }
+                }
+
+                if (harvestable) {
+                    this.harvestBuildings.add(building);
+                }
             }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
-    public ArrayList<Perk> getBuildingsPerks() {
+    public ArrayList<Perk> getBuildingsPerks() throws RemoteException {
         ArrayList<Perk> perks = new ArrayList<Perk>();
 
-        // Get all perks from houses
-        if (this.houses.size() > 0) {
-            for (House house : this.houses) {
-                perks.addAll(house.getPerks());
-            }
-        }
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
 
-        // Get all perks from outposts
-        if (this.outposts.size() > 0) {
-            for (Outpost outpost : this.outposts) {
-                perks.addAll(outpost.getPerks());
+        // Get all perks from both houses and outposts
+        if (buildings.size() > 0) {
+            for (Building building : buildings) {
+                perks.addAll(building.listPerks());
             }
         }
 
