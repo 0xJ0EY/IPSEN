@@ -158,6 +158,12 @@ public class Client extends Application {
         }
     }
 
+    public void setMaximized() {
+        Platform.runLater(() -> this.stage.setMaximized(true));
+
+//        this.stage.setMaximized(state);
+    }
+
     public GameClient getGameClient() {
         return gameClient;
     }
