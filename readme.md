@@ -15,7 +15,7 @@ TODO
  - [ ] Rewards(view) Richard
  - [ ] Check cave card Richard
 
- - [ ] Villager selection cancel button Joey
+ - [x] Villager selection cancel button Joey
  - [ ] End of round Joey
 
 
@@ -34,4 +34,4 @@ Bug build -> dubbel huis?
 Bug train -> speler is halverwege niet meer aan de beurt. 
 
 ## testscenarios
- - []
+ - [ ] Hier komt een testscenario
