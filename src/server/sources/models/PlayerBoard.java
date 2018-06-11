@@ -70,13 +70,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         perks_1.add(new CiderPerk(1));
         perks_1.add(new CoinPerk(2));
         perks_1.add(new VillagePointsPerk(3));
-        houses.add(new House(2, perks_1));
+        houses.add(new House(2, perks_1, "house_0.png"));
 
         ArrayList<Perk> perks_2 = new ArrayList<Perk>();
         perks_2.add(new CiderPerk(1));
         perks_2.add(new CoinPerk(2));
         perks_2.add(new VillagePointsPerk(3));
-        houses.add(new StarHouse(2, perks_2));
+        houses.add(new StarHouse(2, perks_2, "house_0.png"));
 
 
         for (int i = 0; i < 5; i++) {
@@ -100,7 +100,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         perks.add(new BedPerk());
         perks.add(new BedPerk());
 
-        this.houses.add(new House(0, perks));
+        this.houses.add(new House(0, perks, "house_0.png"));
 
     }
 

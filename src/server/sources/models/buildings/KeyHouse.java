@@ -9,12 +9,8 @@ import java.util.ArrayList;
  */
 public class KeyHouse extends House {
 
-    /**
-     * For creating a KeyHouse object.
-     * @param price
-     * @param perks
-     * */
-    public KeyHouse(int price, ArrayList<Perk> perks){
-        super(price, perks);
+    public KeyHouse(int cost, ArrayList<Perk> perks, String background) {
+        super(cost, perks, background);
     }
+
 }

@@ -19,13 +19,12 @@ public class Building implements BuildingInterface {
     protected ArrayList<Perk> perks;
 
     private UUID uuid = UUID.randomUUID();
+    protected String background = "";
 
-    // TODO: Add the background url in the constructor
-    protected String background = "house_0.png";
-
-    public Building(int cost, ArrayList<Perk> perks) {
+    public Building(int cost, ArrayList<Perk> perks, String background) {
         this.cost = cost;
         this.perks = perks;
+        this.background = background;
     }
 
     public int getCost() throws RemoteException {

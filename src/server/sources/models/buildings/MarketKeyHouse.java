@@ -13,13 +13,8 @@ import java.util.ArrayList;
  */
 public class MarketKeyHouse extends KeyHouse implements BuildingMarketInterface {
 
-    /**
-     * For creating a KeyHouse object.
-     * @param price
-     * @param perks
-     * */
-    public MarketKeyHouse(int price, ArrayList<Perk> perks){
-        super(price, perks);
+    public MarketKeyHouse(int cost, ArrayList<Perk> perks, String background) {
+        super(cost, perks, background);
     }
 
     @Override
