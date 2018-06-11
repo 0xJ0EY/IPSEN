@@ -18,6 +18,7 @@ import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.BuildingMarketInterface;
 import server.sources.interfaces.MarketInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.models.buildings.*;
 
 import java.rmi.RemoteException;
@@ -33,6 +34,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     @FXML private Parent root;
     @FXML private Button refreshButton;
+    @FXML private Button cancelButton;
+    @FXML private Button buyButton;
 
     /**
      * Here are all buildingcontainers declared to store building cards in building market.
@@ -74,6 +77,21 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.createOutpostComponents();
         this.createKeyHouseComponents();
         this.createStarHouseComponets();
+
+        // Show or hide cancel and buy buttons
+        PlayerInterface target = this.client.turnObserver.getState();
+
+        // No target, so its not even worth going here
+        if (target == null) return;
+
+        try {
+            boolean turn = target.getGameClient().equals(this.client.getGameClient());
+            this.cancelButton.setDisable(!turn);
+            this.buyButton.setDisable(!turn);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
