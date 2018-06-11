@@ -34,8 +34,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     @FXML private Parent root;
     @FXML private Button refreshButton;
-    @FXML private Button cancelBtn;
-    @FXML private Button buyBtn;
+    @FXML private Button cancelButton;
+    @FXML private Button buyButton;
 
     /**
      * Here are all buildingcontainers declared to store building cards in building market.
@@ -86,8 +86,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         try {
             boolean turn = target.getGameClient().equals(this.client.getGameClient());
-            this.cancelBtn.setDisable(!turn);
-            this.buyBtn.setDisable(!turn);
+            this.cancelButton.setDisable(!turn);
+            this.buyButton.setDisable(!turn);
 
         } catch (RemoteException e) {
             e.printStackTrace();
