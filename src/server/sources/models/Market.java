@@ -249,4 +249,12 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
             }
         }
     }
+
+    @Override
+    public void refreshHousesAndOutposts() throws RemoteException {
+        for (int i = 0; i < this.availableHouses.length; i++) {
+            this.availableHouses[i] = this.randomHouse();
+            this.availableOutposts[i] = this.randomOutpost();
+        }
+    }
 }
