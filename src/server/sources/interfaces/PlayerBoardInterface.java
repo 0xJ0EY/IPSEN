@@ -5,6 +5,7 @@ import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.models.goods.Good;
+import server.sources.models.perks.Perk;
 import server.sources.models.villagers.Villager;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
@@ -82,6 +83,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public ArrayList<Building> getHarvestBuildings() throws RemoteException;
 
     public void endOfRound() throws RemoteException;
+
+    public ArrayList<Perk> getBuildingsPerks() throws RemoteException;
 
     public void updateObserver() throws RemoteException;
 

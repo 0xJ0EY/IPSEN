@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="728.0" style="-fx-background-color: khaki;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.ScoreboardController">
+   <children>
+      <Label layoutX="165.0" layoutY="14.0" text="End of the game (Scoreboard)">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="scoreTable" layoutX="7.0" layoutY="100.0" prefHeight="200.0" prefWidth="715.0">
+        <columns>
+          <TableColumn fx:id="playerData" prefWidth="75.0" text="Player" />
+          <TableColumn fx:id="advancementTrackData" prefWidth="154.0" text="Advancement Track" />
+            <TableColumn fx:id="buildingsData" prefWidth="104.0" text="Buildings" />
+            <TableColumn fx:id="reputationData" prefWidth="112.0" text="Reputation" />
+            <TableColumn fx:id="cardBonusData" prefWidth="117.0" text="Card Bonusses" />
+            <TableColumn fx:id="totalPointsData" prefWidth="152.0" text="Total points" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

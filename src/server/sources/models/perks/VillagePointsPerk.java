@@ -16,4 +16,8 @@ public class VillagePointsPerk implements Perk {
         return "village_points.png";
     }
 
+    public int getValue() {
+        return this.value;
+    }
+
 }

@@ -105,6 +105,25 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return colour;
     }
 
+    /**
+     * With this method, we can retrieve all amount of buildings that a player has build.
+     * Each building represents one village points.
+     * @return VP (Village Points)
+     * @author Robin Silvério
+     */
+    public int getAmountBuildings(){
+
+        int villagePointsPerBuilding = 0;
+
+        try {
+            villagePointsPerBuilding = (this.getPlayerBoard().getHouses().size() + this.getPlayerBoard().getOutposts().size());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return villagePointsPerBuilding;
+    }
+
     @Override
     public void changeReputation(int amount) throws RemoteException {
         this.reputation += amount;
