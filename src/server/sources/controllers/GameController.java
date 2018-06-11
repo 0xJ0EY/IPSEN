@@ -57,6 +57,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         System.out.println("[Game] Started");
         this.server.notifyClients(new GameStartedNotification());
 
+        // Notify clients of the market / reputation board
+        this.server.notifyClients(new MarketUpdateNotification(this.market));
+
+
     }
 
     public void runGame() throws RemoteException {
