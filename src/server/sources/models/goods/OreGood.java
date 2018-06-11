@@ -8,7 +8,12 @@ import java.io.Serializable;
 public class OreGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new OreComponent();
+    public String getBackground() {
+        return "ore.png";
+    }
+
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof OreGood;
     }
 }

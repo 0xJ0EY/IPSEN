@@ -11,13 +11,8 @@ public class RerollPerk implements Perk {
         this.perk = textContent;
     }
 
-    /**
-     * This is only for setting information stats on building card.
-     * @return Informatie van statistieken over dat building card
-     * @author Robin Silvério
-     */
     @Override
-    public String toString() {
-        return "REROLL";
+    public String getBackground() {
+        return "reroll_perk.png";
     }
 }

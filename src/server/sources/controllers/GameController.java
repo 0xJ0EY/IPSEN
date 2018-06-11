@@ -89,6 +89,11 @@ public class GameController extends UnicastRemoteObject implements GameControlle
                 this.turn++;
             } while(!this.roundHasEnded());
 
+            if (this.gameHasEnded()) {
+                this.server.notifyClients(new EndOfGameNotification());
+                break;
+            }
+
             this.restVillagers();
 
             this.endOfRound();

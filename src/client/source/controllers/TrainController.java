@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by robin on 7-6-2018.
  */
-public class TrainController implements ControllerInterface, Observable {
+public class TrainController implements ControllerInterface {
 
     private Client client;
     private MarketInterface market;
@@ -47,7 +47,6 @@ public class TrainController implements ControllerInterface, Observable {
             e.printStackTrace();
         }
 
-        updateObserver();
         return this.root;
     }
 
@@ -82,9 +81,6 @@ public class TrainController implements ControllerInterface, Observable {
         }
     }
 
-    @Override
-    public void updateObserver() {}
-
     public void setClient(Client client) throws RemoteException {
         this.client = client;
 
@@ -92,7 +88,6 @@ public class TrainController implements ControllerInterface, Observable {
 
         this.market = client.getGameClient().getServer().getGameController().getMarket();
 
-        this.client.clientObserver.attach(this);
     }
 
     public void onClickTrain() throws RemoteException {

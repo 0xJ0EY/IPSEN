@@ -36,13 +36,12 @@ public class TurnController {
     @FXML private void build() throws RemoteException {
 
 
-//        client.showVillagerSelection(
-//            new BuilderVillagerSelectionFactory(),
-//            new BuildAction(this.client.getGameClient()),
-//            new RequestStrategy(),
-//            new SingleSelectionFactory()
-//        );
-        new EndOfGameNotification().execute(this.client.getGameClient());
+        client.showVillagerSelection(
+            new BuilderVillagerSelectionFactory(),
+            new BuildAction(this.client.getGameClient()),
+            new RequestStrategy(),
+            new SingleSelectionFactory()
+        );
 
     }
 
@@ -62,7 +61,7 @@ public class TurnController {
     }
 
     /**
-     * This allows user to do a harvest action to harvest goods
+     * This allows user to do a harvest action to harvest good
      * @throws RemoteException
      */
     @FXML private void harvest() throws RemoteException {
@@ -71,7 +70,7 @@ public class TurnController {
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
             new DoActionStrategy(),
-            new SingleSelectionFactory()
+            new MultipleSelectionFactory()
         );
 
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<fx:root fx:id="background" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: purple;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="amountText" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="pointsText" layoutX="32.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</fx:root>

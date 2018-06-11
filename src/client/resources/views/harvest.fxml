@@ -7,6 +7,6 @@
 <AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.HarvestController">
    <children>
       <FlowPane fx:id="buildingContainer" layoutY="50.0" prefHeight="300.0" prefWidth="600.0" />
-      <Button layoutX="225.0" layoutY="355.0" mnemonicParsing="false" onAction="#confirmSelection" prefHeight="30.0" prefWidth="150.0" text="Confirm" />
+      <Button layoutX="225.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="30.0" prefWidth="150.0" text="Confirm" />
    </children>
 </AnchorPane>

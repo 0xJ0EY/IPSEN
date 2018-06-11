@@ -32,5 +32,4 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public int getAmountBuildings() throws RemoteException;
 
-    public int getAmountOfCardBonusses() throws RemoteException;
 }

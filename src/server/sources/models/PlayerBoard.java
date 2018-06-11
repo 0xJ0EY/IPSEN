@@ -1,22 +1,19 @@
 package server.sources.models;
 
 
+import server.sources.interfaces.AdvancementTrackerInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
-import server.sources.models.perks.CiderPerk;
-import server.sources.models.perks.CoinPerk;
-import server.sources.models.perks.Perk;
-import server.sources.models.perks.villagePointsPerk;
+import server.sources.models.perks.*;
 import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardInterface;
-import server.sources.models.perks.BedPerk;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
@@ -41,6 +38,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private ArrayList<Outpost> outposts = new ArrayList<>();
     private ArrayList<Good> goods = new ArrayList<>();
     private ArrayList<Building> harvestBuildings;
+
+    private AdvancementTracker advancementTracker = new AdvancementTracker(this);
 
     private int ciders = 2;
     private int potions = 2;
@@ -70,16 +69,27 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         ArrayList<Perk> perks_1 = new ArrayList<Perk>();
         perks_1.add(new CiderPerk(1));
         perks_1.add(new CoinPerk(2));
-        perks_1.add(new villagePointsPerk(3));
+        perks_1.add(new VillagePointsPerk(3));
         houses.add(new House(2, perks_1));
 
         ArrayList<Perk> perks_2 = new ArrayList<Perk>();
         perks_2.add(new CiderPerk(1));
         perks_2.add(new CoinPerk(2));
-        perks_2.add(new villagePointsPerk(3));
+        perks_2.add(new VillagePointsPerk(3));
         houses.add(new StarHouse(2, perks_2));
 
 
+        for (int i = 0; i < 5; i++) {
+            this.goods.add(new FruitGood());
+        }
+
+        for (int i = 0; i < 5; i++) {
+            this.goods.add(new AmethystGood());
+        }
+
+        for (int i = 0; i < 5; i++) {
+            this.goods.add(new PaperGood());
+        }
 
         for (VillagerInterface villager : villagers) {
             villager.setPlayerBoard(this);
@@ -255,7 +265,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return this.houses;
     }
 
-    public void addHouse(House house){
+    public void addHouse(House house) throws RemoteException {
         this.houses.add(house);
         this.updateObserver();
     }
@@ -264,30 +274,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<Outpost> getOutposts()throws RemoteException {
         return this.outposts;
     }
-    public void addOutpost(Outpost outpost){
+
+    public void addOutpost(Outpost outpost) throws RemoteException {
         this.outposts.add(outpost);
         this.updateObserver();
-    }
-
-    public int getVillagePointsFromAllBuildings(){
-
-        int villagePoints = 0;
-        ArrayList<ArrayList<villagePointsPerk>> tmpPerk = new ArrayList<>();
-
-        for (House h : this.houses){
-            tmpPerk.add(h.getVillagePointsPerk());
-        }
-
-        for (int i = 0; i < tmpPerk.size(); i++) {
-            for (int j = 0; j < tmpPerk.get(i).size(); j++) {
-                if (tmpPerk.get(i).get(j).getClass().getSimpleName().equals("villagePointsPerk")){
-                    villagePoints += tmpPerk.get(i).get(j).getValue();
-                }
-            }
-        }
-
-
-        return villagePoints;
     }
 
     public ArrayList<Good> getGoods(){
@@ -318,9 +308,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return this.ciders;
     }
 
+    public AdvancementTrackerInterface getAdvancementTracker() {
+        return this.advancementTracker;
+    }
+
     public void endOfRound() throws RemoteException {
         // Recalculate available beds
         this.beds = endOfRound.countBeds();
+        this.addCoins(endOfRound.countCoins());
 
         // Reset all villagers
         for (Villager villager : this.villagers) {
@@ -330,7 +325,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
-    public void updateObserver() {
+    public void updateObserver() throws RemoteException {
         try {
             this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
         } catch (RemoteException e) {
@@ -347,36 +342,63 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private void checkHarvestBuildings() {
         this.harvestBuildings = new ArrayList<>();
 
-        for (int i = 0; i < houses.size(); i++){
-            if (houses.get(i).getGoodComponent() != null && houses.get(i).getHarvastable().amountLeft() > 0){
-                harvestBuildings.add(houses.get(i));
-            }
-        }
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
 
-        for (int i = 0; i < outposts.size(); i++){
-            if (outposts.get(i).getGoodComponent() != null && outposts.get(i).getHarvastable().amountLeft() > 0){
-                harvestBuildings.add(outposts.get(i));
+        try {
+            for (Building building: buildings) {
+                boolean harvestable = false;
+
+                for (Perk perk : building.listPerks()) {
+                    if (perk instanceof Harvestable) {
+                        harvestable = true;
+                    }
+                }
+
+                if (harvestable) {
+                    this.harvestBuildings.add(building);
+                }
             }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
-    public ArrayList<Perk> getBuildingsPerks() {
+    public ArrayList<Perk> getBuildingsPerks() throws RemoteException {
         ArrayList<Perk> perks = new ArrayList<Perk>();
 
-        // Get all perks from houses
-        if (this.houses.size() > 0) {
-            for (House house : this.houses) {
-                perks.addAll(house.getPerks());
-            }
-        }
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
 
-        // Get all perks from outposts
-        if (this.outposts.size() > 0) {
-            for (Outpost outpost : this.outposts) {
-                perks.addAll(outpost.getPerks());
+        // Get all perks from both houses and outposts
+        if (buildings.size() > 0) {
+            for (Building building : buildings) {
+                perks.addAll(building.listPerks());
             }
         }
 
         return perks;
+    }
+
+    @Override
+    public ArrayList<Building> getBuildings() throws RemoteException {
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
+
+        return buildings;
+    }
+
+    @Override
+    public void moveGoodToAdvancementTracker(int index) throws RemoteException {
+        Good good = this.goods.get(index);
+        this.getAdvancementTracker().addGood(good);
+
+        this.goods.remove(index);
+
+        this.updateObserver();
     }
 }

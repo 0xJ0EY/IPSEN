@@ -39,7 +39,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return gameClient;
     }
 
-    public void setGameClient(GameClientInterface gameClient) {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
 
         // Update the playerview, so it will be shown in the observer
@@ -124,23 +124,6 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return villagePointsPerBuilding;
     }
 
-    /**
-     * With this method, we can retrieve all amount of card bonusses that a player can win from each building built.
-     * @return Amount of card bonusses from one building card.
-     * @author Robin Silvério
-     */
-    public int getAmountOfCardBonusses(){
-        int cardBonusses = 0;
-
-        try {
-            cardBonusses = this.getPlayerBoard().getVillagePointsFromAllBuildings();
-        }
-        catch (RemoteException e){
-            e.printStackTrace();
-        }
-
-        return cardBonusses;
-    }
     @Override
     public void changeReputation(int amount) throws RemoteException {
         this.reputation += amount;
