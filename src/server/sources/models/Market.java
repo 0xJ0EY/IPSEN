@@ -5,6 +5,7 @@ import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
+import server.sources.notifications.MarketUpdateNotification;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
@@ -36,8 +37,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
             Villager villager = this.availableVillagers[i];
-
-            villagers[i] = (VillagerInterface) villager;
+            villagers[i] = villager;
         }
 
         return villagers;
@@ -72,15 +72,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         }
     }
 
-    public void refreshHouses(Player player){
-        for (int i = 0; i< availableHouses.length; i++) {
-            availableHouses[i] = randomHouse();
-        }
-        for (int i = 0 ; i< availableOutposts.length; i++){
-            availableOutposts[i] = randomOutpost();
-        }
-    }
-
     private MarketHouse randomHouse(){
         int key = (int) (Math.random() * this.houses.size());
         return this.houses.get(key);
@@ -96,27 +87,15 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return this.villagers.get(key);
     }
 
-    public void replenishHouses(){
-        //TODO could be at the end of buy action, in this case you can directly give the index of the bought house
-        for (Object house:availableHouses) {
-            if(house == null){
-                house = randomHouse();
-            }
-        }
-    }
-
-    public void replenishOutposts(){
-        //TODO could be at the end of buy action, in this case you can directly give the index of the bought outpost
-        for (Object outpost:availableOutposts){
-            if(outpost == null){
-                outpost = randomOutpost();
-            }
-        }
-    }
-
     public void replenishVillagers(){
         for (int i = 0; i < availableVillagers.length; i++) {
             availableVillagers[i] = randomVillager();
+        }
+
+        try {
+            this.updateObserver();
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
@@ -144,6 +123,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 this.availableVillagers[i] = null;
             }
         }
+
+        this.updateObserver();
     }
 
     @Override
@@ -192,6 +173,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 this.availableHouses[i] = this.randomHouse();
             }
         }
+
+        this.updateObserver();
     }
 
     @Override
@@ -214,6 +197,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 this.availableOutposts[i] = this.randomOutpost();
             }
         }
+
+        this.updateObserver();
     }
 
     @Override
@@ -231,6 +216,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 this.keyHouses.remove(keyHouse);
             }
         }
+
+        this.updateObserver();
     }
 
     @Override
@@ -248,5 +235,22 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 this.starHouses.remove(starHouse);
             }
         }
+
+        this.updateObserver();
+    }
+
+    @Override
+    public void refreshHousesAndOutposts() throws RemoteException {
+        for (int i = 0; i < this.availableHouses.length; i++) {
+            this.availableHouses[i] = this.randomHouse();
+            this.availableOutposts[i] = this.randomOutpost();
+        }
+
+        this.updateObserver();
+    }
+
+    @Override
+    public void updateObserver() throws RemoteException {
+        this.gameController.server.notifyClients(new MarketUpdateNotification(this));
     }
 }

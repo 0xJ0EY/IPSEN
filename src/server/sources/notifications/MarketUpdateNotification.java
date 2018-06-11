@@ -6,11 +6,11 @@ import server.sources.interfaces.NotificationInterface;
 
 import java.rmi.RemoteException;
 
-public class RefreshHousesNotification implements NotificationInterface {
+public class MarketUpdateNotification implements NotificationInterface {
 
     private MarketInterface market;
 
-    public RefreshHousesNotification(MarketInterface market) {
+    public MarketUpdateNotification(MarketInterface market) {
         this.market = market;
     }
 
