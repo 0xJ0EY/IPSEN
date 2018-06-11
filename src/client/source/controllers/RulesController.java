@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -20,6 +21,7 @@ public class RulesController {
     @FXML private Button previous_btn;
     @FXML private Button next_btn;
     @FXML private ImageView ruleImage;
+    @FXML private ScrollPane rulesScrollpane;
 
 
     private int index = 0;
@@ -41,6 +43,9 @@ public class RulesController {
         };
 
         new Thread(loadImages).start();
+
+        // This is for resizing imageview.
+        this.ruleImage.fitWidthProperty().bind(rulesScrollpane.widthProperty());
 
     }
 

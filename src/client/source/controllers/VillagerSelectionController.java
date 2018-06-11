@@ -13,7 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.interfaces.VillagerInterface;
+import server.sources.notifications.CancelNotification;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class VillagerSelectionController implements ControllerInterface {
@@ -73,6 +75,12 @@ public class VillagerSelectionController implements ControllerInterface {
 
         this.strategy.execute(this.client.getGameClient(), this.action);
 
+    }
+
+    @FXML
+    private void onClickCancel() {
+        // Just show the main screen
+        this.client.showMain();
     }
 
     public ArrayList<VillagerInterface> getSelectedVillagers() {
