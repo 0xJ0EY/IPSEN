@@ -23,7 +23,7 @@ public class ReputationBoardController implements ReputationBoardInterface {
         player.getPlayerBoard().addCider();
     }
 
-    public void firstCiderReset(){
+    public void ciderReset(){
         this.cider = true;
     }
 
