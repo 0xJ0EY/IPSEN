@@ -2,12 +2,36 @@
 
 TODO
  - [ ] Add message to the saving error
- - [x] Fix message of server already started
  - [ ] Scale rules image with client width 
- - [ ] Advancement tracker
- - [ ] Refresh houses
  - [ ] UI Improvements
  - [ ] Key bindings on turn buttons (important)
  - [ ] JavaDoc
- - [ ] Below & Above view maken
- - [x] Make it possible to let VillagerSelection only show 1 villager
+ - [ ] Below view maken
+ 
+ - [ ] Marketview
+
+ - [ ] Building perks
+
+ - [ ] Rewards(view) Richard
+ - [ ] Check cave card Richard
+
+ - [ ] Villager selection cancel button Joey
+ - [ ] End of round Joey
+
+
+ - [ ] Buyable houses/villagers
+
+
+ - [ ] Turncontroller knoppen disable die niet kunnen
+
+
+ - [ ] HarvestController cancel button
+
+
+Known bugs. 
+Bug Build -> andere speler kan bouwen.  
+Bug build -> dubbel huis?  
+Bug train -> speler is halverwege niet meer aan de beurt. 
+
+## testscenarios
+ - []
