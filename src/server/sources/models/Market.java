@@ -1,9 +1,11 @@
 package server.sources.models;
 
+import client.source.Client;
 import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.MarketInterface;
 
 import server.sources.models.buildings.*;
+import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 
@@ -116,8 +118,14 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     }
 
-    public void sellGood(GoodOnSale goodOnSale){
-        this.goodsOnSale.add(goodOnSale);
+    @Override
+    public void sellGood(Good good, Client client){
+        this.goodsOnSale.add(new GoodOnSale(client, good));
+    }
+
+    @Override
+    public ArrayList<GoodOnSale> getGoodList(){
+        return this.goodsOnSale;
     }
 
 }

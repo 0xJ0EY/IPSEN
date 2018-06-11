@@ -1,8 +1,5 @@
 package server.sources.models.goods;
 
-import client.source.components.harvest.FishComponent;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.Serializable;
 
 public class FishGood implements Good, Serializable {
@@ -12,7 +9,7 @@ public class FishGood implements Good, Serializable {
     }
 
     @Override
-    public AnchorPane getGood() {
-        return new FishComponent();
+    public String getGood() {
+        return "BLUE";
     }
 }

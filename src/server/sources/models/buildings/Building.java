@@ -19,7 +19,7 @@ public class Building implements Serializable {
     private int price;
     private ArrayList<Perk> perks;
     private Harvastable harvastable = null;
-    private AnchorPane good = null;
+    private String good = null;
 
     /**
      * For creating a building object.
@@ -61,7 +61,7 @@ public class Building implements Serializable {
         return  this.perks;
     }
 
-    public AnchorPane getGoodComponent(){
+    public String getGoodComponent(){
         return good;
     }
 

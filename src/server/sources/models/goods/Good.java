@@ -4,5 +4,5 @@ import javafx.scene.layout.AnchorPane;
 
 public interface Good {
     public String isGood();
-    public AnchorPane getGood();
+    public String getGood();
 }

@@ -240,4 +240,34 @@ public class ControllerFactory {
         return sellGoodController;
     }
 
+    public BuyGoodController createBuyGoodController(){
+        BuyGoodController buyGoodController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/buyGood.fxml"));
+            loader.load();
+
+            buyGoodController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return buyGoodController;
+    }
+
+    public BuyGoodBidController createBuyGoodBidController(){
+        BuyGoodBidController buyGoodBidController = null;
+
+        try {
+                FXMLLoader loader = new FXMLLoader((getClass().getResource("/client/resources/views/buyGoodBid.fxml")));
+                loader.load();
+
+                buyGoodBidController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return buyGoodBidController;
+    }
+
 }

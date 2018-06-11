@@ -1,8 +1,5 @@
 package server.sources.models.goods;
 
-import client.source.components.harvest.MushroomComponent;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.Serializable;
 
 public class MushroomGood implements Good, Serializable {
@@ -13,7 +10,7 @@ public class MushroomGood implements Good, Serializable {
     }
 
     @Override
-    public AnchorPane getGood() {
-        return new MushroomComponent();
+    public String getGood() {
+        return "BROWN";
     }
 }

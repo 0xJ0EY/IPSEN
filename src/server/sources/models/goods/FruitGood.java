@@ -1,8 +1,5 @@
 package server.sources.models.goods;
 
-import client.source.components.harvest.FruitComponent;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.Serializable;
 
 public class FruitGood  implements Good, Serializable {
@@ -13,7 +10,7 @@ public class FruitGood  implements Good, Serializable {
     }
 
     @Override
-    public AnchorPane getGood() {
-        return new FruitComponent();
+    public String getGood() {
+        return "GREEN";
     }
 }

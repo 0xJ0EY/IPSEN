@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BuyGoodController">
+   <children>
+      <TextField layoutX="241.0" layoutY="14.0" prefHeight="26.0" prefWidth="117.0" text="Wich do you want?" />
+      <FlowPane id="goodPane" layoutY="40.0" prefHeight="200.0" prefWidth="600.0" />
+      <Button id="ConfirmSelection" layoutX="225.0" layoutY="316.0" mnemonicParsing="false" onAction="#confirmSelection" prefHeight="50.0" prefWidth="150.0" text="Confirm" />
+      <TextField fx:id="bid" layoutX="287.0" layoutY="272.0" prefHeight="26.0" prefWidth="26.0" />
+      <Button layoutX="314.0" layoutY="272.0" mnemonicParsing="false" onAction="#addBid" prefHeight="26.0" prefWidth="26.0" text="+" />
+      <Button layoutX="260.0" layoutY="272.0" mnemonicParsing="false" onAction="#subtracktBid" prefHeight="26.0" prefWidth="26.0" text="-" />
+   </children>
+</AnchorPane>

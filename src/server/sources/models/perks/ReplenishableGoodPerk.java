@@ -31,7 +31,7 @@ public class ReplenishableGoodPerk implements Perk, Harvastable {
     }
 
     @Override
-    public AnchorPane getGoodComponent() {
+    public String getGoodComponent() {
         return good.getGood();
     }
 

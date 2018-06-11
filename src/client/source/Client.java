@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
@@ -125,9 +126,24 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
-    public void showSellableGoods() throws RemoteException{
+    public void showSellableGoods(Client client) throws RemoteException{
         SellGoodController goods = controllerFactory.createSellGoodController();
+        goods.setClient(client);
         this.setScene(goods.show());
+
+    }
+
+    public void showBuyableGoods(Client client) throws RemoteException{
+        BuyGoodController goods = controllerFactory.createBuyGoodController();
+        goods.setClient(client);
+        this.setScene(goods.show());
+    }
+
+    public void showBid(GoodOnSale goodOnSale, int bidAmount) throws RemoteException{
+        BuyGoodBidController bid = controllerFactory.createBuyGoodBidController();
+        bid.setClient(goodOnSale.getClient());
+        bid.setBid(bidAmount, goodOnSale);
+        this.setScene(bid.show());
     }
 
     public void showVillagerRest() {

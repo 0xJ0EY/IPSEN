@@ -35,7 +35,7 @@ public class PerkComponent extends AnchorPane {
             e.printStackTrace();
         }
 
-        this.goodPerk.getChildren().setAll(building.getGoodComponent());
+        this.goodPerk.getChildren().setAll(new BackgroundComponent(building.getGoodComponent()));
 
         this.backgound.setStyle("-fx-background-color: grey");
     }

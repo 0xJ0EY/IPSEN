@@ -36,12 +36,13 @@ public class MarketController {
 
     @FXML
     public void sellGood() throws RemoteException{
-        this.client.showSellableGoods();
+        this.client.showSellableGoods(client);
 
     }
 
     @FXML
-    public void buyGood(){
+    public void buyGood() throws RemoteException{
+        this.client.showBuyableGoods(client);
 
     }
 

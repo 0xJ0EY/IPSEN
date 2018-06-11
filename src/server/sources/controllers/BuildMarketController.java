@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by robin on 1-6-2018.
  */
-public class BuildMarketController extends UnicastRemoteObject implements MarketInterface {
+public class BuildMarketController extends UnicastRemoteObject {
 
     private ArrayList<House> houses = new ArrayList<>();
     private ArrayList<StarHouse> starHouses = new ArrayList<>();
