@@ -1,85 +1,65 @@
 package server.sources.models.buildings;
 
-import javafx.scene.layout.AnchorPane;
-import server.sources.models.perks.Harvastable;
-import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.BuildingInterface;
+import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.Perk;
-import server.sources.models.Player;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by robin on 24-5-2018.
  */
-public class Building implements Serializable {
+public class Building implements BuildingInterface {
 
-    private String buildingName;
-    private int price;
-    private ArrayList<Perk> perks;
-    private Harvastable harvastable = null;
-    private AnchorPane good = null;
+    protected int cost;
+    protected ArrayList<Perk> perks;
 
-    /**
-     * For creating a building object.
-     * @param price
-     * @param perks
-     * */
-    public Building(int price, ArrayList<Perk> perks) {
-        this.price = price;
+    private UUID uuid = UUID.randomUUID();
+
+    // TODO: Add the background url in the constructor
+    protected String background = "house_0.png";
+
+    public Building(int cost, ArrayList<Perk> perks) {
+        this.cost = cost;
         this.perks = perks;
-
-        for (int i = 0; i < perks.size(); i++) {
-            if(perks.get(i)instanceof Harvastable){
-                good = ((Harvastable) perks.get(i)).getGoodComponent();
-                harvastable = ((Harvastable) perks.get(i)).getHarvestable();
-
-            }
-        }
     }
 
-    /**
-     * This is for checking if a building is for sale.
-     * @param player
-     * */
-    public boolean canBuy(PlayerInterface player) {
-        // TODO: Check if builder can actually buy the building
-        try {
-            if (player.getPlayerBoard().getCoins() < price)
-                return false;
-            player.getPlayerBoard().payCoin(price);
-            System.out.println(player.getPlayerBoard().getCoins() + "Coins remaining");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        return true;
+    public int getCost() throws RemoteException {
+        return this.cost;
     }
 
-    public ArrayList<Perk> getPerks(){
-        return  this.perks;
-    }
-
-    public AnchorPane getGoodComponent(){
-        return good;
-    }
-
-    /**
-     * This is necessary to add information on a card
-     */
     @Override
-    public String toString(){
-        String perk = "";
-
-        for (Perk p : perks){
-            perk += p.toString() + "\n";
-        }
-
-        return "Price: " + this.price + "\n" + perk;
+    public ArrayList<Perk> listPerks() throws RemoteException {
+        return this.perks;
     }
 
-    public Harvastable getHarvastable(){
-        return this.harvastable;
+    @Override
+    public boolean isHarvestable() throws RemoteException {
+        if (this.perks == null || this.perks.size() == 0) return false;
+
+        boolean harvestable = false;
+
+        for (Perk perk : this.listPerks()) {
+            if (perk instanceof Harvestable) harvestable = true;
+        }
+
+        return harvestable;
+    }
+
+    @Override
+    public String getBackground() throws RemoteException {
+        return this.background;
+    }
+
+    @Override
+    public boolean equals(BuildingInterface building) throws RemoteException {
+        return this.uuid.equals(building.getUUID());
+    }
+
+    @Override
+    public UUID getUUID() throws RemoteException {
+        return this.uuid;
     }
 }

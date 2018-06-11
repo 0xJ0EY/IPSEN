@@ -39,7 +39,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return gameClient;
     }
 
-    public void setGameClient(GameClientInterface gameClient) {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
 
         // Update the playerview, so it will be shown in the observer

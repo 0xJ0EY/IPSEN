@@ -17,7 +17,7 @@
             <tabs>
                 <Tab text="Above">
                     <content>
-                        <fx:include fx:id="above" source="above.fxml" />
+                        <fx:include fx:id="above" source="above/above.fxml" />
                     </content>
                 </Tab>
                 <Tab text="Below">

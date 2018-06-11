@@ -1,5 +1,6 @@
 package server.sources.interfaces;
 
+import server.sources.models.AdvancementTracker;
 import server.sources.models.buildings.Building;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
@@ -52,6 +53,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public int getBeds() throws RemoteException;
 
+    public AdvancementTrackerInterface getAdvancementTracker() throws RemoteException;
+
     public ArrayList<Good> getGoods() throws RemoteException;
 
     public void payCoin(int price) throws RemoteException;
@@ -80,4 +83,9 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void endOfRound() throws RemoteException;
 
+    public void updateObserver() throws RemoteException;
+
+    public ArrayList<Building> getBuildings() throws RemoteException;
+
+    public void moveGoodToAdvancementTracker(int index) throws RemoteException;
 }

@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public interface Good extends Serializable {
 
-    public AnchorPane getGood();
+    public String getBackground();
+
+    public boolean sameInstance(Good good);
 
 }

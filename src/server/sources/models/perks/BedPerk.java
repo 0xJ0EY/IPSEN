@@ -5,4 +5,9 @@ package server.sources.models.perks;
  */
 public class BedPerk implements Perk {
 
+    @Override
+    public String getBackground() {
+        return "bed_perk.png";
+    }
+
 }

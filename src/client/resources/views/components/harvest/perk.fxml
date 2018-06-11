@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane fx:id="background" onMouseClicked="#selectedGood" prefHeight="150.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane fx:id="perk" layoutX="25.0" layoutY="112.0" prefHeight="50.0" prefWidth="50.0" AnchorPane.bottomAnchor="5.0" />
-   </children>
-</AnchorPane>

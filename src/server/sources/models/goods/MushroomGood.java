@@ -8,7 +8,12 @@ import java.io.Serializable;
 public class MushroomGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new MushroomComponent();
+    public String getBackground() {
+        return "mushroom.png";
+    }
+
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof MushroomGood;
     }
 }

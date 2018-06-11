@@ -8,7 +8,12 @@ import java.io.Serializable;
 public class PaperGood implements Good {
 
     @Override
-    public AnchorPane getGood() {
-        return new PaperComponent();
+    public String getBackground() {
+        return "paper.png";
+    }
+
+    @Override
+    public boolean sameInstance(Good good) {
+        return good instanceof PaperGood;
     }
 }

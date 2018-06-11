@@ -11,63 +11,96 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BuildController">
-    <content>
-        <GridPane hgap="10" prefHeight="569.0" prefWidth="1293.0" style="-fx-background-color:purple;" vgap="10">
-            <HBox prefHeight="38.0" prefWidth="446.0" spacing="20" styleClass="header_display" stylesheets="@../css/header_display.css" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <children>
-                    <Label text="Turn:" />
-                    <Label fx:id="player_name" text="Label" />
-                </children>
-            </HBox>
-            <Button fx:id="refreshButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Refresh Houses" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="1.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="0" />
-            <!-- House section -->
-            <Label text="Houses" textFill="#ff1212" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
-                <font>
-                    <Font size="25.0" />
-                </font>
-            </Label>
-            <FlowPane fx:id="housesContainer" hgap="5" prefHeight="121.0" prefWidth="746.0" vgap="5" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <!-- End of house section -->
-            <!-- Outpost section -->
-            <Label text="Outposts" textFill="#ff1212" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                <font>
-                    <Font size="25.0" />
-                </font>
-            </Label>
-            <FlowPane fx:id="outpostsContainer" hgap="5" prefHeight="146.0" prefWidth="839.0" vgap="5" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <!-- End of outpost section -->
 
-            <!-- Keyhouse section -->
-            <Label text="Keyhouses" textFill="#ff1212" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <font>
-                    <Font size="25.0" />
-                </font>
-            </Label>
-            <FlowPane fx:id="keyHousesContainer" hgap="5" prefHeight="137.0" prefWidth="750.0" vgap="5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <!-- End of keyhouse section -->
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BuildController">
+   <children>
+      <ScrollPane AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <content>
+              <GridPane hgap="10" prefHeight="600.0" prefWidth="1300.0" style="-fx-background-color:purple;" vgap="10">
+                  <HBox prefHeight="38.0" prefWidth="446.0" spacing="20" styleClass="header_display" stylesheets="@../css/header_display.css" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                      <children>
+                          <Label text="Turn:" />
+                          <Label fx:id="player_name" text="Label" />
+                      </children>
+                  </HBox>
+                  <Button fx:id="refreshButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Refresh Houses" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="1.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="0" />
+                  <!-- House section -->
+                  <Label text="Houses" textFill="#ff1212" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                      <font>
+                          <Font size="25.0" />
+                      </font>
+                  </Label>
+                  <FlowPane fx:id="housesContainer" hgap="5" prefHeight="121.0" prefWidth="746.0" vgap="5" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                  <!-- End of house section -->
+                  <!-- Outpost section -->
+                  <Label text="Outposts" textFill="#ff1212" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                      <font>
+                          <Font size="25.0" />
+                      </font>
+                  </Label>
+                  <FlowPane fx:id="outpostsContainer" hgap="5" prefHeight="146.0" prefWidth="839.0" vgap="5" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                  <!-- End of outpost section -->
+      
+                  <!-- Keyhouse section -->
+                  <Label text="Keyhouses" textFill="#ff1212" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                      <font>
+                          <Font size="25.0" />
+                      </font>
+                  </Label>
+                  <FlowPane fx:id="keyHousesContainer" hgap="5" prefHeight="137.0" prefWidth="750.0" vgap="5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <!-- End of keyhouse section -->
+      
+                  <!-- Starhouse section -->
+                  <Label text="Starhouses" textFill="#ff0e0e" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                      <font>
+                          <Font size="25.0" />
+                      </font>
+                  </Label>
+                  <FlowPane fx:id="starHousesContainer" hgap="5" prefHeight="150.0" vgap="5" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                  <columnConstraints>
+                      <ColumnConstraints />
+                      <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                  </rowConstraints>
+                  <!-- End of starhouse section -->
+              </GridPane>
+          </content>
+      </ScrollPane>
+      <GridPane prefHeight="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickCancel" text="Cancel" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickBuy" text="Buy" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
 
-            <!-- Starhouse section -->
-            <Label text="Starhouses" textFill="#ff0e0e" GridPane.columnIndex="0" GridPane.rowIndex="5">
-                <font>
-                    <Font size="25.0" />
-                </font>
-            </Label>
-            <FlowPane fx:id="starHousesContainer" hgap="5" prefHeight="150.0" vgap="5" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-            <!-- End of starhouse section -->
-        </GridPane>
-    </content>
-</ScrollPane>
+       <HBox alignment="CENTER" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+           <children>
+               <Text fx:id="message" strokeType="OUTSIDE" strokeWidth="0.0" text="Message" textAlignment="CENTER" visible="false">
+                   <HBox.margin>
+                       <Insets bottom="50.0" />
+                   </HBox.margin>
+                   <font>
+                       <Font name="Comic Sans MS" size="36.0" />
+                   </font>
+               </Text>
+           </children>
+       </HBox>
+   </children>
+</AnchorPane>
