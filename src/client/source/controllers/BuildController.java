@@ -78,7 +78,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.createKeyHouseComponents();
         this.createStarHouseComponets();
 
-        // Show or hide turn buttons
+        // Show or hide cancel and buy buttons
         PlayerInterface target = this.client.turnObserver.getState();
 
         // No target, so its not even worth going here
