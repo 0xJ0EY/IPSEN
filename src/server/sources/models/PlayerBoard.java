@@ -313,9 +313,17 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     public void endOfRound() throws RemoteException {
+
+        this.endOfRound.load();
+
         // Recalculate available beds
-        this.beds = endOfRound.countBeds();
-        this.addCoins(endOfRound.countCoins());
+        this.beds = this.endOfRound.countBeds();
+
+        // Add all coins
+        this.addCoins(this.endOfRound.countCoins());
+
+        // Refresh perks
+        this.endOfRound.refreshPerks();
 
         // Reset all villagers
         for (Villager villager : this.villagers) {

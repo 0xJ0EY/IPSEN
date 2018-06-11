@@ -7,26 +7,16 @@ TODO
  - [ ] Key bindings on turn buttons (important)
  - [ ] JavaDoc
  - [ ] Below view maken
- 
  - [ ] Marketview
-
  - [ ] Building perks
-
  - [ ] Rewards(view) Richard
  - [ ] Check cave card Richard
-
  - [ ] Villager selection cancel button Joey
  - [ ] End of round Joey
-
-
  - [ ] Buyable houses/villagers
-
-
  - [ ] Turncontroller knoppen disable die niet kunnen
-
-
  - [ ] HarvestController cancel button
-
+ - [ ] Harvest check for cider
 
 Known bugs. 
 Bug Build -> andere speler kan bouwen.  
