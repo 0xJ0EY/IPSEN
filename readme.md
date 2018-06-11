@@ -17,6 +17,10 @@ TODO
 
  - [ ] Villager selection cancel button Joey
  - [ ] End of round Joey
+ - [ ] joey pesten met slechte code Joey
+ 
+ - [ ] Bought villagers icon/functional
+ - [ ] joey pesten met slechte code
 
 
  - [ ] Buyable houses/villagers
@@ -27,6 +31,11 @@ TODO
 
  - [ ] HarvestController cancel button
 
+## UI
+ - [ ] Special villager backgrounds
+ - [ ] more villager backgrounds
+ - [ ] house/outpost backgrounds
+ - [ ] joey pesten met slechte code
 
 Known bugs. 
 Bug Build -> andere speler kan bouwen.  
