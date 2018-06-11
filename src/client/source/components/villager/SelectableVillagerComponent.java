@@ -60,7 +60,7 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);" +
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 115 205"
@@ -75,7 +75,7 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, white, 00, 0, 0, 0);" +
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 110 200"

@@ -45,6 +45,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private int potions = 2;
     private int coins = 10;
     private int beds = 3;
+    private int caveCards = 0;
 
     public PlayerBoard(PlayerInterface player) throws RemoteException {
         this.player = player;
@@ -54,13 +55,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
 
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_01.png"));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_02.png"));
 
         // TODO: A nice implementation of this
-        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
-        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED, "villager_background_04.png"));
+        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED, "villager_background_05.png"));
 
         /**
          * This is only for testing scoreboard.
@@ -255,7 +256,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     @Override
     public void addCoins(int amount) throws RemoteException {
-        if (amount > 0) return;
+        if (amount < 0) return;
         this.coins += amount;
         this.updateObserver();
     }
@@ -408,5 +409,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.goods.remove(index);
 
         this.updateObserver();
+    }
+
+    public void addCaveCard(){
+        this.caveCards++;
     }
 }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class OilGirlVillager extends Villager {
 
-    public OilGirlVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
-        super(lanterns, state);
+    public OilGirlVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
+        super(lanterns, state, background);
     }
 
     //TODO: fixing method

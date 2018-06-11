@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class BuilderVillager extends Villager implements Buildable {
 
-    public BuilderVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
-        super(lanterns, state);
+    public BuilderVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
+        super(lanterns, state, background);
     }
 
     @Override

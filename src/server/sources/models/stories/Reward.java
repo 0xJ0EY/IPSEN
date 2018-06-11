@@ -10,7 +10,7 @@ import server.sources.interfaces.RewardInterface;
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
 
-public class Reward implements RewardInterface {
+public abstract class Reward implements RewardInterface {
 
     protected PlayerBoardInterface playerBoard;
 
@@ -22,9 +22,7 @@ public class Reward implements RewardInterface {
     }
 
     @Override
-    public RewardComponent getRewardComponent() {
-        return new RewardComponent();
-    }
+    public abstract RewardComponent getRewardComponent();
 
 
 }

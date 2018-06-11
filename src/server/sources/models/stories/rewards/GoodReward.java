@@ -26,6 +26,10 @@ public class GoodReward extends Reward {
         }
     }
 
+    public Good isGood(){
+        return good;
+    }
+
     @Override
     public RewardComponent getRewardComponent() {
         return new GoodRewardComponent();

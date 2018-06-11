@@ -34,10 +34,15 @@ public class RewardController implements ControllerInterface, Observable {
     }
 
     @Override
-    public Parent show() {
+    public Parent show() throws RemoteException {
 
         for (Reward reward: rewards) {
-            this.rewardComponent.getChildren().add(rewardType(reward));
+
+            RewardComponent rewardComponent = rewardType(reward);
+            rewardComponent.setModel(reward);
+            rewardComponent.load();
+            
+            this.rewardComponent.getChildren().add(rewardComponent);
         }
 
         this.updateObserver();

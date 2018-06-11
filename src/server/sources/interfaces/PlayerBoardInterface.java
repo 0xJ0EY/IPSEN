@@ -38,6 +38,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void addPotion() throws RemoteException;
 
+    public void addCaveCard() throws RemoteException;
+
 
     /**
      * Get current amout of coins
