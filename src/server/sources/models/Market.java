@@ -31,7 +31,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     private GameController gameController;
 
     public VillagerInterface[] listAvailableVillagers() {
-        replenishVillagers();
 
         VillagerInterface[] villagers = new VillagerInterface[this.availableVillagers.length];
 
