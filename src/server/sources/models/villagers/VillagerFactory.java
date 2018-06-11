@@ -21,35 +21,12 @@ public class VillagerFactory {
     private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder builder = factory.newDocumentBuilder();
 
-    private ArrayList<Villager> list;
-
     public VillagerFactory() throws ParserConfigurationException {
 
     }
 
-    //TODO: afmaken methods
-    public Villager createVillager(ArrayList<Lantern> lanterns) throws RemoteException {
-        Villager villager = new Villager(lanterns, Villager.VillagerState.USABLE);
-        return villager;
-    }
-
-    public BuilderVillager createBuilder(ArrayList<Lantern> lanterns) throws RemoteException {
-        BuilderVillager villager = new BuilderVillager(lanterns, Villager.VillagerState.USABLE);
-        return villager;
-    }
-
-    public TrainerVillager createTrainer(ArrayList<Lantern> lanterns) throws RemoteException {
-        TrainerVillager villager = new TrainerVillager(lanterns, Villager.VillagerState.USABLE);
-        return villager;
-    }
-
-    public AllroundVillager createAllround(ArrayList<Lantern> lanterns) throws RemoteException {
-        AllroundVillager villager = new AllroundVillager(lanterns, Villager.VillagerState.USABLE);
-        return villager;
-    }
-
     public ArrayList<Villager> createFromXml() {
-        list = new ArrayList<>();
+        ArrayList<Villager> list = new ArrayList<>();
 
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream("server/resources/data/villagers.xml");
@@ -61,17 +38,52 @@ public class VillagerFactory {
             for (int i = 0; i < villagers.getLength(); i++) {
                 Node villagerNode = villagers.item(i);
                 Element villagerElement = (Element) villagerNode; 
-                
+
+                ArrayList<Lantern> lanterns = this.fetchLanterns(villagerElement);
+                String background = this.fetchImage(villagerElement);
+
                 // Fetch villager villagerType
                 switch (this.fetchType(villagerElement).toUpperCase()){
-                    case "BUILDER" : list.add(new BuilderVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
+                    case "BUILDER" :
+                        list.add(
+                            new BuilderVillager(
+                                fetchLanterns(villagerElement),
+                                Villager.VillagerState.USABLE,
+                                background
+                            )
+                        );
                         break;
-                    case "TRAINER" : list.add(new TrainerVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
+
+                    case "TRAINER" :
+                        list.add(
+                            new TrainerVillager(
+                                fetchLanterns(villagerElement),
+                                Villager.VillagerState.USABLE,
+                                background
+                            )
+                        );
                         break;
-                    case "ALLROUND" : list.add(new AllroundVillager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
+
+                    case "ALLROUND" :
+                        list.add(
+                            new AllroundVillager(
+                                fetchLanterns(villagerElement),
+                                Villager.VillagerState.USABLE,
+                                background
+                            )
+                        );
                         break;
-                    case "VILLAGER" : list.add(new Villager(fetchLanterns(villagerElement), Villager.VillagerState.USABLE));
+
+                    case "VILLAGER" :
+                        list.add(
+                            new Villager(
+                                fetchLanterns(villagerElement),
+                                Villager.VillagerState.USABLE,
+                                background
+                            )
+                        );
                         break;
+
                 }
 
             }
@@ -81,11 +93,14 @@ public class VillagerFactory {
         }
 
         return list;
-
     }
 
     private String fetchType(Element villager){
         return villager.getElementsByTagName("type").item(0).getTextContent();
+    }
+
+    private String fetchImage(Element villager) {
+        return villager.getElementsByTagName("image").item(0).getTextContent();
     }
 
     private ArrayList<Lantern> fetchLanterns(Element villager) {
@@ -119,7 +134,12 @@ public class VillagerFactory {
         lanterns.add(new Lantern(4, 3));
 
         try {
-            return new TinVillager(lanterns, Villager.VillagerState.USABLE);
+            return new TinVillager(
+                lanterns,
+                Villager.VillagerState.USABLE,
+                "special_villagers/tin_villager_background.png"
+            );
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -133,7 +153,12 @@ public class VillagerFactory {
         lanterns.add(new Lantern(4, 3));
 
         try {
-            return new FishVillager(lanterns, Villager.VillagerState.USABLE);
+            return new FishVillager(
+                lanterns,
+                Villager.VillagerState.USABLE,
+                "special_villagers/fish_villager_background.png"
+            );
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -147,7 +172,12 @@ public class VillagerFactory {
         lanterns.add(new Lantern(4, 3));
 
         try {
-            return new CatVillager(lanterns, Villager.VillagerState.USABLE);
+            return new CatVillager(
+                lanterns,
+                Villager.VillagerState.USABLE,
+                "special_villagers/cat_villager_background.png"
+            );
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -160,7 +190,12 @@ public class VillagerFactory {
         lanterns.add(new Lantern(2, 3));
 
         try {
-            return new OilGirlVillager(lanterns, Villager.VillagerState.USABLE);
+            return new OilGirlVillager(
+                lanterns,
+                Villager.VillagerState.USABLE,
+                "special_villagers/oil_villager_background.png"
+            );
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }

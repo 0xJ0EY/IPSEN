@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class TinVillager extends Villager {
 
-    public TinVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
-        super(lanterns, state);
+    public TinVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
+        super(lanterns, state, background);
     }
 
     /**

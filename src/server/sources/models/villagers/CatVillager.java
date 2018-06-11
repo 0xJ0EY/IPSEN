@@ -7,18 +7,16 @@ import java.util.ArrayList;
 
 public class CatVillager extends Villager {
 
-    public CatVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
-        super(lanterns, state);
+    public CatVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
+        super(lanterns, state, background);
     }
 
-    public boolean IsUsable() throws RemoteException {
+    @Override
+    public boolean isUsable() throws RemoteException {
         Dice dice = new Dice();
         dice.roll();
 
-        if(dice.returnValue() >= 3)
-            return true;
-        else
-            return false;
+        return dice.returnValue() >= 3;
     }
 
 }
