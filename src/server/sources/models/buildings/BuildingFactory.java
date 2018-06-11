@@ -49,7 +49,7 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode)));
+            housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
 
         return housesArrayList;
@@ -67,7 +67,7 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode)));
+            starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
         return starHousesArrayList;
     }
@@ -84,7 +84,7 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode)));
+            keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
 
         return keyHousesArrayList;
@@ -102,7 +102,7 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode)));
+            outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
 
         return outpostsArrayList;
