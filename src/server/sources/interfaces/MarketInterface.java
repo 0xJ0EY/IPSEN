@@ -32,4 +32,6 @@ public interface MarketInterface extends Remote, Serializable {
 
     public void refreshHousesAndOutposts() throws RemoteException;
 
+    public void updateObserver() throws RemoteException;
+
 }

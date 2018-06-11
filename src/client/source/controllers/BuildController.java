@@ -5,6 +5,7 @@ import client.source.components.building.BuildingComponent;
 import client.source.components.building.SelectableBuildingComponent;
 import client.source.components.building.SingleSelectableBuildingComponent;
 import client.source.components.villager.SelectableVillagerComponent;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import server.sources.actions.BuildAction;
 import server.sources.actions.CancelAction;
 import server.sources.actions.EndTurnAction;
+import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.BuildingMarketInterface;
 import server.sources.interfaces.MarketInterface;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by robin on 1-6-2018.
  */
-public class BuildController implements SelectableControllerInterface {
+public class BuildController implements SelectableControllerInterface, Observable {
 
     private Client client;
     private MarketInterface market;
@@ -72,6 +74,11 @@ public class BuildController implements SelectableControllerInterface {
         this.createOutpostComponents();
         this.createKeyHouseComponents();
         this.createStarHouseComponets();
+    }
+
+    @Override
+    public void updateObserver() {
+        this.load();
     }
 
     private void createHouseComponents() {
@@ -144,6 +151,7 @@ public class BuildController implements SelectableControllerInterface {
 
         // Set market
         this.market = this.client.getGameClient().getServer().getGameController().getMarket();
+        this.client.marketObserver.attach(this);
     }
 
     public Parent show() {
@@ -224,5 +232,15 @@ public class BuildController implements SelectableControllerInterface {
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
+    }
+
+    public void clickRefreshHouses() {
+
+        try {
+            client.getGameClient().getServer().getGameController().getMarket().refreshHousesAndOutposts();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
     }
 }
