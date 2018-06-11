@@ -45,6 +45,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private int potions = 2;
     private int coins = 10;
     private int beds = 3;
+    private int caveCards = 0;
 
     public PlayerBoard(PlayerInterface player) throws RemoteException {
         this.player = player;
@@ -255,7 +256,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     @Override
     public void addCoins(int amount) throws RemoteException {
-        if (amount > 0) return;
+        if (amount < 0) return;
         this.coins += amount;
         this.updateObserver();
     }
@@ -400,5 +401,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.goods.remove(index);
 
         this.updateObserver();
+    }
+
+    public void addCaveCard(){
+        this.caveCards++;
     }
 }

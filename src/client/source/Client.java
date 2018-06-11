@@ -112,7 +112,7 @@ public class Client extends Application {
         this.setScene(harvest.show());
     }
 
-    public void showRewards(Option option) {
+    public void showRewards(Option option) throws RemoteException {
         RewardController rewards = controllerFactory.createRewardView();
         rewards.setRewards(option.getRewards());
         this.setScene(rewards.show());
