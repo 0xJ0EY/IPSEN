@@ -9,10 +9,11 @@ import server.sources.models.Dice;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
-    public enum VillagerState { USABLE, TIRED, INJURED }
+    public enum VillagerState {USABLE, TIRED, INJURED}
 
     protected ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
 
@@ -23,6 +24,8 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     protected PlayerBoardInterface playerBoard;
 
     protected boolean slept = false;
+
+    private UUID uuid = UUID.randomUUID();
 
     public Villager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
         this.lanterns = lanterns;
@@ -44,12 +47,16 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     public int calculateLanters(Dice dice) throws RemoteException {
         int amount = 0;
-        for (Lantern lantern: lanterns) {
-            if (lantern.getAmount(dice.returnValue()) > 0){
+        for (Lantern lantern : lanterns) {
+            if (lantern.getAmount(dice.returnValue()) > 0) {
                 amount = lantern.getAmount(dice.returnValue());
             }
         }
         return amount;
+    }
+
+    public VillagerState getState() throws RemoteException {
+        return this.state;
     }
 
     public boolean isUsable() throws RemoteException {
@@ -102,21 +109,42 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
         this.state = VillagerState.INJURED;
     }
 
-    public AnchorPane getType() throws RemoteException {
-        return new TypeDefaultComponent();
-    }
-
     public String getBackground() throws RemoteException {
         return background;
     }
 
     /**
      * Set some of the local variable to the default beginning of round values.
-     * @author Joey de Ruiter
+     *
      * @throws RemoteException
+     * @author Joey de Ruiter
      */
     @Override
     public void endOfRound() throws RemoteException {
         this.slept = false;
+    }
+
+    public boolean isAllround() throws RemoteException {
+        return isBuilder() && isTrainer();
+    }
+
+    @Override
+    public boolean isBuilder() throws RemoteException {
+        return this instanceof Buildable;
+    }
+
+    @Override
+    public boolean isTrainer() throws RemoteException {
+        return this instanceof Trainable;
+    }
+
+    @Override
+    public boolean equals(VillagerInterface villager) throws RemoteException {
+        return this.uuid.equals(villager.getUUID());
+    }
+
+    @Override
+    public UUID getUUID() throws RemoteException {
+        return this.uuid;
     }
 }

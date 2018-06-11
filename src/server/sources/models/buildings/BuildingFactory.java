@@ -4,7 +4,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import server.sources.models.goods.*;
 import server.sources.models.perks.*;
@@ -38,8 +37,8 @@ public class BuildingFactory {
     }
 
     //Read Houses from building XML
-    public ArrayList<House> loadHousesFromXML(){
-        ArrayList<House> housesArrayList = new ArrayList<House>();
+    public ArrayList<MarketHouse> loadHousesFromXML(){
+        ArrayList<MarketHouse> housesArrayList = new ArrayList<MarketHouse>();
 
         System.out.println("document = " + document.getXmlEncoding());
         NodeList house = document.getElementsByTagName("house");
@@ -50,15 +49,15 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            housesArrayList.add(new House(price, this.fetchPerk(buildingNode)));
+            housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode)));
         }
 
         return housesArrayList;
     }
 
     //Read Star Houses from building XML
-    public ArrayList<StarHouse> loadStarHousesFromXML(){
-        ArrayList<StarHouse> starHousesArrayList = new ArrayList<StarHouse>();
+    public ArrayList<MarketStarHouse> loadStarHousesFromXML(){
+        ArrayList<MarketStarHouse> starHousesArrayList = new ArrayList<MarketStarHouse>();
 
         NodeList house = document.getElementsByTagName("starhouse");
 
@@ -68,14 +67,14 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            starHousesArrayList.add(new StarHouse(price, this.fetchPerk(buildingNode)));
+            starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode)));
         }
         return starHousesArrayList;
     }
 
     //Read Key Houses from building XML
-    public ArrayList<KeyHouse> loadKeyHousesFromXML(){
-        ArrayList<KeyHouse> keyHousesArrayList = new ArrayList<KeyHouse>();
+    public ArrayList<MarketKeyHouse> loadKeyHousesFromXML(){
+        ArrayList<MarketKeyHouse> keyHousesArrayList = new ArrayList<MarketKeyHouse>();
 
         NodeList house = document.getElementsByTagName("keyhouse");
 
@@ -85,15 +84,15 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            keyHousesArrayList.add(new KeyHouse(price, this.fetchPerk(buildingNode)));
+            keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode)));
         }
 
         return keyHousesArrayList;
     }
 
     //Read Outposts from building XML
-    public ArrayList<Outpost> loadOutpostsFromXML(){
-        ArrayList<Outpost> outpostsArrayList = new ArrayList<Outpost>();
+    public ArrayList<MarketOutpost> loadOutpostsFromXML(){
+        ArrayList<MarketOutpost> outpostsArrayList = new ArrayList<MarketOutpost>();
 
         NodeList house = document.getElementsByTagName("outpost");
 
@@ -103,7 +102,7 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            outpostsArrayList.add(new Outpost(price, this.fetchPerk(buildingNode)));
+            outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode)));
         }
 
         return outpostsArrayList;
@@ -172,18 +171,21 @@ public class BuildingFactory {
                     break;
 
                 case "BEDS":
-                    perks.add(new BedPerk(Integer.parseInt(perkElement.getAttribute("value"))));
+                    perks.add(new BedPerk());
                     break;
 
                 case "VILLAGE_POINTS":
-                    perks.add(new villagePointsPerk(Integer.parseInt(perkElement.getAttribute("value"))));
+                    perks.add(new VillagePointsPerk(Integer.parseInt(perkElement.getAttribute("value"))));
                     break;
 
                 case "VILLAGE_POINTS_FOR_THINGS":
+
+                    good = this.getGoodFromString(perkElement.getAttribute("good"));
+
                     perks.add(
-                        new villagePointsForThingsPerk(
+                        new VillagePointsForGoodsPerk(
                             Integer.parseInt(perkElement.getAttribute("value")),
-                            perkElement.getAttribute("goods")
+                            good
                         )
                     );
                     break;
@@ -193,7 +195,7 @@ public class BuildingFactory {
                     break;
 
                 case "VILLAGE_POINTS_FOR_VILLAGERS":
-                    perks.add(new villagePointsForVillagersPerk(Integer.parseInt(perkElement.getAttribute("value"))));
+                    perks.add(new VillagePointsForVillagersPerk(Integer.parseInt(perkElement.getAttribute("value"))));
                     break;
 
                 case "GAIN_REPUTATION":

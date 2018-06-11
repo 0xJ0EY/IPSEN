@@ -13,13 +13,8 @@ public class IncomeForGoodsPerk implements Perk {
         this.good = good;
     }
 
-    /**
-     * This is only for setting information stats on building card.
-     * @return Informatie van statistieken over dat building card
-     * @author Robin Silvério
-     */
     @Override
-    public String toString() {
-        return "Income for goods: " + this.good + "(" + this.value + ")";
+    public String getBackground() {
+        return "income_from_goods_perk.png";
     }
 }

@@ -9,9 +9,9 @@ import server.sources.interfaces.VillagerInterface;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class SelectableVillagerComponent extends VillagerComponent {
+public abstract class SelectableVillagerComponent extends VillagerComponent {
 
-    private boolean selected;
+    protected boolean selected;
 
     public SelectableVillagerComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/selectable_villager.fxml"));
@@ -27,21 +27,36 @@ public class SelectableVillagerComponent extends VillagerComponent {
     }
 
     @FXML
-    private void onClickSelect() {
-        this.selected = !this.selected;
+    public abstract void onClickSelect();
 
-        if(this.selected) {
-            showIndicator();
-        } else {
-            hideIndicator();
-        }
+    public void deselect() {
+        this.selected = false;
+        this.update();
+    }
+
+    public void select() {
+        this.selected = true;
+        this.update();
     }
 
     public boolean isSelected() {
         return this.selected;
     }
 
-    private void showIndicator(){
+    public void toggleSelected() {
+        this.selected = !this.selected;
+        this.update();
+    }
+
+    protected void update() {
+        if (this.selected) {
+            this.showIndicator();
+        } else {
+            this.hideIndicator();
+        }
+    }
+
+    protected void showIndicator(){
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);" +
@@ -56,7 +71,7 @@ public class SelectableVillagerComponent extends VillagerComponent {
 
     }
 
-    private void hideIndicator(){
+    protected void hideIndicator(){
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, white, 00, 0, 0, 0);" +

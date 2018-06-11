@@ -1,11 +1,6 @@
 package client.source.factories;
 
 import client.source.Client;
-import client.source.components.building.HouseComponent;
-import client.source.components.building.KeyhouseComponent;
-import client.source.components.building.OutpostComponent;
-import client.source.components.building.StarhouseComponent;
-import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 
@@ -115,6 +110,22 @@ public class ControllerFactory {
         return reward;
     }
 
+    public TrainRewardController createTrainRewardView(){
+        TrainRewardController trainRewardController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/trainReward.fxml"));
+            loader.load();
+
+            trainRewardController = loader.getController();
+            trainRewardController.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return trainRewardController;
+    }
+
     /**
      * Load the view and controller of build
      * @return the assinged controller
@@ -129,10 +140,6 @@ public class ControllerFactory {
 
             build = loader.getController();
             build.setClient(this.client);
-            HouseComponent.setClient(this.client);
-            StarhouseComponent.setClient(this.client);
-            KeyhouseComponent.setClient(this.client);
-            OutpostComponent.setClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,7 +156,6 @@ public class ControllerFactory {
 
             trainController = loader.getController();
             trainController.setClient(this.client);
-            TrainerVillagerComponent.setClient(this.client);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -207,6 +213,23 @@ public class ControllerFactory {
         }
 
         return explorePartyController;
+    }
+
+    public ScoreboardController createScoreBoard(){
+        ScoreboardController scoreboardController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/scoreboard.fxml"));
+            loader.load();
+
+            scoreboardController = loader.getController();
+            scoreboardController.setClient(this.client);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return scoreboardController;
     }
 
     public VillagerRestController createVillagerRest() {
@@ -269,5 +292,4 @@ public class ControllerFactory {
 
         return buyGoodBidController;
     }
-
 }

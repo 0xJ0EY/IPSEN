@@ -1,12 +1,13 @@
 ## Above and Below  
 
 TODO
- - Add state to the server (Half done)
- - Add message to the saving error
- - Scale rules image with client width 
- - All the actions we still have to do
- - Market intergration
- - End of round, recieving rewards etc..
- - Advancement tracker
- - .JAR, .EXE, (.APP / DMG) Builds 
- - VillagerRest (Bedden/slapen implementeren)
+ - [ ] Add message to the saving error
+ - [x] Fix message of server already started
+ - [ ] Scale rules image with client width 
+ - [ ] Advancement tracker
+ - [ ] Refresh houses
+ - [ ] UI Improvements
+ - [ ] Key bindings on turn buttons (important)
+ - [ ] JavaDoc
+ - [ ] Below & Above view maken
+ - [x] Make it possible to let VillagerSelection only show 1 villager

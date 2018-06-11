@@ -3,7 +3,7 @@ package server.sources.models.perks;
 import javafx.scene.layout.AnchorPane;
 import server.sources.models.goods.*;
 
-public class HarvestableGoodPerk implements Perk, Harvastable {
+public class HarvestableGoodPerk implements Perk, Harvestable {
     private Good good;
     private int amountLeft = 2;
 
@@ -11,35 +11,23 @@ public class HarvestableGoodPerk implements Perk, Harvastable {
         this.good = good;
     }
 
-    /**
-     * This is only for setting information stats on building card.
-     * @return Informatie van statistieken over dat building card
-     * @author Robin Silvério
-     */
     @Override
-    public String toString() {
-        return "Harvestable: " + this.good.isGood();
+    public String getBackground() {
+        return "../good/" + good.getBackground();
+    }
+
+    public Good getGood() {
+        return this.good;
+    }
+
+    public boolean canHarvest() {
+        return this.amountLeft > 0;
+
     }
 
     @Override
-    public int amountLeft() {
-        return amountLeft;
-    }
+    public void harvest() {
+        this.amountLeft--;
 
-    @Override
-    public String getGoodComponent() {
-        return good.getGood();
     }
-
-    @Override
-    public Good harvestGood() {
-        amountLeft--;
-        return good;
-    }
-
-    @Override
-    public Harvastable getHarvestable() {
-        return this;
-    }
-
 }

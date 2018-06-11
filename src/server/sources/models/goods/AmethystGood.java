@@ -2,15 +2,14 @@ package server.sources.models.goods;
 
 import java.io.Serializable;
 
-public class AmethystGood implements Good, Serializable {
+public class AmethystGood implements Good {
 
     @Override
-    public String isGood() {
-        return "AMETHYST";
+    public String getBackground() {
+        return "amethyst.png";
     }
 
-    @Override
-    public String getGood() {
-        return "PINK";
+    public boolean sameInstance(Good good) {
+        return good instanceof AmethystGood;
     }
 }

@@ -2,13 +2,10 @@ package client.source.controllers;
 
 import client.source.Client;
 import client.source.components.buy_and_sell.MarketGoodComponent;
-import client.source.components.harvest.BackgroundComponent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.MarketInterface;
-import server.sources.models.Market;
 import server.sources.models.goods.Good;
 
 import java.io.Serializable;

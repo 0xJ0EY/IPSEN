@@ -2,15 +2,13 @@ package server.sources.models.goods;
 
 import java.io.Serializable;
 
-public class MushroomGood implements Good, Serializable {
+public class MushroomGood implements Good {
 
-    @Override
-    public String isGood() {
-        return "MUSHROOM";
+    public String getBackground() {
+        return "mushroom.png";
     }
 
-    @Override
-    public String getGood() {
-        return "BROWN";
+    public boolean sameInstance(Good good) {
+        return good instanceof MushroomGood;
     }
 }

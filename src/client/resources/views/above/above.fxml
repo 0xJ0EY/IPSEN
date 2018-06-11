@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
+   <children>
+      <AnchorPane layoutY="430.0" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" />
+      <FlowPane fx:id="tiredVillagers" alignment="TOP_RIGHT" hgap="10.0" layoutX="500.0" layoutY="230.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="270.0" AnchorPane.rightAnchor="0.0" />
+      <FlowPane fx:id="injuredVillagers" alignment="TOP_RIGHT" hgap="10.0" layoutX="500.0" layoutY="30.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="470.0" AnchorPane.rightAnchor="0.0" />
+      <FlowPane fx:id="activeVillagers" hgap="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" />
+      <AnchorPane layoutX="840.0" layoutY="430.0" prefHeight="70.0" prefWidth="160.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Text fx:id="points" layoutX="19.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+# coins" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="13.0">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <ScrollPane fitToHeight="true" layoutX="300.0" layoutY="500.0" prefHeight="200.0" prefWidth="700.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0">
+         <content>
+            <HBox fx:id="buildings" alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fitToWidth="true" layoutY="550.0" prefHeight="150.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <content>
+            <FlowPane fx:id="goods" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fitToHeight="true" layoutX="300.0" layoutY="430.0" prefHeight="70.0" prefWidth="543.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="150.0">
+         <content>
+            <HBox fx:id="advancementTracker" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

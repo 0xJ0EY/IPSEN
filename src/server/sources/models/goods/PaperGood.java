@@ -2,15 +2,14 @@ package server.sources.models.goods;
 
 import java.io.Serializable;
 
-public class PaperGood implements Good, Serializable {
+public class PaperGood implements Good {
 
     @Override
-    public String isGood() {
-        return "PAPER";
+    public String getBackground() {
+        return "paper.png";
     }
 
-    @Override
-    public String getGood() {
-        return "WHITE";
+    public boolean sameInstance(Good good) {
+        return good instanceof PaperGood;
     }
 }

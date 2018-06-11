@@ -6,13 +6,8 @@ package server.sources.models.perks;
 public class ReputationPerk implements Perk {
     private final int REPUTATION = 1;
 
-    /**
-     * This is only for setting information stats on building card.
-     * @return Informatie van statistieken over dat building card
-     * @author Robin Silvério
-     */
     @Override
-    public String toString() {
-        return "GAIN REPUTATION";
+    public String getBackground() {
+        return "reputation_perk.png";
     }
 }

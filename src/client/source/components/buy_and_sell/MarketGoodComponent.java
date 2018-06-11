@@ -33,7 +33,7 @@ public class MarketGoodComponent extends AnchorPane implements Serializable {
         this.controller = controller;
         this.good = good;
 
-        background.setStyle("-fx-background-color: " + good.getGood() + "");
+        background.setStyle("-fx-background-image: " + good.getBackground() + "");
     }
 
     @FXML

@@ -15,10 +15,10 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     private static final long serialVersionUID = 1337L;
 
-    public PlayerBoard board = new PlayerBoard(this);
+    private PlayerBoard board = new PlayerBoard(this);
 
-    public GameController gameController;
-    public int reputation = 0;
+    private GameController gameController;
+    private int reputation = 0;
 
     private transient GameClientInterface gameClient;
 
@@ -39,8 +39,11 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return gameClient;
     }
 
-    public void setGameClient(GameClientInterface gameClient) {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
+
+        // Update the playerview, so it will be shown in the observer
+        this.board.updateObserver();
     }
 
     public boolean hasPassed() {
@@ -100,6 +103,25 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     public String getColour() {
         return colour;
+    }
+
+    /**
+     * With this method, we can retrieve all amount of buildings that a player has build.
+     * Each building represents one village points.
+     * @return VP (Village Points)
+     * @author Robin Silvério
+     */
+    public int getAmountBuildings(){
+
+        int villagePointsPerBuilding = 0;
+
+        try {
+            villagePointsPerBuilding = (this.getPlayerBoard().getHouses().size() + this.getPlayerBoard().getOutposts().size());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return villagePointsPerBuilding;
     }
 
     @Override

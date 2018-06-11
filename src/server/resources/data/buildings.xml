@@ -169,7 +169,7 @@
     <keyhouse>
         <price>5</price>
         <perks>
-            <perk value="3">BEDS</perk>
+            <perk>BEDS</perk>
             <perk value="2">COINS</perk>
         </perks>
     </keyhouse>
@@ -194,7 +194,7 @@
         <perks>
             <perk value="1">COINS</perk>
             <perk value="6">VILLAGE_POINTS</perk>
-            <perk value="1">BEDS</perk>
+            <perk>BEDS</perk>
         </perks>
     </outpost>
     <outpost>
@@ -207,7 +207,7 @@
     <outpost>
         <price>3</price>
         <perks>
-            <perk value="1">BEDS</perk>
+            <perk>BEDS</perk>
             <perk>GAIN_REPUTATION</perk>
         </perks>
     </outpost>
@@ -223,7 +223,7 @@
         <perks>
             <perk value="1">COINS</perk>
             <perk value="3">VILLAGE_POINTS</perk>
-            <perk value="2">BEDS</perk>
+            <perk>BEDS</perk>
         </perks>
     </outpost>
     <outpost>
@@ -236,7 +236,7 @@
     <outpost>
         <price>3</price>
         <perks>
-            <perk value="2">BEDS</perk>
+            <perk>BEDS</perk>
             <perk>GAIN_REPUTATION</perk>
         </perks>
     </outpost>

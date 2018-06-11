@@ -1,9 +1,11 @@
 package client.source;
 
+import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import client.source.controllers.ExplorePartyController;
 import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
+import client.source.factories.VillagerSelectionComponentFactory;
 import client.source.observers.Observer;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.application.Application;
@@ -12,13 +14,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.sources.controllers.GoodOnSale;
-import server.sources.interfaces.GameClientInterface;
+import server.sources.actions.HarvestAction;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.GameClient;
-import server.sources.models.Harvest;
-import server.sources.models.buildings.Building;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
@@ -81,12 +81,19 @@ public class Client extends Application {
         this.setScene(this.main.show());
     }
 
-    public void showVillagerSelection(VillagerSelectionFactory factory, VillagerActionInterface action, VillagerSelectionStrategy strategy) {
+    public void showVillagerSelection(
+            VillagerSelectionFactory villagerFactory,
+            VillagerActionInterface action,
+            VillagerSelectionStrategy strategy,
+            VillagerSelectionComponentFactory componentFactory
+    ) {
+
         VillagerSelectionController selection = controllerFactory.createVillagerSelection();
 
-        selection.setFactory(factory);
+        selection.setVillagerFactory(villagerFactory);
         selection.setVillagerAction(action);
         selection.setStrategy(strategy);
+        selection.setComponentFactory(componentFactory);
 
         this.setScene(selection.show());
     }
@@ -97,10 +104,11 @@ public class Client extends Application {
         this.setScene(explore.show());
     }
 
-    public void showHarvestSelection(Harvest harvest) throws RemoteException{
-        HarvestController harvestAction = controllerFactory.createHarvestSelection();
-        harvestAction.setHarvest(harvest);
-        this.setScene(harvestAction.show());
+    public void showHarvestSelection(HarvestAction harvestAction) throws RemoteException{
+        HarvestController harvest = controllerFactory.createHarvestSelection();
+        harvest.setHarvest(harvestAction);
+        harvest.load();
+        this.setScene(harvest.show());
     }
 
     public void showRewards(Option option) {
@@ -111,12 +119,19 @@ public class Client extends Application {
 
     public void showBuild(){
         BuildController build = controllerFactory.createBuild();
+        build.load();
         this.setScene(build.show());
     }
 
     public void showTrain() {
         TrainController train = controllerFactory.createTrain();
         this.setScene(train.show());
+    }
+
+    public void showTrainReward(TrainerVillagerComponent villager) throws RemoteException {
+        TrainRewardController trainReward = controllerFactory.createTrainRewardView();
+        trainReward.setTrainReward(villager);
+        this.setScene(trainReward.show());
     }
 
     public void showParty(Story story, Choice choice){
@@ -139,22 +154,28 @@ public class Client extends Application {
         this.setScene(goods.show());
     }
 
-    public void showBid(GoodOnSale goodOnSale, int bidAmount) throws RemoteException{
+    public void showBid(GoodOnSale goodOnSale, int bidAmount) throws RemoteException {
         BuyGoodBidController bid = controllerFactory.createBuyGoodBidController();
         bid.setClient(goodOnSale.getClient());
         bid.setBid(bidAmount, goodOnSale);
         this.setScene(bid.show());
+
     }
 
-    public void showVillagerRest() {
+    public void showScoreBoard(){
+        ScoreboardController score = controllerFactory.createScoreBoard();
+        this.setScene(score.show());
+    }
+
+    public void showVillagerRest(){
         this.setScene(controllerFactory.createVillagerRest().show());
     }
 
-    public Stage getStage() {
+    public Stage getStage(){
         return this.stage;
     }
 
-    private void setScene(Parent root) {
+    private void setScene(Parent root){
         Scene scene = stage.getScene();
 
         if (scene == null) {
@@ -162,6 +183,10 @@ public class Client extends Application {
         } else {
             Platform.runLater(() -> scene.setRoot(root));
         }
+    }
+
+    public void setMaximized() {
+        Platform.runLater(() -> this.stage.setMaximized(true));
     }
 
     public GameClient getGameClient() {

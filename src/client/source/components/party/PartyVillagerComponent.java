@@ -43,8 +43,6 @@ public class PartyVillagerComponent extends VBox {
             e.printStackTrace();
         }
 
-        this.type.getChildren().setAll(villager.getType());
-
         this.background.setStyle(
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                         "-fx-background-repeat: stretch;" +

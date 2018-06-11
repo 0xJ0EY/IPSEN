@@ -1,6 +1,7 @@
 package server.sources.controllers;
 
 import server.sources.interfaces.MarketInterface;
+import server.sources.models.Market;
 import server.sources.models.Player;
 import server.sources.models.buildings.*;
 
@@ -14,10 +15,10 @@ import java.util.ArrayList;
  */
 public class BuildMarketController extends UnicastRemoteObject {
 
-    private ArrayList<House> houses = new ArrayList<>();
-    private ArrayList<StarHouse> starHouses = new ArrayList<>();
-    private ArrayList<KeyHouse> keyHouses = new ArrayList<>();
-    private ArrayList<Outpost> outposts = new ArrayList<>();
+    private ArrayList<MarketHouse> houses = new ArrayList<>();
+    private ArrayList<MarketStarHouse> starHouses = new ArrayList<>();
+    private ArrayList<MarketKeyHouse> keyHouses = new ArrayList<>();
+    private ArrayList<MarketOutpost> outposts = new ArrayList<>();
 
     private House[] availableHouses = new House[4];
     private Outpost[] availableOutposts = new Outpost[4];
