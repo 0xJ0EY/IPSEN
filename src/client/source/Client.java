@@ -140,6 +140,11 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
+    public void showScoreBoard(){
+        ScoreboardController score = controllerFactory.createScoreBoard();
+        this.setScene(score.show());
+    }
+
     public void showVillagerRest() {
         this.setScene(controllerFactory.createVillagerRest().show());
     }
@@ -160,8 +165,6 @@ public class Client extends Application {
 
     public void setMaximized() {
         Platform.runLater(() -> this.stage.setMaximized(true));
-
-//        this.stage.setMaximized(state);
     }
 
     public GameClient getGameClient() {

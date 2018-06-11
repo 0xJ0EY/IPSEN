@@ -30,4 +30,6 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public void changeReputation(int amount) throws RemoteException;
 
+    public int getAmountBuildings() throws RemoteException;
+
 }

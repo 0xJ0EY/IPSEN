@@ -6,6 +6,7 @@ import client.source.strategies.DoActionStrategy;
 import client.source.strategies.RequestStrategy;
 import javafx.fxml.FXML;
 import server.sources.actions.*;
+import server.sources.notifications.EndOfGameNotification;
 
 import java.rmi.RemoteException;
 

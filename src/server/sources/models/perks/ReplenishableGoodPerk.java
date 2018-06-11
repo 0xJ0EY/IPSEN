@@ -4,7 +4,8 @@ import server.sources.models.goods.*;
 
 public class ReplenishableGoodPerk implements Perk, Harvestable, Replenishable {
 
-    private int original_value;
+    private int original_value = 2;
+    private int value = 0;
 
     private Good good;
 
@@ -12,7 +13,6 @@ public class ReplenishableGoodPerk implements Perk, Harvestable, Replenishable {
         this.good = good;
     }
 
-    @Override
     public String getBackground() {
         return "../good/" + good.getBackground();
     }
@@ -23,16 +23,17 @@ public class ReplenishableGoodPerk implements Perk, Harvestable, Replenishable {
 
     @Override
     public void refresh() {
-
+        this.value = this.original_value;
     }
 
     @Override
     public boolean canHarvest() {
-        return false;
+        return this.value > 0;
     }
 
     @Override
     public void harvest() {
+        this.value--;
 
     }
 }

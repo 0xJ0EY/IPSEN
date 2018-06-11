@@ -4,21 +4,26 @@ package server.sources.models;
 import server.sources.interfaces.AdvancementTrackerInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
+import server.sources.models.buildings.StarHouse;
+import server.sources.models.goods.*;
+import server.sources.models.buildings.House;
+import server.sources.models.buildings.Outpost;
+import server.sources.models.perks.*;
 import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.interfaces.PlayerBoardInterface;
-import server.sources.models.perks.BedPerk;
-import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
@@ -56,6 +61,23 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
+
+        /**
+         * This is only for testing scoreboard.
+         * @author Robin Silvério
+         */
+        ArrayList<Perk> perks_1 = new ArrayList<Perk>();
+        perks_1.add(new CiderPerk(1));
+        perks_1.add(new CoinPerk(2));
+        perks_1.add(new VillagePointsPerk(3));
+        houses.add(new House(2, perks_1));
+
+        ArrayList<Perk> perks_2 = new ArrayList<Perk>();
+        perks_2.add(new CiderPerk(1));
+        perks_2.add(new CoinPerk(2));
+        perks_2.add(new VillagePointsPerk(3));
+        houses.add(new StarHouse(2, perks_2));
+
 
         for (int i = 0; i < 5; i++) {
             this.goods.add(new FruitGood());
@@ -372,13 +394,11 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     @Override
     public void moveGoodToAdvancementTracker(int index) throws RemoteException {
-
         Good good = this.goods.get(index);
         this.getAdvancementTracker().addGood(good);
 
         this.goods.remove(index);
 
         this.updateObserver();
-
     }
 }
