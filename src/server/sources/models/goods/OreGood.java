@@ -1,8 +1,5 @@
 package server.sources.models.goods;
 
-import client.source.components.harvest.OreComponent;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.Serializable;
 
 public class OreGood implements Good {
@@ -12,7 +9,6 @@ public class OreGood implements Good {
         return "ore.png";
     }
 
-    @Override
     public boolean sameInstance(Good good) {
         return good instanceof OreGood;
     }

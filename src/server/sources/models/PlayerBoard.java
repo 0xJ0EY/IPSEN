@@ -293,6 +293,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
+    @Override
     public ArrayList<Good> getGoods(){
         return this.goods;
     }

@@ -1,6 +1,7 @@
 package server.sources.interfaces;
 
 import server.sources.models.buildings.*;
+import server.sources.models.goods.Good;
 
 import java.io.Serializable;
 import java.rmi.Remote;

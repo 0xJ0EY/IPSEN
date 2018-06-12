@@ -28,7 +28,8 @@ import java.util.ArrayList;
  * Class that acts as an intermediary between the buildview and the model.
  * Created by robin on 1-6-2018.
  */
-public class BuildController implements SelectableControllerInterface, Observable {
+public class
+BuildController implements SelectableControllerInterface, Observable {
 
     private Client client;
     private MarketInterface market;
@@ -233,7 +234,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
     }
 
     /**
-     * Performs a click eventhandling when player clicks on cancel button, he will be redirected to aboveview
+     * Performs a click eventhandling when player clicks on cancel button, he will be redirected to aboveview.
      * @throws RemoteException
      * @author Robin Silvério
      */

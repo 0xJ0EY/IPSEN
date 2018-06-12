@@ -40,8 +40,10 @@ public class GoodReward extends Reward {
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         super.execute(client);
         for(int i=0; i<value; i++) {
+
             playerBoard.addGood(good);
         }
+        System.out.println("goods: "+ playerBoard.getGoods());
     }
 
     /**

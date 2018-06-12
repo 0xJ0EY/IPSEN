@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import server.sources.controllers.GoodOnSale;
 import server.sources.actions.HarvestAction;
 import server.sources.controllers.GameController;
 import server.sources.interfaces.*;
@@ -40,7 +41,7 @@ public class Client extends Application {
     public Observer<PlayerBoardInterface> playerBoardObserver = new Observer<>();
     public Observer<MarketInterface> marketObserver = new Observer<>();
     public Observer<GameControllerInterface> gameObserver = new Observer<>();
-
+    
     @Override
     public void start(Stage primaryStage) {
 
@@ -146,15 +147,15 @@ public class Client extends Application {
         this.setScene(score.show());
     }
 
-    public void showVillagerRest() {
+    public void showVillagerRest(){
         this.setScene(controllerFactory.createVillagerRest().show());
     }
 
-    public Stage getStage() {
+    public Stage getStage(){
         return this.stage;
     }
 
-    private void setScene(Parent root) {
+    private void setScene(Parent root){
         Scene scene = stage.getScene();
 
         if (scene == null) {

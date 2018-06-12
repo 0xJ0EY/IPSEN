@@ -58,6 +58,7 @@ public class MarketController implements Observable {
 
     }
 
+
     /**
      * Observes all updates in marketview.
      * @author Joey de Ruiter
