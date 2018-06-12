@@ -21,6 +21,10 @@ import server.sources.models.stories.Story;
 
 import java.rmi.RemoteException;
 
+/**
+ * A class that acts as an intermediary between an exploreview and models.
+ * Created by Richard Kerkvliet
+ */
 public class ExploreController implements ControllerInterface, Observable {
 
     private Client client;
@@ -35,6 +39,11 @@ public class ExploreController implements ControllerInterface, Observable {
     @FXML private Button confirmButton;
     @FXML private ToggleGroup radioGroup = new ToggleGroup();
 
+    /**
+     * For displaying an exploreview with loaded textarea full of stories and choices.
+     * @return a loaded explore.FXML
+     * @author Richard Kerkvliet
+     */
     @Override
     public Parent show() {
         story.setText(this.exploreStory.getStory());
@@ -64,12 +73,21 @@ public class ExploreController implements ControllerInterface, Observable {
         return this.root;
     }
 
+    /**
+     * This is for setting a client to a view.
+     * @param client, a player that uses the application to play game online.
+     * @author Richard Kerkvliet
+     */
     public void setClient(Client client) {
         this.client = client;
 
         this.client.turnObserver.attach(this);
     }
 
+    /**
+     * This is for performing a click eventhandling when player wants to forfait the explore action.
+     * @author Richard Kerkvliet
+     */
     @FXML public void clickRun() {
         try {
             RunAction run = new RunAction();
@@ -80,6 +98,10 @@ public class ExploreController implements ControllerInterface, Observable {
         }
     }
 
+    /**
+     * This is for performing a click eventhandling when player confirms the choice that he's made.
+     * @author Richard Kerkvliet
+     */
     @FXML public void clickConfirm() {
         RadioButton selected = (RadioButton) radioGroup.getSelectedToggle();
 
@@ -92,6 +114,10 @@ public class ExploreController implements ControllerInterface, Observable {
         client.showParty(this.exploreStory, this.choice);
     }
 
+    /**
+     * This is for observing any updates after ending turns and rounds or performing actions made by a player.
+     * @author Richard Kerkvliet
+     */
     @Override
     public void updateObserver() {
         PlayerInterface target = this.client.turnObserver.getState();
@@ -113,6 +139,11 @@ public class ExploreController implements ControllerInterface, Observable {
 
     }
 
+    /**
+     * For setting a random explore story to be set on textarea.
+     * @param exploreStory a random story generated.
+     * @author Richard Kerkvliet
+     */
     public void setExploreStory(Story exploreStory) {
         this.exploreStory = exploreStory;
     }

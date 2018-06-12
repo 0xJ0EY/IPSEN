@@ -9,6 +9,10 @@ import server.sources.interfaces.VillagerInterface;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This class allows to create selectable villager components
+ * @author Richard Kerkvliet
+ */
 public abstract class SelectableVillagerComponent extends VillagerComponent {
 
     protected boolean selected;

@@ -6,6 +6,10 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+/**
+ * A Class that allows to create controllers
+ * Created by Joey de Ruiter
+ */
 public class ControllerFactory {
 
     private Client client;

@@ -11,6 +11,9 @@ import server.sources.interfaces.PlayerInterface;
 
 import java.rmi.RemoteException;
 
+/**
+ * A class that acts as an intermediary between mainview and models
+ */
 public class MainController implements ControllerInterface, Observable {
 
     private Client client;
@@ -46,6 +49,7 @@ public class MainController implements ControllerInterface, Observable {
 
     /**
      * This is for assigning tabcontainer.
+     * @author Joey de Ruiter
      */
     public void initialize() {
         System.out.println("Initialize");
@@ -61,6 +65,7 @@ public class MainController implements ControllerInterface, Observable {
     /**
      * Of course, for setting client.
      * @param client
+     * @author Joey de Ruiter
      */
     public void setClient(Client client) {
         menuController.registerClient(client);
@@ -79,6 +84,7 @@ public class MainController implements ControllerInterface, Observable {
     /**
      * For showing Main UI
      * @return
+     * @author Joey de Ruiter
      */
     @Override
     public Parent show() {

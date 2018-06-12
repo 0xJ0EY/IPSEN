@@ -25,6 +25,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
+ * Class that acts as an intermediary between the buildview and the model.
  * Created by robin on 1-6-2018.
  */
 public class BuildController implements SelectableControllerInterface, Observable {
@@ -37,9 +38,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
     @FXML private Button cancelButton;
     @FXML private Button buyButton;
 
-    /**
-     * Here are all buildingcontainers declared to store building cards in building market.
-     */
     @FXML private FlowPane housesContainer;
     @FXML private FlowPane outpostsContainer;
     @FXML private FlowPane keyHousesContainer;
@@ -60,7 +58,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
     private Thread messageThread;
 
     /**
-     * Load all the buildings required for the building controller
+     * Load all the buildings required for the building controller.
      * @author Joey de Ruiter
      */
     public void load() {
@@ -94,11 +92,19 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
     }
 
+    /**
+     * This is for observing any updates after ending turns and rounds or performing actions made by a player.
+     * @author Joey de Ruiter
+     */
     @Override
     public void updateObserver() {
         this.load();
     }
 
+    /**
+     * For creating housecomponents and storing them in a housescontainer in building market.
+     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createHouseComponents() {
         if (this.houses == null || this.houses.size() == 0) return;
 
@@ -116,6 +122,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
     }
 
+    /**
+     * For creating outpostcomponents and storing them in an outpostscontainer in building market.
+     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createOutpostComponents() {
         if (this.outposts == null || this.outposts.size() == 0) return;
 
@@ -132,6 +142,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
     }
 
+    /**
+     * For creating keyhousecomponents and storing them in a keyhousescontainer in building market.
+     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createKeyHouseComponents() {
         if (this.keyHouses == null || this.keyHouses.size() == 0) return;
 
@@ -148,6 +162,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
     }
 
+    /**
+     * For creating starhousecomponents and storing them in a starhousescontainer in building market.
+     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createStarHouseComponets() {
         if (this.starHouses == null || this.keyHouses.size() == 0) return;
 
@@ -164,6 +182,12 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
     }
 
+    /**
+     * For setting a client in a view.
+     * @param client the player using this application to play the game
+     * @throws RemoteException
+     * @author Joey de Ruiter and Robin Silvério
+     */
     public void setClient(Client client) throws RemoteException {
         this.client = client;
 
@@ -172,10 +196,20 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.client.marketObserver.attach(this);
     }
 
+    /**
+     * For displaying the view.
+     * @return a loaded build_market.FXML
+     * @author Robin Silvério
+     */
     public Parent show() {
         return this.root;
     }
 
+    /**
+     * Of course, This is for getting an arraylist of all selectable buildingcomponents from each containers to be loaded in a building market.
+     * @return An arraylist of selectable buildings
+     * @author Robin Silvério
+     */
     public ArrayList<SelectableBuildingComponent> getSelectedBuildingComponents() {
         ArrayList<SelectableBuildingComponent> buildings = new ArrayList<SelectableBuildingComponent>();
 
@@ -198,11 +232,21 @@ public class BuildController implements SelectableControllerInterface, Observabl
         return buildings;
     }
 
+    /**
+     * Performs a click eventhandling when player clicks on cancel button, he will be redirected to aboveview
+     * @throws RemoteException
+     * @author Robin Silvério
+     */
     @FXML
     private void onClickCancel() throws RemoteException {
         this.client.getGameClient().requestAction(new CancelAction());
     }
 
+    /**
+     * Performs a click eventhandling when player clicks on buy button, so that he can build a building.
+     * @throws RemoteException
+     * @author Joey de Ruiter
+     */
     @FXML
     private void onClickBuy() throws RemoteException {
         ArrayList<SelectableBuildingComponent> selectedBuildings = this.getSelectedBuildingComponents();

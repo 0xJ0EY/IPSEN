@@ -8,6 +8,10 @@ import server.sources.models.perks.Perk;
 
 import java.io.IOException;
 
+/**
+ * A class that creates perk component
+ * Created by Richard Kerkvliet
+ */
 public class PerkComponent extends AnchorPane {
 
     @FXML private AnchorPane background;

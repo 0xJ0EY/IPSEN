@@ -7,6 +7,10 @@ import server.sources.models.villagers.Villager;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A Class that allows to create a factory for creating trainer villagers.
+ * Created by Joey de Ruiter
+ */
 public class TrainerVillagerSelectionFactory extends VillagerSelectionFactory {
 
     protected Client client;

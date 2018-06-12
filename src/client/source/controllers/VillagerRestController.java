@@ -35,6 +35,10 @@ public class VillagerRestController implements ControllerInterface {
         return this.root;
     }
 
+    /**
+     * Fetching villagers on playerboard.
+     * @author Joey de Ruiter
+     */
     public void fetchVillagers() {
         try {
             this.villagers = this.playerBoard.listVillagers();
@@ -43,7 +47,10 @@ public class VillagerRestController implements ControllerInterface {
         }
     }
 
-
+    /**
+     * Loads all villagers components in container.
+     * @author Joey de Ruiter
+     */
     public void load() {
         this.villagerComponents = new ArrayList<RestVillagerComponent>();
         villagerContainer.getChildren().clear();

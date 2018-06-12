@@ -9,6 +9,10 @@ import sun.plugin.javascript.navig.Anchor;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that creates coin reward
+ * Created by Richard Kerkvliet
+ */
 public class CoinRewardComponent extends RewardComponent<CoinReward> {
 
     public CoinRewardComponent() {

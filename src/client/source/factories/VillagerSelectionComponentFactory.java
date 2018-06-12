@@ -6,6 +6,10 @@ import javafx.scene.layout.FlowPane;
 
 import java.util.ArrayList;
 
+/**
+ * A Class that allows to create a factory for creating selectable villager components.
+ * Created by Joey de Ruiter
+ */
 public abstract class VillagerSelectionComponentFactory {
 
     protected VillagerSelectionController controller;

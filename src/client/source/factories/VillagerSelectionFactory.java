@@ -6,6 +6,10 @@ import server.sources.models.villagers.Villager;
 
 import java.util.ArrayList;
 
+/**
+ * A class that creates factories for selecting multiple or single villagers
+ * @author Joey de Ruiter
+ */
 abstract public class VillagerSelectionFactory {
 
     protected Client client;

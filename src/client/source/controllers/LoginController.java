@@ -13,6 +13,9 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that acts as an intermediary between a
+ */
 public class LoginController implements ControllerInterface {
 
     private Client client;

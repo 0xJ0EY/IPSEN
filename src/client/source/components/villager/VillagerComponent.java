@@ -12,6 +12,10 @@ import server.sources.models.villagers.Trainable;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This class allows to create common villager components
+ * @author Robin Silvério
+ */
 public class VillagerComponent extends AnchorPane {
 
     protected VillagerInterface villager;

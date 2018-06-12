@@ -6,6 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * A class that creates amethyst good component
+ * Created by Richard Kerkvliet
+ */
 public class AmethystComponent extends AnchorPane implements Serializable {
 
     public AmethystComponent() {

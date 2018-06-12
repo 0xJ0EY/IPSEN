@@ -11,6 +11,10 @@ import server.sources.interfaces.VillagerInterface;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This class allows to set tired villagers components in exhausted place
+ * @author Richard Kerkvliet
+ */
 public class RestVillagerComponent extends VillagerComponent {
 
     @FXML private Button ciderButton;

@@ -38,6 +38,11 @@ public class VillagerSelectionController implements ControllerInterface {
 
     private VillagerSelectionComponentFactory componentFactory;
 
+    /**
+     * Loads villager selection view.
+     * @return loaded villager_selection.FXML
+     * @author Jan Douwe Sminia
+     */
     public Parent show() {
 
         this.retrieveVillagers();
@@ -46,11 +51,18 @@ public class VillagerSelectionController implements ControllerInterface {
         return this.root;
     }
 
-
+    /**
+     * Retrieves all villagers from villagersfactory.
+     * @author Jan Douwe Sminia
+     */
     private void retrieveVillagers() {
         this.villagers = villagerFactory.getVillagerList();
     }
 
+    /**
+     * Updates villagerscontainer
+     * @author Jan Douwe Sminia
+     */
     private void updateVillagersView() {
 
         this.villagerComponents = new ArrayList<>();
@@ -66,6 +78,10 @@ public class VillagerSelectionController implements ControllerInterface {
         }
     }
 
+    /**
+     * For selecting villagers in order to perform action
+     * @author Jan Douwe Sminia
+     */
     @FXML
     private void onClickSelect() {
 
@@ -77,12 +93,21 @@ public class VillagerSelectionController implements ControllerInterface {
 
     }
 
+    /**
+     * Cancels the action made by the player.
+     * @author Jan Douwe Sminia
+     */
     @FXML
     private void onClickCancel() {
         // Just show the main screen
         this.client.showMain();
     }
 
+    /**
+     * Getting selected villagers.
+     * @return An arraylist of selected villagers
+     * @author Jan Douwe Sminia
+     */
     public ArrayList<VillagerInterface> getSelectedVillagers() {
         ArrayList<VillagerInterface> selected = new ArrayList<VillagerInterface>();
 
@@ -97,6 +122,11 @@ public class VillagerSelectionController implements ControllerInterface {
         return selected;
     }
 
+    /**
+     * Getting selected villagers components.
+     * @return components
+     * @author Jan Douwe Sminia
+     */
     public ArrayList<SelectableVillagerComponent> getSelectedVillagerComponents() {
         ArrayList<SelectableVillagerComponent> villagers = new ArrayList<SelectableVillagerComponent>();
 
@@ -111,6 +141,11 @@ public class VillagerSelectionController implements ControllerInterface {
         this.client = client;
     }
 
+    /**
+     * For setting villagersfactory.
+     * @param villagerFactory crucial for creating villagers before the application starts.
+     * @author Jan Douwe Sminia
+     */
     public void setVillagerFactory(VillagerSelectionFactory villagerFactory) {
         this.villagerFactory = villagerFactory;
         this.villagerFactory.setClient(this.client);
