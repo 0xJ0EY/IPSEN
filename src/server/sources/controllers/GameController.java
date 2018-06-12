@@ -1,10 +1,7 @@
 package server.sources.controllers;
 
-<<<<<<< HEAD
 import client.source.controllers.BelowController;
-=======
 import client.source.observers.Observable;
->>>>>>> d7104fe3df47a665468d979445470a8a5f3050e6
 import server.sources.interfaces.*;
 import server.sources.models.Market;
 import server.sources.models.Player;
