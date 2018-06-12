@@ -20,7 +20,7 @@ public class SettingsController {
 
     /**
      * Saves the game session/
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @FXML

@@ -24,8 +24,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * List all villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all villagers
-     * @throws RemoteException
+     * @return ArrayList of all villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException;
 
@@ -33,8 +33,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * List all available villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all available villagers
-     * @throws RemoteException
+     * @return ArrayList of all available villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException;
 
@@ -42,8 +42,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * List all available builder villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all available villagers
-     * @throws RemoteException
+     * @return ArrayList of all available villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException;
 
@@ -51,8 +51,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * List all available trainer villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all available villagers
-     * @throws RemoteException
+     * @return ArrayList of all available villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException;
 
@@ -60,7 +60,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * Add a local villager to the playerboard.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void addVillager(Villager villager) throws RemoteException;
 
@@ -68,7 +68,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * Execute the villagerStrategy to add special villagers from the rewards.
      *
      * @author Joey de Ruiter | Richard Kerkvliet
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException;
 
@@ -77,7 +77,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public AdvancementTrackerInterface getAdvancementTracker() throws RemoteException;
 
@@ -131,7 +131,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
      * reset villagers so they can sleep again.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void endOfRound() throws RemoteException;
 

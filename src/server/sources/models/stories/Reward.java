@@ -28,7 +28,7 @@ public abstract class Reward implements RewardInterface {
     /**
      * Executes the Reward.
      * @param client
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @throws ParserConfigurationException
      * @author Richard Kerklviet
      */

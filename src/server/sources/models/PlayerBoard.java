@@ -65,7 +65,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
         /**
          * This is only for testing scoreboard.
-         * @author Robin Silvério
+         * @author Robin Silverio
          */
         ArrayList<Perk> perks_1 = new ArrayList<Perk>();
         perks_1.add(new CiderPerk(1));
@@ -127,7 +127,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * This is for listing villagers on playerboard when player enters a game environment.
      * @author Jan Douwe Sminia
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public boolean hasCider() throws RemoteException {
@@ -166,8 +166,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * List all villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all villagers
-     * @throws RemoteException
+     * @return ArrayList of all villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException {
@@ -184,8 +184,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * List all available villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all available villagers
-     * @throws RemoteException
+     * @return ArrayList of all available villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException {
@@ -204,8 +204,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * List all available builder villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of available builder villagers
-     * @throws RemoteException
+     * @return ArrayList of available builder villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException {
@@ -224,8 +224,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * List all available trainer villagers of on the playerboard.
      *
      * @author Jan Douwe Sminia
-     * @return ArrayList<VillagerInterface> of all available villagers
-     * @throws RemoteException
+     * @return ArrayList of all available villagers
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException {
@@ -244,7 +244,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * Add a local villager to the playerboard.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void addVillager(Villager villager) throws RemoteException {
@@ -259,7 +259,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * Execute the villagerStrategy to add special villagers from the rewards.
      *
      * @author Joey de Ruiter | Richard Kerkvliet
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException {
@@ -294,7 +294,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    public ArrayList<Good> getGoods(){
+    public ArrayList<Good> getGoods() throws RemoteException {
         return this.goods;
     }
 
@@ -303,22 +303,22 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      *
      * Khajiit  has wares, if you have coin
      * @return int of current amount
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
-    public int getCoins() {
+    public int getCoins() throws RemoteException {
         return this.coins;
     }
 
-    public int getPotions() {
+    public int getPotions() throws RemoteException {
         return this.potions;
     }
 
-    public int getBeds() {
+    public int getBeds() throws RemoteException {
         return this.beds;
     }
 
-    public int getCiders() {
+    public int getCiders() throws RemoteException {
         return this.ciders;
     }
 
@@ -327,9 +327,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public AdvancementTrackerInterface getAdvancementTracker() {
+    public AdvancementTrackerInterface getAdvancementTracker() throws RemoteException {
         return this.advancementTracker;
     }
 
@@ -340,7 +340,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      * reset villagers so they can sleep again.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void endOfRound() throws RemoteException {
 

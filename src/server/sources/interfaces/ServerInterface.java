@@ -11,7 +11,7 @@ public interface ServerInterface extends Remote {
      * @author Joey de Ruiter
      * @param gameClientInterface the assigned gameClient
      * @param username
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void registerClient(GameClientInterface gameClientInterface, String username) throws RemoteException;
 
@@ -20,7 +20,7 @@ public interface ServerInterface extends Remote {
      *
      * @author Joey de Ruiter
      * @param gameClientInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void unregisterClient(GameClientInterface gameClientInterface) throws RemoteException;
 
@@ -29,7 +29,7 @@ public interface ServerInterface extends Remote {
      *
      * @author Joey de Ruiter
      * @param notification the NotificationInterface to be executed on the client
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void notifyClients(NotificationInterface notification) throws RemoteException;
 
@@ -38,14 +38,14 @@ public interface ServerInterface extends Remote {
      *
      * @author Joey de Ruiter
      * @param request
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void executeRequest(RequestInterface request) throws RemoteException;
 
     /**
      * Execute an action object on the server and send the action notifcation to every client
      * @param action
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void executeAction(ActionInterface action) throws RemoteException;
 
@@ -54,7 +54,7 @@ public interface ServerInterface extends Remote {
      *
      * @author Joey de Ruiter
      * @return GameControllerInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public GameControllerInterface getGameController() throws RemoteException;
 

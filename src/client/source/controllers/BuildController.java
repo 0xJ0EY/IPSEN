@@ -104,7 +104,7 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * For creating housecomponents and storing them in a housescontainer in building market.
-     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
      */
     private void createHouseComponents() {
         if (this.houses == null || this.houses.size() == 0) return;
@@ -125,7 +125,7 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * For creating outpostcomponents and storing them in an outpostscontainer in building market.
-     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
      */
     private void createOutpostComponents() {
         if (this.outposts == null || this.outposts.size() == 0) return;
@@ -145,7 +145,7 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * For creating keyhousecomponents and storing them in a keyhousescontainer in building market.
-     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
      */
     private void createKeyHouseComponents() {
         if (this.keyHouses == null || this.keyHouses.size() == 0) return;
@@ -165,7 +165,7 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * For creating starhousecomponents and storing them in a starhousescontainer in building market.
-     * @author Robin Silvério, Joey De Ruiter and Richard Kerkvliet
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
      */
     private void createStarHouseComponets() {
         if (this.starHouses == null || this.keyHouses.size() == 0) return;
@@ -186,8 +186,8 @@ BuildController implements SelectableControllerInterface, Observable {
     /**
      * For setting a client in a view.
      * @param client the player using this application to play the game
-     * @throws RemoteException
-     * @author Joey de Ruiter and Robin Silvério
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter and Robin Silverio
      */
     public void setClient(Client client) throws RemoteException {
         this.client = client;
@@ -200,7 +200,7 @@ BuildController implements SelectableControllerInterface, Observable {
     /**
      * For displaying the view.
      * @return a loaded build_market.FXML
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public Parent show() {
         return this.root;
@@ -209,7 +209,7 @@ BuildController implements SelectableControllerInterface, Observable {
     /**
      * Of course, This is for getting an arraylist of all selectable buildingcomponents from each containers to be loaded in a building market.
      * @return An arraylist of selectable buildings
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public ArrayList<SelectableBuildingComponent> getSelectedBuildingComponents() {
         ArrayList<SelectableBuildingComponent> buildings = new ArrayList<SelectableBuildingComponent>();
@@ -235,8 +235,8 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * Performs a click eventhandling when player clicks on cancel button, he will be redirected to aboveview.
-     * @throws RemoteException
-     * @author Robin Silvério
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
      */
     @FXML
     private void onClickCancel() throws RemoteException {
@@ -245,7 +245,7 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * Performs a click eventhandling when player clicks on buy button, so that he can build a building.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @FXML
@@ -299,7 +299,7 @@ BuildController implements SelectableControllerInterface, Observable {
 
     /**
      * For refreshing houses when market runs out.
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public void clickRefreshHouses() {
 

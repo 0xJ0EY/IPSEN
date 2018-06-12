@@ -14,7 +14,7 @@ public class Outpost extends Building {
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public Outpost(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);

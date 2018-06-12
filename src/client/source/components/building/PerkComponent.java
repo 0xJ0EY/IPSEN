@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * This class is for creating a perkcomponent
- * Created by Joey de Ruiter
+ * Created by Richard Kerkvliet
  */
 public class PerkComponent extends AnchorPane {
 
@@ -47,7 +47,7 @@ public class PerkComponent extends AnchorPane {
 
     /**
      * Sets buildingcomponent.
-     * @param buildingComponent
+     * @param buildingComponent BuildingComponent
      * @author Joey de Ruiter
      */
     public void setBuildingComponent(BuildingComponent buildingComponent) {
@@ -56,7 +56,7 @@ public class PerkComponent extends AnchorPane {
 
     /**
      * Sets model.
-     * @param perk
+     * @param perk Perk
      * @author Joey de Ruiter
      */
     public void setModel(Perk perk) {
@@ -65,7 +65,7 @@ public class PerkComponent extends AnchorPane {
 
     /**
      * For getting the perk.
-     * @return
+     * @return Perk
      */
     public Perk getPerk() {
         return this.perk;

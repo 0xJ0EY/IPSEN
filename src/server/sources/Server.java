@@ -56,7 +56,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
      * @param username
      * @throws ServerFullException when server is full
      * @throws GameStartedException when the game has already started
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void registerClient(GameClientInterface gameClient, String username) throws ServerFullException, GameStartedException, RemoteException {
@@ -94,7 +94,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
      *
      * @author Joey de Ruiter
      * @param gameClient
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
@@ -112,7 +112,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     /**
      * Always promote the first client in the list
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     private void promoteOwner() throws RemoteException {
 
@@ -186,7 +186,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
      *
      * @author Joey de Ruiter
      * @param gameController
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void load(GameController gameController) throws RemoteException {
 

@@ -74,7 +74,7 @@ public class HarvestController implements SelectableControllerInterface {
     /**
      * For setting a client in harvest view.
      * @param client, a player that uses the application to play game online
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Jan Douwe Sminia
      */
     public void setClient(Client client) throws RemoteException {
@@ -102,7 +102,7 @@ public class HarvestController implements SelectableControllerInterface {
 
     /**
      * For setting a harvest action
-     * @param harvest
+     * @param harvest HarvestAction
      * @author Jan Douwe Sminia
      */
     public void setHarvest(HarvestAction harvest) {
@@ -111,7 +111,7 @@ public class HarvestController implements SelectableControllerInterface {
 
     /**
      * Confirms the harvest action after selecting buildings to harvest goods.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Jan Douwe Sminia
      */
     @FXML
@@ -141,7 +141,7 @@ public class HarvestController implements SelectableControllerInterface {
     /**
      * Displays a harvestview.
      * @return a loaded harvest.FXML
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public Parent show() throws RemoteException{

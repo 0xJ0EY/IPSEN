@@ -126,7 +126,7 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
 
     /**
      * For setting a controller.
-     * @param controller
+     * @param controller SelectableControllerInterface
      * @author Joey de Ruiter
      */
     @FXML

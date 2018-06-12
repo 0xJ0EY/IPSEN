@@ -109,7 +109,7 @@ public class VillagerRestController implements ControllerInterface {
 
     /**
      * For selecting villagers to replenish
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @FXML private void onClickSelect() throws RemoteException {

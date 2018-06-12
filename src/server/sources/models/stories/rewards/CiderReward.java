@@ -24,7 +24,7 @@ public class CiderReward extends Reward {
      * Overrides the execute of Reward.
      * adds a Cider to the PlayerBoard.
      * @param client
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @throws ParserConfigurationException
      * @author Richard Kerkvliet
      */

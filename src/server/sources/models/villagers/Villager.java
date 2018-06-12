@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * @author Robin Silvério
+ * @author Robin Silverio
  */
 public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
@@ -32,10 +32,10 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * creates a villager.
-     * @param lanterns
-     * @param state
-     * @param background
-     * @throws RemoteException
+     * @param lanterns ArrayList
+     * @param state VillagerSate
+     * @param background String
+     * @throws RemoteException java.rmi.RemoteException
      */
     public Villager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         this.lanterns = lanterns;
@@ -45,8 +45,8 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * sets the playerboard the villager wil show up on.
-     * @param playerBoard
-     * @throws RemoteException
+     * @param playerBoard PlayerBoardInterface
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void setPlayerBoard(PlayerBoardInterface playerBoard) throws RemoteException {
@@ -57,7 +57,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
      * calculates the lanterns.
      * @param dice
      * @return lanterns
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int calculateLanters(Dice dice) throws RemoteException {
         int amount = 0;
@@ -72,7 +72,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns the state of the villager.
      * @return villagerState
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public VillagerState getState() throws RemoteException {
         return this.state;
@@ -81,7 +81,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager is usable.
      * @return usable boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean isUsable() throws RemoteException {
         return this.state == VillagerState.USABLE;
@@ -90,7 +90,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager can sleep.
      * @return cansleep boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean canSleep() throws RemoteException {
         return this.state != VillagerState.USABLE && !this.slept;
@@ -99,7 +99,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager can use a cider.
      * @return canusecider boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean canUseCider() throws RemoteException {
         return this.state == VillagerState.TIRED;
@@ -108,7 +108,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager can use a potion.
      * @return canUsePotion
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean canUsePotion() throws RemoteException {
         return this.state == VillagerState.INJURED;
@@ -116,7 +116,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * tires the villager.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void tire() throws RemoteException {
         this.state = VillagerState.TIRED;
@@ -124,7 +124,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * uses a cider.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void useCider() throws RemoteException {
         if (state != VillagerState.TIRED) return;
@@ -134,7 +134,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * uses a potion.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void usePotion() throws RemoteException {
         if (state != VillagerState.INJURED) return;
@@ -144,7 +144,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * sleeps the villager.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void sleep() throws RemoteException {
         if (state == VillagerState.USABLE) return;
@@ -162,7 +162,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     /**
      * injures the villager.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void injure() throws RemoteException {
         this.state = VillagerState.INJURED;
@@ -171,7 +171,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns the background of the villager.
      * @return background String
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public String getBackground() throws RemoteException {
         return background;
@@ -180,7 +180,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * Set some of the local variable to the default beginning of round values.
      *
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override
@@ -191,7 +191,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager is allround.
      * @return allround boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean isAllround() throws RemoteException {
         return isBuilder() && isTrainer();
@@ -200,7 +200,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager is a Builder.
      * @return builder boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public boolean isBuilder() throws RemoteException {
@@ -210,7 +210,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns if the villager is a trainer.
      * @return trainer boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public boolean isTrainer() throws RemoteException {
@@ -221,7 +221,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
      * checks if the villager UUID is equal.
      * @param villager
      * @return boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override
@@ -232,7 +232,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     /**
      * returns the UUID of the villager.
      * @return UUID
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override

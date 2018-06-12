@@ -19,7 +19,7 @@ public interface PlayerInterface extends Remote, Serializable {
     /**
      * Set the pass flag for this player,
      * that means the player wont get a turn this round anymore.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void pass() throws RemoteException;
 
@@ -27,7 +27,7 @@ public interface PlayerInterface extends Remote, Serializable {
      * Request a doAction for the player turn.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void requestAction() throws RemoteException;
 
@@ -36,7 +36,7 @@ public interface PlayerInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @return ActionInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ActionInterface getAction() throws RemoteException;
 
@@ -45,7 +45,7 @@ public interface PlayerInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @return boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean hasAction() throws RemoteException;
 
@@ -54,7 +54,7 @@ public interface PlayerInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @param action
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void doAction(ActionInterface action) throws RemoteException;
 
@@ -69,7 +69,7 @@ public interface PlayerInterface extends Remote, Serializable {
      * Each building represents one village points.
      *
      * @return VP (Village Points)
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public int getAmountBuildings() throws RemoteException;
 
@@ -78,7 +78,7 @@ public interface PlayerInterface extends Remote, Serializable {
      *
      * @author Richard Kerkvliet
      * @param amount
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void changeReputation(int amount) throws RemoteException;
 

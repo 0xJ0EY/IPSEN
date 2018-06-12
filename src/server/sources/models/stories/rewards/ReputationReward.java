@@ -27,7 +27,7 @@ public class ReputationReward extends Reward {
      * Overrides the execute of Reward.
      * adds a Reputation to the PlayerBoard.
      * @param client
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @throws ParserConfigurationException
      * @author Richard Kerkvliet
      */

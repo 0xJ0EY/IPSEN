@@ -44,7 +44,7 @@ public class Client extends Application {
 
     /**
      * Show the starting page of the app
-     * @param primaryStage
+     * @param primaryStage Stage
      */
     @Override
     public void start(Stage primaryStage) {
@@ -103,10 +103,10 @@ public class Client extends Application {
     /**
      * Show villager selection view
      *
-     * @param villagerFactory
-     * @param action
-     * @param strategy
-     * @param componentFactory
+     * @param villagerFactory VillagerSelectionFactory
+     * @param action VillagerActionInterface
+     * @param strategy VillagerSelectionStrategy
+     * @param componentFactory VillagerSelectionComponentFactory
      */
     public void showVillagerSelection(
             VillagerSelectionFactory villagerFactory,
@@ -128,7 +128,7 @@ public class Client extends Application {
 
     /**
      * Show the explore with corresponding story
-     * @param story
+     * @param story Story
      */
     public void showExplore(Story story) {
         ExploreController explore = controllerFactory.createExplore();
@@ -138,8 +138,8 @@ public class Client extends Application {
 
     /**
      * Show the harvest selection
-     * @param harvestAction
-     * @throws RemoteException
+     * @param harvestAction HarvestAction
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void showHarvestSelection(HarvestAction harvestAction) throws RemoteException{
         HarvestController harvest = controllerFactory.createHarvestSelection();
@@ -150,8 +150,8 @@ public class Client extends Application {
 
     /**
      * Show rewards
-     * @param option
-     * @throws RemoteException
+     * @param option Option
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void showRewards(Option option) throws RemoteException {
         RewardController rewards = controllerFactory.createRewardView();
@@ -169,7 +169,7 @@ public class Client extends Application {
     }
 
     /**
-     * Show the training scene 🚂
+     * Show the training scene
      */
     public void showTrain() {
         TrainController train = controllerFactory.createTrain();
@@ -184,8 +184,8 @@ public class Client extends Application {
 
     /**
      * Show the party selection after the story
-     * @param story
-     * @param choice
+     * @param story Story
+     * @param choice Choice
      */
     public void showParty(Story story, Choice choice){
         ExplorePartyController party = controllerFactory.createExploreParty();
@@ -237,7 +237,7 @@ public class Client extends Application {
 
     /**
      * Show a message on screen (This message will only show in the main view though).
-     * @param message
+     * @param message String
      */
     public void showMessage(String message) {
         this.main.showMessage(message);

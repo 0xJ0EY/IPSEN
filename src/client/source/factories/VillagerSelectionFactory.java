@@ -16,7 +16,7 @@ abstract public class VillagerSelectionFactory {
 
     /**
      * For setting a client
-     * @param client
+     * @param client client
      * @author Joey de Ruiter
      */
     public void setClient(Client client) {

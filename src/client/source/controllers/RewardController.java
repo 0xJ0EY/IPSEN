@@ -40,7 +40,7 @@ public class RewardController implements ControllerInterface, Observable {
     /**
      * Loads all rewards in rewardsview
      * @return a loaded reward.fxml
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public Parent show() throws RemoteException {
@@ -90,7 +90,7 @@ public class RewardController implements ControllerInterface, Observable {
 
     /**
      * Ends turn when player clicks on end turn button.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Richard Kerkvliet
      */
     public void onClickEndTurn() throws RemoteException {

@@ -15,7 +15,7 @@ public class TrainerVillager extends Villager implements Trainable {
      * @param lanterns
      * @param state
      * @param background
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public TrainerVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);

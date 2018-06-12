@@ -19,7 +19,7 @@ public interface VillagerInterface extends Serializable, Remote {
      * calculates the rewarded lanterns with the dice.
      * @param dice
      * @return lanterns int
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Richard Kerkvliet
      */
     public int calculateLanters(Dice dice) throws RemoteException;
@@ -27,7 +27,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * sets the playerboard where the villager will be shown.
      * @param playerBoard
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void setPlayerBoard(PlayerBoardInterface playerBoard) throws RemoteException;
@@ -35,7 +35,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns the state of the villager.
      * @return villagerState
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public Villager.VillagerState getState() throws RemoteException;
@@ -43,7 +43,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is usable.
      * @return usable boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean isUsable() throws RemoteException;
@@ -51,7 +51,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is tired or injured.
      * @return tired boolean, injured boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean canSleep() throws RemoteException;
@@ -59,7 +59,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is tired.
      * @return tired boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean canUseCider() throws RemoteException;
@@ -67,42 +67,42 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is injured.
      * @return injured boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean canUsePotion() throws RemoteException;
 
     /**
      * sets the state of the villager to tired.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void tire() throws RemoteException;
 
     /**
      * uses a cider on the villager.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void useCider() throws RemoteException;
 
     /**
      * uses a potion on the villager.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void usePotion() throws RemoteException;
 
     /**
      * puts the villager to bed.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void sleep() throws RemoteException;
 
     /**
      * injures the villager.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void injure() throws RemoteException;
@@ -110,14 +110,14 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns the background of the villager.
      * @return background String
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public String getBackground() throws RemoteException;
 
     /**
      * starts the end of round sequence.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public void endOfRound() throws RemoteException;
@@ -125,7 +125,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is allround.
      * @return allround boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean isAllround() throws RemoteException;
@@ -133,7 +133,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is builder.
      * @return builder boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean isBuilder() throws RemoteException;
@@ -141,7 +141,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns if the villager is Trainer.
      * @return trainer boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean isTrainer() throws RemoteException;
@@ -150,7 +150,7 @@ public interface VillagerInterface extends Serializable, Remote {
      * checks if the villager UUID is equal.
      * @param villager
      * @return boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public boolean equals(VillagerInterface villager) throws RemoteException;
@@ -158,7 +158,7 @@ public interface VillagerInterface extends Serializable, Remote {
     /**
      * returns the UUID of the villager.
      * @return UUID
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     public UUID getUUID() throws RemoteException;

@@ -18,7 +18,7 @@ public class MarketOutpost extends Outpost implements BuildingMarketInterface {
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public MarketOutpost(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);
@@ -28,8 +28,7 @@ public class MarketOutpost extends Outpost implements BuildingMarketInterface {
      * Buys the house and adds it to the player.
      * @param market
      * @param gameClient
-     * @return void
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override

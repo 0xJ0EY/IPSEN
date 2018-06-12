@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * This class allows to create certain types of villager components
- * @author Robin Silvério
+ * @author Robin Silverio
  */
 abstract class VillagerType extends AnchorPane implements Serializable {
 

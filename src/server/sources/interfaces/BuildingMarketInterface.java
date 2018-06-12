@@ -14,7 +14,7 @@ public interface BuildingMarketInterface extends BuildingInterface {
      *
      * @param market
      * @param gameClient
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void buy(MarketInterface market, GameClientInterface gameClient) throws RemoteException;
 

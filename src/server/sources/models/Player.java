@@ -50,9 +50,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     /**
      * Set the pass flag for this player,
      * that means the player wont get a turn this round anymore.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public void pass() {
+    public void pass() throws RemoteException {
         this.passed = true;
     }
 
@@ -60,7 +60,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      * Request a doAction for the player turn.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void requestAction() throws RemoteException {
         this.action = null;
@@ -72,9 +72,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      *
      * @author Joey de Ruiter
      * @return ActionInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public ActionInterface getAction() {
+    public ActionInterface getAction() throws RemoteException {
         return this.action;
     }
 
@@ -83,9 +83,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      *
      * @author Joey de Ruiter
      * @return boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public boolean hasAction() {
+    public boolean hasAction() throws RemoteException {
         return this.action != null;
     }
 
@@ -94,9 +94,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      *
      * @author Joey de Ruiter
      * @param action
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public void doAction(ActionInterface action) {
+    public void doAction(ActionInterface action) throws RemoteException {
         this.action = action;
     }
 
@@ -134,7 +134,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      * With this method, we can retrieve all amount of buildings that a player has build.
      * Each building represents one village points.
      * @return VP (Village Points)
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public int getAmountBuildings(){
 
@@ -154,7 +154,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      *
      * @author Richard Kerkvliet
      * @param amount
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void changeReputation(int amount) throws RemoteException {

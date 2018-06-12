@@ -48,7 +48,7 @@ public class AdvancementGoodComponent extends GoodComponent {
 
     /**
      * Updates amount of point that a user can obtain
-     * @author Robin silvério
+     * @author Robin Silverio
      */
     private void updatePointsText() {
         int points = 0;
@@ -64,8 +64,8 @@ public class AdvancementGoodComponent extends GoodComponent {
 
     /**
      * For setting amount of that good
-     * @param amount
-     * @author Robin Silvério
+     * @param amount int
+     * @author Robin Silverio
      */
     public void setAmount(int amount) {
         this.amount = amount;
@@ -75,7 +75,7 @@ public class AdvancementGoodComponent extends GoodComponent {
 
     /**
      * Setting a index
-     * @param index
+     * @param index int
      * @author Joey de Ruiter
      */
     public void setIndex(int index) {

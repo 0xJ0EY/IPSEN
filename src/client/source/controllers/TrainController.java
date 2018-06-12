@@ -39,7 +39,7 @@ public class TrainController implements ControllerInterface {
     /**
      * Loads available villagers to be recruited and trained
      * @return available villager units
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     @Override
     public Parent show() {
@@ -58,8 +58,8 @@ public class TrainController implements ControllerInterface {
 
     /**
      * For getting all villagers
-     * @throws RemoteException
-     * @author Robin Silvério
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
      */
     public void retrieveVillagers() throws RemoteException {
         this.availableVillagers = market.listAvailableVillagers();
@@ -67,7 +67,7 @@ public class TrainController implements ControllerInterface {
 
     /**
      * For updating all villagers to its containers.
-     * @author Robin Silvério and Richard kerkvliet (for correcting code)
+     * @author Robin Silverio and Richard kerkvliet (for correcting code)
      */
     private void updateVillagersView() {
         this.villagerComponents = new ArrayList<TrainerVillagerComponent>();
@@ -90,8 +90,8 @@ public class TrainController implements ControllerInterface {
     /**
      * Setting a client in trainview
      * @param client
-     * @throws RemoteException
-     * @author Robin Silvério and Richard Kerkvliet (for correcting code)
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio and Richard Kerkvliet (for correcting code)
      */
     public void setClient(Client client) throws RemoteException {
         this.client = client;
@@ -104,7 +104,7 @@ public class TrainController implements ControllerInterface {
 
     /**
      * Allowes user to train chosen villager
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Richard Kerkvliet
      */
     public void onClickTrain() throws RemoteException {

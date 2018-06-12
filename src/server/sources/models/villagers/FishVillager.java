@@ -14,7 +14,7 @@ public class FishVillager extends Villager implements Buildable {
      * @param lanterns
      * @param state
      * @param background
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public FishVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);

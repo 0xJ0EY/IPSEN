@@ -18,16 +18,16 @@ public interface AdvancementTrackerInterface extends Remote, Serializable {
      *
      * @param good
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void addGood(Good good) throws RemoteException;
 
     /**
      * Return all the tokens set in the AdvancementTracker
      *
-     * @return Map<Good, Integer>
+     * @return Map
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public Map<Good, Integer> getTokens() throws RemoteException;
 
@@ -36,7 +36,7 @@ public interface AdvancementTrackerInterface extends Remote, Serializable {
      *
      * @return total amount of points
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int calculatePoints()  throws RemoteException;
 
@@ -46,7 +46,7 @@ public interface AdvancementTrackerInterface extends Remote, Serializable {
      * @param index
      * @return points by index
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int getPointsByIndex(int index) throws RemoteException;
 
@@ -55,7 +55,7 @@ public interface AdvancementTrackerInterface extends Remote, Serializable {
      *
      * @return coins
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int calculateCoins() throws RemoteException;
 

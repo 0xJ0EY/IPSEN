@@ -10,7 +10,7 @@ public class OilGirlVillager extends Villager {
      * @param lanterns
      * @param state
      * @param background
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public OilGirlVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);

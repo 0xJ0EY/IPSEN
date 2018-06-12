@@ -19,7 +19,7 @@ public interface MarketInterface extends Remote, Serializable {
      *
      * @author Richard Kerkvliet
      * @return VillagerInterface[]
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public VillagerInterface[] listAvailableVillagers() throws RemoteException;
 
@@ -27,8 +27,8 @@ public interface MarketInterface extends Remote, Serializable {
      * List all available houses to be purchased.
      *
      * @author Joey de Ruiter
-     * @return ArrayList<MarketHouse>
-     * @throws RemoteException
+     * @return ArrayList
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<MarketHouse> listAvailableHouses() throws RemoteException;
 
@@ -36,8 +36,8 @@ public interface MarketInterface extends Remote, Serializable {
      * List all available key houses listed for purchased.
      *
      * @author Joey de Ruiter
-     * @return ArrayList<MarketKeyHouse>
-     * @throws RemoteException
+     * @return ArrayList
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<MarketKeyHouse> listAvailableKeyHouses() throws RemoteException;
 
@@ -45,8 +45,8 @@ public interface MarketInterface extends Remote, Serializable {
      * List all available star houses listed for purchase.
      *
      * @author Joey de Ruiter
-     * @return ArrayList<MarketStarHouse>
-     * @throws RemoteException
+     * @return ArrayList
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<MarketStarHouse> listAvailableStarHouses() throws RemoteException;
 
@@ -55,7 +55,7 @@ public interface MarketInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ArrayList<MarketOutpost> listAvailableOutposts() throws RemoteException;
 
@@ -65,7 +65,7 @@ public interface MarketInterface extends Remote, Serializable {
      * @author Joey de Ruiter
      * @param gameClient
      * @param villagerInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void buyRemoteVillager(GameClientInterface gameClient, VillagerInterface villagerInterface) throws RemoteException;
 
@@ -75,7 +75,7 @@ public interface MarketInterface extends Remote, Serializable {
      * @author Joey de Ruiter
      * @param gameClient
      * @param house
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void buyRemoteHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException;
 
@@ -85,7 +85,7 @@ public interface MarketInterface extends Remote, Serializable {
      * @author Joey de Ruiter
      * @param gameClient
      * @param outpost
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void buyRemoteOutpost(GameClientInterface gameClient, BuildingInterface outpost) throws RemoteException;
 
@@ -95,7 +95,7 @@ public interface MarketInterface extends Remote, Serializable {
      * @author Joey de Ruiter
      * @param gameClient
      * @param house
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void buyRemoteKeyHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException;
 
@@ -105,14 +105,14 @@ public interface MarketInterface extends Remote, Serializable {
      * @author Joey de Ruiter
      * @param gameClient
      * @param house
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException;
 
     /**
      * Refresh all the outposts
      *
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void refreshHousesAndOutposts() throws RemoteException;
 

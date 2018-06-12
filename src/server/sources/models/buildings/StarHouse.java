@@ -14,7 +14,7 @@ public class StarHouse extends House {
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public StarHouse(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);

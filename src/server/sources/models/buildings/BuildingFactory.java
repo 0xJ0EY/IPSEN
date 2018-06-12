@@ -28,7 +28,7 @@ public class BuildingFactory {
     /**
      * Creates a buildingFactory
      * @throws ParserConfigurationException
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public BuildingFactory() throws ParserConfigurationException {
 
@@ -44,7 +44,7 @@ public class BuildingFactory {
     /**
      * Read Houses from building XML.
      * @return MarketHouses Arraylist
-     * @autor Robin Silvério
+     * @author Robin Silverio
      */
     public ArrayList<MarketHouse> loadHousesFromXML(){
         ArrayList<MarketHouse> housesArrayList = new ArrayList<MarketHouse>();
@@ -67,7 +67,7 @@ public class BuildingFactory {
     /**
      * Read Star Houses from building XML
      * @return MarketStarHouses ArrayList
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public ArrayList<MarketStarHouse> loadStarHousesFromXML(){
         ArrayList<MarketStarHouse> starHousesArrayList = new ArrayList<MarketStarHouse>();
@@ -88,7 +88,7 @@ public class BuildingFactory {
     /**
      * Read Key Houses from building XML
      * @return MarketKeyHouses ArrayList
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public ArrayList<MarketKeyHouse> loadKeyHousesFromXML(){
         ArrayList<MarketKeyHouse> keyHousesArrayList = new ArrayList<MarketKeyHouse>();
@@ -110,7 +110,7 @@ public class BuildingFactory {
     /**
      * Read outposts from building XML
      * @return MarketOutpost ArrayList
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public ArrayList<MarketOutpost> loadOutpostsFromXML(){
         ArrayList<MarketOutpost> outpostsArrayList = new ArrayList<MarketOutpost>();

@@ -18,7 +18,7 @@ public class MarketKeyHouse extends KeyHouse implements BuildingMarketInterface 
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public MarketKeyHouse(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);
@@ -28,8 +28,7 @@ public class MarketKeyHouse extends KeyHouse implements BuildingMarketInterface 
      * Buys the house and adds it to the player.
      * @param market
      * @param gameClient
-     * @return void
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override

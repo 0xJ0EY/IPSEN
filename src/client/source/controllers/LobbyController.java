@@ -38,7 +38,7 @@ public class LobbyController implements ControllerInterface, Observable {
 
     /**
      * For setting a client
-     * @param client
+     * @param client Client
      */
     public void registerClient(Client client) throws RemoteException {
         this.client = client;
@@ -84,7 +84,7 @@ public class LobbyController implements ControllerInterface, Observable {
 
     /**
      * Starts a game, allowing clients to enter the game environment.
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @FXML
     void onClickStart() throws RemoteException {
@@ -128,7 +128,7 @@ public class LobbyController implements ControllerInterface, Observable {
 
     /**
      * Disconnect the client from the gameController
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @FXML
     public void onClickDisconnect() throws RemoteException {

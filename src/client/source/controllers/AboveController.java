@@ -51,7 +51,7 @@ public class AboveController implements Observable {
 
     /**
      * For setting a client
-     * @param client
+     * @param client Client
      * @author Joey de Ruiter
      */
     public void registerClient(Client client) {

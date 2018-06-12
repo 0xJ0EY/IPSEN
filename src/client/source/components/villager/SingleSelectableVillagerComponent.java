@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * This class allows to create single selectable villager components
- * @author Richard Kerkvliet
+ * @author Joey de Ruiter
  */
 public class SingleSelectableVillagerComponent extends SelectableVillagerComponent {
 
@@ -15,8 +15,8 @@ public class SingleSelectableVillagerComponent extends SelectableVillagerCompone
 
     /**
      * For setting a controller
-     * @param controller
-     * @author Richard Kerkvliet
+     * @param controller VillagerSelectionController
+     * @author Joey de Ruiter
      */
     public void setController(VillagerSelectionController controller) {
         this.controller = controller;
@@ -24,7 +24,7 @@ public class SingleSelectableVillagerComponent extends SelectableVillagerCompone
 
     /**
      * For selecting villagers
-     * @author Richard Kerkvliet
+     * @author Joey de Ruiter
      */
     @FXML
     public void onClickSelect() {

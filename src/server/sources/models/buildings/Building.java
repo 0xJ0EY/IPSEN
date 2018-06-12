@@ -26,7 +26,7 @@ public class Building implements BuildingInterface {
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public Building(int cost, ArrayList<Perk> perks, String background) {
         this.cost = cost;
@@ -37,8 +37,8 @@ public class Building implements BuildingInterface {
     /**
      * returns the cost of the building.
      * @return cost int
-     * @throws RemoteException
-     * @author Robin Silvério
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
      */
     public int getCost() throws RemoteException {
         return this.cost;
@@ -47,8 +47,8 @@ public class Building implements BuildingInterface {
     /**
      * returns the perks of the building.
      * @return Perks ArrayList
-     * @throws RemoteException
-     * @author Robin Silvério
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
      */
     @Override
     public ArrayList<Perk> listPerks() throws RemoteException {
@@ -58,8 +58,8 @@ public class Building implements BuildingInterface {
     /**
      * returns if the building has a harvestable perk
      * @return harvestable boolean
-     * @throws RemoteException
-     * @author Robin Silvério
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
      */
     @Override
     public boolean isHarvestable() throws RemoteException {
@@ -77,7 +77,7 @@ public class Building implements BuildingInterface {
     /**
      * Returns the background of the building
      * @return background String
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override
@@ -89,7 +89,7 @@ public class Building implements BuildingInterface {
      * checks if the buildings UUID is equal.
      * @param building
      * @return boolean
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override
@@ -100,7 +100,7 @@ public class Building implements BuildingInterface {
     /**
      * returns the UUID of the building.
      * @return UUID
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override

@@ -17,7 +17,7 @@ public interface GameControllerInterface extends Remote, Serializable {
      *
      * @author Richard Kerkvliet
      * @return StoryControllerInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public StoryControllerInterface getStories() throws RemoteException;
 
@@ -26,7 +26,7 @@ public interface GameControllerInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public MarketInterface getMarket() throws RemoteException;
 
@@ -35,7 +35,7 @@ public interface GameControllerInterface extends Remote, Serializable {
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ReputationBoardInterface getReputationBoard() throws RemoteException;
 

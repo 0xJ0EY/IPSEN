@@ -41,7 +41,7 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
      *
      * @param good
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void addGood(Good good) throws RemoteException {
         Map.Entry<Good, Integer> entry = this.getKey(good);
@@ -59,9 +59,9 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
     /**
      * Return all the tokens set in the AdvancementTracker
      *
-     * @return Map<Good, Integer>
+     * @return Map
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public Map<Good, Integer> getTokens() throws RemoteException {
         return this.tokens;
@@ -72,7 +72,7 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
      *
      * @return total amount of points
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int calculatePoints() throws RemoteException {
         int points = 0;
@@ -92,7 +92,7 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
      * @param index
      * @return points by index
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int getPointsByIndex(int index) throws RemoteException {
         switch (index) {
@@ -120,7 +120,7 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
      *
      * @return coins
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public int calculateCoins() throws RemoteException {
         return 4 + (int) Math.round(Math.sqrt(2 * tokens.size()));

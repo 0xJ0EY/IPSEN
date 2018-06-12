@@ -18,7 +18,7 @@ public class MarketStarHouse extends StarHouse implements BuildingMarketInterfac
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public MarketStarHouse(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);
@@ -28,8 +28,7 @@ public class MarketStarHouse extends StarHouse implements BuildingMarketInterfac
      * Buys the house and adds it to the player.
      * @param market
      * @param gameClient
-     * @return void
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Joey de Ruiter
      */
     @Override

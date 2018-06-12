@@ -108,7 +108,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     /**
      * Request and then poll for all the players to rest thier villagers
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     private void restVillagers() throws RemoteException {
         boolean hasAction = true;
@@ -186,7 +186,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
      * Reset turn indicator
      * Reset players and add rewards, etc ...
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     private void endOfRound() throws RemoteException {
         this.restVillagers();
@@ -218,7 +218,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
      *
      * @author Richard Kerkvliet
      * @return StoryControllerInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public StoryControllerInterface getStories() throws RemoteException {
@@ -230,7 +230,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public MarketInterface getMarket() throws RemoteException {
@@ -242,9 +242,9 @@ public class GameController extends UnicastRemoteObject implements GameControlle
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public ReputationBoardInterface getReputationBoard(){
+    public ReputationBoardInterface getReputationBoard() throws RemoteException {
         return (ReputationBoardInterface) reputationboard;
     }
 

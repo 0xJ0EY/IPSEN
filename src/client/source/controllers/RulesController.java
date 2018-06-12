@@ -33,7 +33,7 @@ public class RulesController {
 
     /**
      * This is for loading images to imageViews
-     * @author Robin Silvério
+     * @author Robin Silverio
      * */
     public void initialize() {
 
@@ -56,7 +56,7 @@ public class RulesController {
 
     /**
      * This is for handling clicks to see next ruleimage on scrollpane
-     * @author Joey de Ruiter and Robin Silvério
+     * @author Joey de Ruiter and Robin Silverio
      */
     @FXML private void next() {
         if (this.index + 1 > this.images.size()) return;
@@ -70,7 +70,7 @@ public class RulesController {
 
     /**
      * This is for handling clicks to see previous ruleimage on scrollpane
-     * @author Joey de Ruiter and Robin Silvério
+     * @author Joey de Ruiter and Robin Silverio
      */
     @FXML private void previous() {
         if (this.index - 1 < 0) return;
@@ -83,7 +83,7 @@ public class RulesController {
 
     /**
      * Updates ruleimages after clicking next or previous button
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     private void updateImage() {
         this.ruleImage.setImage(this.images.get(this.index));

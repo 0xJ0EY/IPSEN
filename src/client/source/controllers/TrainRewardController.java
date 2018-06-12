@@ -63,7 +63,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
 
     /**
      * Ends turn after user clicks on end turn button
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      * @author Richard Kerkvliet
      */
     public void onClickEndTurn() throws RemoteException {

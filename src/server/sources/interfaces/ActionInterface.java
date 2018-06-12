@@ -15,7 +15,7 @@ public interface ActionInterface extends RequestInterface {
     /**
      * Return a notification to update all the clients.
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public NotificationInterface update() throws RemoteException;
 

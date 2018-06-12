@@ -34,7 +34,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      * @param username
      * @throws NotBoundException
      * @throws MalformedURLException
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void connect(String address, String username) throws NotBoundException, MalformedURLException, RemoteException {
         System.out.println("Setting security policy");
@@ -51,7 +51,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      * Disconnect from the game server.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void disconnect() throws RemoteException {
 
@@ -73,7 +73,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @param request request
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void requestRequest(RequestInterface request) throws RemoteException {
@@ -85,7 +85,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @param action request
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void requestAction(ActionInterface action) throws RemoteException {
@@ -97,7 +97,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @param notification
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void receiveNotification(NotificationInterface notification) throws RemoteException {
@@ -109,7 +109,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @return ServerInterface
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ServerInterface getServer() throws RemoteException {
@@ -121,7 +121,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @return Client
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public Client getClient() throws RemoteException {
@@ -132,7 +132,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      * Promote the client to owner of the gameController.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void promote() throws RemoteException {
@@ -143,7 +143,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      * Get if the client is the owner or not.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public boolean isOwner() throws RemoteException {
@@ -155,7 +155,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @return Player
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public PlayerInterface getPlayer() throws RemoteException {
@@ -166,7 +166,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      * Set a new player object.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void setPlayer(PlayerInterface player) throws RemoteException {
@@ -178,7 +178,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public UUID getUUID() throws RemoteException {
@@ -191,7 +191,7 @@ public class GameClient extends UnicastRemoteObject implements GameClientInterfa
      * @author Joey de Ruiter
      * @param gameClient
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public boolean equals(GameClientInterface gameClient) throws RemoteException {

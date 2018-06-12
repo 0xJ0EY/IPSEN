@@ -50,7 +50,7 @@ public class PerkComponent extends AnchorPane {
 
     /**
      * For setting a model.
-     * @param perk
+     * @param perk Perk
      * @author Richard Kerkvliet
      */
     public void setModel(Perk perk) {

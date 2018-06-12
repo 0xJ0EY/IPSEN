@@ -99,7 +99,7 @@ public class LoginController implements ControllerInterface {
 
     /**
      * For setting a client.
-     * @param client
+     * @param client Client
      * @author Joey de Ruiter
      */
     public void setClient(Client client) {

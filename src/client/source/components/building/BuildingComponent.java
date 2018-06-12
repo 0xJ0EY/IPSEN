@@ -72,7 +72,7 @@ public class BuildingComponent extends AnchorPane {
 
     /**
      * Setting a model.
-     * @param building
+     * @param building BuildingInterface
      * @author Joey de Ruiter
      */
     public void setModel(BuildingInterface building) {

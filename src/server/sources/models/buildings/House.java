@@ -14,7 +14,7 @@ public class House extends Building {
      * @param cost
      * @param perks
      * @param background
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public House(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);

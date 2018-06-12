@@ -12,7 +12,7 @@ public class TinVillager extends Villager {
      * @param lanterns
      * @param state
      * @param background
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public TinVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);
@@ -21,7 +21,7 @@ public class TinVillager extends Villager {
     /**
      * Same as the normal sleep, but don't use a bed from the player board.
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void sleep() throws RemoteException {

@@ -109,10 +109,10 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      *
      * @author Richard Kerkvliet
      * @return VillagerInterface[]
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
-    public VillagerInterface[] listAvailableVillagers() {
+    public VillagerInterface[] listAvailableVillagers() throws RemoteException {
 
         VillagerInterface[] villagers = new VillagerInterface[this.availableVillagers.length];
 
@@ -128,8 +128,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * List all available houses to be purchased.
      *
      * @author Joey de Ruiter
-     * @return ArrayList<MarketHouse>
-     * @throws RemoteException
+     * @return ArrayList
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<MarketHouse> listAvailableHouses() throws RemoteException {
@@ -147,8 +147,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * List all available key houses listed for purchased.
      *
      * @author Joey de Ruiter
-     * @return ArrayList<MarketKeyHouse>
-     * @throws RemoteException
+     * @return ArrayList
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<MarketKeyHouse> listAvailableKeyHouses() throws RemoteException {
@@ -159,8 +159,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * List all available star houses listed for purchase.
      *
      * @author Joey de Ruiter
-     * @return ArrayList<MarketStarHouse>
-     * @throws RemoteException
+     * @return ArrayList
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<MarketStarHouse> listAvailableStarHouses() throws RemoteException {
@@ -172,7 +172,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public ArrayList<MarketOutpost> listAvailableOutposts() throws RemoteException {
@@ -185,7 +185,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @author Joey de Ruiter
      * @param gameClient
      * @param villagerInterface
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void buyRemoteVillager(GameClientInterface gameClient, VillagerInterface villagerInterface) throws RemoteException {
@@ -230,7 +230,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @author Joey de Ruiter
      * @param gameClient
      * @param outpost
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void buyRemoteOutpost(GameClientInterface gameClient, BuildingInterface outpost) throws RemoteException {
@@ -261,7 +261,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @author Joey de Ruiter
      * @param gameClient
      * @param house
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void buyRemoteKeyHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
@@ -287,7 +287,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @author Joey de Ruiter
      * @param gameClient
      * @param house
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
@@ -310,7 +310,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     /**
      * Refresh all the outposts
      *
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @Override
     public void refreshHousesAndOutposts() throws RemoteException {

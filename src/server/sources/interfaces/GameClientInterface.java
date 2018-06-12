@@ -18,7 +18,7 @@ public interface GameClientInterface extends Remote {
      *
      * @param request request
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void requestRequest(RequestInterface request) throws RemoteException;
 
@@ -27,7 +27,7 @@ public interface GameClientInterface extends Remote {
      *
      * @param action request
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void requestAction(ActionInterface action) throws RemoteException;
 
@@ -36,7 +36,7 @@ public interface GameClientInterface extends Remote {
      *
      * @param notification
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void receiveNotification(NotificationInterface notification) throws RemoteException;
 
@@ -45,7 +45,7 @@ public interface GameClientInterface extends Remote {
      *
      * @return ServerInterface
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public ServerInterface getServer() throws RemoteException;
 
@@ -54,7 +54,7 @@ public interface GameClientInterface extends Remote {
      *
      * @return Client
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public Client getClient() throws RemoteException;
 
@@ -62,7 +62,7 @@ public interface GameClientInterface extends Remote {
      * Promote the client to owner of the gameController.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void promote() throws RemoteException;
 
@@ -70,7 +70,7 @@ public interface GameClientInterface extends Remote {
      * Get if the client is the owner or not.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean isOwner() throws RemoteException;
 
@@ -79,7 +79,7 @@ public interface GameClientInterface extends Remote {
      *
      * @return Player
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public PlayerInterface getPlayer() throws RemoteException;
 
@@ -87,7 +87,7 @@ public interface GameClientInterface extends Remote {
      * Set a new player object.
      *
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public void setPlayer(PlayerInterface player) throws RemoteException;
 
@@ -96,7 +96,7 @@ public interface GameClientInterface extends Remote {
      *
      * @author Joey de Ruiter
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public UUID getUUID() throws RemoteException;
 
@@ -106,7 +106,7 @@ public interface GameClientInterface extends Remote {
      * @author Joey de Ruiter
      * @param gameClient
      * @return
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     public boolean equals(GameClientInterface gameClient) throws RemoteException;
 }

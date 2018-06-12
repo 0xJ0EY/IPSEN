@@ -143,7 +143,7 @@ public class ControllerFactory {
     /**
      * Load the view and controller of build
      * @return the assinged controller
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public BuildController createBuild() {
         BuildController build = null;
@@ -248,7 +248,7 @@ public class ControllerFactory {
     /**
      * For loading a scoreboard view.
      * @return scoreboard view
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public ScoreboardController createScoreBoard(){
         ScoreboardController scoreboardController = null;

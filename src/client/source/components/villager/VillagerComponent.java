@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
 
 /**
  * This class allows to create common villager components
- * @author Robin Silvério
+ * @author Robin Silverio
  */
 public class VillagerComponent extends AnchorPane {
 
@@ -41,8 +41,8 @@ public class VillagerComponent extends AnchorPane {
 
     /**
      * For setting a model.
-     * @param villager
-     * @author Richard Kerkvliet
+     * @param villager VillagerInterface
+     * @author Joey de Ruiter
      */
     public void setModel(VillagerInterface villager) {
         this.villager = villager;

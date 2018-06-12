@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * This class allows to create trainer villager components
- * @author Robin Silvério
+ * @author Robin Silverio
  */
 public class TypeTrainerComponent extends VillagerType {
 

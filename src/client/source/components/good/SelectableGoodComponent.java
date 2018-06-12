@@ -72,7 +72,7 @@ public class SelectableGoodComponent extends GoodComponent {
 
     /**
      * For setting a client
-     * @param client
+     * @param client Client
      * @author Joey de Ruiter
      */
     public void setClient(Client client) {
@@ -81,8 +81,8 @@ public class SelectableGoodComponent extends GoodComponent {
 
     /**
      * For setting a index
-     * @param index
-     * @author Robin Silvério
+     * @param index int
+     * @author Robin Silverio
      */
     public void setIndex(int index) {
         this.index = index;

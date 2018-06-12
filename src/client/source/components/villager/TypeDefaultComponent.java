@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * This class allows to create default villager components
- * @author Robin Silvério
+ * @author Robin Silverio
  */
 public class TypeDefaultComponent extends VillagerType {
 
