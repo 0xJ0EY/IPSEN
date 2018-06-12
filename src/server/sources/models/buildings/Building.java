@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 /**
- * Created by robin on 24-5-2018.
+ * House
  */
 public class Building implements BuildingInterface {
 

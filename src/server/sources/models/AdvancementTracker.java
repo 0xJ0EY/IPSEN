@@ -9,6 +9,12 @@ import java.util.AbstractMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
+/**
+ * Advancement tracker implementation
+ * This keeps track of all the goods in the AdvancementTracker and calculates to coins / points its worth.
+ * @author Joey de Ruiter
+ */
 public class AdvancementTracker extends UnicastRemoteObject implements AdvancementTrackerInterface {
 
     private PlayerBoard playerboard;
@@ -19,7 +25,7 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
         this.playerboard = playerboard;
     }
 
-    public Map.Entry<Good, Integer> getKey(Good good) {
+    private Map.Entry<Good, Integer> getKey(Good good) {
 
         for (Map.Entry<Good, Integer> entry : this.tokens.entrySet()) {
             if (entry.getKey().sameInstance(good)) return entry;
@@ -30,6 +36,13 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
         return new AbstractMap.SimpleEntry<>(good, 0);
     }
 
+    /**
+     * Add a good to the AdvancementTracker
+     *
+     * @param good
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public void addGood(Good good) throws RemoteException {
         Map.Entry<Good, Integer> entry = this.getKey(good);
 
@@ -43,10 +56,24 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
 
     }
 
+    /**
+     * Return all the tokens set in the AdvancementTracker
+     *
+     * @return Map<Good, Integer>
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public Map<Good, Integer> getTokens() throws RemoteException {
         return this.tokens;
     }
 
+    /**
+     * Return the amount of points the AdvancementTracker is currently worth
+     *
+     * @return total amount of points
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public int calculatePoints() throws RemoteException {
         int points = 0;
         int index = 0;
@@ -59,6 +86,14 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
         return points;
     }
 
+    /**
+     * Return the points a good on the specified index is worth
+     *
+     * @param index
+     * @return points by index
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public int getPointsByIndex(int index) throws RemoteException {
         switch (index) {
             case 0:
@@ -80,6 +115,13 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
         }
     }
 
+    /**
+     * Return the amount of coins that the AdvancementTracker generates every round.
+     *
+     * @return coins
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public int calculateCoins() throws RemoteException {
         return 4 + (int) Math.round(Math.sqrt(2 * tokens.size()));
     }

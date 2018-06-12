@@ -162,6 +162,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
+    /**
+     * List all villagers of on the playerboard.
+     *
+     * @author Jan Douwe Sminia
+     * @return ArrayList<VillagerInterface> of all villagers
+     * @throws RemoteException
+     */
     @Override
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException {
         ArrayList<VillagerInterface> villagers = new ArrayList<VillagerInterface>();
@@ -174,9 +181,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     /**
-     * This is for listing still available villagers on playerboard after an action is made.
+     * List all available villagers of on the playerboard.
+     *
      * @author Jan Douwe Sminia
-     * @return
+     * @return ArrayList<VillagerInterface> of all available villagers
      * @throws RemoteException
      */
     @Override
@@ -193,9 +201,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     /**
-     * This is for listing available villagers on playerboard, only to use for build action.
+     * List all available builder villagers of on the playerboard.
+     *
      * @author Jan Douwe Sminia
-     * @return
+     * @return ArrayList<VillagerInterface> of available builder villagers
      * @throws RemoteException
      */
     @Override
@@ -212,9 +221,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     /**
-     * This is for listing available villagers on playerboard, only to use for train action.
+     * List all available trainer villagers of on the playerboard.
+     *
      * @author Jan Douwe Sminia
-     * @return
+     * @return ArrayList<VillagerInterface> of all available villagers
      * @throws RemoteException
      */
     @Override
@@ -230,14 +240,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return trainers;
     }
 
-    @Override
-    public VillagerInterface getVillager(int index) throws RemoteException {
-        return villagers.get(index);
-    }
-
     /**
-     * This is for adding new trained villagers to playerboard.
-     * @param villager
+     * Add a local villager to the playerboard.
+     *
+     * @author Joey de Ruiter
      * @throws RemoteException
      */
     @Override
@@ -249,6 +255,12 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
+    /**
+     * Execute the villagerStrategy to add special villagers from the rewards.
+     *
+     * @author Joey de Ruiter | Richard Kerkvliet
+     * @throws RemoteException
+     */
     @Override
     public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException {
         villagerStrategy.execute(this);
@@ -309,10 +321,26 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return this.ciders;
     }
 
+    /**
+     * Return the AdvancementTracker corresponding with the current playerboard.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException
+     */
     public AdvancementTrackerInterface getAdvancementTracker() {
         return this.advancementTracker;
     }
 
+
+    /**
+     * Process the end of round sequence,
+     * this will give back rewards,
+     * reset villagers so they can sleep again.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public void endOfRound() throws RemoteException {
 
         this.endOfRound.load();
@@ -334,7 +362,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
-    public void updateObserver() throws RemoteException {
+    private void updateObserver() throws RemoteException {
         try {
             this.player.getGameClient().receiveNotification(new UpdatePlayerBoardNotification(this));
         } catch (RemoteException e) {
