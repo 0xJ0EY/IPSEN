@@ -1,5 +1,6 @@
 package server.sources.controllers;
 
+import client.source.controllers.BelowController;
 import client.source.observers.Observable;
 import server.sources.interfaces.*;
 import server.sources.models.Market;
@@ -10,7 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable, Observable {
+public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
     private static final long serialVersionUID = 1337L;
 
@@ -59,7 +60,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
         // Notify clients of the market / reputation board
         this.server.notifyClients(new MarketUpdateNotification(this.market));
-
+        this.server.notifyClients(new GameControllerUpdateNotifcation(this));
 
     }
 
@@ -228,7 +229,15 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     @Override
-    public void updateObserver() {
+    public int getCurrentRound() throws RemoteException {
+        return this.round;
+    }
 
+    public void updateObserver() {
+        try {
+            this.server.notifyClients(new GameControllerUpdateNotifcation(this));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
