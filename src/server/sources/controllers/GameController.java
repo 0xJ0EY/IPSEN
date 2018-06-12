@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable, Observable {
+public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
     private static final long serialVersionUID = 1337L;
 
@@ -30,7 +30,6 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private StoryController stories = new StoryController();
     private Market market = new Market(this);
     private ReputationBoardController reputationboard = new ReputationBoardController();
-    private BelowController belowController = new BelowController();
 
     public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -61,7 +60,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
         // Notify clients of the market / reputation board
         this.server.notifyClients(new MarketUpdateNotification(this.market));
-
+        this.server.notifyClients(new GameControllerUpdateNotifcation(this));
 
     }
 
@@ -96,7 +95,6 @@ public class GameController extends UnicastRemoteObject implements GameControlle
             if (this.gameHasEnded()) { break; }
 
             this.endOfRound();
-            belowController.showRound(round);
         }
 
     }
@@ -231,7 +229,15 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     @Override
-    public void updateObserver() {
+    public int getCurrentRound() throws RemoteException {
+        return this.round;
+    }
 
+    public void updateObserver() {
+        try {
+            this.server.notifyClients(new GameControllerUpdateNotifcation(this));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
