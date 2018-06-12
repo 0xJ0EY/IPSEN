@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import server.sources.controllers.ReputationBoardController;
 import server.sources.interfaces.PlayerInterface;
 
 import java.rmi.RemoteException;

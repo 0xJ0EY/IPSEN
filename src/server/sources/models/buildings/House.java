@@ -9,6 +9,13 @@ import java.util.ArrayList;
  */
 public class House extends Building {
 
+    /**
+     * creates a House.
+     * @param cost
+     * @param perks
+     * @param background
+     * @author Robin Silvério
+     */
     public House(int cost, ArrayList<Perk> perks, String background) {
         super(cost, perks, background);
     }
