@@ -10,6 +10,10 @@ import server.sources.notifications.EndOfGameNotification;
 
 import java.rmi.RemoteException;
 
+/**
+ * A class that acts as an intermediate between turnview and models
+ * Created by Robin silvério
+ */
 public class TurnController {
 
     private Client client;
@@ -17,6 +21,7 @@ public class TurnController {
     /**
      * This allows user to do the explore action
      * @throws RemoteException
+     * @author Robin Silvério
      */
     @FXML private void explore() throws RemoteException {
 
@@ -32,6 +37,7 @@ public class TurnController {
     /**
      * This allows user to do the build action.
      * @throws RemoteException
+     * @author Robin Silvério
      */
     @FXML private void build() throws RemoteException {
 
@@ -48,6 +54,7 @@ public class TurnController {
     /**
      * This allows user to do labor action in order to get coins
      * @throws RemoteException
+     * @author Robin Silvério
      */
     @FXML private void labor() throws RemoteException {
 
@@ -63,6 +70,7 @@ public class TurnController {
     /**
      * This allows user to do a harvest action to harvest good
      * @throws RemoteException
+     * @author Robin Silvério
      */
     @FXML private void harvest() throws RemoteException {
 
@@ -78,6 +86,7 @@ public class TurnController {
     /**
      * This allows user to train new villagers
      * @throws RemoteException
+     * @author Robin Silvério
      */
     @FXML private void train() throws RemoteException {
 
@@ -93,6 +102,7 @@ public class TurnController {
     /**
      * This allows user to pass turn
      * @throws RemoteException
+     * @author Robin Silvério
      */
     @FXML private void pass() throws RemoteException {
 
@@ -100,6 +110,11 @@ public class TurnController {
 
     }
 
+    /**
+     * For registering client to view
+     * @param client
+     * @author Robin Silvério
+     */
     public void registerClient(Client client) {
         this.client = client;
     }

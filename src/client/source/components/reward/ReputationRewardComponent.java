@@ -8,6 +8,10 @@ import server.sources.models.stories.rewards.ReputationReward;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that creates reputation reward
+ * Created by Richard Kerkvliet
+ */
 public class ReputationRewardComponent extends RewardComponent<ReputationReward> {
 
     public ReputationRewardComponent() {
