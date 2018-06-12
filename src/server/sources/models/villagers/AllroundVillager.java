@@ -10,6 +10,13 @@ import java.util.ArrayList;
 
 public class AllroundVillager extends Villager implements Trainable, Buildable {
 
+    /**
+     * creates a AllRoundVillager.
+     * @param lanterns
+     * @param state
+     * @param background
+     * @throws RemoteException
+     */
     public AllroundVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);
     }
