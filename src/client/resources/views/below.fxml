@@ -1,14 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #d35400;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BelowController">
-    <children>
-
-    </children>
+<AnchorPane fx:id="below" prefHeight="700.0" prefWidth="1500.0" style="-fx-background-color: #d35400;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BelowController">
+   <children>
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="100.0" prefWidth="1500.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="550.0" style="-fx-background-color: green;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <image>
+                        <Image url="@../img/rewards/cider.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/mushroom.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/fruit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/pot.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/fish.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/paper.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/rope.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/ore.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="685.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/goods/amethyst.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane fx:id="reputation" prefHeight="200.0" prefWidth="550.0" style="-fx-background-color: blue;">
+               <children>
+                  <Ellipse fx:id="round1" fill="RED" layoutX="350.0" layoutY="102.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round2" fill="DODGERBLUE" layoutX="235.0" layoutY="168.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round3" fill="DODGERBLUE" layoutX="193.0" layoutY="283.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round4" fill="DODGERBLUE" layoutX="246.0" layoutY="411.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round5" fill="DODGERBLUE" layoutX="300.0" layoutY="531.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round6" fill="DODGERBLUE" layoutX="209.0" layoutY="631.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round7" fill="DODGERBLUE" layoutX="93.0" layoutY="706.0" radiusX="50.0" radiusY="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="roundLabel" layoutX="14.0" layoutY="14.0" prefHeight="60.0" prefWidth="259.0" text="ROUND: 1" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="550.0" style="-fx-background-color: purple;">
+               <children>
+                  <Line endX="100.0" layoutX="360.0" layoutY="35.0" rotate="31.0" scaleX="0.3" startX="-100.0" />
+                  <Line endX="100.0" layoutX="320.0" layoutY="80.0" rotate="21.8" scaleX="0.4" startX="-100.0" />
+                  <Line endX="100.0" layoutX="290.0" layoutY="180.0" scaleX="0.5" startX="-100.0" />
+                  <Line endX="100.0" layoutX="301.0" layoutY="261.0" rotate="-10.3" scaleX="0.6" startX="-100.0" />
+                  <Line endX="100.0" layoutX="310.0" layoutY="298.0" rotate="-23.2" scaleX="0.65" startX="-100.0" />
+                  <Line endX="100.0" layoutX="327.0" layoutY="356.0" rotate="-14.0" scaleX="0.7" startX="-100.0" />
+                  <Line endX="100.0" layoutX="350.0" layoutY="416.0" rotate="-5.7" scaleX="0.8" startX="-100.0" />
+                  <Line endX="100.0" layoutX="375.0" layoutY="502.0" rotate="-6.3" scaleX="0.95" startX="-100.0" />
+                  <Line endX="100.0" layoutX="380.0" layoutY="602.0" rotate="9.5" scaleX="1.05" startX="-100.0" />
+                  <CubicCurve controlX1="-50.0" controlX2="50.0" controlY1="100.0" controlY2="-100.0" endX="150.0" fill="#1f93ff00" layoutX="260.0" layoutY="374.0" rotate="108.4" scaleX="2.7" scaleY="3.0" startX="-150.0" stroke="BLACK" />
+                  <CubicCurve controlX1="-50.0" controlX2="50.0" controlY1="100.0" controlY2="-100.0" endX="150.0" fill="#1f93ff00" layoutX="415.0" layoutY="376.0" rotate="93.8" scaleX="2.5" scaleY="3.0" startX="-150.0" stroke="BLACK" />
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="343.0" text="REPUTATION">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Line endX="100.0" layoutX="340.0" layoutY="688.0" rotate="24.4" scaleX="0.9" startX="-100.0" />
+                  <Label layoutX="414.0" layoutY="17.0" text="-2">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="372.0" layoutY="62.0" text="-1">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="199.0" layoutY="671.0" text="7">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="233.0" layoutY="602.0" text="5">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="491.0" layoutY="535.0" text="4">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="460.0" layoutY="428.0" text="3">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="240.0" layoutY="389.0" text="2">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="233.0" layoutY="338.0" text="1">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/rewards/reputation.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+         </children></HBox>
+   </children>
 </AnchorPane>

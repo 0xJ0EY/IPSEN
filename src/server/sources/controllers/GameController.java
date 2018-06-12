@@ -1,5 +1,6 @@
 package server.sources.controllers;
 
+import client.source.controllers.BelowController;
 import server.sources.interfaces.*;
 import server.sources.models.Market;
 import server.sources.models.Player;
@@ -31,6 +32,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private StoryController stories = new StoryController();
     private Market market = new Market(this);
     private ReputationBoardController reputationboard = new ReputationBoardController();
+    private BelowController belowController = new BelowController();
 
     public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -100,6 +102,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
             this.turn = 0;
             this.round++;
+            belowController.showRound(round);
         }
 
     }
