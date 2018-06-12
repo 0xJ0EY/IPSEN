@@ -7,12 +7,19 @@ import java.util.ArrayList;
 
 public class TinVillager extends Villager {
 
+    /**
+     * creates a TinVillager
+     * @param lanterns
+     * @param state
+     * @param background
+     * @throws RemoteException
+     */
     public TinVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);
     }
 
     /**
-     * Same as the normal sleep, but don't use a bed from the player board
+     * Same as the normal sleep, but don't use a bed from the player board.
      * @author Joey de Ruiter
      * @throws RemoteException
      */

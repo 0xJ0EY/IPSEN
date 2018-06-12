@@ -14,10 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.sources.actions.HarvestAction;
-import server.sources.interfaces.MarketInterface;
-import server.sources.interfaces.PlayerBoardInterface;
-import server.sources.interfaces.PlayerInterface;
-import server.sources.interfaces.VillagerActionInterface;
+import server.sources.controllers.GameController;
+import server.sources.interfaces.*;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
@@ -41,6 +39,7 @@ public class Client extends Application {
     public Observer<ArrayList<PlayerInterface>> clientObserver = new Observer<>();
     public Observer<PlayerBoardInterface> playerBoardObserver = new Observer<>();
     public Observer<MarketInterface> marketObserver = new Observer<>();
+    public Observer<GameControllerInterface> gameObserver = new Observer<>();
 
     @Override
     public void start(Stage primaryStage) {

@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 
 public interface PlayerInterface extends Remote, Serializable {
 
+
     public GameClientInterface getGameClient() throws RemoteException;
 
     public void setGameClient(GameClientInterface gameClient) throws RemoteException;
@@ -30,6 +31,12 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public void changeReputation(int amount) throws RemoteException;
 
+    /**
+     * With this method, we can retrieve all amount of buildings that a player has build.
+     * Each building represents one village points.
+     * @return VP (Village Points)
+     * @author Robin Silvério
+     */
     public int getAmountBuildings() throws RemoteException;
 
 }

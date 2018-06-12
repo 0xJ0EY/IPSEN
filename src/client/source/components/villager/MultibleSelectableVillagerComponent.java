@@ -2,6 +2,10 @@ package client.source.components.villager;
 
 import javafx.fxml.FXML;
 
+/**
+ * A class that allows to create multiple selectable villager components
+ * Created by Joey de Ruiter
+ */
 public class MultibleSelectableVillagerComponent extends SelectableVillagerComponent {
 
     @FXML

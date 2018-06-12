@@ -31,6 +31,10 @@ public class TrainRewardController implements ControllerInterface, Observable {
         return this.root;
     }
 
+    /**
+     * Observes any updates.
+     * @author Richard Kerkvliet
+     */
     @Override
     public void updateObserver() {
         PlayerInterface target = this.client.turnObserver.getState();
@@ -48,10 +52,20 @@ public class TrainRewardController implements ControllerInterface, Observable {
         this.client.clientObserver.attach(this);
     }
 
+    /**
+     * Gives a selected trainer villager a reward for recruiting new villager.
+     * @param villager a selected villager before performing a train action
+     * @author Richard Kerkvliet
+     */
     public void setTrainReward(TrainerVillagerComponent villager) {
         this.villager = villager;
     }
 
+    /**
+     * Ends turn after user clicks on end turn button
+     * @throws RemoteException
+     * @author Richard Kerkvliet
+     */
     public void onClickEndTurn() throws RemoteException {
         try {
             client.getGameClient().getPlayer().doAction(new EndTurnAction());

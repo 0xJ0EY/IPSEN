@@ -14,21 +14,72 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+
+/**
+ * Remote interface so the PlayerBoard can be a remote object on the server.
+ */
 public interface PlayerBoardInterface extends Remote, Serializable {
 
+    /**
+     * List all villagers of on the playerboard.
+     *
+     * @author Jan Douwe Sminia
+     * @return ArrayList<VillagerInterface> of all villagers
+     * @throws RemoteException
+     */
     public ArrayList<VillagerInterface> listVillagers() throws RemoteException;
 
+    /**
+     * List all available villagers of on the playerboard.
+     *
+     * @author Jan Douwe Sminia
+     * @return ArrayList<VillagerInterface> of all available villagers
+     * @throws RemoteException
+     */
     public ArrayList<VillagerInterface> listAvailableVillagers() throws RemoteException;
 
+    /**
+     * List all available builder villagers of on the playerboard.
+     *
+     * @author Jan Douwe Sminia
+     * @return ArrayList<VillagerInterface> of all available villagers
+     * @throws RemoteException
+     */
     public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException;
 
+    /**
+     * List all available trainer villagers of on the playerboard.
+     *
+     * @author Jan Douwe Sminia
+     * @return ArrayList<VillagerInterface> of all available villagers
+     * @throws RemoteException
+     */
     public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException;
 
-    public VillagerInterface getVillager(int index) throws RemoteException;
-
+    /**
+     * Add a local villager to the playerboard.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public void addVillager(Villager villager) throws RemoteException;
 
+    /**
+     * Execute the villagerStrategy to add special villagers from the rewards.
+     *
+     * @author Joey de Ruiter | Richard Kerkvliet
+     * @throws RemoteException
+     */
     public void executeVillagerStrategy(AddVillagerStrategy villagerStrategy) throws RemoteException;
+
+    /**
+     * Return the AdvancementTracker corresponding with the current playerboard.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException
+     */
+    public AdvancementTrackerInterface getAdvancementTracker() throws RemoteException;
 
     public void addCoins(int amount) throws RemoteException;
 
@@ -40,14 +91,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void addCaveCard() throws RemoteException;
 
-
-    /**
-     * Get current amout of coins
-     *
-     * Khajiit  has wares, if you have coin
-     * @return int of current amount
-     * @throws RemoteException
-     */
     public int getCoins() throws RemoteException;
 
     public int getCiders() throws RemoteException;
@@ -55,8 +98,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public int getPotions() throws RemoteException;
 
     public int getBeds() throws RemoteException;
-
-    public AdvancementTrackerInterface getAdvancementTracker() throws RemoteException;
 
     public ArrayList<Good> getGoods() throws RemoteException;
 
@@ -84,11 +125,17 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public ArrayList<Building> getHarvestBuildings() throws RemoteException;
 
+    /**
+     * Process the end of round sequence,
+     * this will give back rewards,
+     * reset villagers so they can sleep again.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public void endOfRound() throws RemoteException;
 
     public ArrayList<Perk> getBuildingsPerks() throws RemoteException;
-
-    public void updateObserver() throws RemoteException;
 
     public ArrayList<Building> getBuildings() throws RemoteException;
 

@@ -147,6 +147,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.state = state;
     }
 
+    /**
+     * Send the GameController
+     *
+     * @author Joey de Ruiter
+     * @param target
+     */
     public void save(GameClientInterface target) {
 
         try {
@@ -157,6 +163,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     }
 
+    /**
+     * Load the gameController from a other gameController that was created from a byte array.
+     *
+     * @author Joey de Ruiter
+     * @param gameController
+     * @throws RemoteException
+     */
     public void load(GameController gameController) throws RemoteException {
 
         if (gameController.players.size() != this.gameController.players.size()) {
