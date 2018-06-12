@@ -7,6 +7,10 @@ import server.sources.models.perks.Perk;
 
 import java.io.IOException;
 
+/**
+ * This class is for creating a perkcomponent
+ * Created by Joey de Ruiter
+ */
 public class PerkComponent extends AnchorPane {
 
     @FXML private AnchorPane background;
@@ -28,6 +32,10 @@ public class PerkComponent extends AnchorPane {
         }
     }
 
+    /**
+     * Loads perkcomponent.
+     * @author Richard Kerkvliet and Joey de Ruiter (for refactoring)
+     */
     public void load() {
         this.background.setStyle(
             "-fx-background-image: url('/client/resources/img/perks/" + this.perk.getBackground() + " ');" +
@@ -37,14 +45,28 @@ public class PerkComponent extends AnchorPane {
         );
     }
 
+    /**
+     * Sets buildingcomponent.
+     * @param buildingComponent
+     * @author Joey de Ruiter
+     */
     public void setBuildingComponent(BuildingComponent buildingComponent) {
         this.buildingComponent = buildingComponent;
     }
 
+    /**
+     * Sets model.
+     * @param perk
+     * @author Joey de Ruiter
+     */
     public void setModel(Perk perk) {
         this.perk = perk;
     }
 
+    /**
+     * For getting the perk.
+     * @return
+     */
     public Perk getPerk() {
         return this.perk;
     }

@@ -8,6 +8,10 @@ import server.sources.models.stories.rewards.GoodReward;
 
 import java.io.IOException;
 
+/**
+ * A class that creates good reward
+ * Created by Richard Kerkvliet
+ */
 public class GoodRewardComponent extends RewardComponent<GoodReward> {
 
     protected GoodReward good;

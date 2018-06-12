@@ -11,10 +11,17 @@ import server.sources.interfaces.BuildingMarketInterface;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that allows player to select multiple buildings in certain actions that a user chooses to perform.
+ * Created by Joey de Ruiter
+ */
 public abstract class SelectableBuildingComponent extends BuildingComponent {
 
     private boolean selected = false;
-
+    /**
+     * Loads all multiple selecting buildingcomponents.
+     * @author Joey de Ruiter
+     */
     protected SelectableControllerInterface controller;
 
     public SelectableBuildingComponent() {
@@ -33,16 +40,29 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
     @FXML
     public abstract void onClickCard();
 
+    /**
+     * For selecting building.
+     * @author Joey de Ruiter
+     */
     public void deselect() {
         this.selected = false;
         this.update();
     }
 
+    /**
+     * For deselecting building.
+     * @author Joey de Ruiter
+     */
     public void select() {
         this.selected = true;
         this.update();
     }
 
+    /**
+     * For checking if a buildingcomponent has been selected.
+     * @return boolean state (TRUE OR FALSE)
+     * @author Joey de Ruiter
+     */
     public boolean isSelected() {
         return this.selected;
     }
@@ -52,6 +72,10 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
         this.update();
     }
 
+    /**
+     * Updates the selection.
+     * @author Joey de Ruiter
+     */
     protected void update() {
         if (this.selected) {
             this.showIndicator();
@@ -60,7 +84,10 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
         }
     }
 
-
+    /**
+     * Shows indicator when player chooses a building.
+     * @author Joey de Ruiter
+     */
     protected void showIndicator(){
         try {
             this.background.setStyle(
@@ -77,6 +104,10 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
 
     }
 
+    /**
+     * Hides an indicator when player deselects a building.
+     * @author Joey de Ruiter
+     */
     protected void hideIndicator(){
         try {
             this.background.setStyle(
@@ -93,6 +124,11 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
 
     }
 
+    /**
+     * For setting a controller.
+     * @param controller
+     * @author Joey de Ruiter
+     */
     @FXML
     public void setController(SelectableControllerInterface controller) {
         this.controller = controller;

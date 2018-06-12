@@ -8,7 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TrainerVillagerComponent extends SingleSelectableVillagerComponent {
-
+    /**
+     * For selecting trainer villagers
+     * @param villagerComponents
+     * @author Robin Silvério
+     */
     @FXML
     public void onClickSelect(ArrayList<TrainerVillagerComponent> villagerComponents) {
         for (TrainerVillagerComponent villager : villagerComponents) {

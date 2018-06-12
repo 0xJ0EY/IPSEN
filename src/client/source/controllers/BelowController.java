@@ -9,6 +9,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import server.sources.interfaces.GameControllerInterface;
 
+/**
+ * Class that acts as an intermediary between the belowview and the model.
+ * Created by Richard Kerkvliet.
+ */
+
 import java.rmi.RemoteException;
 
 public class BelowController implements ControllerInterface, Observable {
@@ -24,6 +29,11 @@ public class BelowController implements ControllerInterface, Observable {
 
     private Client client;
 
+    /**
+     * This is for registering client when entering the view
+     * @param client a player that uses an application to play game
+     * @author Joey de Ruiter
+     */
     public void registerClient(Client client) {
 
         this.client = client;

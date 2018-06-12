@@ -35,6 +35,10 @@ public class VillagerRestController implements ControllerInterface {
         return this.root;
     }
 
+    /**
+     * Fetching villagers on playerboard.
+     * @author Joey de Ruiter
+     */
     public void fetchVillagers() {
         try {
             this.villagers = this.playerBoard.listVillagers();
@@ -43,7 +47,10 @@ public class VillagerRestController implements ControllerInterface {
         }
     }
 
-
+    /**
+     * Loads all villagers components in container.
+     * @author Joey de Ruiter
+     */
     public void load() {
         this.villagerComponents = new ArrayList<RestVillagerComponent>();
         villagerContainer.getChildren().clear();
@@ -63,6 +70,10 @@ public class VillagerRestController implements ControllerInterface {
         this.update();
     }
 
+    /**
+     * For updating villager rest components
+     * @author Joey de Ruiter
+     */
     public void update() {
 
         try {
@@ -80,6 +91,11 @@ public class VillagerRestController implements ControllerInterface {
 
     }
 
+    /**
+     * For setting a client.
+     * @param client
+     * @author Joey de Ruiter
+     */
     public void setClient(Client client) {
         try {
             this.client = client;
@@ -91,6 +107,11 @@ public class VillagerRestController implements ControllerInterface {
         }
     }
 
+    /**
+     * For selecting villagers to replenish
+     * @throws RemoteException
+     * @author Joey de Ruiter
+     */
     @FXML private void onClickSelect() throws RemoteException {
 
         this.client.getGameClient().getPlayer().doAction(new RestVillagerAction());
