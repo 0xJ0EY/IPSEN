@@ -41,7 +41,11 @@ public class Client extends Application {
     public Observer<PlayerBoardInterface> playerBoardObserver = new Observer<>();
     public Observer<MarketInterface> marketObserver = new Observer<>();
     public Observer<GameControllerInterface> gameObserver = new Observer<>();
-    
+
+    /**
+     * Show the starting page of the app
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -58,11 +62,16 @@ public class Client extends Application {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
         this.showLogin();
 
         this.stage.show();
     }
 
+    /**
+     * Stop the app, and if still connected, disconnect.
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         System.out.println("Disconnect");
@@ -70,18 +79,35 @@ public class Client extends Application {
         super.stop();
     }
 
+    /**
+     * Show login view
+     */
     public void showLogin() {
         this.setScene(controllerFactory.createLogin().show());
     }
 
+    /**
+     * Show lobby view
+     */
     public void showLobby() {
         this.setScene(controllerFactory.createLobby().show());
     }
 
+    /**
+     * Show main view
+     */
     public void showMain() {
         this.setScene(this.main.show());
     }
 
+    /**
+     * Show villager selection view
+     *
+     * @param villagerFactory
+     * @param action
+     * @param strategy
+     * @param componentFactory
+     */
     public void showVillagerSelection(
             VillagerSelectionFactory villagerFactory,
             VillagerActionInterface action,
@@ -99,12 +125,22 @@ public class Client extends Application {
         this.setScene(selection.show());
     }
 
+
+    /**
+     * Show the explore with corresponding story
+     * @param story
+     */
     public void showExplore(Story story) {
         ExploreController explore = controllerFactory.createExplore();
         explore.setExploreStory(story);
         this.setScene(explore.show());
     }
 
+    /**
+     * Show the harvest selection
+     * @param harvestAction
+     * @throws RemoteException
+     */
     public void showHarvestSelection(HarvestAction harvestAction) throws RemoteException{
         HarvestController harvest = controllerFactory.createHarvestSelection();
         harvest.setHarvest(harvestAction);
@@ -112,18 +148,29 @@ public class Client extends Application {
         this.setScene(harvest.show());
     }
 
+    /**
+     * Show rewards
+     * @param option
+     * @throws RemoteException
+     */
     public void showRewards(Option option) throws RemoteException {
         RewardController rewards = controllerFactory.createRewardView();
         rewards.setRewards(option.getRewards());
         this.setScene(rewards.show());
     }
 
+    /**
+     * Show the building scene
+     */
     public void showBuild(){
         BuildController build = controllerFactory.createBuild();
         build.load();
         this.setScene(build.show());
     }
 
+    /**
+     * Show the training scene 🚂
+     */
     public void showTrain() {
         TrainController train = controllerFactory.createTrain();
         this.setScene(train.show());
@@ -135,6 +182,11 @@ public class Client extends Application {
         this.setScene(trainReward.show());
     }
 
+    /**
+     * Show the party selection after the story
+     * @param story
+     * @param choice
+     */
     public void showParty(Story story, Choice choice){
         ExplorePartyController party = controllerFactory.createExploreParty();
         party.setStory(story);
@@ -142,11 +194,17 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
+    /**
+     * Show the scoreboard
+     */
     public void showScoreBoard(){
         ScoreboardController score = controllerFactory.createScoreBoard();
         this.setScene(score.show());
     }
 
+    /**
+     * Show the villager rest screen
+     */
     public void showVillagerRest(){
         this.setScene(controllerFactory.createVillagerRest().show());
     }
@@ -177,6 +235,10 @@ public class Client extends Application {
         this.gameClient = gameClient;
     }
 
+    /**
+     * Show a message on screen (This message will only show in the main view though).
+     * @param message
+     */
     public void showMessage(String message) {
         this.main.showMessage(message);
     }
