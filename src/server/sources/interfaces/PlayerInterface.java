@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * Remote interface so every player can be a remote object on the server
+ * @author Joey de Ruiter
+ */
 public interface PlayerInterface extends Remote, Serializable {
-
 
     public GameClientInterface getGameClient() throws RemoteException;
 
@@ -13,14 +16,46 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public boolean hasPassed() throws RemoteException;
 
+    /**
+     * Set the pass flag for this player,
+     * that means the player wont get a turn this round anymore.
+     * @throws RemoteException
+     */
     public void pass() throws RemoteException;
 
+    /**
+     * Request a doAction for the player turn.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public void requestAction() throws RemoteException;
 
+    /**
+     * Return the action set by doAction()
+     *
+     * @author Joey de Ruiter
+     * @return ActionInterface
+     * @throws RemoteException
+     */
     public ActionInterface getAction() throws RemoteException;
 
+    /**
+     * Return true if an action has been set
+     *
+     * @author Joey de Ruiter
+     * @return boolean
+     * @throws RemoteException
+     */
     public boolean hasAction() throws RemoteException;
 
+    /**
+     * Set an action to be executed do this turn
+     *
+     * @author Joey de Ruiter
+     * @param action
+     * @throws RemoteException
+     */
     public void doAction(ActionInterface action) throws RemoteException;
 
     public String getUsername() throws RemoteException;
@@ -29,14 +64,22 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public int getReputation() throws RemoteException;
 
-    public void changeReputation(int amount) throws RemoteException;
-
     /**
      * With this method, we can retrieve all amount of buildings that a player has build.
      * Each building represents one village points.
+     *
      * @return VP (Village Points)
      * @author Robin Silvério
      */
     public int getAmountBuildings() throws RemoteException;
+
+    /**
+     * Set reputation based on an int
+     *
+     * @author Richard Kerkvliet
+     * @param amount
+     * @throws RemoteException
+     */
+    public void changeReputation(int amount) throws RemoteException;
 
 }

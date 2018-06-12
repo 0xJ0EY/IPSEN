@@ -6,7 +6,9 @@ import java.rmi.RemoteException;
 public interface ServerInterface extends Remote {
 
     /**
-     * Register an user at the game, also create a Player object in the GameController
+     * Register an user at the game, also create a Player object in the GameController.
+     *
+     * @author Joey de Ruiter
      * @param gameClientInterface the assigned gameClient
      * @param username
      * @throws RemoteException
@@ -14,21 +16,27 @@ public interface ServerInterface extends Remote {
     public void registerClient(GameClientInterface gameClientInterface, String username) throws RemoteException;
 
     /**
-     * Remove an user from the game, also remove the player from the GameController
+     * Remove an user from the game, also remove the player from the GameController.
+     *
+     * @author Joey de Ruiter
      * @param gameClientInterface
      * @throws RemoteException
      */
     public void unregisterClient(GameClientInterface gameClientInterface) throws RemoteException;
 
     /**
-     * Send an notification object to every connected client
+     * Send an notification object to every connected client.
+     *
+     * @author Joey de Ruiter
      * @param notification the NotificationInterface to be executed on the client
      * @throws RemoteException
      */
     public void notifyClients(NotificationInterface notification) throws RemoteException;
 
     /**
+     * Execute a request at the server.
      *
+     * @author Joey de Ruiter
      * @param request
      * @throws RemoteException
      */
@@ -42,7 +50,9 @@ public interface ServerInterface extends Remote {
     public void executeAction(ActionInterface action) throws RemoteException;
 
     /**
-     * Return the game controller, so the client can retrieve data via RMI
+     * Return the game controller, so the client can retrieve data via RMI.
+     *
+     * @author Joey de Ruiter
      * @return GameControllerInterface
      * @throws RemoteException
      */

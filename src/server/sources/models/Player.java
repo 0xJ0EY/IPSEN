@@ -47,26 +47,54 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return this.passed;
     }
 
+    /**
+     * Set the pass flag for this player,
+     * that means the player wont get a turn this round anymore.
+     * @throws RemoteException
+     */
     public void pass() {
         this.passed = true;
     }
 
+    /**
+     * Request a doAction for the player turn.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     public void requestAction() throws RemoteException {
         this.action = null;
         gameController.server.notifyClients(new PlayerTurnNotification(this.gameClient));
     }
 
+    /**
+     * Return the action set by doAction()
+     *
+     * @author Joey de Ruiter
+     * @return ActionInterface
+     * @throws RemoteException
+     */
     public ActionInterface getAction() {
         return this.action;
     }
 
+    /**
+     * Return true if an action has been set
+     *
+     * @author Joey de Ruiter
+     * @return boolean
+     * @throws RemoteException
+     */
     public boolean hasAction() {
         return this.action != null;
     }
 
     /**
-     * Send action to the server and wait for the execute
+     * Set an action to be executed do this turn
+     *
+     * @author Joey de Ruiter
      * @param action
+     * @throws RemoteException
      */
     public void doAction(ActionInterface action) {
         this.action = action;
@@ -121,6 +149,13 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return villagePointsPerBuilding;
     }
 
+    /**
+     * Set reputation based on an int
+     *
+     * @author Richard Kerkvliet
+     * @param amount
+     * @throws RemoteException
+     */
     @Override
     public void changeReputation(int amount) throws RemoteException {
         this.reputation += amount;
