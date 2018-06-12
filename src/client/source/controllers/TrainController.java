@@ -92,7 +92,6 @@ public class TrainController implements ControllerInterface {
 
     public void onClickTrain() throws RemoteException {
         System.out.println("buying");
-
         for(int i=0; i < villagerComponents.size(); i++){
             TrainerVillagerComponent villager = villagerComponents.get(i);
             if(villager.isSelected()){
