@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import server.sources.actions.BuildAction;
 import server.sources.actions.CancelAction;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
  */
 public class BuildController implements SelectableControllerInterface, Observable {
 
+    private boolean buying = false;
+
     private Client client;
     private MarketInterface market;
 
@@ -40,10 +43,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
     /**
      * Here are all buildingcontainers declared to store building cards in building market.
      */
-    @FXML private FlowPane housesContainer;
-    @FXML private FlowPane outpostsContainer;
-    @FXML private FlowPane keyHousesContainer;
-    @FXML private FlowPane starHousesContainer;
+    @FXML private HBox housesContainer;
+    @FXML private HBox outpostsContainer;
+    @FXML private HBox keyHousesContainer;
+    @FXML private HBox starHousesContainer;
 
     @FXML private Text message;
 
@@ -57,6 +60,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
     private ArrayList<SelectableBuildingComponent> keyHouseComponents = new ArrayList<SelectableBuildingComponent>();
     private ArrayList<SelectableBuildingComponent> starHouseComponents = new ArrayList<SelectableBuildingComponent>();
 
+    private PlayerInterface target;
+
     private Thread messageThread;
 
     /**
@@ -69,6 +74,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
             this.outposts = market.listAvailableOutposts();
             this.keyHouses = market.listAvailableKeyHouses();
             this.starHouses = market.listAvailableStarHouses();
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -79,7 +85,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.createStarHouseComponets();
 
         // Show or hide cancel and buy buttons
-        PlayerInterface target = this.client.turnObserver.getState();
+        this.target = this.client.turnObserver.getState();
 
         // No target, so its not even worth going here
         if (target == null) return;
@@ -105,14 +111,13 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.housesContainer.getChildren().clear();
 
         for (House house : this.houses) {
-            SelectableBuildingComponent houseComponent = new SingleSelectableBuildingComponent();
+            SingleSelectableBuildingComponent houseComponent = new SingleSelectableBuildingComponent();
             houseComponent.setModel(house);
             houseComponent.setController(this);
             houseComponent.load();
 
             this.houseComponents.add(houseComponent);
             this.housesContainer.getChildren().add(houseComponent);
-
         }
     }
 
@@ -205,31 +210,53 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     @FXML
     private void onClickBuy() throws RemoteException {
+        if (!this.canBuy()) return;
+        this.disableBuying();
+
         ArrayList<SelectableBuildingComponent> selectedBuildings = this.getSelectedBuildingComponents();
+        SelectableBuildingComponent selected = selectedBuildings.get(0);
 
-        for (SelectableBuildingComponent selected : selectedBuildings) {
-
-            BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
-
-            if (this.client.getGameClient().getPlayer().getPlayerBoard().getCoins() < selected.getModel().getCost()) {
-                this.showMessage("Not enough coins.");
-                return;
-            }
-
-            try {
-                building.buy(this.market, this.client.getGameClient());
-
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+        if (selected == null) {
+            this.showMessage("Please select a building.");
+            this.enableBuying();
+            return;
         }
+
+        if (selected.getModel().getCost() > this.target.getPlayerBoard().getCoins()) {
+            this.showMessage("Not sufficient funds.");
+            this.enableBuying();
+            return;
+        }
+
 
         try {
-            // TODO: Show reward screen
+            BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
+            building.buy(this.market, this.target.getGameClient());
+
             this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
+
         } catch (RemoteException e) {
             e.printStackTrace();
+        } finally {
+            this.enableBuying();
         }
+
+    }
+
+
+    private boolean canBuy() {
+        return !this.buying;
+    }
+
+
+    private void enableBuying() {
+        this.buying = false;
+        this.buyButton.setDisable(false);
+    }
+
+    private void disableBuying() {
+        this.buying = true;
+        this.buyButton.setDisable(true);
     }
 
     public void showMessage(String message) {

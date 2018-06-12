@@ -2,6 +2,7 @@ package client.source.components.building;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.BuildingInterface;
@@ -16,10 +17,15 @@ public class BuildingComponent extends AnchorPane {
     protected BuildingInterface building;
 
     @FXML protected AnchorPane background;
+    @FXML protected Label cost;
 
     @FXML protected FlowPane perks;
 
     public BuildingComponent() {
+        this.loadView();
+    }
+
+    public void loadView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/building.fxml"));
 
         loader.setRoot(this);
@@ -49,6 +55,8 @@ public class BuildingComponent extends AnchorPane {
 
                 this.perks.getChildren().add(perkComponent);
             }
+
+            this.cost.setText(Integer.toString(this.building.getCost()));
 
             this.background.setStyle(
                 "-fx-background-image: url('/client/resources/img/buildings/" + this.building.getBackground() + " ');" +

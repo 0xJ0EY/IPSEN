@@ -17,7 +17,8 @@ public abstract class SelectableBuildingComponent extends BuildingComponent {
 
     protected SelectableControllerInterface controller;
 
-    public SelectableBuildingComponent() {
+    @Override
+    public void loadView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/building/selectable_building.fxml"));
 
         loader.setRoot(this);

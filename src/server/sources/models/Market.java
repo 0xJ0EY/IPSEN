@@ -30,18 +30,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private GameController gameController;
 
-    public VillagerInterface[] listAvailableVillagers() {
-
-        VillagerInterface[] villagers = new VillagerInterface[this.availableVillagers.length];
-
-        for (int i = 0; i < this.availableVillagers.length; i++) {
-            Villager villager = this.availableVillagers[i];
-            villagers[i] = villager;
-        }
-
-        return villagers;
-    }
-
     public Market(GameController gameController) throws RemoteException {
         this.gameController = gameController;
     }
@@ -58,11 +46,11 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
             outposts = buildingFactory.loadOutpostsFromXML();
             villagers = villagerFactory.createFromXml();
 
-            for(int i=0; i<availableHouses.length; i++) {
+            for(int i = 0; i <availableHouses.length; i++) {
                 availableHouses[i] =  randomHouse();
                 availableOutposts[i] = randomOutpost();
             }
-            for(int i=0; i<availableVillagers.length; i++) {
+            for(int i = 0; i< availableVillagers.length; i++) {
                 availableVillagers[i] = randomVillager();
             }
 
@@ -73,29 +61,31 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private MarketHouse randomHouse(){
         int key = (int) (Math.random() * this.houses.size());
-        return this.houses.get(key);
+
+        // Get the house from the available pool
+        MarketHouse house = this.houses.get(key);
+
+        // Remove the house from the available pool
+        this.houses.remove(key);
+
+        return house;
     }
 
     private MarketOutpost randomOutpost(){
         int key = (int) (Math.random() * this.outposts.size());
-        return this.outposts.get(key);
+
+        // Get the house from the available pool
+        MarketOutpost outpost = this.outposts.get(key);
+
+        // Remove the house from the available pool
+        this.outposts.remove(key);
+
+        return outpost;
     }
 
     private Villager randomVillager(){
         int key = (int) (Math.random() * this.villagers.size());
         return this.villagers.get(key);
-    }
-
-    public void replenishVillagers(){
-        for (int i = 0; i < availableVillagers.length; i++) {
-            availableVillagers[i] = randomVillager();
-        }
-
-        try {
-            this.updateObserver();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
     }
 
     private Player getLocalPlayer(GameClientInterface gameClient) throws RemoteException {
@@ -124,6 +114,18 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         }
 
         this.updateObserver();
+    }
+
+    @Override
+    public VillagerInterface[] listAvailableVillagers() {
+        VillagerInterface[] villagers = new VillagerInterface[this.availableVillagers.length];
+
+        for (int i = 0; i < this.availableVillagers.length; i++) {
+            Villager villager = this.availableVillagers[i];
+            villagers[i] = villager;
+        }
+
+        return villagers;
     }
 
     @Override
@@ -166,10 +168,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 localPlayer.getPlayerBoard().addHouse((House) marketHouse);
                 localPlayer.getPlayerBoard().payCoin(marketHouse.getCost());
 
-                localPlayer.getPlayerBoard().updateObserver();
-
-                this.houses.remove(marketHouse);
                 this.availableHouses[i] = this.randomHouse();
+
+                localPlayer.getPlayerBoard().updateObserver();
             }
         }
 
@@ -189,11 +190,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 localPlayer.getPlayerBoard().addOutpost((Outpost) marketOutpost);
                 localPlayer.getPlayerBoard().payCoin(marketOutpost.getCost());
 
-                localPlayer.getPlayerBoard().updateObserver();
-
-                // Replace the outpost with a random outpost
-                this.outposts.remove(marketOutpost);
                 this.availableOutposts[i] = this.randomOutpost();
+
+                localPlayer.getPlayerBoard().updateObserver();
             }
         }
 
@@ -240,7 +239,12 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     @Override
     public void refreshHousesAndOutposts() throws RemoteException {
-        for (int i = 0; i < this.availableHouses.length; i++) {
+
+        // Add the buildings back to the available pool
+        this.houses.addAll(Arrays.asList(this.availableHouses));
+        this.outposts.addAll(Arrays.asList(this.availableOutposts));
+
+        for (int i = 0; i < 4; i++) {
             this.availableHouses[i] = this.randomHouse();
             this.availableOutposts[i] = this.randomOutpost();
         }
