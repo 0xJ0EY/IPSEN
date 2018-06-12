@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import server.sources.interfaces.MarketInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
@@ -26,7 +27,7 @@ public class TrainController implements ControllerInterface {
     private MarketInterface market;
     @FXML private Parent root;
 
-    @FXML private FlowPane villagerContainer;
+    @FXML private GridPane villagerContainer;
 
     @FXML private Button train;
 
@@ -68,6 +69,8 @@ public class TrainController implements ControllerInterface {
         this.villagerContainer.getChildren().clear();
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
+            if (this.availableVillagers[i] == null) continue;
+
             TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent();
             villagerComponent.setModel(this.availableVillagers[i]);
             villagerComponent.load();
@@ -77,6 +80,9 @@ public class TrainController implements ControllerInterface {
                 this.train.setDisable(false);
             });
             this.villagerComponents.add(villagerComponent);
+
+
+            GridPane.setColumnIndex(villagerComponent, i);
             this.villagerContainer.getChildren().add(villagerComponent);
         }
     }

@@ -114,8 +114,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
-            Villager availableVillager = this.availableVillagers[i];
+            if (this.availableVillagers[i] == null) continue;
 
+            Villager availableVillager = this.availableVillagers[i];
             if (availableVillager.equals(villagerInterface)) {
                 localPlayer.getPlayerBoard().addVillager(availableVillager);
                 localPlayer.getPlayerBoard().updateObserver();

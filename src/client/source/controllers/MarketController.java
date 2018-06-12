@@ -6,6 +6,7 @@ import client.source.components.villager.VillagerComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.MarketInterface;
@@ -23,7 +24,7 @@ public class MarketController implements Observable {
     private Client client;
 
     @FXML private Parent root;
-    @FXML private HBox villagers;
+    @FXML private GridPane villagers;
     @FXML private HBox houses;
     @FXML private HBox keyhouses;
     @FXML private HBox starhouses;
@@ -74,11 +75,18 @@ public class MarketController implements Observable {
     private void createVillagerComponents() throws RemoteException {
         this.villagers.getChildren().clear();
 
-        for (VillagerInterface villagerInterface : this.market.listAvailableVillagers()) {
+        VillagerInterface[] villagerInterfaces = this.market.listAvailableVillagers();
+
+        for (int i = 0; i < villagerInterfaces.length; i++) {
+            if (villagerInterfaces[i] == null) continue;
+
+            VillagerInterface villagerInterface = villagerInterfaces[i];
+
             VillagerComponent villagerComponent = new VillagerComponent();
             villagerComponent.setModel(villagerInterface);
             villagerComponent.load();
 
+            GridPane.setColumnIndex(villagerComponent, i);
             this.villagers.getChildren().add(villagerComponent);
         }
     }
