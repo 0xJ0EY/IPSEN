@@ -54,6 +54,13 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private void startGame() throws RemoteException {
         this.setGameState(GameStates.STARTED);
 
+        // Update the playerboard
+        for (Player player : this.players) {
+            player.getGameClient().receiveNotification(
+                new UpdatePlayerBoardNotification(player.getPlayerBoard()
+            ));
+        }
+
         // Send everyone to the main screen
         System.out.println("[Game] Started");
         this.server.notifyClients(new GameStartedNotification());
@@ -61,7 +68,6 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         // Notify clients of the market / reputation board
         this.server.notifyClients(new MarketUpdateNotification(this.market));
         this.server.notifyClients(new GameControllerUpdateNotifcation(this));
-
     }
 
     public void runGame() throws RemoteException {
@@ -207,23 +213,37 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.gameState = gameState;
     }
 
-    @Override
-    public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException {
-        // Im casting some black magic right here
-        return (ArrayList<PlayerInterface>) (ArrayList<?>) this.players;
-
-    }
-
+    /**
+     * Return the story object so the StoryAction can generate stories
+     *
+     * @author Richard Kerkvliet
+     * @return StoryControllerInterface
+     * @throws RemoteException
+     */
     @Override
     public StoryControllerInterface getStories() throws RemoteException {
         return (StoryControllerInterface) stories;
     }
 
+    /**
+     * Return the market interface so we can buy stuff.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public MarketInterface getMarket() throws RemoteException {
         return (MarketInterface) market;
     }
 
+    /**
+     * Return the reputation board, this will keep track of the cider and the reputation.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException
+     */
     public ReputationBoardInterface getReputationBoard(){
         return (ReputationBoardInterface) reputationboard;
     }
