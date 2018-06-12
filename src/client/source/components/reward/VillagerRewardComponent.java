@@ -32,7 +32,7 @@ public class VillagerRewardComponent extends RewardComponent<VillagerReward> {
             "-fx-background-image: url('/client/resources/img/villager_backgrounds/special_villagers/" + this.villager.getVillagerBackground() + "');" +
             "-fx-background-repeat: stretch;" +
             "-fx-background-position: center center;" +
-            "-fx-background-size: 50 50"
+            "-fx-background-size: 120 200"
         );
     }
 

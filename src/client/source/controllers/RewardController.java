@@ -41,7 +41,7 @@ public class RewardController implements ControllerInterface, Observable {
             RewardComponent rewardComponent = rewardType(reward);
             rewardComponent.setModel(reward);
             rewardComponent.load();
-
+            
             this.rewardComponent.getChildren().add(rewardComponent);
         }
 

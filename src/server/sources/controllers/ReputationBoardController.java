@@ -21,7 +21,9 @@ public class ReputationBoardController implements ReputationBoardInterface {
     public void retrieveCider(PlayerInterface player) throws RemoteException {
         player.getPlayerBoard().addCider();
     }
-    public void firstCiderReset(){
+
+
+    public void ciderReset(){
         this.cider = true;
     }
 

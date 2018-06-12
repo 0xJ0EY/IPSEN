@@ -2,7 +2,7 @@ package server.sources.models.perks;
 
 import server.sources.models.goods.*;
 
-public class ReplenishableGoodPerk implements Perk, Harvestable, Replenishable {
+public class ReplenishableGoodPerk implements Perk, Harvestable, Refreshable {
 
     private int original_value = 2;
     private int value = 0;

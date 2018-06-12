@@ -13,13 +13,8 @@ import java.util.ArrayList;
  */
 public class MarketOutpost extends Outpost implements BuildingMarketInterface {
 
-    /**
-     * For creating an outpost object.
-     * @param price
-     * @param perks
-     * */
-    public MarketOutpost(int price, ArrayList<Perk> perks){
-        super(price, perks);
+    public MarketOutpost(int cost, ArrayList<Perk> perks, String background) {
+        super(cost, perks, background);
     }
 
     @Override

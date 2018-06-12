@@ -41,8 +41,6 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
             tokens.put(entry.getKey(), entry.getValue());
         }
 
-
-        System.out.println(this.tokens);
     }
 
     public Map<Good, Integer> getTokens() throws RemoteException {

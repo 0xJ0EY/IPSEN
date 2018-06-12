@@ -1,25 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
    <children>
-      <AnchorPane layoutY="430.0" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" />
+      <AnchorPane layoutY="430.0" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Label fx:id="labelCoins" layoutX="14.0" layoutY="14.0" text="# Coins" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCiders" layoutX="24.0" layoutY="24.0" text="# Ciders" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPotions" layoutX="34.0" layoutY="34.0" text="# Potions" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelBeds" layoutX="24.0" layoutY="24.0" text="# Beds" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
       <FlowPane fx:id="tiredVillagers" alignment="TOP_RIGHT" hgap="10.0" layoutX="500.0" layoutY="230.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="270.0" AnchorPane.rightAnchor="0.0" />
       <FlowPane fx:id="injuredVillagers" alignment="TOP_RIGHT" hgap="10.0" layoutX="500.0" layoutY="30.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="470.0" AnchorPane.rightAnchor="0.0" />
       <FlowPane fx:id="activeVillagers" hgap="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" />
       <AnchorPane layoutX="840.0" layoutY="430.0" prefHeight="70.0" prefWidth="160.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Text fx:id="points" layoutX="19.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+# coins" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="13.0">
+            <Label fx:id="labelIncome" layoutX="14.0" layoutY="22.0" text="# Coins" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="21.0">
                <font>
-                  <Font size="32.0" />
+                  <Font size="20.0" />
                </font>
-            </Text>
+            </Label>
          </children>
       </AnchorPane>
       <ScrollPane fitToHeight="true" layoutX="300.0" layoutY="500.0" prefHeight="200.0" prefWidth="700.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0">

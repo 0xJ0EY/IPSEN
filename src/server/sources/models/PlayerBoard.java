@@ -55,13 +55,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         lanterns.add(new Lantern(3, 2));
         lanterns.add(new Lantern(4, 4));
 
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_01.png"));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_02.png"));
 
         // TODO: A nice implementation of this
-        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE));
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED));
-        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED, "villager_background_04.png"));
+        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED, "villager_background_05.png"));
 
         /**
          * This is only for testing scoreboard.
@@ -71,13 +71,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         perks_1.add(new CiderPerk(1));
         perks_1.add(new CoinPerk(2));
         perks_1.add(new VillagePointsPerk(3));
-        houses.add(new House(2, perks_1));
+        houses.add(new House(2, perks_1, "house_0.png"));
 
         ArrayList<Perk> perks_2 = new ArrayList<Perk>();
         perks_2.add(new CiderPerk(1));
         perks_2.add(new CoinPerk(2));
         perks_2.add(new VillagePointsPerk(3));
-        houses.add(new StarHouse(2, perks_2));
+        houses.add(new StarHouse(2, perks_2, "house_0.png"));
 
 
         for (int i = 0; i < 5; i++) {
@@ -101,7 +101,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         perks.add(new BedPerk());
         perks.add(new BedPerk());
 
-        this.houses.add(new House(0, perks));
+        this.houses.add(new House(0, perks, "house_0.png"));
 
     }
 
@@ -314,9 +314,17 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     public void endOfRound() throws RemoteException {
+
+        this.endOfRound.load();
+
         // Recalculate available beds
-        this.beds = endOfRound.countBeds();
-        this.addCoins(endOfRound.countCoins());
+        this.beds = this.endOfRound.countBeds();
+
+        // Add all coins
+        this.addCoins(this.endOfRound.countCoins());
+
+        // Refresh perks
+        this.endOfRound.refreshPerks();
 
         // Reset all villagers
         for (Villager villager : this.villagers) {

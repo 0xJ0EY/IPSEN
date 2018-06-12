@@ -1,19 +1,20 @@
 package server.sources.controllers;
 
+<<<<<<< HEAD
 import client.source.controllers.BelowController;
+=======
+import client.source.observers.Observable;
+>>>>>>> d7104fe3df47a665468d979445470a8a5f3050e6
 import server.sources.interfaces.*;
 import server.sources.models.Market;
 import server.sources.models.Player;
-import server.sources.notifications.EndOfGameNotification;
-import server.sources.notifications.GameStartedNotification;
-import server.sources.notifications.MessageNotification;
-import server.sources.notifications.RestPlayerNotification;
+import server.sources.notifications.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
+public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable, Observable {
 
     private static final long serialVersionUID = 1337L;
 
@@ -44,7 +45,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.stories.load();
     }
 
-    public void play()throws RemoteException {
+    public void play() throws RemoteException {
 
         this.startGame();
 
@@ -61,12 +62,16 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         System.out.println("[Game] Started");
         this.server.notifyClients(new GameStartedNotification());
 
+        // Notify clients of the market / reputation board
+        this.server.notifyClients(new MarketUpdateNotification(this.market));
+
+
     }
 
     public void runGame() throws RemoteException {
         this.setGameState(GameStates.RUNNING);
 
-        while (!this.gameHasEnded()) {
+        while (true) {
 
             do {
                 Player player = players.get((this.round + this.turn) % players.size());
@@ -91,22 +96,19 @@ public class GameController extends UnicastRemoteObject implements GameControlle
                 this.turn++;
             } while(!this.roundHasEnded());
 
-            if (this.gameHasEnded()) {
-                this.server.notifyClients(new EndOfGameNotification());
-                break;
-            }
-
-            this.restVillagers();
+            if (this.gameHasEnded()) { break; }
 
             this.endOfRound();
-
-            this.turn = 0;
-            this.round++;
             belowController.showRound(round);
         }
 
     }
 
+    /**
+     * Request and then poll for all the players to rest thier villagers
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
     private void restVillagers() throws RemoteException {
         boolean hasAction = true;
 
@@ -179,24 +181,27 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     /**
-     * Replenish stores, Reset villagers, etc.. after the round.
+     * Increment round counter
+     * Reset turn indicator
+     * Reset players and add rewards, etc ...
      * @author Joey de Ruiter
+     * @throws RemoteException
      */
-    private void endOfRound() {
-        try {
-            // Reset turn
-            this.turn = 0;
+    private void endOfRound() throws RemoteException {
+        this.restVillagers();
 
-            // Reset villagers, so they can sleep again
-            for (Player player : this.players) {
-                player.getPlayerBoard().endOfRound();
-            }
+        // Reset turn
+        this.turn = 0;
 
+        // Update round marker
+        this.round++;
 
-
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        // Reset villagers, so they can sleep again
+        for (Player player : this.players) {
+            player.getPlayerBoard().endOfRound();
         }
+
+        this.updateObserver();
     }
 
     private boolean gameHasEnded() {
@@ -226,5 +231,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     public ReputationBoardInterface getReputationBoard(){
         return (ReputationBoardInterface) reputationboard;
+    }
+
+    @Override
+    public void updateObserver() {
+
     }
 }

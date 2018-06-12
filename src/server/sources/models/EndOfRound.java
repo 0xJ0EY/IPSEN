@@ -1,40 +1,53 @@
 package server.sources.models;
 
-import server.sources.interfaces.PlayerBoardInterface;
-import server.sources.models.buildings.Building;
 import server.sources.models.perks.BedPerk;
 import server.sources.models.perks.Perk;
+import server.sources.models.perks.Refreshable;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * EndOfRound is a wrapper for some EndOfRound methods
+ */
 public class EndOfRound implements Serializable {
 
     private PlayerBoard playerBoard;
+
+    private ArrayList<Perk> perks;
 
     public EndOfRound(PlayerBoard playerBoard) {
         this.playerBoard = playerBoard;
     }
 
-
-    public int countBeds() {
-        ArrayList<Perk> perks = new ArrayList<Perk>();
-        int beds = 0;
-
+    public void load() {
         try {
-            perks = this.playerBoard.getBuildingsPerks();
+            this.perks = this.playerBoard.getBuildingsPerks();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
 
-        for (Perk perk : perks) {
+    /**
+     * Count all the beds from buildings
+     * @author Joey de Ruiter
+     * @return int
+     */
+    public int countBeds() {
+        int beds = 0;
+
+        for (Perk perk : this.perks) {
             if (perk instanceof BedPerk) beds++;
         }
 
         return beds;
     }
 
+    /**
+     *
+     * @return int
+     */
     public int countCoins() {
         try {
             return playerBoard.getAdvancementTracker().calculateCoins();
@@ -45,5 +58,15 @@ public class EndOfRound implements Serializable {
         return 0;
     }
 
+    /**
+     * Refresh the perks of the buildings
+     */
+    public void refreshPerks() {
+        for (Perk perk : this.perks) {
+            if (perk instanceof Refreshable) {
+                ((Refreshable) perk).refresh();
+            }
+        }
+    }
 
 }

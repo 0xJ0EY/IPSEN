@@ -30,12 +30,16 @@ public class AboveController implements Observable {
     @FXML private FlowPane activeVillagers;
     @FXML private FlowPane injuredVillagers;
     @FXML private FlowPane tiredVillagers;
-    @FXML private HBox buildings;
+    @FXML private FlowPane goods;
 
+    @FXML private HBox buildings;
     @FXML private HBox advancementTracker;
 
-    @FXML private FlowPane goods;
-    @FXML private Text points;
+    @FXML private Label labelCoins;
+    @FXML private Label labelCiders;
+    @FXML private Label labelPotions;
+    @FXML private Label labelBeds;
+    @FXML private Label labelIncome;
 
     private PlayerBoardInterface playerBoard;
 
@@ -57,6 +61,8 @@ public class AboveController implements Observable {
         this.updateBeds();
         this.updateCiders();
         this.updatePotions();
+        this.updateIncome();
+        this.updateCoins();
         this.updateVillagers();
         this.updateBuildings();
         this.updateGoods();
@@ -64,15 +70,64 @@ public class AboveController implements Observable {
     }
 
     private void updateBeds() {
+        int count = 0;
 
+        try {
+            count = this.playerBoard.getBeds();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelBeds.setText(String.format(count == 1 ? "%s bed" : "%s beds", count));
     }
 
     private void updateCiders() {
+        int count = 0;
+
+        try {
+            count = this.playerBoard.getCiders();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelCiders.setText(String.format(count == 1 ? "%s cider" : "%s ciders", count));
 
     }
 
     private void updatePotions() {
+        int count = 0;
 
+        try {
+            count = this.playerBoard.getPotions();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelPotions.setText(String.format(count == 1 ? "%s potion" : "%s potions", count));
+    }
+
+    private void updateIncome() {
+        int count = 0;
+
+        try {
+            count = this.playerBoard.getAdvancementTracker().calculateCoins();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelIncome.setText(String.format(count == 1 ? "%s coin" : "%s coins", count));
+    }
+
+    private void updateCoins() {
+        int count = 0;
+
+        try {
+            count = this.playerBoard.getCoins();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelCoins.setText(String.format(count == 1 ? "+%s coin" : "+%s coins", count));
     }
 
     private void updateVillagers() {

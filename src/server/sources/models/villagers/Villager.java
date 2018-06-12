@@ -27,22 +27,15 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
 
     private UUID uuid = UUID.randomUUID();
 
-    public Villager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
+    public Villager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         this.lanterns = lanterns;
         this.state = state;
-
-        this.generateRandomBackground();
+        this.background = background;
     }
 
     @Override
     public void setPlayerBoard(PlayerBoardInterface playerBoard) throws RemoteException {
         this.playerBoard = playerBoard;
-    }
-
-    private void generateRandomBackground() throws RemoteException {
-        int villager = (int) Math.floor(Math.random() * 5 + 1);
-        this.background = "villagerBackground" + villager + ".png";
-
     }
 
     public int calculateLanters(Dice dice) throws RemoteException {

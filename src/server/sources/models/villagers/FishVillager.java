@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class FishVillager extends Villager implements Buildable {
 
-    public FishVillager(ArrayList<Lantern> lanterns, VillagerState state) throws RemoteException {
-        super(lanterns, state);
+    public FishVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
+        super(lanterns, state, background);
     }
 
     //TODO: implenting build
