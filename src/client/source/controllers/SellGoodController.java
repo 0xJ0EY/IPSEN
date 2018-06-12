@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class SellGoodController implements Serializable, ControllerInterface, OnlyOneTrueInterface{
+public class SellGoodInterfaceController implements Serializable, ControllerInterface, SelectGoodInterface {
     @FXML private Parent root;
     @FXML private FlowPane goods;
 
@@ -22,26 +22,34 @@ public class SellGoodController implements Serializable, ControllerInterface, On
     private ArrayList<Good> availableGoods;
     private ArrayList<MarketGoodComponent> goodComponents = new ArrayList<>();
 
+    public void load() {
+        try {
+            this.getPlayerGoods();
+            this.updateGoodView();
 
-    @Override
-    public Parent show() throws RemoteException {
-        this.updateGoodView();
-
-        return root;
-
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void updateGoodView() throws RemoteException{
-        getPlayerGoods();
+    @Override
+    public Parent show()  {
+        return root;
+    }
+
+    private void updateGoodView() {
 
         for (int i = 0; i < availableGoods.size(); i++) {
+            MarketGoodComponent marketGoodComponent = new MarketGoodComponent();
+
+
             goodComponents.add(new MarketGoodComponent(this, availableGoods.get(i)));
             goods.getChildren().add(goodComponents.get(i));
         }
     }
 
     private void getPlayerGoods() throws RemoteException{
-        availableGoods =  client.getGameClient().getPlayer().getPlayerBoard().getGoods();
+        this.availableGoods = client.getGameClient().getPlayer().getPlayerBoard().getGoods();
     }
 
     public void setClient(Client client) throws RemoteException{
@@ -51,7 +59,7 @@ public class SellGoodController implements Serializable, ControllerInterface, On
     }
 
     @Override
-    public void onlyOneTrue(MarketGoodComponent good){
+    public void selectGood(MarketGoodComponent good){
         for (int i = 0; i < goodComponents.size(); i++){
             goodComponents.get(i).setFalse();
         }

@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class BuyGoodController  implements Serializable, ControllerInterface, OnlyOneTrueInterface {
+public class BuyGoodInterfaceController implements Serializable, ControllerInterface, MarketTradingController {
     @FXML private FlowPane goodPane;
     @FXML private Parent root;
     @FXML private TextField bid;
@@ -88,7 +88,7 @@ public class BuyGoodController  implements Serializable, ControllerInterface, On
 
 
     @Override
-    public void onlyOneTrue(MarketGoodComponent good){
+    public void selectGood(MarketGoodComponent good){
         for (int i = 0; i < goodComponents.size(); i++){
             goodComponents.get(i).setFalse();
 

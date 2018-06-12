@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.AnchorPane?>
-
-
-<fx:root fx:id="background" onMouseClicked="#selectedGood" prefHeight="50.0" prefWidth="50.0" type="AnchorPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.components.buy_and_sell.MarketGoodComponent">
-
-</fx:root>
