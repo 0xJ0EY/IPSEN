@@ -2,7 +2,7 @@ package server.sources.models.villagers;
 
 public interface Trainable {
 
-    //TODO: implenting train
+    //TODO: remove train
 
     /**
      * trains a villager.

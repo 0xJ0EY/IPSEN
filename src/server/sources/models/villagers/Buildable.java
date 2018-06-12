@@ -2,7 +2,7 @@ package server.sources.models.villagers;
 
 public interface Buildable {
 
-    //TODO: implenting build
+    //TODO: remove build
 
     /**
      * builds a house.
