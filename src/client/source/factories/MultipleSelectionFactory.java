@@ -9,6 +9,11 @@ import client.source.components.villager.SelectableVillagerComponent;
  */
 public class MultipleSelectionFactory extends VillagerSelectionComponentFactory {
 
+    /**
+     * A implemented method from a superclass that returns selectable villager components.
+     * @return selectable villager components
+     * @author Joey de Ruiter
+     */
     @Override
     public SelectableVillagerComponent createComponent() {
         return new MultibleSelectableVillagerComponent();

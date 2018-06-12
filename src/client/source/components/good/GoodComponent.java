@@ -44,6 +44,11 @@ public class GoodComponent extends AnchorPane {
         );
     }
 
+    /**
+     * Setting a model
+     * @param good
+     * @author Robin Silvério
+     */
     public void setModel(Good good) {
         this.good = good;
     }

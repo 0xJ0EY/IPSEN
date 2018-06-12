@@ -70,10 +70,20 @@ public class SelectableGoodComponent extends GoodComponent {
         this.setOpacity(1);
     }
 
+    /**
+     * For setting a client
+     * @param client
+     * @author Joey de Ruiter
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * For setting a index
+     * @param index
+     * @author Robin Silvério
+     */
     public void setIndex(int index) {
         this.index = index;
     }

@@ -33,20 +33,37 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
     @FXML
     public abstract void onClickSelect();
 
+    /**
+     * For deselecting villager.
+     * @author Richard Kerkvliet
+     */
     public void deselect() {
         this.selected = false;
         this.update();
     }
 
+    /**
+     * For selecting villager.
+     * @author Richard Kerkvliet
+     */
     public void select() {
         this.selected = true;
         this.update();
     }
 
+    /**
+     * For checking if villager has been selected.
+     * @return boolean state (TRUE or FALSE)
+     * @author Richard Kerkvliet
+     */
     public boolean isSelected() {
         return this.selected;
     }
 
+    /**
+     * Warns the player that the villager has been selected by toggling selected villagers.
+     * @author Richard Kerkvliet
+     */
     public void toggleSelected() {
         this.selected = !this.selected;
         this.update();

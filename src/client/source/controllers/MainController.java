@@ -92,6 +92,11 @@ public class MainController implements ControllerInterface, Observable {
         return this.root;
     }
 
+    /**
+     * For showing a message, can be an error messgae
+     * @param message
+     * @author Joey de Ruiter
+     */
     public void showMessage(String message) {
         if (this.messageThread != null && this.messageThread.isAlive()) this.messageThread.interrupt();
 

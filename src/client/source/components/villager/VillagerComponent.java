@@ -39,6 +39,11 @@ public class VillagerComponent extends AnchorPane {
         }
     }
 
+    /**
+     * For setting a model.
+     * @param villager
+     * @author Richard Kerkvliet
+     */
     public void setModel(VillagerInterface villager) {
         this.villager = villager;
     }
@@ -58,6 +63,10 @@ public class VillagerComponent extends AnchorPane {
         }
     }
 
+    /**
+     * For getting a single villager
+     * @return
+     */
     public VillagerInterface getVillager() {
         return villager;
     }

@@ -13,10 +13,19 @@ public class SingleSelectableVillagerComponent extends SelectableVillagerCompone
 
     private VillagerSelectionController controller;
 
+    /**
+     * For setting a controller
+     * @param controller
+     * @author Richard Kerkvliet
+     */
     public void setController(VillagerSelectionController controller) {
         this.controller = controller;
     }
 
+    /**
+     * For selecting villagers
+     * @author Richard Kerkvliet
+     */
     @FXML
     public void onClickSelect() {
 

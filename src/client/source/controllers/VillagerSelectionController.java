@@ -151,15 +151,30 @@ public class VillagerSelectionController implements ControllerInterface {
         this.villagerFactory.setClient(this.client);
     }
 
+    /**
+     * Setting a component factory.
+     * @param componentFactory
+     * @author Joey de Ruiter
+     */
     public void setComponentFactory(VillagerSelectionComponentFactory componentFactory) {
         componentFactory.setController(this);
         this.componentFactory = componentFactory;
     }
 
+    /**
+     * Setting a villager action.
+     * @param action
+     * @author Joey de Ruiter
+     */
     public void setVillagerAction(VillagerActionInterface action) {
         this.action = action;
     }
 
+    /**
+     * Setting a strategy for accompaning villager selection.
+     * @param strategy
+     * @author Joey de Ruiter
+     */
     public void setStrategy(VillagerSelectionStrategy strategy) {
         this.strategy = strategy;
     }

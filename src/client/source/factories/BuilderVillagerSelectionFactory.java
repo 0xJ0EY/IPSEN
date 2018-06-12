@@ -14,11 +14,19 @@ import java.util.ArrayList;
 public class BuilderVillagerSelectionFactory extends VillagerSelectionFactory {
 
     protected Client client;
-
+    /**
+     * Setting a client.
+     * @author Joey de Ruiter
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * Getting a villager arraylist.
+     * @return An arrayList of villagers
+     * @author Jan Douwe Sminia
+     */
     public ArrayList<VillagerInterface> getVillagerList() {
         try {
             return client.getGameClient().getPlayer().getPlayerBoard().listAvailableBuilderVillagers();

@@ -95,6 +95,10 @@ public class MenuController implements Observable {
         this.client.turnObserver.attach(this);
     }
 
+    /**
+     * Observes any updates in the menu view
+     * @author Joey de Ruiter
+     */
     @Override
     public void updateObserver() {
 

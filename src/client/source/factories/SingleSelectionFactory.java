@@ -8,7 +8,11 @@ import client.source.components.villager.SingleSelectableVillagerComponent;
  * Created by Joey de Ruiter
  */
 public class SingleSelectionFactory extends VillagerSelectionComponentFactory {
-
+    /**
+     * A implemented method from a superclass that returns selectable villager components.
+     * @return selectable villager components
+     * @author Joey de Ruiter
+     */
     @Override
     public SelectableVillagerComponent createComponent() {
         SingleSelectableVillagerComponent component = new SingleSelectableVillagerComponent();

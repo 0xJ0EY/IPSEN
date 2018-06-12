@@ -70,6 +70,10 @@ public class VillagerRestController implements ControllerInterface {
         this.update();
     }
 
+    /**
+     * For updating villager rest components
+     * @author Joey de Ruiter
+     */
     public void update() {
 
         try {
@@ -87,6 +91,11 @@ public class VillagerRestController implements ControllerInterface {
 
     }
 
+    /**
+     * For setting a client.
+     * @param client
+     * @author Joey de Ruiter
+     */
     public void setClient(Client client) {
         try {
             this.client = client;
@@ -98,6 +107,11 @@ public class VillagerRestController implements ControllerInterface {
         }
     }
 
+    /**
+     * For selecting villagers to replenish
+     * @throws RemoteException
+     * @author Joey de Ruiter
+     */
     @FXML private void onClickSelect() throws RemoteException {
 
         this.client.getGameClient().getPlayer().doAction(new RestVillagerAction());

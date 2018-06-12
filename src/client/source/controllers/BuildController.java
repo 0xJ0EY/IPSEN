@@ -296,6 +296,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.messageThread.start();
     }
 
+    /**
+     * For refreshing houses when market runs out.
+     * @author Robin Silvério
+     */
     public void clickRefreshHouses() {
 
         try {

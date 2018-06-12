@@ -39,14 +39,26 @@ public class RestVillagerComponent extends VillagerComponent {
         }
     }
 
+    /**
+     * For setting a playerboard.
+     * @author Richard Kerkvliet
+     */
     public void setPlayerBoard(PlayerBoardInterface playerBoard) {
         this.playerBoard = playerBoard;
     }
 
+    /**
+     * For setting a controller.
+     * @author Richard Kerkvliet
+     */
     public void setController(VillagerRestController controller) {
         this.controller = controller;
     }
 
+    /**
+     * For clicking on cider good to replenish villagers
+     * @author Richard Kerkvliet
+     */
     @FXML public void onClickCider() {
         try {
             this.villager.useCider();
@@ -56,6 +68,10 @@ public class RestVillagerComponent extends VillagerComponent {
         }
     }
 
+    /**
+     * For clicking on potion good to replenish villagers
+     * @author Richard Kerkvliet
+     */
     @FXML public void onClickPotion() {
         try {
             this.villager.usePotion();
@@ -65,6 +81,10 @@ public class RestVillagerComponent extends VillagerComponent {
         }
     }
 
+    /**
+     * For clicking on sleep to replenish villagers
+     * @author Richard Kerkvliet
+     */
     @FXML public void onClickSleep() {
         try {
             this.villager.sleep();
@@ -76,6 +96,10 @@ public class RestVillagerComponent extends VillagerComponent {
         }
     }
 
+    /**
+     * For updating goods during replenishing villagers
+     * @author Richard Kerkvliet
+     */
     public void update(boolean hasCider, boolean hasPotion, boolean hasBeds) {
         try {
             this.ciderButton.setDisable(!(hasCider && this.villager.canUseCider()));

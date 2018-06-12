@@ -14,7 +14,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
- * A class that acts as an intermediary between a
+ * A class that acts as an intermediary between a loginview and models
  */
 public class LoginController implements ControllerInterface {
 
@@ -60,6 +60,11 @@ public class LoginController implements ControllerInterface {
         return false;
     }
 
+    /**
+     * Initiates the server.
+     * @return boolean state (TRUE or FALSE)
+     * @author Joey de Ruiter
+     */
     public boolean onClickServer() {
         // Start a server in the background and connect to it
 
@@ -92,6 +97,11 @@ public class LoginController implements ControllerInterface {
         return false;
     }
 
+    /**
+     * For setting a client.
+     * @param client
+     * @author Joey de Ruiter
+     */
     public void setClient(Client client) {
         this.client = client;
     }
@@ -100,6 +110,11 @@ public class LoginController implements ControllerInterface {
         return username.length() > 0;
     }
 
+    /**
+     * For displaying a login view.
+     * @return login view
+     * @author Joey de Ruiter
+     */
     @Override
     public Parent show() {
         return this.root;

@@ -14,9 +14,19 @@ abstract public class VillagerSelectionFactory {
 
     protected Client client;
 
+    /**
+     * For setting a client
+     * @param client
+     * @author Joey de Ruiter
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * A declared method for implementing purposes in subclasses.
+     * @return an implemented method that returns an arraylist of villagers
+     * @author Joey de Ruiter
+     */
     public abstract ArrayList<VillagerInterface> getVillagerList();
 }
