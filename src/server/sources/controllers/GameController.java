@@ -192,6 +192,8 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         // Reset the cider
         this.getReputationBoard().resetCider();
 
+        this.market.reorderAvailableVillagers();
+
         // Reset turn
         this.turn = 0;
 

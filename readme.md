@@ -7,7 +7,7 @@
  - [ ] Turn controller.  
 
        Disable de knop van harvest als er geen villagers / buildings zijn
-       Disable de knop van market als er geen villagers zijn
+       Disable de knop van build als er geen actieve builders zijn
        Disable de knop van explore als er minder dan actieve 2 villagers zijn
        Disable de knop van labor als er geen actieve villagers is
        Disable de knop van trainer als er geen actieve trainers zijn    

@@ -45,225 +45,225 @@
         </lanterns>
     </villager>
 
-    <villager id="4">
-        <type>Trainer</type>
-        <image>villager_background_04.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="4">-->
+        <!--<type>Trainer</type>-->
+        <!--<image>villager_background_04.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>4</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="5">
-        <type>Trainer</type>
-        <image>villager_background_05.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>2</cost>
-            </lantern>
-            <lantern>
-                <eyes>5</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="5">-->
+        <!--<type>Trainer</type>-->
+        <!--<image>villager_background_05.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>5</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="6">
-        <type>Villager</type>
-        <image>villager_background_01.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>2</cost>
-            </lantern>
-            <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="6">-->
+        <!--<type>Villager</type>-->
+        <!--<image>villager_background_01.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>4</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="7">
-        <type>Allround</type>
-        <image>villager_background_02.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="7">-->
+        <!--<type>Allround</type>-->
+        <!--<image>villager_background_02.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>3</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="8">
-        <type>Builder</type>
-        <image>villager_background_03.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>5</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="8">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_03.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>5</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="9">
-        <type>Builder</type>
-        <image>villager_background_04.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>4</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="9">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_04.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>4</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="10">
-        <type>Builder</type>
-        <image>villager_background_05.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="10">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_05.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>3</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="11">
-        <type>Builder</type>
-        <image>villager_background_01.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>2</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>4</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="11">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_01.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>2</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>4</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="12">
-        <type>Builder</type>
-        <image>villager_background_02.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>2</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="12">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_02.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>2</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>4</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="13">
-        <type>Builder</type>
-        <image>villager_background_03.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="13">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_03.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>4</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="14">
-        <type>Builder</type>
-        <image>villager_background_04.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>2</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="14">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_04.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>2</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="15">
-        <type>Builder</type>
-        <image>villager_background_05.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
-            </lantern>
-            <lantern>
-                <eyes>6</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="15">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_05.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>3</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>6</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="16">
-        <type>Builder</type>
-        <image>villager_background_01.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>6</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="16">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_01.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>6</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="17">
-        <type>Builder</type>
-        <image>villager_background_02.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>1</cost>
-            </lantern>
-            <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="17">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_02.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>1</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>3</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
-    <villager id="18">
-        <type>Builder</type>
-        <image>villager_background_03.png</image>
-        <lanterns>
-            <lantern>
-                <eyes>1</eyes>
-                <cost>2</cost>
-            </lantern>
-            <lantern>
-                <eyes>5</eyes>
-                <cost>3</cost>
-            </lantern>
-        </lanterns>
-    </villager>
+    <!--<villager id="18">-->
+        <!--<type>Builder</type>-->
+        <!--<image>villager_background_03.png</image>-->
+        <!--<lanterns>-->
+            <!--<lantern>-->
+                <!--<eyes>1</eyes>-->
+                <!--<cost>2</cost>-->
+            <!--</lantern>-->
+            <!--<lantern>-->
+                <!--<eyes>5</eyes>-->
+                <!--<cost>3</cost>-->
+            <!--</lantern>-->
+        <!--</lanterns>-->
+    <!--</villager>-->
 
 </villagers>

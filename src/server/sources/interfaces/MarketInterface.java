@@ -116,4 +116,12 @@ public interface MarketInterface extends Remote, Serializable {
      */
     public void refreshHousesAndOutposts() throws RemoteException;
 
+    /**
+     * Move villagers to the left if it is available and add new villagers for null spaces.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
+    public void reorderAvailableVillagers() throws RemoteException;
+
 }

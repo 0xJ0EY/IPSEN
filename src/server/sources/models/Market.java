@@ -88,6 +88,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private Villager randomVillager(){
         int key = (int) (Math.random() * this.villagers.size());
+        if (key == 0) return null;
 
         // Get the villager from the available pool
         Villager villager = this.villagers.get(key);
@@ -326,7 +327,94 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         this.updateObserver();
     }
 
+
+    /**
+     * Move villagers to the left if it is available and add new villagers for null spaces.
+     *
+     * @throws RemoteException
+     * @author Joey de Ruiter
+     */
+    @Override
+    public void reorderAvailableVillagers() throws RemoteException {
+
+        boolean foundNull = false;
+        int nullIndex = 0;
+
+        for (int i = this.availableVillagers.length - 1; i >= 0; i--) {
+            Villager villager = this.availableVillagers[i];
+
+
+            if (villager == null && nullIndex < i) {
+                foundNull = true;
+                nullIndex = i;
+            } else if (villager != null && foundNull) {
+
+                this.availableVillagers[nullIndex] = villager;
+                this.availableVillagers[i] = null;
+
+                // Reset the loop back to the nullIndex
+                i = nullIndex;
+
+                foundNull = false;
+                nullIndex = 0;
+            }
+        }
+
+        int index = 0;
+
+        do {
+            availableVillagers[index] = this.randomVillager();
+            index++;
+        } while (index < this.availableVillagers.length &&  this.availableVillagers[index] == null);
+
+        this.updateObserver();
+
+    }
+
     private void updateObserver() throws RemoteException {
         this.gameController.getServer().notifyClients(new MarketUpdateNotification(this));
+    }
+
+
+    public static void main(String[] args) {
+        String[] availableVillagers = new String[5];
+
+        boolean foundNull = false;
+        int nullIndex = 0;
+
+        for (int i = availableVillagers.length - 1; i >= 0; i--) {
+            String villager = availableVillagers[i];
+
+            if (villager == null && nullIndex < i) {
+                foundNull = true;
+                nullIndex = i;
+
+            } else if (villager != null && foundNull) {
+
+                availableVillagers[nullIndex] = villager;
+                availableVillagers[i] = null;
+
+                nullIndex = 0;
+                foundNull = false;
+
+                i = availableVillagers.length;
+            }
+        }
+
+
+        // Refill the villagers with random villagers
+        int index = 0;
+
+        do {
+
+            availableVillagers[index] = "Random shizzle";
+
+        } while (availableVillagers[++index % availableVillagers.length] == null);
+
+        for (String availableVillager : availableVillagers) {
+
+            System.out.println(availableVillager);
+
+        }
     }
 }

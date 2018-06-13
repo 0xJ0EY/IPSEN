@@ -262,13 +262,14 @@ BuildController implements SelectableControllerInterface, Observable {
         this.disableBuying();
 
         ArrayList<SelectableBuildingComponent> selectedBuildings = this.getSelectedBuildingComponents();
-        SelectableBuildingComponent selected = selectedBuildings.get(0);
 
-        if (selected == null) {
+        if (selectedBuildings.size() < 1) {
             this.showMessage("Please select a building.");
             this.enableBuying();
             return;
         }
+
+        SelectableBuildingComponent selected = selectedBuildings.get(0);
 
         if (selected.getModel().getCost() > this.target.getPlayerBoard().getCoins()) {
             this.showMessage("Not sufficient funds.");
