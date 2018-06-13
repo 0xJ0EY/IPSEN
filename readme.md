@@ -4,7 +4,7 @@
  - [x] Verkopen Voorwerp (Jan Douwe)
  - [x] Kopen Voorwerp (Jan Douwe)
  
- - [ ] Turn controller.  
+ - [x] Turn controller.  
 
        Disable de knop van harvest als er geen villagers / buildings zijn
        Disable de knop van build als er geen builders zijn

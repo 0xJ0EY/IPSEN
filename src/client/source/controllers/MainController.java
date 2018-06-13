@@ -92,7 +92,7 @@ public class MainController implements ControllerInterface, Observable {
             int availableVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableVillagers().size();
             int availableTrainerVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableTrainerVillagers().size();
             int availableBuilderVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableBuilderVillagers().size();
-            int availableBuildings = this.client.getGameClient().getPlayer().getPlayerBoard().getBuildings().size();
+            int availableBuildings = this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().size();
 
             // This is for enabling and disabling buttons in turnmarket view.
             turnController.checkAvailableVillagersForExploreAction(availableVillagers);
@@ -100,9 +100,6 @@ public class MainController implements ControllerInterface, Observable {
             turnController.checkAvailableVillagersAndBuildingForHarvest(availableVillagers, availableBuildings);
             turnController.checkAvailableTrainerVillagersForTraining(availableTrainerVillagers);
             turnController.checkAvailableBuilderVillagersForBuild(availableBuilderVillagers);
-
-            // ...and this is for market button.
-            menuController.checkAvailableVillagersForMarket(availableVillagers);
 
         } catch (RemoteException e) {
             e.printStackTrace();
