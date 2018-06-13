@@ -1,8 +1,8 @@
 ## Above and Below  
 
 ## TODO FROM TESTS
- - [ ] Verkopen Voorwerp (Jan Douwe)
- - [ ] Kopen Voorwerp (Jan Douwe)
+ - [x] Verkopen Voorwerp (Jan Douwe)
+ - [x] Kopen Voorwerp (Jan Douwe)
  
  - [ ] Turn controller.  
 
