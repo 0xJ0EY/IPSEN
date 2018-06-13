@@ -93,7 +93,7 @@ public class TurnController {
         client.showVillagerSelection(
             new TrainerVillagerSelectionFactory(),
             new TrainerAction(this.client.getGameClient()),
-            new DoActionStrategy(),
+            new RequestStrategy(),
             new SingleSelectionFactory()
         );
 

@@ -29,8 +29,7 @@ import java.util.ArrayList;
  * Class that acts as an intermediary between the buildview and the model.
  * Created by robin on 1-6-2018.
  */
-public class
-BuildController implements SelectableControllerInterface, Observable {
+public class BuildController implements SelectableControllerInterface, Observable {
 
     private boolean buying = false;
 

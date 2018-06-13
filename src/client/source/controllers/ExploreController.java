@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import server.sources.actions.EndTurnAction;
 import server.sources.actions.RunAction;
 import server.sources.actions.RewardAction;
 
@@ -18,6 +19,7 @@ import server.sources.models.stories.Option;
 import server.sources.interfaces.PlayerInterface;
 
 import server.sources.models.stories.Story;
+import server.sources.notifications.EndOfTurnNotification;
 
 import java.rmi.RemoteException;
 
