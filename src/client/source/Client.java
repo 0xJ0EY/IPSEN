@@ -166,10 +166,12 @@ public class Client extends Application {
 
     /**
      * Show the building scene
+     * @param villagers
      */
-    public void showBuild(){
+    public void showBuild(ArrayList<VillagerInterface> villagers){
         BuildController build = controllerFactory.createBuild();
         build.load();
+        build.setUsedTrainerVillager(villagers);
         this.setScene(build.show());
     }
 
