@@ -126,25 +126,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return villagers;
     }
 
-    /**
-     * List all available houses to be purchased.
-     *
-     * @author Joey de Ruiter
-     * @return ArrayList
-     * @throws RemoteException java.rmi.RemoteException
-     */
-    @Override
-    public VillagerInterface[] listAvailableVillagers() {
-        VillagerInterface[] villagers = new VillagerInterface[this.availableVillagers.length];
-
-        for (int i = 0; i < this.availableVillagers.length; i++) {
-            Villager villager = this.availableVillagers[i];
-            villagers[i] = villager;
-        }
-
-        return villagers;
-    }
-
     @Override
     public ArrayList<MarketHouse> listAvailableHouses() throws RemoteException {
         ArrayList<MarketHouse> houses = new ArrayList<MarketHouse>();
@@ -206,6 +187,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
         for (int i = 0; i < this.availableVillagers.length; i++) {
+            if (this.availableVillagers[i] == null) continue;
+
             Villager availableVillager = this.availableVillagers[i];
 
             if (availableVillager.equals(villagerInterface)) {
@@ -232,8 +215,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
                 this.houses.remove(marketHouse);
                 this.availableHouses[i] = this.randomHouse();
-
-                localPlayer.getPlayerBoard().updateObserver();
             }
         }
 
@@ -264,8 +245,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
                 // Replace the outpost with a random outpost
                 this.outposts.remove(marketOutpost);
                 this.availableOutposts[i] = this.randomOutpost();
-
-                localPlayer.getPlayerBoard().updateObserver();
             }
         }
 
