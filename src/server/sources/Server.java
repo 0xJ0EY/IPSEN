@@ -4,8 +4,8 @@ import server.sources.controllers.GameController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
+import server.sources.models.GameClient;
 import server.sources.models.Player;
-import server.sources.models.ReputationBoard;
 import server.sources.notifications.LobbyNotification;
 import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
@@ -29,7 +29,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
     private GameController gameController = new GameController((ServerInterface) this);
-    private ReputationBoard reputationBoard;
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -79,7 +78,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.promoteOwner();
 
         ArrayList<PlayerInterface> players = (ArrayList<PlayerInterface>) (ArrayList<?>) this.gameController.players;
-        reputationBoard = new ReputationBoard(players);
 
         // Update target client
         gameClient.receiveNotification(new LobbyNotification());
@@ -198,13 +196,20 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         this.updateState(ServerState.LOADED);
 
-        for (PlayerInterface player : gameController.players ) {
-            for (GameClientInterface gameClient : this.gameClients) {
-                gameClient.setPlayer(player);
-                player.setGameClient(gameClient);
-            }
+        for (int i = 0; i < gameController.players.size(); i++) {
+            Player player = gameController.players.get(i);
+            GameClientInterface gameClient = this.gameClients.get(i);
+
+            gameClient.setPlayer(player);
+            player.setGameClient(gameClient);
+
+            gameController.players.set(i, player);
+            this.gameClients.set(i, gameClient);
         }
 
+        gameController.setServer(this);
+        this.gameController = gameController;
+        
         this.startGame();
     }
 

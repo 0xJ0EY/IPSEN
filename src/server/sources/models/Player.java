@@ -64,7 +64,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      */
     public void requestAction() throws RemoteException {
         this.action = null;
-        gameController.server.notifyClients(new PlayerTurnNotification(this.gameClient));
+        gameController.getServer().notifyClients(new PlayerTurnNotification(this.gameClient));
     }
 
     /**
