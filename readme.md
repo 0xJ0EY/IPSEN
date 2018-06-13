@@ -15,7 +15,7 @@
        goederen toekenen aan speler
        geen villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
        geen Harvetable houses beschikbaar -> deze actie niet kunnen starten vanuit turn menu 
- - [ ] Verversen Huizen
+ - [x] Verversen Huizen
  
        speler betalen
  - [ ] Bouwen outpost

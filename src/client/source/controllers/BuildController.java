@@ -326,18 +326,4 @@ BuildController implements SelectableControllerInterface, Observable {
         this.messageThread = new Thread(r);
         this.messageThread.start();
     }
-
-    /**
-     * For refreshing houses when market runs out.
-     * @author Robin Silverio
-     */
-    public void clickRefreshHouses() {
-
-        try {
-            client.getGameClient().getServer().getGameController().getMarket().refreshHousesAndOutposts();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-    }
 }

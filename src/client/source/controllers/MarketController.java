@@ -6,6 +6,7 @@ import client.source.components.villager.VillagerComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import server.sources.actions.RefreshHousesAction;
@@ -46,13 +47,19 @@ public class MarketController implements Observable {
 
     /**
      * Refreshes buildings in market
-     * @author Joey de Ruiter
+     * @author Richard Kerkvliet
      */
     public void clickRefreshHouses() {
 
         try {
-            client.getGameClient().requestAction(new RefreshHousesAction());
-
+            if(client.getGameClient().getPlayer().getPlayerBoard().getCoins() == 0){
+                Alert dialog = new Alert(Alert.AlertType.WARNING);
+                dialog.setContentText("You do not have enough coins");
+                dialog.show();
+            }else {
+                client.getGameClient().requestAction(new RefreshHousesAction());
+                client.getGameClient().getPlayer().getPlayerBoard().payCoin(1);
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }
