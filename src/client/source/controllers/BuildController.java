@@ -29,8 +29,7 @@ import java.util.ArrayList;
  * Class that acts as an intermediary between the buildview and the model.
  * Created by robin on 1-6-2018.
  */
-public class
-BuildController implements SelectableControllerInterface, Observable {
+public class BuildController implements SelectableControllerInterface, Observable {
 
     private boolean buying = false;
 
@@ -248,7 +247,8 @@ BuildController implements SelectableControllerInterface, Observable {
      */
     @FXML
     private void onClickCancel() throws RemoteException {
-        this.client.getGameClient().requestAction(new CancelAction());
+        this.client.showMain();
+//        this.client.getGameClient().requestAction(new CancelAction());
     }
 
     /**
@@ -276,6 +276,11 @@ BuildController implements SelectableControllerInterface, Observable {
             return;
         }
 
+        if (selected.getModel() instanceof Outpost && !target.getPlayerBoard().hasCaveCards()){
+            this.showMessage("Explore to get cave cards first");
+            this.enableBuying();
+            return;
+        }
 
         try {
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
@@ -315,7 +320,7 @@ BuildController implements SelectableControllerInterface, Observable {
             this.message.setVisible(true);
 
             try {
-                Thread.sleep(1750);
+                Thread.sleep(1800);
             } catch (InterruptedException e) {
                 System.out.println("Message interrupted");
             } finally {
@@ -325,19 +330,5 @@ BuildController implements SelectableControllerInterface, Observable {
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
-    }
-
-    /**
-     * For refreshing houses when market runs out.
-     * @author Robin Silverio
-     */
-    public void clickRefreshHouses() {
-
-        try {
-            client.getGameClient().getServer().getGameController().getMarket().refreshHousesAndOutposts();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
     }
 }

@@ -10,6 +10,7 @@ import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 import server.sources.notifications.ExploreRunNotification;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 

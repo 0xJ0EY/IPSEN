@@ -30,6 +30,7 @@ public class Client extends Application {
 
     private Stage stage;
     private GameClient gameClient;
+    private ArrayList<VillagerInterface> selectedVillagers;
 
     private ControllerFactory controllerFactory;
 
@@ -101,18 +102,23 @@ public class Client extends Application {
     }
 
     /**
-     * Show villager selection view
+     * Show villager selection screen
      *
+     * @author Joey de Ruiter
      * @param villagerFactory VillagerSelectionFactory
      * @param action VillagerActionInterface
      * @param strategy VillagerSelectionStrategy
      * @param componentFactory VillagerSelectionComponentFactory
+     * @param minimumRequiredVillagers minimumRequiredVillagers
+     * @param maximumRequiredVillagers maximumRequiredVillagers
      */
     public void showVillagerSelection(
             VillagerSelectionFactory villagerFactory,
             VillagerActionInterface action,
             VillagerSelectionStrategy strategy,
-            VillagerSelectionComponentFactory componentFactory
+            VillagerSelectionComponentFactory componentFactory,
+            int minimumRequiredVillagers,
+            int maximumRequiredVillagers
     ) {
 
         VillagerSelectionController selection = controllerFactory.createVillagerSelection();
@@ -121,6 +127,8 @@ public class Client extends Application {
         selection.setVillagerAction(action);
         selection.setStrategy(strategy);
         selection.setComponentFactory(componentFactory);
+        selection.setMinimumRequiredVillagers(minimumRequiredVillagers);
+        selection.setMaximumRequiredVillagers(maximumRequiredVillagers);
 
         this.setScene(selection.show());
     }
@@ -245,6 +253,10 @@ public class Client extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void setSelectedVillagers(ArrayList<VillagerInterface> selectedVillagers){
+        this.selectedVillagers = selectedVillagers;
     }
 
 }

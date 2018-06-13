@@ -108,11 +108,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public void addCider() throws RemoteException {
         this.ciders += 1;
+        this.updateObserver();
     }
 
     @Override
     public void addPotion() throws RemoteException {
         this.potions += 1;
+        this.updateObserver();
     }
 
     public void payCoin(int coin) throws RemoteException {
@@ -120,8 +122,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
-    public void addGood(Good good){
+    public void addGood(Good good) throws RemoteException {
         this.goods.add(good);
+        this.updateObserver();
+    }
+
+    @Override
+    public void updateVillager() throws RemoteException {
+        this.updateObserver();
     }
 
     /**
@@ -143,6 +151,11 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public boolean hasBeds() throws RemoteException {
         return this.beds > 0;
+    }
+
+    @Override
+    public boolean hasCaveCards() throws RemoteException {
+        return this.caveCards > 0;
     }
 
     @Override
@@ -184,7 +197,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     /**
      * List all available villagers of on the playerboard.
      *
-     * @author Jan Douwe Sminia
+     * @author Jan Douwe Sminia | Joey de Ruiter
      * @return ArrayList of all available villagers
      * @throws RemoteException java.rmi.RemoteException
      */
@@ -204,7 +217,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     /**
      * List all available builder villagers of on the playerboard.
      *
-     * @author Jan Douwe Sminia
+     * @author Jan Douwe Sminia | Joey de Ruiter
      * @return ArrayList of available builder villagers
      * @throws RemoteException java.rmi.RemoteException
      */
@@ -212,7 +225,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException {
         ArrayList<VillagerInterface> builders = new ArrayList<VillagerInterface>();
 
-        for (VillagerInterface villager : this.villagers) {
+        for (VillagerInterface villager : this.listAvailableVillagers()) {
             if (villager instanceof Buildable) {
                 builders.add(villager);
             }
@@ -224,7 +237,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     /**
      * List all available trainer villagers of on the playerboard.
      *
-     * @author Jan Douwe Sminia
+     * @author Jan Douwe Sminia | Joey de Ruiter
      * @return ArrayList of all available villagers
      * @throws RemoteException java.rmi.RemoteException
      */
@@ -232,7 +245,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException {
         ArrayList<VillagerInterface> trainers = new ArrayList<VillagerInterface>();
 
-        for (VillagerInterface villager : this.villagers) {
+        for (VillagerInterface villager : this.listAvailableVillagers()) {
             if (villager instanceof Trainable) {
                 trainers.add(villager);
             }
@@ -249,8 +262,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      */
     @Override
     public void addVillager(Villager villager) throws RemoteException {
-        villager.tire();
         villager.setPlayerBoard(this);
+        villager.tire();
 
         villagers.add(villager);
         this.updateObserver();

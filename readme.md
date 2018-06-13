@@ -1,44 +1,44 @@
 ## Above and Below  
 
 ## TODO FROM TESTS
- - [ ] Verkopen Voorwerp (Jan Douwe)
- - [ ] Kopen Voorwerp (Jan Douwe)
+ - [x] Verkopen Voorwerp (Jan Douwe)
+ - [x] Kopen Voorwerp (Jan Douwe)
+ 
+ - [ ] Turn controller.  
+
+       Disable de knop van harvest als er geen villagers / buildings zijn
+       Disable de knop van build als er geen builders zijn
+       Disable de knop van explore als er minder dan actieve 2 villagers zijn
+       Disable de knop van labor als er geen actieve villagers is
+       Disable de knop van trainer als er geen actieve trainers zijn    
+ 
  - [ ] Trainen villager.
  
-       villager selection mag alleen maar beschikbare trainers laten zien
-       gebruikte villagers vermoeien
+       gebruikte villagers vermoeien (werkt)
        speler betalen villagers
        TrainToReady perk (enige perk die in de tests naar voren kwam)
  - [ ] Oogsten Grondstof
  
-       gebruikte villagers vermoeien
+       gebruikte villagers vermoeien 
        goederen toekenen aan speler
-       geen villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
-       geen Harvetable houses beschikbaar -> deze actie niet kunnen starten vanuit turn menu 
- - [ ] Verversen Huizen
+ - [x] Verversen Huizen
  
        speler betalen
- - [ ] Bouwen outpost
+ - [x] Bouwen outpost
  
-       select button disabelen als er geen bouwer geselecteerd is
-       Villager selection mag alleen maar beschikbare bouwers laten zien
-       check of grotkaarten beschikbaar (grotkaarten verdienen (Richard))
-       geen bouwers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
-       geen vrije grotkaart -> melding dat er geen grotkaart beschikbaar is in build actie
- - [ ] Bouwen Huis
+       select button disabelen als er geen bouwer geselecteerd is (werkt)
+       Villager selection mag alleen maar beschikbare bouwers laten zien (werkt)
+       check of grotkaarten beschikbaar (werkt)
+       geen vrije grotkaart -> melding dat er geen grotkaart beschikbaar is in build actie (werkt)
+ - [x] Bouwen Huis
  
-       select button disabelen als er geen bouwer geselecteerd is
-       Villager selection mag alleen maar beschikbare bouwers laten zien
- - [ ] Werken Villager
- 
-       geen villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
-       select button disabelen als er geen villager geselecteerd is
-       moet meer villagers kunnen selecteren
- - [ ] Verkennen grot
+       select button disabelen als er geen bouwer geselecteerd is (werkt)
+       Villager selection mag alleen maar beschikbare bouwers laten zien (werkt)
        
-       gebruikte villagers vermoeien
-       select button disabelen als er geen villager geselecteerd is
-       1 of minder villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
+ - [x] Verkennen grot
+       
+       gebruikte villagers vermoeien (werkt)
+       select button disabelen als er geen villagers geselecteerd zijn (werkt)
  - [ ] Klaarzetten ronde
  
        Melding van beloning
@@ -69,4 +69,5 @@ TODO
  - [ ] Cider inbouwen in de belowview
 
 Known bugs.   
-Bug train -> speler is halverwege niet meer aan de beurt. 
+Bug train -> speler is halverwege niet meer aan de beurt.  
+Bug Build -> on cancel in the build market the villager is tired but not realy used.

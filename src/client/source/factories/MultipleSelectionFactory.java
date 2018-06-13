@@ -16,7 +16,10 @@ public class MultipleSelectionFactory extends VillagerSelectionComponentFactory 
      */
     @Override
     public SelectableVillagerComponent createComponent() {
-        return new MultibleSelectableVillagerComponent();
+        SelectableVillagerComponent component = new MultibleSelectableVillagerComponent();
+        component.setController(this.controller);
+
+        return component;
     }
 
 }
