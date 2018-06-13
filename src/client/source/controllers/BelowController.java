@@ -20,6 +20,7 @@ public class BelowController implements ControllerInterface, Observable {
 
     @FXML private Label roundLabel;
 
+    @FXML private Ellipse round1;
     @FXML private Ellipse round2;
     @FXML private Ellipse round3;
     @FXML private Ellipse round4;
@@ -48,29 +49,32 @@ public class BelowController implements ControllerInterface, Observable {
     public void showRound(int round) {
         switch (round) {
             case 1:
-                this.round2.setFill(Color.RED);
+                this.round1.setFill(Color.RED);
                 break;
             case 2:
-                this.round3.setFill(Color.RED);
+                this.round2.setFill(Color.RED);
                 break;
             case 3:
-                this.round4.setFill(Color.RED);
+                this.round3.setFill(Color.RED);
                 break;
             case 4:
-                this.round5.setFill(Color.RED);
+                this.round4.setFill(Color.RED);
                 break;
             case 5:
-                this.round6.setFill(Color.RED);
+                this.round5.setFill(Color.RED);
                 break;
             case 6:
+                this.round6.setFill(Color.RED);
+                break;
+            case 7:
                 this.round7.setFill(Color.RED);
                 break;
             default:
                 System.out.println("Game ended");
                 break;
         }
-        round++;
-        this.roundLabel.setText("ROUND: "+round);
+
+        this.roundLabel.setText("ROUND: " + round);
     }
 
     @Override

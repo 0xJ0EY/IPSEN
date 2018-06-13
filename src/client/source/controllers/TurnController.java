@@ -29,7 +29,9 @@ public class TurnController {
             new AllVillagerSelectionFactory(),
             new ExploreStoryAction(this.client.getGameClient()),
             new RequestStrategy(),
-            new MultipleSelectionFactory()
+            new MultipleSelectionFactory(),
+                2,
+                0
         );
 
     }
@@ -46,7 +48,9 @@ public class TurnController {
             new BuilderVillagerSelectionFactory(),
             new BuildAction(this.client.getGameClient()),
             new RequestStrategy(),
-            new SingleSelectionFactory()
+            new SingleSelectionFactory(),
+                1,
+                0
         );
 
     }
@@ -62,7 +66,9 @@ public class TurnController {
             new AllVillagerSelectionFactory(),
             new LaborAction(this.client.getGameClient()),
             new DoActionStrategy(),
-            new SingleSelectionFactory()
+            new MultipleSelectionFactory(),
+                1,
+                0
         );
 
     }
@@ -78,7 +84,9 @@ public class TurnController {
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
             new DoActionStrategy(),
-            new MultipleSelectionFactory()
+            new MultipleSelectionFactory(),
+                1,
+                0 // Has to be equal to amount of possible harvest actions
         );
 
     }
@@ -94,7 +102,9 @@ public class TurnController {
             new TrainerVillagerSelectionFactory(),
             new TrainerAction(this.client.getGameClient()),
             new RequestStrategy(),
-            new SingleSelectionFactory()
+            new SingleSelectionFactory(),
+                1,
+                0
         );
 
     }

@@ -314,7 +314,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
             this.message.setVisible(true);
 
             try {
-                Thread.sleep(1750);
+                Thread.sleep(1800);
             } catch (InterruptedException e) {
                 System.out.println("Message interrupted");
             } finally {

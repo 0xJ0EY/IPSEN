@@ -11,24 +11,12 @@ import java.util.ArrayList;
  */
 public class SingleSelectableVillagerComponent extends SelectableVillagerComponent {
 
-    private VillagerSelectionController controller;
-
-    /**
-     * For setting a controller
-     * @param controller VillagerSelectionController
-     * @author Joey de Ruiter
-     */
-    public void setController(VillagerSelectionController controller) {
-        this.controller = controller;
-    }
-
     /**
      * For selecting villagers
      * @author Joey de Ruiter
      */
     @FXML
     public void onClickSelect() {
-
         // Deselect all other villagers
         this.deselectVillagers();
 
