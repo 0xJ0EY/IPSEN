@@ -33,7 +33,7 @@
        check of grotkaarten beschikbaar (grotkaarten verdienen (Richard))
        geen bouwers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
        geen vrije grotkaart -> melding dat er geen grotkaart beschikbaar is in build actie
- - [ ] Bouwen Huis
+ - [x] Bouwen Huis
  
        select button disabelen als er geen bouwer geselecteerd is
        Villager selection mag alleen maar beschikbare bouwers laten zien
@@ -43,7 +43,7 @@
        gebruikte villagers vermoeien
        select button disabelen als er geen villager geselecteerd is
        1 of minder villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
- - [ ] Klaarzetten ronde
+ - [x] Klaarzetten ronde
  
         villagerspool aanvullen
 
@@ -57,7 +57,7 @@ TODO
  - [ ] Building perks
  - [ ] Rewards(view) Richard
  - [ ] Check cave card by gebouwen & playerboard Richard
- - [ ] End of round Joey
+ - [x] End of round Joey
  - [ ] Bought villagers icon/functional
  - [x] Buyable houses/villagers
  - [ ] Turncontroller knoppen disable die niet kunnen

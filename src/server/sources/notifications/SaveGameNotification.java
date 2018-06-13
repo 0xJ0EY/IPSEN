@@ -7,6 +7,7 @@ import server.sources.interfaces.NotificationInterface;
 import java.io.*;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 
 public class SaveGameNotification implements NotificationInterface {
 
@@ -47,8 +48,12 @@ public class SaveGameNotification implements NotificationInterface {
 
     private void writeBytesToFile() {
 
+        LocalDate date = LocalDate.now();
+
         String path = System.getProperty("user.home") + DS + "Documents";
-        String file = "save_game.uml";
+        String file =   date.getYear() +  "_" +
+                        date.getMonthValue() + "_" +
+                        date.getDayOfMonth() + "_save_game.uml";
 
         String filepath = path + DS + file;
 

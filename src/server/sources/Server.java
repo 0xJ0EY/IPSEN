@@ -4,6 +4,7 @@ import server.sources.controllers.GameController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
+import server.sources.models.GameClient;
 import server.sources.models.Player;
 import server.sources.notifications.LobbyNotification;
 import server.sources.notifications.SaveGameNotification;
@@ -195,13 +196,20 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         this.updateState(ServerState.LOADED);
 
-        for (PlayerInterface player : gameController.players ) {
-            for (GameClientInterface gameClient : this.gameClients) {
-                gameClient.setPlayer(player);
-                player.setGameClient(gameClient);
-            }
+        for (int i = 0; i < gameController.players.size(); i++) {
+            Player player = gameController.players.get(i);
+            GameClientInterface gameClient = this.gameClients.get(i);
+
+            gameClient.setPlayer(player);
+            player.setGameClient(gameClient);
+
+            gameController.players.set(i, player);
+            this.gameClients.set(i, gameClient);
         }
 
+        gameController.setServer(this);
+        this.gameController = gameController;
+        
         this.startGame();
     }
 

@@ -224,6 +224,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.gameState = gameState;
     }
 
+    public void setServer(ServerInterface server) {
+        this.server = server;
+    }
+
     /**
      * Return the story object so the StoryAction can generate stories
      *
