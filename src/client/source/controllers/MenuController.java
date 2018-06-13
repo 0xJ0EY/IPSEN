@@ -30,6 +30,7 @@ public class MenuController implements Observable {
 
     @FXML private Button turnButton;
     @FXML private Button settingsButton;
+    @FXML private Button marketButton;
 
     @FXML private ListView playerList;
 
@@ -133,5 +134,12 @@ public class MenuController implements Observable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    public void checkAvailableVillagersForMarket(int size){
+        if (size < 1)
+            marketButton.setDisable(true);
+        else
+            marketButton.setDisable(false);
     }
 }
