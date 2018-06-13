@@ -247,7 +247,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
      */
     @FXML
     private void onClickCancel() throws RemoteException {
-        this.client.getGameClient().requestAction(new CancelAction());
+        this.client.showMain();
+//        this.client.getGameClient().requestAction(new CancelAction());
     }
 
     /**
@@ -275,6 +276,11 @@ public class BuildController implements SelectableControllerInterface, Observabl
             return;
         }
 
+        if (selected.getModel() instanceof Outpost && !target.getPlayerBoard().hasCaveCards()){
+            this.showMessage("Explore to get cave cards first");
+            this.enableBuying();
+            return;
+        }
 
         try {
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();

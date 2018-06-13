@@ -154,6 +154,11 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
+    public boolean hasCaveCards() throws RemoteException {
+        return this.caveCards > 0;
+    }
+
+    @Override
     public void useCider() throws RemoteException {
         this.ciders--;
         this.updateObserver();

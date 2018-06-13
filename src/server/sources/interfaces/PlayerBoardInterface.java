@@ -117,6 +117,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public boolean hasBeds() throws RemoteException;
 
+    public boolean hasCaveCards() throws RemoteException;
+
     public void useCider() throws RemoteException;
 
     public void usePotion() throws RemoteException;
