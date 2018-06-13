@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ReputationBoardController implements ReputationBoardInterface {
 
-    private transient GameController gameController;
+    private GameControllerInterface gameController;
     private boolean cider = true;
 
     public ReputationBoardController(GameController gameController) {
@@ -42,7 +42,7 @@ public class ReputationBoardController implements ReputationBoardInterface {
     }
 
     private void update() throws RemoteException {
-        this.gameController.server.notifyClients(new UpdateReputationBoardNotification(this));
+        this.gameController.getServer().notifyClients(new UpdateReputationBoardNotification(this));
     }
 
 }

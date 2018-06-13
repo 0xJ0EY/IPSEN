@@ -5,7 +5,6 @@ import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
 import server.sources.interfaces.*;
 import server.sources.models.Player;
-import server.sources.models.ReputationBoard;
 import server.sources.notifications.LobbyNotification;
 import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;

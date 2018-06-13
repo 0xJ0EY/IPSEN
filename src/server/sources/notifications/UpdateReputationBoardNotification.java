@@ -1,8 +1,8 @@
 package server.sources.notifications;
 
 import server.sources.interfaces.GameClientInterface;
-import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.ReputationBoardInterface;
+import server.sources.interfaces.NotificationInterface;
 
 import java.rmi.RemoteException;
 
