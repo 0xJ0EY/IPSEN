@@ -179,6 +179,12 @@ public class TurnController {
             trainButton.setDisable(false);
     }
 
+    /**
+     * Method for controlling the amount of available villagers for performing a build action.
+     * If not, then disable the buttons.
+     * @param size, count of available villagers
+     * @author Robin Silverio
+     */
     public void checkAvailableBuilderVillagersForBuild(int size){
         if (size < 1)
             buildButton.setDisable(true);
