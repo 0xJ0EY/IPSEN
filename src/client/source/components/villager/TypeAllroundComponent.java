@@ -6,6 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * This class allows to create allround villager components
+ * @author Richard Kerkvliet
+ */
 public class TypeAllroundComponent extends VillagerType {
 
     public TypeAllroundComponent() {

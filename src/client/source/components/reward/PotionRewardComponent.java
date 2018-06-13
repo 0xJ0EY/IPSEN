@@ -8,6 +8,10 @@ import server.sources.models.stories.rewards.PotionReward;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that creates potion reward
+ * Created by Richard Kerkvliet
+ */
 public class PotionRewardComponent extends RewardComponent<PotionReward> {
 
     public PotionRewardComponent() {

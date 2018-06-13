@@ -26,13 +26,11 @@ public class ReplenishableGoodPerk implements Perk, Harvestable, Refreshable {
         this.value = this.original_value;
     }
 
-    @Override
-    public boolean canHarvest() {
+    public boolean canHarvest(){
         return this.value > 0;
     }
 
-    @Override
-    public void harvest() {
+    public void harvest(){
         this.value--;
 
     }

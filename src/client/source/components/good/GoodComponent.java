@@ -8,12 +8,20 @@ import server.sources.models.goods.Good;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that loads all goods
+ * Created by Joey de Ruiter
+ */
 public class GoodComponent extends AnchorPane {
 
     protected Good good;
 
     @FXML protected AnchorPane background;
 
+    /**
+     * For loading goodscomponents
+     * @author Joey de Ruiter
+     */
     public GoodComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/good/good.fxml"));
 
@@ -36,6 +44,11 @@ public class GoodComponent extends AnchorPane {
         );
     }
 
+    /**
+     * Setting a model
+     * @param good Good
+     * @author Robin Silverio
+     */
     public void setModel(Good good) {
         this.good = good;
     }

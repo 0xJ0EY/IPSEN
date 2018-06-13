@@ -10,10 +10,19 @@ public class SettingsController {
 
     private Client client;
 
+    /**
+     * For registering clients in settingsview.
+     * @param client
+     */
     public void registerClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * Saves the game session/
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     @FXML
     private void onClickSave() throws RemoteException {
         client.getGameClient().requestRequest(new SaveGameRequest(client.getGameClient()));

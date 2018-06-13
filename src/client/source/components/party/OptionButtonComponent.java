@@ -51,12 +51,22 @@ public class OptionButtonComponent extends Button {
         });
     }
 
+    /**
+     * This is for enabling option button
+     * @param lanterns int
+     * @author Richard Kerkvliet
+     */
     public void enableOption(int lanterns){
         if(lanterns >= this.option.getCost()) {
             this.setDisable(false);
         }
     }
 
+    /**
+     * For setting a server
+     * @param server ServerInterface
+     * @author Richard Kerkvliet
+     */
     public void setServer(ServerInterface server) {
         this.server = server;
     }

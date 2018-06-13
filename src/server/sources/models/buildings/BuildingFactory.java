@@ -25,6 +25,11 @@ public class BuildingFactory {
 
     private Document document;
 
+    /**
+     * Creates a buildingFactory
+     * @throws ParserConfigurationException
+     * @author Robin Silverio
+     */
     public BuildingFactory() throws ParserConfigurationException {
 
         try {
@@ -36,7 +41,11 @@ public class BuildingFactory {
 
     }
 
-    //Read Houses from building XML
+    /**
+     * Read Houses from building XML.
+     * @return MarketHouses Arraylist
+     * @author Robin Silverio
+     */
     public ArrayList<MarketHouse> loadHousesFromXML(){
         ArrayList<MarketHouse> housesArrayList = new ArrayList<MarketHouse>();
 
@@ -55,7 +64,11 @@ public class BuildingFactory {
         return housesArrayList;
     }
 
-    //Read Star Houses from building XML
+    /**
+     * Read Star Houses from building XML
+     * @return MarketStarHouses ArrayList
+     * @author Robin Silverio
+     */
     public ArrayList<MarketStarHouse> loadStarHousesFromXML(){
         ArrayList<MarketStarHouse> starHousesArrayList = new ArrayList<MarketStarHouse>();
 
@@ -72,7 +85,11 @@ public class BuildingFactory {
         return starHousesArrayList;
     }
 
-    //Read Key Houses from building XML
+    /**
+     * Read Key Houses from building XML
+     * @return MarketKeyHouses ArrayList
+     * @author Robin Silverio
+     */
     public ArrayList<MarketKeyHouse> loadKeyHousesFromXML(){
         ArrayList<MarketKeyHouse> keyHousesArrayList = new ArrayList<MarketKeyHouse>();
 
@@ -90,7 +107,11 @@ public class BuildingFactory {
         return keyHousesArrayList;
     }
 
-    //Read Outposts from building XML
+    /**
+     * Read outposts from building XML
+     * @return MarketOutpost ArrayList
+     * @author Robin Silverio
+     */
     public ArrayList<MarketOutpost> loadOutpostsFromXML(){
         ArrayList<MarketOutpost> outpostsArrayList = new ArrayList<MarketOutpost>();
 
@@ -108,11 +129,6 @@ public class BuildingFactory {
         return outpostsArrayList;
     }
 
-    /**
-     * This is for fetching perks per building object
-     * @param buildingNode
-     * @return perks
-     */
     private ArrayList<Perk> fetchPerk(Node buildingNode) {
         ArrayList<Perk> perks = new ArrayList<Perk>();
 
