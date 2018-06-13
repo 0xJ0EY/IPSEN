@@ -205,6 +205,14 @@ public class GameController extends UnicastRemoteObject implements GameControlle
             player.getPlayerBoard().endOfRound();
         }
 
+        // Wait for message to go away
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
         this.updateObserver();
     }
 

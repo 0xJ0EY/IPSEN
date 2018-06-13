@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ReputationBoardController implements ReputationBoardInterface {
 
-    private GameController gameController;
+    private transient GameController gameController;
     private boolean cider = true;
 
     public ReputationBoardController(GameController gameController) {

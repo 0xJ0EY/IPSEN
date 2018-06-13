@@ -140,7 +140,7 @@ public class AboveController implements Observable {
             e.printStackTrace();
         }
 
-        this.labelIncome.setText(String.format(count == 1 ? "%s coin" : "%s coins", count));
+        this.labelIncome.setText(String.format(count == 1 ? "+%s coin" : "+%s coins", count));
     }
 
     /**
@@ -156,7 +156,7 @@ public class AboveController implements Observable {
             e.printStackTrace();
         }
 
-        this.labelCoins.setText(String.format(count == 1 ? "+%s coin" : "+%s coins", count));
+        this.labelCoins.setText(String.format(count == 1 ? "%s coin" : "%s coins", count));
     }
 
     /**

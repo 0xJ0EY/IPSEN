@@ -45,8 +45,7 @@
        1 of minder villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
  - [ ] Klaarzetten ronde
  
-       Melding van beloning
-       villagerspool aanvullen
+        villagerspool aanvullen
 
 TODO
  - [ ] Add message to the saving error
@@ -57,7 +56,7 @@ TODO
  - [x] Marketview
  - [ ] Building perks
  - [ ] Rewards(view) Richard
- - [ ] Check cave card Richard
+ - [ ] Check cave card by gebouwen & playerboard Richard
  - [ ] End of round Joey
  - [ ] Bought villagers icon/functional
  - [x] Buyable houses/villagers
