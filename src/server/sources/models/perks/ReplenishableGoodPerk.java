@@ -8,7 +8,7 @@ import server.sources.models.goods.*;
  *
  * @author Jan Douwe Sminia
  */
-public class ReplenishableGoodPerk implements Perk, Harvestable, Refreshable {
+public class ReplenishableGoodPerk implements Harvestable, Refreshable {
 
     private int original_value = 2;
     private int value = 0;

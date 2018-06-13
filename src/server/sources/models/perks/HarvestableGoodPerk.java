@@ -9,7 +9,7 @@ import server.sources.models.goods.*;
  *
  * @author Jan Douwe Sminia
  */
-public class HarvestableGoodPerk implements Perk, Harvestable {
+public class HarvestableGoodPerk implements Harvestable {
     private Good good;
     private int amountLeft = 2;
 
