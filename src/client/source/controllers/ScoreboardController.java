@@ -47,7 +47,7 @@ public class ScoreboardController implements ControllerInterface {
 
     /**
      * This is for populating a scoreboard with all the scores.
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public void populateScoreBoard() {
         // TODO: Populate all data in a tableview.
@@ -141,7 +141,7 @@ public class ScoreboardController implements ControllerInterface {
     /**
      * This is for setting a client. How can we retrieve all clients if each of them is not set.
      * @param client
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public void setClient(Client client) {
         this.client = client;

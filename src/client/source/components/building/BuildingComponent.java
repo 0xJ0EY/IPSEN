@@ -11,6 +11,10 @@ import server.sources.models.perks.Perk;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that loads a building components ready to be set on containers in aboveview, marketview, etc.
+ * Created by Joey de Ruiter and before Robin (redundant code)
+ */
 public class BuildingComponent extends AnchorPane {
 
     protected BuildingInterface building;
@@ -32,6 +36,10 @@ public class BuildingComponent extends AnchorPane {
         }
     }
 
+    /**
+     * Loads buildcomponent and is set on container.
+     * @author Richard Kerkvliet and Joey de Ruiter (for refactoring)
+     */
     public void load() {
         try {
             for (Perk perk : this.building.listPerks()) {
@@ -62,10 +70,20 @@ public class BuildingComponent extends AnchorPane {
         }
     }
 
+    /**
+     * Setting a model.
+     * @param building BuildingInterface
+     * @author Joey de Ruiter
+     */
     public void setModel(BuildingInterface building) {
         this.building = building;
     }
 
+    /**
+     * Gets the model.
+     * @return building
+     * @author Joey de Ruiter
+     */
     public BuildingInterface getModel() {
         return this.building;
     }

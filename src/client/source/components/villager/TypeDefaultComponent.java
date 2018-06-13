@@ -6,6 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * This class allows to create default villager components
+ * @author Robin Silverio
+ */
 public class TypeDefaultComponent extends VillagerType {
 
     public TypeDefaultComponent() {

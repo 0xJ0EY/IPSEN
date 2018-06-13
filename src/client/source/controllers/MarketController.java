@@ -36,6 +36,7 @@ public class MarketController implements Observable {
      * For setting a client
      *
      * @param client
+     * @author Joey de Ruiter
      */
     public void registerClient(Client client) {
         this.client = client;
@@ -43,6 +44,10 @@ public class MarketController implements Observable {
         this.client.marketObserver.attach(this);
     }
 
+    /**
+     * Refreshes buildings in market
+     * @author Joey de Ruiter
+     */
     public void clickRefreshHouses() {
 
         try {
@@ -54,6 +59,11 @@ public class MarketController implements Observable {
 
     }
 
+
+    /**
+     * Observes all updates in marketview.
+     * @author Joey de Ruiter
+     */
     @Override
     public void updateObserver() {
         this.market = this.client.marketObserver.getState();
@@ -72,6 +82,11 @@ public class MarketController implements Observable {
 
     }
 
+    /**
+     * Create villagerscomponents so that can be stocked in market in case that a player wants to buy
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     private void createVillagerComponents() throws RemoteException {
         this.villagers.getChildren().clear();
 
@@ -91,6 +106,10 @@ public class MarketController implements Observable {
         }
     }
 
+    /**
+     * For creating housecomponents and storing them in a housescontainer in market.
+     * @author Richard Kerkvliet
+     */
     private void createHouseComponents() throws RemoteException {
         this.houses.getChildren().clear();
 
@@ -103,6 +122,11 @@ public class MarketController implements Observable {
         }
     }
 
+
+    /**
+     * For creating keyhousecomponents and storing them in a keyhousescontainer in market.
+     * @author Richard Kerkvliet
+     */
     private void createKeyHouseComponents() throws RemoteException {
         this.keyhouses.getChildren().clear();
 
@@ -115,6 +139,10 @@ public class MarketController implements Observable {
         }
     }
 
+    /**
+     * For creating starhousecomponents and storing them in a starhousescontainer in market.
+     * @author Robin Silverio
+     */
     private void createStarHouseComponents() throws RemoteException {
         this.starhouses.getChildren().clear();
 
@@ -127,6 +155,10 @@ public class MarketController implements Observable {
         }
     }
 
+    /**
+     * For creating outpostcomponents and storing them in a outpostscontainer in market.
+     * @author Robin Silverio
+     */
     private void createOutpostsHouseComponents() throws RemoteException {
         this.outposts.getChildren().clear();
 

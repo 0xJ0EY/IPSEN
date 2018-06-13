@@ -1,7 +1,6 @@
 package server.sources.controllers;
 
 import client.source.Client;
-import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.ReputationBoardInterface;
 import server.sources.models.goods.Good;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 public class ReputationBoardController implements ReputationBoardInterface {
 
     private boolean cider = true;
-    private ArrayList<Good> goodsOnSale = new ArrayList<>();
 
     public boolean hasCider(){
         return this.cider;
@@ -23,11 +21,9 @@ public class ReputationBoardController implements ReputationBoardInterface {
         player.getPlayerBoard().addCider();
     }
 
+
     public void ciderReset(){
         this.cider = true;
     }
 
-    public void setGoodOnSale(Good good, Client target){
-        this.goodsOnSale.add(good);
-    }
 }

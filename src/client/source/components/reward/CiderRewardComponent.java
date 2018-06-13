@@ -8,6 +8,10 @@ import server.sources.models.stories.rewards.CiderReward;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that creates cider reward
+ * Created by Richard Kerkvliet
+ */
 public class CiderRewardComponent extends RewardComponent<CiderReward> {
 
     public CiderRewardComponent() {

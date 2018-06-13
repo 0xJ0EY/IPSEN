@@ -1,8 +1,5 @@
 package server.sources.models.goods;
 
-import client.source.components.harvest.AmethystComponent;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.Serializable;
 
 public class AmethystGood implements Good {
@@ -12,7 +9,6 @@ public class AmethystGood implements Good {
         return "amethyst.png";
     }
 
-    @Override
     public boolean sameInstance(Good good) {
         return good instanceof AmethystGood;
     }

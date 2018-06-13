@@ -18,6 +18,10 @@ import server.sources.models.perks.Perk;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class that acts as an intermediary between a harvestview and model.
+ * Created by Jan Douwe Sminia.
+ */
 public class HarvestController implements SelectableControllerInterface {
 
     private Client client;
@@ -33,6 +37,10 @@ public class HarvestController implements SelectableControllerInterface {
     private ArrayList<Building> buildings = new ArrayList<Building>();
     private ArrayList<SelectableBuildingComponent> buildingComponents = new ArrayList<SelectableBuildingComponent>();
 
+    /**
+     * For loading all harvest buildings in harvestview.
+     * @author Jan Douwe Sminia
+     */
     public void load()  {
         try {
             this.buildings = playerBoard.getHarvestBuildings();
@@ -43,6 +51,10 @@ public class HarvestController implements SelectableControllerInterface {
         this.createBuildingComponents();
     }
 
+    /**
+     * For creating buildingcomponents and storing them in a buildingcontainer in harvest view.
+     * @author Jan Douwe Sminia
+     */
     private void createBuildingComponents() {
         if (this.buildings == null || this.buildings.size() == 0) return;
 
@@ -59,6 +71,12 @@ public class HarvestController implements SelectableControllerInterface {
         }
     }
 
+    /**
+     * For setting a client in harvest view.
+     * @param client, a player that uses the application to play game online
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Jan Douwe Sminia
+     */
     public void setClient(Client client) throws RemoteException {
         this.client = client;
 
@@ -66,6 +84,11 @@ public class HarvestController implements SelectableControllerInterface {
         this.playerBoard = this.client.getGameClient().getPlayer().getPlayerBoard();
     }
 
+    /**
+     * Of course, This is for getting an arraylist of all selectable buildingcomponents from each containers to be loaded in a building market.
+     * @return An arraylist of selectable buildings
+     * @author Jan Douwe Sminia
+     */
     @Override
     public ArrayList<SelectableBuildingComponent> getSelectedBuildingComponents() {
         ArrayList<SelectableBuildingComponent> buildings = new ArrayList<SelectableBuildingComponent>();
@@ -77,10 +100,20 @@ public class HarvestController implements SelectableControllerInterface {
         return buildings;
     }
 
+    /**
+     * For setting a harvest action
+     * @param harvest HarvestAction
+     * @author Jan Douwe Sminia
+     */
     public void setHarvest(HarvestAction harvest) {
         this.harvest = harvest;
     }
 
+    /**
+     * Confirms the harvest action after selecting buildings to harvest goods.
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Jan Douwe Sminia
+     */
     @FXML
     public void onClickConfirm() throws RemoteException {
         ArrayList<SelectableBuildingComponent> selected = this.getSelectedBuildingComponents();
@@ -105,6 +138,11 @@ public class HarvestController implements SelectableControllerInterface {
         this.client.getGameClient().requestAction(harvest);
     }
 
+    /**
+     * Displays a harvestview.
+     * @return a loaded harvest.FXML
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public Parent show() throws RemoteException{
         return root;

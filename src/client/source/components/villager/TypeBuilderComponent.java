@@ -6,6 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * This class allows to create builder villager components
+ * @author Richard Kerkvliet
+ */
 public class TypeBuilderComponent extends VillagerType {
 
     public TypeBuilderComponent() {

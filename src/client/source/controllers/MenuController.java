@@ -15,6 +15,9 @@ import server.sources.interfaces.PlayerInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class that acts as an intermediator between menuview and models
+ */
 public class MenuController implements Observable {
 
     private enum Tabs { ABOVE, BELOW, MARKET, TURN, SETTINGS, RULES }
@@ -32,7 +35,10 @@ public class MenuController implements Observable {
 
     private ObservableList<String> playerItems = FXCollections.observableArrayList();
 
-
+    /**
+     * Loads all players registrated in a listview after they have entered the game environment.
+     * @author Joey de Ruiter
+     */
     @FXML public void initialize() {
         this.playerList.setItems(playerItems);
     }
@@ -89,6 +95,10 @@ public class MenuController implements Observable {
         this.client.turnObserver.attach(this);
     }
 
+    /**
+     * Observes any updates in the menu view
+     * @author Joey de Ruiter
+     */
     @Override
     public void updateObserver() {
 

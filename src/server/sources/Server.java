@@ -47,6 +47,17 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     }
 
+    /**
+     * Register a client
+     * This will also create a player object in the GameController.
+     *
+     * @author Joey de Ruiter
+     * @param gameClient
+     * @param username
+     * @throws ServerFullException when server is full
+     * @throws GameStartedException when the game has already started
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public void registerClient(GameClientInterface gameClient, String username) throws ServerFullException, GameStartedException, RemoteException {
         if (this.gameClients.size() >= this.SERVER_MAX_PLAYER) throw new ServerFullException();
@@ -77,7 +88,14 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.notifyClients(new UpdatePlayerListNotification(players));
     }
 
-
+    /**
+     * Unregister the player.
+     * This will also remove the player object form the GameController.
+     *
+     * @author Joey de Ruiter
+     * @param gameClient
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public void unregisterClient(GameClientInterface gameClient) throws RemoteException {
 
@@ -94,7 +112,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     /**
      * Always promote the first client in the list
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     private void promoteOwner() throws RemoteException {
 
@@ -147,6 +165,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.state = state;
     }
 
+    /**
+     * Send the GameController
+     *
+     * @author Joey de Ruiter
+     * @param target
+     */
     public void save(GameClientInterface target) {
 
         try {
@@ -157,6 +181,13 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     }
 
+    /**
+     * Load the gameController from a other gameController that was created from a byte array.
+     *
+     * @author Joey de Ruiter
+     * @param gameController
+     * @throws RemoteException java.rmi.RemoteException
+     */
     public void load(GameController gameController) throws RemoteException {
 
         if (gameController.players.size() != this.gameController.players.size()) {
