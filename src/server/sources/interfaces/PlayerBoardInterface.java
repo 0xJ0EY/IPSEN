@@ -101,6 +101,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public ArrayList<Good> getGoods() throws RemoteException;
 
+    public void goodSold(int index) throws RemoteException;
+
     public void payCoin(int price) throws RemoteException;
 
     public void addHouse(House building) throws RemoteException;
