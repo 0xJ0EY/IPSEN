@@ -6,11 +6,11 @@
  
  - [ ] Turn controller.  
 
-       Disable de knop van harvest als er geen villagers / buildings zijn
-       Disable de knop van build als er geen builders zijn
-       Disable de knop van explore als er minder dan actieve 2 villagers zijn
-       Disable de knop van labor als er geen actieve villagers is
-       Disable de knop van trainer als er geen actieve trainers zijn    
+       Disable de knop van harvest als er geen villagers / harvestable buildings zijn
+       Disable de knop van build als er geen builders zijn (werkt)
+       Disable de knop van explore als er minder dan actieve 2 villagers zijn (werkt)
+       Disable de knop van labor als er geen actieve villagers is (werkt)
+       Disable de knop van trainer als er geen actieve trainers zijn (werkt)
  
  - [ ] Trainen villager.
  
