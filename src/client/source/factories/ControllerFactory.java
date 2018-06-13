@@ -6,6 +6,10 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+/**
+ * A Class that allows to create controllers
+ * Created by Joey de Ruiter
+ */
 public class ControllerFactory {
 
     private Client client;
@@ -94,6 +98,11 @@ public class ControllerFactory {
         return explore;
     }
 
+    /**
+     * For loading a train reward view after recruiting a villager.
+     * @return train reward view
+     * @author Richard Kerkvliet
+     */
     public RewardController createRewardView(){
         RewardController reward = null;
 
@@ -110,6 +119,11 @@ public class ControllerFactory {
         return reward;
     }
 
+    /**
+     * For loading a train reward view after recruiting a villager.
+     * @return train reward view
+     * @author Richard Kerkvliet
+     */
     public TrainRewardController createTrainRewardView(){
         TrainRewardController trainRewardController = null;
 
@@ -129,7 +143,7 @@ public class ControllerFactory {
     /**
      * Load the view and controller of build
      * @return the assinged controller
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public BuildController createBuild() {
         BuildController build = null;
@@ -147,6 +161,11 @@ public class ControllerFactory {
         return build;
     }
 
+    /**
+     * For loading a train market view.
+     * @return train market view
+     * @author Joey de Ruiter
+     */
     public TrainController createTrain() {
         TrainController trainController = null;
 
@@ -166,6 +185,7 @@ public class ControllerFactory {
     /**
      * Load the view and controller of villager selection
      * @return the assinged controller
+     * @author Joey de Ruiter
      */
     public VillagerSelectionController createVillagerSelection() {
         VillagerSelectionController villagerSelection = null;
@@ -183,6 +203,11 @@ public class ControllerFactory {
         return villagerSelection;
     }
 
+    /**
+     * For loading harvest view.
+     * @return harvest view
+     * @author Jan Douwe Sminia
+     */
     public HarvestController createHarvestSelection(){
         HarvestController harvestSelection = null;
 
@@ -199,6 +224,11 @@ public class ControllerFactory {
         return  harvestSelection;
     }
 
+    /**
+     * For loading an explore party view
+     * @return explore party view
+     * @author Richard Kerkvliet
+     */
     public ExplorePartyController createExploreParty() {
         ExplorePartyController explorePartyController = null;
 
@@ -215,6 +245,11 @@ public class ControllerFactory {
         return explorePartyController;
     }
 
+    /**
+     * For loading a scoreboard view.
+     * @return scoreboard view
+     * @author Robin Silverio
+     */
     public ScoreboardController createScoreBoard(){
         ScoreboardController scoreboardController = null;
 
@@ -232,6 +267,11 @@ public class ControllerFactory {
         return scoreboardController;
     }
 
+    /**
+     * For loading a villager rest view
+     * @return villager rest view
+     * @author Richard Kerkvliet
+     */
     public VillagerRestController createVillagerRest() {
         VillagerRestController villagerRestController = null;
 

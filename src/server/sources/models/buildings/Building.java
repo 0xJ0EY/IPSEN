@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 /**
- * Created by robin on 24-5-2018.
+ * House
  */
 public class Building implements BuildingInterface {
 
@@ -19,23 +19,48 @@ public class Building implements BuildingInterface {
     protected ArrayList<Perk> perks;
 
     private UUID uuid = UUID.randomUUID();
+    protected String background = "";
 
-    // TODO: Add the background url in the constructor
-    protected String background = "house_0.png";
-
-    public Building(int cost, ArrayList<Perk> perks) {
+    /**
+     * creates a Building.
+     * @param cost
+     * @param perks
+     * @param background
+     * @author Robin Silverio
+     */
+    public Building(int cost, ArrayList<Perk> perks, String background) {
         this.cost = cost;
         this.perks = perks;
+        this.background = background;
     }
 
+    /**
+     * returns the cost of the building.
+     * @return cost int
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
+     */
     public int getCost() throws RemoteException {
         return this.cost;
     }
 
+    /**
+     * returns the perks of the building.
+     * @return Perks ArrayList
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
+     */
+    @Override
     public ArrayList<Perk> listPerks() throws RemoteException {
         return this.perks;
     }
 
+    /**
+     * returns if the building has a harvestable perk
+     * @return harvestable boolean
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
+     */
     @Override
     public boolean isHarvestable() throws RemoteException {
         if (this.perks == null || this.perks.size() == 0) return false;
@@ -49,16 +74,35 @@ public class Building implements BuildingInterface {
         return harvestable;
     }
 
+    /**
+     * Returns the background of the building
+     * @return background String
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     @Override
     public String getBackground() throws RemoteException {
         return this.background;
     }
 
+    /**
+     * checks if the buildings UUID is equal.
+     * @param building
+     * @return boolean
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     @Override
     public boolean equals(BuildingInterface building) throws RemoteException {
         return this.uuid.equals(building.getUUID());
     }
 
+    /**
+     * returns the UUID of the building.
+     * @return UUID
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     @Override
     public UUID getUUID() throws RemoteException {
         return this.uuid;

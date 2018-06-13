@@ -3,12 +3,23 @@ package client.source.factories;
 import client.source.components.villager.MultibleSelectableVillagerComponent;
 import client.source.components.villager.SelectableVillagerComponent;
 
-
+/**
+ * A Class that allows to create a factory for creating multiple selectable villagers.
+ * Created by Joey de Ruiter
+ */
 public class MultipleSelectionFactory extends VillagerSelectionComponentFactory {
 
+    /**
+     * A implemented method from a superclass that returns selectable villager components.
+     * @return selectable villager components
+     * @author Joey de Ruiter
+     */
     @Override
     public SelectableVillagerComponent createComponent() {
-        return new MultibleSelectableVillagerComponent();
+        SelectableVillagerComponent component = new MultibleSelectableVillagerComponent();
+        component.setController(this.controller);
+
+        return component;
     }
 
 }

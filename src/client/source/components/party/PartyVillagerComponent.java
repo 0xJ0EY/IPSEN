@@ -14,6 +14,10 @@ import server.sources.models.villagers.Villager;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This is explicitly for creating villager component where player uses the dice in order to obtain lanterns
+ * Created by Richard Kerkvliet
+ */
 public class PartyVillagerComponent extends VBox {
 
     private ExplorePartyController explorePartyController;
@@ -44,7 +48,7 @@ public class PartyVillagerComponent extends VBox {
         }
 
         this.background.setStyle(
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                         "-fx-background-repeat: stretch;" +
                         "-fx-background-position: center center;" +
                         "-fx-background-size: 110 200"

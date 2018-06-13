@@ -23,6 +23,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Class that acts as an intermediary between the aboveview and the model.
+ * Created by Joey de Ruiter.
+ */
 public class AboveController implements Observable {
 
     @FXML private Parent root;
@@ -30,12 +34,16 @@ public class AboveController implements Observable {
     @FXML private FlowPane activeVillagers;
     @FXML private FlowPane injuredVillagers;
     @FXML private FlowPane tiredVillagers;
-    @FXML private HBox buildings;
+    @FXML private FlowPane goods;
 
+    @FXML private HBox buildings;
     @FXML private HBox advancementTracker;
 
-    @FXML private FlowPane goods;
-    @FXML private Text points;
+    @FXML private Label labelCoins;
+    @FXML private Label labelCiders;
+    @FXML private Label labelPotions;
+    @FXML private Label labelBeds;
+    @FXML private Label labelIncome;
 
     private PlayerBoardInterface playerBoard;
 
@@ -43,13 +51,18 @@ public class AboveController implements Observable {
 
     /**
      * For setting a client
-     * @param client
+     * @param client Client
+     * @author Joey de Ruiter
      */
     public void registerClient(Client client) {
         this.client = client;
         this.client.playerBoardObserver.attach(this);
     }
 
+    /**
+     * This is for observing any updates after ending turns and rounds or performing actions made by a player.
+     * @author Joey de Ruiter
+     */
     @Override
     public void updateObserver() {
         this.playerBoard = this.client.playerBoardObserver.getState();
@@ -57,24 +70,99 @@ public class AboveController implements Observable {
         this.updateBeds();
         this.updateCiders();
         this.updatePotions();
+        this.updateIncome();
+        this.updateCoins();
         this.updateVillagers();
         this.updateBuildings();
         this.updateGoods();
         this.updateAdvancementTracker();
     }
 
+    /**
+     * This is for updating amount of beds.
+     * @author Joey de Ruiter
+     */
     private void updateBeds() {
+        int count = 0;
 
+        try {
+            count = this.playerBoard.getBeds();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelBeds.setText(String.format(count == 1 ? "%s bed" : "%s beds", count));
     }
 
+    /**
+     * Of course, for updating amount of ciders that a player has in its possession after performing an action.
+     * @author Joey de Ruiter
+     */
     private void updateCiders() {
+        int count = 0;
+
+        try {
+            count = this.playerBoard.getCiders();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelCiders.setText(String.format(count == 1 ? "%s cider" : "%s ciders", count));
 
     }
 
+    /**
+     * For updating amount of potions that a player has in its possession after performing an action or when the round ends.
+     * @author Joey de Ruiter
+     */
     private void updatePotions() {
+        int count = 0;
 
+        try {
+            count = this.playerBoard.getPotions();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelPotions.setText(String.format(count == 1 ? "%s potion" : "%s potions", count));
     }
 
+    /**
+     * For updating amount of income that a player has in its possession after performing an action or when the round ends.
+     * @author Joey de Ruiter
+     */
+    private void updateIncome() {
+        int count = 0;
+
+        try {
+            count = this.playerBoard.getAdvancementTracker().calculateCoins();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelIncome.setText(String.format(count == 1 ? "%s coin" : "%s coins", count));
+    }
+
+    /**
+     * For updating amount of coins that a player has in its possession after performing an action or when the round ends.
+     * @author Joey de Ruiter
+     */
+    private void updateCoins() {
+        int count = 0;
+
+        try {
+            count = this.playerBoard.getCoins();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.labelCoins.setText(String.format(count == 1 ? "+%s coin" : "+%s coins", count));
+    }
+
+    /**
+     * For updating a container of villagers that a player has chosen after performing an action or when the round ends it will return to default.
+     * @author Joey de Ruiter
+     */
     private void updateVillagers() {
 
         this.activeVillagers.getChildren().clear();
@@ -110,6 +198,10 @@ public class AboveController implements Observable {
         }
     }
 
+    /**
+     * For updating a container of buildings that a player has bought after performing an action 'build' or when the round ends it will return to default.
+     * @author Joey de Ruiter
+     */
     private void updateBuildings() {
         this.buildings.getChildren().clear();
 
@@ -129,6 +221,10 @@ public class AboveController implements Observable {
         }
     }
 
+    /**
+     * For updating a container of available goods
+     * @author Joey de Ruiter
+     */
     // TODO: Move to its own controller?
     private void updateGoods() {
         this.goods.getChildren().clear();
@@ -154,6 +250,10 @@ public class AboveController implements Observable {
         }
     }
 
+    /**
+     * For updating a container of advancement tracker with goods, points, etc.
+     * @author Joey de Ruiter
+     */
     // TODO: Move to its own controller?
     private void updateAdvancementTracker() {
         this.advancementTracker.getChildren().clear();

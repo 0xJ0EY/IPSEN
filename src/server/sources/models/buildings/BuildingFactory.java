@@ -25,6 +25,11 @@ public class BuildingFactory {
 
     private Document document;
 
+    /**
+     * Creates a buildingFactory
+     * @throws ParserConfigurationException
+     * @author Robin Silverio
+     */
     public BuildingFactory() throws ParserConfigurationException {
 
         try {
@@ -36,7 +41,11 @@ public class BuildingFactory {
 
     }
 
-    //Read Houses from building XML
+    /**
+     * Read Houses from building XML.
+     * @return MarketHouses Arraylist
+     * @author Robin Silverio
+     */
     public ArrayList<MarketHouse> loadHousesFromXML(){
         ArrayList<MarketHouse> housesArrayList = new ArrayList<MarketHouse>();
 
@@ -49,13 +58,17 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode)));
+            housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
 
         return housesArrayList;
     }
 
-    //Read Star Houses from building XML
+    /**
+     * Read Star Houses from building XML
+     * @return MarketStarHouses ArrayList
+     * @author Robin Silverio
+     */
     public ArrayList<MarketStarHouse> loadStarHousesFromXML(){
         ArrayList<MarketStarHouse> starHousesArrayList = new ArrayList<MarketStarHouse>();
 
@@ -67,12 +80,16 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode)));
+            starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
         return starHousesArrayList;
     }
 
-    //Read Key Houses from building XML
+    /**
+     * Read Key Houses from building XML
+     * @return MarketKeyHouses ArrayList
+     * @author Robin Silverio
+     */
     public ArrayList<MarketKeyHouse> loadKeyHousesFromXML(){
         ArrayList<MarketKeyHouse> keyHousesArrayList = new ArrayList<MarketKeyHouse>();
 
@@ -84,13 +101,17 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode)));
+            keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
 
         return keyHousesArrayList;
     }
 
-    //Read Outposts from building XML
+    /**
+     * Read outposts from building XML
+     * @return MarketOutpost ArrayList
+     * @author Robin Silverio
+     */
     public ArrayList<MarketOutpost> loadOutpostsFromXML(){
         ArrayList<MarketOutpost> outpostsArrayList = new ArrayList<MarketOutpost>();
 
@@ -102,17 +123,12 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode)));
+            outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
         }
 
         return outpostsArrayList;
     }
 
-    /**
-     * This is for fetching perks per building object
-     * @param buildingNode
-     * @return perks
-     */
     private ArrayList<Perk> fetchPerk(Node buildingNode) {
         ArrayList<Perk> perks = new ArrayList<Perk>();
 

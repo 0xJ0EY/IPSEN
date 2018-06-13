@@ -1,7 +1,6 @@
 package server.sources.controllers;
 
 import client.source.Client;
-import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.ReputationBoardInterface;
 import server.sources.models.goods.Good;
@@ -22,7 +21,8 @@ public class ReputationBoardController implements ReputationBoardInterface {
         player.getPlayerBoard().addCider();
     }
 
-    public void firstCiderReset(){
+
+    public void ciderReset(){
         this.cider = true;
     }
 

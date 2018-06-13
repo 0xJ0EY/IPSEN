@@ -6,6 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * This class allows to create trainer villager components
+ * @author Robin Silverio
+ */
 public class TypeTrainerComponent extends VillagerType {
 
     public TypeTrainerComponent() {

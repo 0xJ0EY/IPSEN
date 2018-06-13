@@ -5,17 +5,18 @@ import javafx.fxml.FXML;
 
 import java.util.ArrayList;
 
+/**
+ * This class allows to create single selectable villager components
+ * @author Joey de Ruiter
+ */
 public class SingleSelectableVillagerComponent extends SelectableVillagerComponent {
 
-    private VillagerSelectionController controller;
-
-    public void setController(VillagerSelectionController controller) {
-        this.controller = controller;
-    }
-
+    /**
+     * For selecting villagers
+     * @author Joey de Ruiter
+     */
     @FXML
     public void onClickSelect() {
-
         // Deselect all other villagers
         this.deselectVillagers();
 

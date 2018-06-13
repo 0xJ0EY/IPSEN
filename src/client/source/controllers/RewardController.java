@@ -9,11 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.EndTurnAction;
 import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.stories.Reward;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A class that acts as an intermediate between a rewardview and models.
+ * Created by Richard Kerkvliet.
+ */
 public class RewardController implements ControllerInterface, Observable {
 
     @FXML private Parent root;
@@ -33,11 +38,21 @@ public class RewardController implements ControllerInterface, Observable {
         this.client.clientObserver.attach(this);
     }
 
+    /**
+     * Loads all rewards in rewardsview
+     * @return a loaded reward.fxml
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
-    public Parent show() {
+    public Parent show() throws RemoteException {
 
         for (Reward reward: rewards) {
-            this.rewardComponent.getChildren().add(rewardType(reward));
+
+            RewardComponent rewardComponent = rewardType(reward);
+            rewardComponent.setModel(reward);
+            rewardComponent.load();
+            
+            this.rewardComponent.getChildren().add(rewardComponent);
         }
 
         this.updateObserver();
@@ -48,6 +63,10 @@ public class RewardController implements ControllerInterface, Observable {
         return reward.getRewardComponent();
     }
 
+    /**
+     * Observes all updates in rewardview.
+     * @author Richard Kerkvliet.
+     */
     @Override
     public void updateObserver() {
         PlayerInterface target = this.client.turnObserver.getState();
@@ -61,10 +80,20 @@ public class RewardController implements ControllerInterface, Observable {
         }
     }
 
+    /**
+     * Setting rewards on rewardview
+     * @param rewards
+     * @author Richard Kerkvliet
+     */
     public void setRewards(ArrayList<Reward> rewards){
         this.rewards = rewards;
     }
 
+    /**
+     * Ends turn when player clicks on end turn button.
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Richard Kerkvliet
+     */
     public void onClickEndTurn() throws RemoteException {
         try {
             client.getGameClient().getPlayer().doAction(new EndTurnAction());

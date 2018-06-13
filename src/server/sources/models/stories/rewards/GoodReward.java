@@ -9,15 +9,33 @@ import server.sources.models.stories.Reward;
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
 
+/**
+ * This class creates a GoodReward Reward.
+ * @author Richard Kerkvliet
+ */
 public class GoodReward extends Reward {
     private Good good;
     private int value;
 
+    /**
+     * creates the GoodReward.
+     * @param good
+     * @param value
+     * @author Richard Kerkvliet
+     */
     public GoodReward(Good good, int value){
         this.good = good;
         this.value = value;
     }
 
+    /**
+     * Overrides the execute of Reward.
+     * adds a Good to the PlayerBoard.
+     * @param client
+     * @throws RemoteException java.rmi.RemoteException
+     * @throws ParserConfigurationException
+     * @author Richard Kerkvliet
+     */
     @Override
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         super.execute(client);
@@ -28,6 +46,20 @@ public class GoodReward extends Reward {
         System.out.println("goods: "+ playerBoard.getGoods());
     }
 
+    /**
+     * returns the type of the Good.
+     * @return Good good
+     * @author Richard Kerkvliet
+     */
+    public Good isGood(){
+        return good;
+    }
+
+    /**
+     * returns a new GoodRewardComponent.
+     * @return GoodRewardComponent RewardComponent
+     * @author Richard Kerkvliet
+     */
     @Override
     public RewardComponent getRewardComponent() {
         return new GoodRewardComponent();

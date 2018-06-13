@@ -18,6 +18,10 @@ import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * A Class that acts as a intermediary between a lobbyview and model.
+ * Created by Joey de Ruiter
+ */
 public class LobbyController implements ControllerInterface, Observable {
 
     protected Client client;
@@ -34,7 +38,7 @@ public class LobbyController implements ControllerInterface, Observable {
 
     /**
      * For setting a client
-     * @param client
+     * @param client Client
      */
     public void registerClient(Client client) throws RemoteException {
         this.client = client;
@@ -43,11 +47,19 @@ public class LobbyController implements ControllerInterface, Observable {
         this.client.clientObserver.attach(this);
     }
 
+    /**
+     * Loads all registrated clients in a listview of lobbyview
+     * @author Joey de Ruiter
+     */
     @FXML
     public void initialize() {
         this.lobbyList.setItems(this.listItems);
     }
 
+    /**
+     * Observes all updates of lobbyview
+     * @author Joey de Ruiter
+     */
     @Override
     public void updateObserver() {
         ArrayList<PlayerInterface> players = this.client.clientObserver.getState();
@@ -70,12 +82,19 @@ public class LobbyController implements ControllerInterface, Observable {
         }
     }
 
-    
+    /**
+     * Starts a game, allowing clients to enter the game environment.
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @FXML
     void onClickStart() throws RemoteException {
         this.client.getGameClient().requestRequest(new StartGameRequest());
     }
 
+    /**
+     * Loads saved game.
+     * @author Joey de Ruiter
+     */
     @FXML
     public void onClickLoad() {
 
@@ -109,7 +128,7 @@ public class LobbyController implements ControllerInterface, Observable {
 
     /**
      * Disconnect the client from the gameController
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     @FXML
     public void onClickDisconnect() throws RemoteException {

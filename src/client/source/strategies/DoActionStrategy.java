@@ -5,6 +5,10 @@ import server.sources.interfaces.GameClientInterface;
 
 import java.rmi.RemoteException;
 
+/**
+ * Use the strategies pattern to change the way the action class handles
+ * the actions
+ */
 public class DoActionStrategy implements VillagerSelectionStrategy {
 
     @Override

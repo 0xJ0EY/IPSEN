@@ -1,12 +1,11 @@
 package server.sources.controllers;
 
+import client.source.controllers.BelowController;
+import client.source.observers.Observable;
 import server.sources.interfaces.*;
 import server.sources.models.Market;
 import server.sources.models.Player;
-import server.sources.notifications.EndOfGameNotification;
-import server.sources.notifications.GameStartedNotification;
-import server.sources.notifications.MessageNotification;
-import server.sources.notifications.RestPlayerNotification;
+import server.sources.notifications.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -25,7 +24,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     private final int MAX_ROUNDS = 7;
 
-    private int round = 0;
+    private int round = 1;
     private int turn = 0;
 
     private StoryController stories = new StoryController();
@@ -42,7 +41,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.stories.load();
     }
 
-    public void play()throws RemoteException {
+    public void play() throws RemoteException {
 
         this.startGame();
 
@@ -55,16 +54,26 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private void startGame() throws RemoteException {
         this.setGameState(GameStates.STARTED);
 
+        // Update the playerboard
+        for (Player player : this.players) {
+            player.getGameClient().receiveNotification(
+                new UpdatePlayerBoardNotification(player.getPlayerBoard()
+            ));
+        }
+
         // Send everyone to the main screen
         System.out.println("[Game] Started");
         this.server.notifyClients(new GameStartedNotification());
 
+        // Notify clients of the market / reputation board
+        this.server.notifyClients(new MarketUpdateNotification(this.market));
+        this.server.notifyClients(new GameControllerUpdateNotifcation(this));
     }
 
     public void runGame() throws RemoteException {
         this.setGameState(GameStates.RUNNING);
 
-        while (!this.gameHasEnded()) {
+        while (true) {
 
             do {
                 Player player = players.get((this.round + this.turn) % players.size());
@@ -89,21 +98,18 @@ public class GameController extends UnicastRemoteObject implements GameControlle
                 this.turn++;
             } while(!this.roundHasEnded());
 
-            if (this.gameHasEnded()) {
-                this.server.notifyClients(new EndOfGameNotification());
-                break;
-            }
-
-            this.restVillagers();
+            if (this.gameHasEnded()) { break; }
 
             this.endOfRound();
-
-            this.turn = 0;
-            this.round++;
         }
 
     }
 
+    /**
+     * Request and then poll for all the players to rest thier villagers
+     * @author Joey de Ruiter
+     * @throws RemoteException java.rmi.RemoteException
+     */
     private void restVillagers() throws RemoteException {
         boolean hasAction = true;
 
@@ -176,24 +182,27 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     }
 
     /**
-     * Replenish stores, Reset villagers, etc.. after the round.
+     * Increment round counter
+     * Reset turn indicator
+     * Reset players and add rewards, etc ...
      * @author Joey de Ruiter
+     * @throws RemoteException java.rmi.RemoteException
      */
-    private void endOfRound() {
-        try {
-            // Reset turn
-            this.turn = 0;
+    private void endOfRound() throws RemoteException {
+        this.restVillagers();
 
-            // Reset villagers, so they can sleep again
-            for (Player player : this.players) {
-                player.getPlayerBoard().endOfRound();
-            }
+        // Reset turn
+        this.turn = 0;
 
+        // Update round marker
+        this.round++;
 
-
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        // Reset villagers, so they can sleep again
+        for (Player player : this.players) {
+            player.getPlayerBoard().endOfRound();
         }
+
+        this.updateObserver();
     }
 
     private boolean gameHasEnded() {
@@ -204,24 +213,51 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.gameState = gameState;
     }
 
-    @Override
-    public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException {
-        // Im casting some black magic right here
-        return (ArrayList<PlayerInterface>) (ArrayList<?>) this.players;
-
-    }
-
+    /**
+     * Return the story object so the StoryAction can generate stories
+     *
+     * @author Richard Kerkvliet
+     * @return StoryControllerInterface
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public StoryControllerInterface getStories() throws RemoteException {
         return (StoryControllerInterface) stories;
     }
 
+    /**
+     * Return the market interface so we can buy stuff.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public MarketInterface getMarket() throws RemoteException {
         return (MarketInterface) market;
     }
 
-    public ReputationBoardInterface getReputationBoard(){
+    /**
+     * Return the reputation board, this will keep track of the cider and the reputation.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    public ReputationBoardInterface getReputationBoard() throws RemoteException {
         return (ReputationBoardInterface) reputationboard;
+    }
+
+    @Override
+    public int getCurrentRound() throws RemoteException {
+        return this.round;
+    }
+
+    public void updateObserver() {
+        try {
+            this.server.notifyClients(new GameControllerUpdateNotifcation(this));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

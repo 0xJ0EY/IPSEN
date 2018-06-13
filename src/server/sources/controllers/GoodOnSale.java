@@ -21,7 +21,7 @@ public class GoodOnSale implements GoodOnSaleInterface {
 
     }
 
-    public Good getGood(){
+    public Good getGood() {
         return goodOnSale;
 
     }

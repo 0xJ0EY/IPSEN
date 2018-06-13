@@ -1,16 +1,21 @@
 package client.source.components.villager;
 
+import client.source.controllers.VillagerSelectionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import server.sources.interfaces.VillagerInterface;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This class allows to create selectable villager components
+ * @author Richard Kerkvliet
+ */
 public abstract class SelectableVillagerComponent extends VillagerComponent {
 
+    protected VillagerSelectionController controller;
+
+    protected boolean selectable = true;
     protected boolean selected;
 
     public SelectableVillagerComponent() {
@@ -29,26 +34,54 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
     @FXML
     public abstract void onClickSelect();
 
+    /**
+     * For deselecting villager.
+     * @author Richard Kerkvliet
+     */
     public void deselect() {
         this.selected = false;
         this.update();
     }
 
+    /**
+     * For selecting villager.
+     * @author Richard Kerkvliet
+     */
     public void select() {
+        if (!this.isSelectable()) {
+            this.controller.showMessage("You already have selected the maximum amount of villagers.");
+            return;
+        }
+
         this.selected = true;
         this.update();
     }
 
+    /**
+     * For checking if villager has been selected.
+     * @return boolean state (TRUE or FALSE)
+     * @author Richard Kerkvliet
+     */
     public boolean isSelected() {
         return this.selected;
     }
 
+    /**
+     * Warns the player that the villager has been selected by toggling selected villagers.
+     * @author Richard Kerkvliet
+     */
     public void toggleSelected() {
-        this.selected = !this.selected;
-        this.update();
+        if (this.isSelected()) {
+            this.deselect();
+        }
+        else {
+            this.select();
+        }
     }
 
     protected void update() {
+        this.controller.update();
+
         if (this.selected) {
             this.showIndicator();
         } else {
@@ -60,7 +93,7 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);" +
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 115 205"
@@ -75,7 +108,7 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
         try {
             this.background.setStyle(
                 "-fx-effect: dropshadow(three-pass-box, white, 0, 0, 0, 0);" +
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 110 200"
@@ -84,5 +117,27 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * For setting a controller
+     * @param controller VillagerSelectionController
+     * @author Joey de Ruiter
+     */
+    public void setController(VillagerSelectionController controller) {
+        this.controller = controller;
+    }
+
+    private boolean isSelectable() {
+        return this.selectable;
+    }
+
+    public void enableSelection() {
+        this.selectable = true;
+
+    }
+
+    public void disableSelection() {
+        this.selectable = false;
     }
 }

@@ -14,14 +14,23 @@ import java.util.ArrayList;
 public class MarketKeyHouse extends KeyHouse implements BuildingMarketInterface {
 
     /**
-     * For creating a KeyHouse object.
-     * @param price
+     * creates a MarketKeyHouse.
+     * @param cost
      * @param perks
-     * */
-    public MarketKeyHouse(int price, ArrayList<Perk> perks){
-        super(price, perks);
+     * @param background
+     * @author Robin Silverio
+     */
+    public MarketKeyHouse(int cost, ArrayList<Perk> perks, String background) {
+        super(cost, perks, background);
     }
 
+    /**
+     * Buys the house and adds it to the player.
+     * @param market
+     * @param gameClient
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     @Override
     public void buy(MarketInterface market, GameClientInterface gameClient) throws RemoteException {
         market.buyRemoteKeyHouse(gameClient, this);

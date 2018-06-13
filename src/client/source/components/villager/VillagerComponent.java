@@ -12,6 +12,10 @@ import server.sources.models.villagers.Trainable;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This class allows to create common villager components
+ * @author Robin Silverio
+ */
 public class VillagerComponent extends AnchorPane {
 
     protected VillagerInterface villager;
@@ -35,6 +39,11 @@ public class VillagerComponent extends AnchorPane {
         }
     }
 
+    /**
+     * For setting a model.
+     * @param villager VillagerInterface
+     * @author Joey de Ruiter
+     */
     public void setModel(VillagerInterface villager) {
         this.villager = villager;
     }
@@ -44,7 +53,7 @@ public class VillagerComponent extends AnchorPane {
             this.setType();
 
             this.background.setStyle(
-                "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
+                "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +
                 "-fx-background-size: 110 200"
@@ -54,6 +63,10 @@ public class VillagerComponent extends AnchorPane {
         }
     }
 
+    /**
+     * For getting a single villager
+     * @return
+     */
     public VillagerInterface getVillager() {
         return villager;
     }

@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 
 /**
- * This class is an component that can can be loaded in a controller.
- *
- * @author Jan Douwe Sminia
+ * A class that loads all goods
+ * Created by Joey de Ruiter
  */
 public class GoodComponent extends AnchorPane {
 
@@ -21,6 +20,8 @@ public class GoodComponent extends AnchorPane {
 
     /**
      * Loads a fxml file and activates it.
+     * For loading goodscomponents
+     * @author Joey de Ruiter
      */
     public GoodComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/good/good.fxml"));
@@ -49,6 +50,9 @@ public class GoodComponent extends AnchorPane {
 
     /**
      * @param good
+     * Setting a model
+     * @param good Good
+     * @author Robin Silverio
      */
     public void setModel(Good good) {
         this.good = good;

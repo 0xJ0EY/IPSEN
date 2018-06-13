@@ -10,11 +10,14 @@ import java.util.ArrayList;
 public class Outpost extends Building {
 
     /**
-     * For creating an outpost object.
-     * @param price
+     * creates a Outpost.
+     * @param cost
      * @param perks
-     * */
-    public Outpost(int price, ArrayList<Perk> perks){
-        super(price, perks);
+     * @param background
+     * @author Robin Silverio
+     */
+    public Outpost(int cost, ArrayList<Perk> perks, String background) {
+        super(cost, perks, background);
     }
+
 }

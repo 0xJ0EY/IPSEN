@@ -5,40 +5,49 @@ import client.source.components.building.BuildingComponent;
 import client.source.components.building.SelectableBuildingComponent;
 import client.source.components.building.SingleSelectableBuildingComponent;
 import client.source.components.villager.SelectableVillagerComponent;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import server.sources.actions.BuildAction;
 import server.sources.actions.CancelAction;
 import server.sources.actions.EndTurnAction;
+import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.BuildingMarketInterface;
 import server.sources.interfaces.MarketInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.models.buildings.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
+ * Class that acts as an intermediary between the buildview and the model.
  * Created by robin on 1-6-2018.
  */
-public class BuildController implements SelectableControllerInterface {
+public class BuildController implements SelectableControllerInterface, Observable {
+
+    private boolean buying = false;
 
     private Client client;
     private MarketInterface market;
 
     @FXML private Parent root;
     @FXML private Button refreshButton;
+    @FXML private Button cancelButton;
+    @FXML private Button buyButton;
 
     /**
      * Here are all buildingcontainers declared to store building cards in building market.
      */
-    @FXML private FlowPane housesContainer;
-    @FXML private FlowPane outpostsContainer;
-    @FXML private FlowPane keyHousesContainer;
-    @FXML private FlowPane starHousesContainer;
+    @FXML private HBox housesContainer;
+    @FXML private HBox outpostsContainer;
+    @FXML private HBox keyHousesContainer;
+    @FXML private HBox starHousesContainer;
 
     @FXML private Text message;
 
@@ -52,10 +61,12 @@ public class BuildController implements SelectableControllerInterface {
     private ArrayList<SelectableBuildingComponent> keyHouseComponents = new ArrayList<SelectableBuildingComponent>();
     private ArrayList<SelectableBuildingComponent> starHouseComponents = new ArrayList<SelectableBuildingComponent>();
 
+    private PlayerInterface target;
+
     private Thread messageThread;
 
     /**
-     * Load all the buildings required for the building controller
+     * Load all the buildings required for the building controller.
      * @author Joey de Ruiter
      */
     public void load() {
@@ -64,6 +75,7 @@ public class BuildController implements SelectableControllerInterface {
             this.outposts = market.listAvailableOutposts();
             this.keyHouses = market.listAvailableKeyHouses();
             this.starHouses = market.listAvailableStarHouses();
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -72,25 +84,56 @@ public class BuildController implements SelectableControllerInterface {
         this.createOutpostComponents();
         this.createKeyHouseComponents();
         this.createStarHouseComponets();
+
+        // Show or hide cancel and buy buttons
+        this.target = this.client.turnObserver.getState();
+
+        // No target, so its not even worth going here
+        if (target == null) return;
+
+        try {
+            boolean turn = target.getGameClient().equals(this.client.getGameClient());
+            this.cancelButton.setDisable(!turn);
+            this.buyButton.setDisable(!turn);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * This is for observing any updates after ending turns and rounds or performing actions made by a player.
+     * @author Joey de Ruiter
+     */
+    @Override
+    public void updateObserver() {
+        this.load();
+    }
+
+    /**
+     * For creating housecomponents and storing them in a housescontainer in building market.
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createHouseComponents() {
         if (this.houses == null || this.houses.size() == 0) return;
 
         this.housesContainer.getChildren().clear();
 
         for (House house : this.houses) {
-            SelectableBuildingComponent houseComponent = new SingleSelectableBuildingComponent();
+            SingleSelectableBuildingComponent houseComponent = new SingleSelectableBuildingComponent();
             houseComponent.setModel(house);
             houseComponent.setController(this);
             houseComponent.load();
 
             this.houseComponents.add(houseComponent);
             this.housesContainer.getChildren().add(houseComponent);
-
         }
     }
 
+    /**
+     * For creating outpostcomponents and storing them in an outpostscontainer in building market.
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createOutpostComponents() {
         if (this.outposts == null || this.outposts.size() == 0) return;
 
@@ -107,6 +150,10 @@ public class BuildController implements SelectableControllerInterface {
         }
     }
 
+    /**
+     * For creating keyhousecomponents and storing them in a keyhousescontainer in building market.
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createKeyHouseComponents() {
         if (this.keyHouses == null || this.keyHouses.size() == 0) return;
 
@@ -123,6 +170,10 @@ public class BuildController implements SelectableControllerInterface {
         }
     }
 
+    /**
+     * For creating starhousecomponents and storing them in a starhousescontainer in building market.
+     * @author Robin Silverio, Joey De Ruiter and Richard Kerkvliet
+     */
     private void createStarHouseComponets() {
         if (this.starHouses == null || this.keyHouses.size() == 0) return;
 
@@ -139,17 +190,34 @@ public class BuildController implements SelectableControllerInterface {
         }
     }
 
+    /**
+     * For setting a client in a view.
+     * @param client the player using this application to play the game
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter and Robin Silverio
+     */
     public void setClient(Client client) throws RemoteException {
         this.client = client;
 
         // Set market
         this.market = this.client.getGameClient().getServer().getGameController().getMarket();
+        this.client.marketObserver.attach(this);
     }
 
+    /**
+     * For displaying the view.
+     * @return a loaded build_market.FXML
+     * @author Robin Silverio
+     */
     public Parent show() {
         return this.root;
     }
 
+    /**
+     * Of course, This is for getting an arraylist of all selectable buildingcomponents from each containers to be loaded in a building market.
+     * @return An arraylist of selectable buildings
+     * @author Robin Silverio
+     */
     public ArrayList<SelectableBuildingComponent> getSelectedBuildingComponents() {
         ArrayList<SelectableBuildingComponent> buildings = new ArrayList<SelectableBuildingComponent>();
 
@@ -172,38 +240,76 @@ public class BuildController implements SelectableControllerInterface {
         return buildings;
     }
 
+    /**
+     * Performs a click eventhandling when player clicks on cancel button, he will be redirected to aboveview.
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Robin Silverio
+     */
     @FXML
     private void onClickCancel() throws RemoteException {
-        this.client.getGameClient().requestAction(new CancelAction());
+        this.client.showMain();
+//        this.client.getGameClient().requestAction(new CancelAction());
     }
 
+    /**
+     * Performs a click eventhandling when player clicks on buy button, so that he can build a building.
+     * @throws RemoteException java.rmi.RemoteException
+     * @author Joey de Ruiter
+     */
     @FXML
     private void onClickBuy() throws RemoteException {
+        if (!this.canBuy()) return;
+        this.disableBuying();
+
         ArrayList<SelectableBuildingComponent> selectedBuildings = this.getSelectedBuildingComponents();
+        SelectableBuildingComponent selected = selectedBuildings.get(0);
 
-        for (SelectableBuildingComponent selected : selectedBuildings) {
+        if (selected == null) {
+            this.showMessage("Please select a building.");
+            this.enableBuying();
+            return;
+        }
 
-            BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
+        if (selected.getModel().getCost() > this.target.getPlayerBoard().getCoins()) {
+            this.showMessage("Not sufficient funds.");
+            this.enableBuying();
+            return;
+        }
 
-            if (this.client.getGameClient().getPlayer().getPlayerBoard().getCoins() < selected.getModel().getCost()) {
-                this.showMessage("Not enough coins.");
-                return;
-            }
-
-            try {
-                building.buy(this.market, this.client.getGameClient());
-
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+        if (selected.getModel() instanceof Outpost && !target.getPlayerBoard().hasCaveCards()){
+            this.showMessage("Explore to get cave cards first");
+            this.enableBuying();
+            return;
         }
 
         try {
-            // TODO: Show reward screen
+            BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
+            building.buy(this.market, this.target.getGameClient());
+
             this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
+
         } catch (RemoteException e) {
             e.printStackTrace();
+        } finally {
+            this.enableBuying();
         }
+
+    }
+
+
+    private boolean canBuy() {
+        return !this.buying;
+    }
+
+
+    private void enableBuying() {
+        this.buying = false;
+        this.buyButton.setDisable(false);
+    }
+
+    private void disableBuying() {
+        this.buying = true;
+        this.buyButton.setDisable(true);
     }
 
     public void showMessage(String message) {
@@ -214,7 +320,7 @@ public class BuildController implements SelectableControllerInterface {
             this.message.setVisible(true);
 
             try {
-                Thread.sleep(1750);
+                Thread.sleep(1800);
             } catch (InterruptedException e) {
                 System.out.println("Message interrupted");
             } finally {

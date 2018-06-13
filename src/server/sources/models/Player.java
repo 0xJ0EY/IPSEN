@@ -41,37 +41,62 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
-
-        // Update the playerview, so it will be shown in the observer
-        this.board.updateObserver();
     }
 
     public boolean hasPassed() {
         return this.passed;
     }
 
-    public void pass() {
+    /**
+     * Set the pass flag for this player,
+     * that means the player wont get a turn this round anymore.
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    public void pass() throws RemoteException {
         this.passed = true;
     }
 
+    /**
+     * Request a doAction for the player turn.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException java.rmi.RemoteException
+     */
     public void requestAction() throws RemoteException {
         this.action = null;
         gameController.server.notifyClients(new PlayerTurnNotification(this.gameClient));
     }
 
-    public ActionInterface getAction() {
+    /**
+     * Return the action set by doAction()
+     *
+     * @author Joey de Ruiter
+     * @return ActionInterface
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    public ActionInterface getAction() throws RemoteException {
         return this.action;
     }
 
-    public boolean hasAction() {
+    /**
+     * Return true if an action has been set
+     *
+     * @author Joey de Ruiter
+     * @return boolean
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    public boolean hasAction() throws RemoteException {
         return this.action != null;
     }
 
     /**
-     * Send action to the server and wait for the execute
+     * Set an action to be executed do this turn
+     *
+     * @author Joey de Ruiter
      * @param action
+     * @throws RemoteException java.rmi.RemoteException
      */
-    public void doAction(ActionInterface action) {
+    public void doAction(ActionInterface action) throws RemoteException {
         this.action = action;
     }
 
@@ -109,7 +134,7 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
      * With this method, we can retrieve all amount of buildings that a player has build.
      * Each building represents one village points.
      * @return VP (Village Points)
-     * @author Robin Silvério
+     * @author Robin Silverio
      */
     public int getAmountBuildings(){
 
@@ -124,6 +149,13 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return villagePointsPerBuilding;
     }
 
+    /**
+     * Set reputation based on an int
+     *
+     * @author Richard Kerkvliet
+     * @param amount
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public void changeReputation(int amount) throws RemoteException {
         this.reputation += amount;
