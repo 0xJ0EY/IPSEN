@@ -21,6 +21,7 @@ import server.sources.interfaces.PlayerInterface;
 import server.sources.models.stories.Story;
 import server.sources.notifications.EndOfTurnNotification;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**

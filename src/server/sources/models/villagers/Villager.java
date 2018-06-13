@@ -120,6 +120,7 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
      */
     public void tire() throws RemoteException {
         this.state = VillagerState.TIRED;
+        this.playerBoard.updateVillager();
     }
 
     /**

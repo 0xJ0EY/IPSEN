@@ -108,11 +108,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public void addCider() throws RemoteException {
         this.ciders += 1;
+        this.updateObserver();
     }
 
     @Override
     public void addPotion() throws RemoteException {
         this.potions += 1;
+        this.updateObserver();
     }
 
     public void payCoin(int coin) throws RemoteException {
@@ -120,8 +122,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
-    public void addGood(Good good){
+    public void addGood(Good good) throws RemoteException {
         this.goods.add(good);
+        this.updateObserver();
+    }
+
+    @Override
+    public void updateVillager() throws RemoteException {
+        this.updateObserver();
     }
 
     /**
