@@ -23,7 +23,9 @@ public class BuildAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        
+        for (VillagerInterface villager: villagers) {
+            villager.tire();
+        }
     }
 
     @Override

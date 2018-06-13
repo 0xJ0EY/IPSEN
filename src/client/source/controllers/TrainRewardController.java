@@ -10,8 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.EndTurnAction;
 import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.VillagerInterface;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class TrainRewardController implements ControllerInterface, Observable {
 
@@ -68,7 +70,8 @@ public class TrainRewardController implements ControllerInterface, Observable {
      */
     public void onClickEndTurn() throws RemoteException {
         try {
-            client.getGameClient().getPlayer().doAction(new EndTurnAction());
+            EndTurnAction endTurnAction = new EndTurnAction();
+            client.getGameClient().getPlayer().doAction(endTurnAction);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

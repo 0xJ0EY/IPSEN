@@ -30,6 +30,7 @@ public class Client extends Application {
 
     private Stage stage;
     private GameClient gameClient;
+    private ArrayList<VillagerInterface> selectedVillagers;
 
     private ControllerFactory controllerFactory;
 
@@ -252,6 +253,10 @@ public class Client extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void setSelectedVillagers(ArrayList<VillagerInterface> selectedVillagers){
+        this.selectedVillagers = selectedVillagers;
     }
 
 }

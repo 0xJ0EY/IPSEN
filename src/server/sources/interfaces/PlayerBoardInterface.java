@@ -140,4 +140,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public ArrayList<Building> getBuildings() throws RemoteException;
 
     public void moveGoodToAdvancementTracker(int index) throws RemoteException;
+
+    public void updateVillager() throws RemoteException;
 }

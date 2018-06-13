@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.EndTurnAction;
 import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.stories.Reward;
 
 import java.rmi.RemoteException;
