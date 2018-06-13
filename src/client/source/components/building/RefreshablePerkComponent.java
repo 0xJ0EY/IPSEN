@@ -4,6 +4,10 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+/**
+ * A class the loads perkcomponents that are refreshed after that the round has been ended.
+ * Created by Joey de Ruiter
+ */
 public class RefreshablePerkComponent extends PerkComponent {
 
     public RefreshablePerkComponent() {

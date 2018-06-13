@@ -20,13 +20,14 @@ public class HarvestableGoodPerk implements Perk, Harvestable {
         return this.good;
     }
 
-    @Override
     public boolean canHarvest() {
         return this.amountLeft > 0;
+
     }
 
     @Override
     public void harvest() {
         this.amountLeft--;
+
     }
 }

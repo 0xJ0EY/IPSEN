@@ -6,6 +6,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.io.Serializable;
 
+/**
+ * A class that creates mushroom good component
+ * Created by Richard Kerkvliet
+ */
 public class MushroomComponent extends AnchorPane implements Serializable {
 
 

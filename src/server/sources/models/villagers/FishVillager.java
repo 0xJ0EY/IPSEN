@@ -9,14 +9,23 @@ import java.util.ArrayList;
 
 public class FishVillager extends Villager implements Buildable {
 
+    /**
+     * creates a FishVillager.
+     * @param lanterns
+     * @param state
+     * @param background
+     * @throws RemoteException java.rmi.RemoteException
+     */
     public FishVillager(ArrayList<Lantern> lanterns, VillagerState state, String background) throws RemoteException {
         super(lanterns, state, background);
     }
 
-    //TODO: implenting build
+    /**
+     * same as build but costs one coin less for the building.
+     */
     @Override
     public void build() {
-
+        //TODO: implenting build
     }
 
 }

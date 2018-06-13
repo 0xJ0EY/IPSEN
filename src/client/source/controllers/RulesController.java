@@ -16,6 +16,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * A class that acts as an intermediary between a rulesview and models
+ * Created by Joey de Ruiter
+ */
 public class RulesController {
 
     @FXML private Button previous_btn;
@@ -29,6 +33,7 @@ public class RulesController {
 
     /**
      * This is for loading images to imageViews
+     * @author Robin Silverio
      * */
     public void initialize() {
 
@@ -50,7 +55,8 @@ public class RulesController {
     }
 
     /**
-     * This is for handling clicks
+     * This is for handling clicks to see next ruleimage on scrollpane
+     * @author Joey de Ruiter and Robin Silverio
      */
     @FXML private void next() {
         if (this.index + 1 > this.images.size()) return;
@@ -62,6 +68,10 @@ public class RulesController {
 
     }
 
+    /**
+     * This is for handling clicks to see previous ruleimage on scrollpane
+     * @author Joey de Ruiter and Robin Silverio
+     */
     @FXML private void previous() {
         if (this.index - 1 < 0) return;
         this.index--;
@@ -71,10 +81,18 @@ public class RulesController {
 
     }
 
+    /**
+     * Updates ruleimages after clicking next or previous button
+     * @author Robin Silverio
+     */
     private void updateImage() {
         this.ruleImage.setImage(this.images.get(this.index));
     }
 
+    /**
+     * To prevent nullpointerexception, disable buttons when scrollpane loads first or last index
+     * @author Joey de Ruiter
+     */
     private void updateButtons() {
 
         if (this.index == 0) {
