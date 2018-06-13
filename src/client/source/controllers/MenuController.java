@@ -135,11 +135,4 @@ public class MenuController implements Observable {
             e.printStackTrace();
         }
     }
-
-    public void checkAvailableVillagersForMarket(int size){
-        if (size < 1)
-            marketButton.setDisable(true);
-        else
-            marketButton.setDisable(false);
-    }
 }
