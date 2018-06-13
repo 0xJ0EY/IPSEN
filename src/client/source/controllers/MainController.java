@@ -88,22 +88,6 @@ public class MainController implements ControllerInterface, Observable {
     @Override
     public Parent show() {
         tabContainer.getSelectionModel().select(0);
-        try {
-            int availableVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableVillagers().size();
-            int availableTrainerVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableTrainerVillagers().size();
-            int availableBuilderVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableBuilderVillagers().size();
-            int availableBuildings = this.client.getGameClient().getPlayer().getPlayerBoard().getHarvestBuildings().size();
-
-            // This is for enabling and disabling buttons in turnmarket view.
-            turnController.checkAvailableVillagersForExploreAction(availableVillagers);
-            turnController.checkAvailableVillagersForLabourAction(availableVillagers);
-            turnController.checkAvailableVillagersAndBuildingForHarvest(availableVillagers, availableBuildings);
-            turnController.checkAvailableTrainerVillagersForTraining(availableTrainerVillagers);
-            turnController.checkAvailableBuilderVillagersForBuild(availableBuilderVillagers);
-
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
         return this.root;
     }
 
