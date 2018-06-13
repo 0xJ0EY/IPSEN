@@ -2,11 +2,16 @@ package client.source.controllers;
 
 import client.source.Client;
 import client.source.factories.*;
+import client.source.observers.Observable;
 import client.source.strategies.DoActionStrategy;
 import client.source.strategies.RequestStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import server.sources.actions.*;
+import server.sources.interfaces.PlayerBoardInterface;
+import server.sources.interfaces.PlayerInterface;
+import server.sources.models.Player;
+import server.sources.models.PlayerBoard;
 import server.sources.notifications.EndOfGameNotification;
 
 import java.rmi.RemoteException;
@@ -15,7 +20,7 @@ import java.rmi.RemoteException;
  * A class that acts as an intermediate between turnview and models
  * Created by Robin Silverio
  */
-public class TurnController {
+public class TurnController implements Observable {
 
     private Client client;
 
@@ -134,6 +139,7 @@ public class TurnController {
      */
     public void registerClient(Client client) {
         this.client = client;
+        this.client.turnObserver.attach(this);
     }
 
     /**
@@ -143,10 +149,7 @@ public class TurnController {
      * @author Robin Silverio
      */
     public void checkAvailableVillagersForExploreAction(int size){
-        if (size < 2)
-            exploreButton.setDisable(true);
-        else
-            exploreButton.setDisable(false);
+        exploreButton.setDisable(size < 2);
     }
 
     /**
@@ -156,10 +159,7 @@ public class TurnController {
      * @author Robin Silverio
      */
     public void checkAvailableVillagersForLabourAction(int size){
-        if (size < 1)
-            labourButton.setDisable(true);
-        else
-            labourButton.setDisable(false);
+        labourButton.setDisable(size < 1);
     }
 
     /**
@@ -170,10 +170,7 @@ public class TurnController {
      * @author Robin Silverio
      */
     public void checkAvailableVillagersAndBuildingForHarvest(int villagerSize, int buildingSize){
-        if (villagerSize < 1 || buildingSize < 1)
-            harvestButton.setDisable(true);
-        else
-            harvestButton.setDisable(false);
+        harvestButton.setDisable(villagerSize < 1 || buildingSize < 1);
     }
 
     /**
@@ -183,10 +180,7 @@ public class TurnController {
      * @author Robin Silverio
      */
     public void checkAvailableTrainerVillagersForTraining(int size){
-        if (size < 1)
-            trainButton.setDisable(true);
-        else
-            trainButton.setDisable(false);
+        trainButton.setDisable(size < 1);
     }
 
     /**
@@ -196,9 +190,37 @@ public class TurnController {
      * @author Robin Silverio
      */
     public void checkAvailableBuilderVillagersForBuild(int size){
-        if (size < 1)
-            buildButton.setDisable(true);
-        else
-            buildButton.setDisable(false);
+        buildButton.setDisable(size < 1);
+    }
+
+    @Override
+    public void updateObserver() {
+        // Show or hide turn buttons
+        PlayerInterface target = this.client.turnObserver.getState();
+
+        // No target, so its not even worth going here
+        if (target == null) return;
+
+        try {
+            boolean turn = target.getGameClient().equals(this.client.getGameClient());
+            PlayerBoardInterface playerBoard = target.getPlayerBoard();
+
+            int availableVillagers = playerBoard.listAvailableVillagers().size();
+            int availableTrainerVillagers = playerBoard.listAvailableTrainerVillagers().size();
+            int availableBuilderVillagers = playerBoard.listAvailableBuilderVillagers().size();
+            int availableBuildings = playerBoard.getHarvestBuildings().size();
+
+
+
+            // This is for enabling and disabling buttons in turnmarket view.
+            this.checkAvailableVillagersForExploreAction(availableVillagers);
+            this.checkAvailableVillagersForLabourAction(availableVillagers);
+            this.checkAvailableVillagersAndBuildingForHarvest(availableVillagers, availableBuildings);
+            this.checkAvailableTrainerVillagersForTraining(availableTrainerVillagers);
+            this.checkAvailableBuilderVillagersForBuild(availableBuilderVillagers);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
