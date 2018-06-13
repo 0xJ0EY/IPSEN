@@ -8,6 +8,9 @@ import server.sources.notifications.TestNotification;
 
 import java.rmi.RemoteException;
 
+/**
+ * Activates the en of turn action for everyone.
+ */
 public class EndTurnAction implements ActionInterface {
 
     @Override
@@ -15,6 +18,12 @@ public class EndTurnAction implements ActionInterface {
 
     }
 
+    /**
+     * Activates end of turn.
+     *
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public NotificationInterface update() throws RemoteException {
         return new EndOfTurnNotification();

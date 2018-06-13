@@ -74,7 +74,7 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
     protected void hideIndicator(){
         try {
             this.background.setStyle(
-                "-fx-effect: dropshadow(three-pass-box, white, 00, 0, 0, 0);" +
+                "-fx-effect: dropshadow(three-pass-box, white, 0, 0, 0, 0);" +
                 "-fx-background-image: url('/client/resources/img/villagerBackgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
                 "-fx-background-position: center center;" +

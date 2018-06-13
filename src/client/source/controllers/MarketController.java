@@ -4,6 +4,7 @@ import client.source.Client;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import server.sources.actions.RefreshHousesAction;
+import server.sources.models.GameClient;
 
 import java.rmi.RemoteException;
 
@@ -36,13 +37,13 @@ public class MarketController {
 
     @FXML
     public void sellGood() throws RemoteException{
-        this.client.showSellableGoods(client);
+        this.client.showSellableGoods(client.getGameClient());
 
     }
 
     @FXML
     public void buyGood() throws RemoteException{
-        this.client.showBuyableGoods(client);
+        this.client.showBuyableGoods(client.getGameClient());
 
     }
 

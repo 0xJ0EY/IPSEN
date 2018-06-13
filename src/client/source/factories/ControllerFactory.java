@@ -278,18 +278,4 @@ public class ControllerFactory {
         return buyGoodController;
     }
 
-    public BuyGoodBidController createBuyGoodBidController(){
-        BuyGoodBidController buyGoodBidController = null;
-
-        try {
-                FXMLLoader loader = new FXMLLoader((getClass().getResource("/client/resources/views/buyGoodBid.fxml")));
-                loader.load();
-
-                buyGoodBidController = loader.getController();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return buyGoodBidController;
-    }
 }

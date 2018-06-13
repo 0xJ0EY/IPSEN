@@ -8,12 +8,20 @@ import server.sources.models.goods.Good;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * This class is an component that can can be loaded in a controller.
+ *
+ * @author Jan Douwe Sminia
+ */
 public class GoodComponent extends AnchorPane {
 
     protected Good good;
 
-    @FXML protected AnchorPane background;
+    @FXML public AnchorPane background;
 
+    /**
+     * Loads a fxml file and activates it.
+     */
     public GoodComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/good/good.fxml"));
 
@@ -27,6 +35,9 @@ public class GoodComponent extends AnchorPane {
         }
     }
 
+    /**
+     * sets the style for the component.
+     */
     public void load()  {
         this.background.setStyle(
             "-fx-background-image: url('/client/resources/img/goods/" + this.good.getBackground() + " ');" +
@@ -36,6 +47,9 @@ public class GoodComponent extends AnchorPane {
         );
     }
 
+    /**
+     * @param good
+     */
     public void setModel(Good good) {
         this.good = good;
     }

@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import server.sources.controllers.GoodOnSale;
 import server.sources.actions.HarvestAction;
+import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerActionInterface;
@@ -24,6 +25,7 @@ import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
 import client.source.factories.VillagerSelectionFactory;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -141,25 +143,21 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
-    public void showSellableGoods(Client client) throws RemoteException{
+    public void showSellableGoods(GameClientInterface client) throws RemoteException{
         SellGoodController goods = controllerFactory.createSellGoodController();
         goods.setClient(client);
+
+        goods.load();
         this.setScene(goods.show());
 
     }
 
-    public void showBuyableGoods(Client client) throws RemoteException{
+    public void showBuyableGoods(GameClientInterface client) throws RemoteException{
         BuyGoodController goods = controllerFactory.createBuyGoodController();
         goods.setClient(client);
+
+        goods.load();
         this.setScene(goods.show());
-    }
-
-    public void showBid(GoodOnSale goodOnSale, int bidAmount) throws RemoteException {
-        BuyGoodBidController bid = controllerFactory.createBuyGoodBidController();
-        bid.setClient(goodOnSale.getClient());
-        bid.setBid(bidAmount, goodOnSale);
-        this.setScene(bid.show());
-
     }
 
     public void showScoreBoard(){

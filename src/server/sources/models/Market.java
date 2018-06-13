@@ -1,7 +1,5 @@
 package server.sources.models;
 
-import client.source.Client;
-import javafx.fxml.FXML;
 import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.MarketInterface;
 
@@ -33,7 +31,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     private MarketOutpost[] availableOutposts = new MarketOutpost[4];
     private Villager[] availableVillagers = new Villager[5];
 
-    private ArrayList<GoodOnSale> goodsOnSale = new ArrayList<>();
+    private ArrayList<GoodOnSaleInterface> goodsOnSale = new ArrayList<>();
 
     private GameController gameController;
 
@@ -250,13 +248,19 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     }
 
     @Override
-    public void sellGood(Good good, Client client){
+    public void sellGood(Good good, GameClientInterface client) throws RemoteException{
         this.goodsOnSale.add(new GoodOnSale(client, good));
+        System.out.println(goodsOnSale);
     }
 
     @Override
-    public ArrayList<GoodOnSale> getGoodList(){
+    public ArrayList<GoodOnSaleInterface> getGoodList() throws RemoteException{
         return this.goodsOnSale;
+    }
+
+    @Override
+    public void buyGood(int index) throws RemoteException{
+        this.goodsOnSale.remove(index);
     }
 
 }

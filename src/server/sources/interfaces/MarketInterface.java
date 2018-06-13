@@ -32,8 +32,10 @@ public interface MarketInterface extends Remote, Serializable {
 
     public void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException;
 
-    public void sellGood(Good good, Client client) throws RemoteException;
+    public void sellGood(Good good, GameClientInterface client) throws RemoteException;
 
-    public ArrayList<GoodOnSale> getGoodList() throws RemoteException;
+    public ArrayList<GoodOnSaleInterface> getGoodList() throws RemoteException;
+
+    public void buyGood(int index) throws RemoteException;
 
 }

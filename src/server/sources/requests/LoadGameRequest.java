@@ -11,14 +11,28 @@ import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.rmi.RemoteException;
 
+/**
+ * Loads the game from an uml type file.
+ *
+ * @author Joey de Ruiter
+ */
 public class LoadGameRequest implements RequestInterface {
 
     private byte[] bytes;
 
+    /**
+     * @param saveGame
+     */
     public LoadGameRequest(File saveGame) {
         this.bytes = bytesFromSaveGame(saveGame);
     }
 
+    /**
+     * Reads all the buytes and returns them in an array.
+     *
+     * @param saveGame
+     * @return
+     */
     private byte[] bytesFromSaveGame(File saveGame) {
         try {
             return Files.readAllBytes(saveGame.toPath());
@@ -29,6 +43,12 @@ public class LoadGameRequest implements RequestInterface {
         return new byte[0];
     }
 
+    /**
+     * Gets game controller.
+     *
+     * @param bytes
+     * @return
+     */
     private GameController gameControllerFromBytes(byte[] bytes) {
 
         try {
@@ -43,6 +63,12 @@ public class LoadGameRequest implements RequestInterface {
         return null;
     }
 
+    /**
+     * Activates when activated.
+     *
+     * @param server
+     * @throws RemoteException
+     */
     @Override
     public void execute(Server server) throws RemoteException {
         System.out.println("[System] Loading save game");

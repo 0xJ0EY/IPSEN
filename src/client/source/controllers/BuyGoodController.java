@@ -4,49 +4,60 @@ import client.source.Client;
 import client.source.components.buy_and_sell.MarketGoodComponent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import server.sources.controllers.GoodOnSale;
-import server.sources.models.Market;
-import server.sources.models.goods.Good;
+import server.sources.interfaces.GameClientInterface;
+import server.sources.interfaces.GoodOnSaleInterface;
+import server.sources.interfaces.MarketInterface;
+import server.sources.notifications.TradeGoodNotification;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class BuyGoodInterfaceController implements Serializable, ControllerInterface, MarketTradingController {
-    @FXML private FlowPane goodPane;
+/**
+ * This class is a controller for the view buy good.
+ *
+ * @author Jan Douwe Sminia
+ */
+public class BuyGoodController implements Serializable, ControllerInterface, MarketTradingController {
+    @FXML private FlowPane goods;
     @FXML private Parent root;
-    @FXML private TextField bid;
+
+    @FXML private TextField inputField;
 
     private int showBid = 3;
-    private ArrayList<GoodOnSale> goodsOnSale;
+    private ArrayList<GoodOnSaleInterface> goodsOnSale;
     private ArrayList<MarketGoodComponent> goodComponents = new ArrayList<>();
-    private Client client;
-    private Market market;
+    private GameClientInterface client;
+    private MarketInterface market;
 
-    @Override
-    public Parent show() throws RemoteException {
-        return null;
-    }
-
-    @FXML
-    public void confirmSelection() throws RemoteException{
-        for (int i = 0; i < goodsOnSale.size(); i++){
-            if(goodComponents.get(i).isSelected()){
-                this.client.showBid(goodsOnSale.get(i), this.showBid);
-                if(goodsOnSale.get(i).getStatus()){
-                    this.bidAccepted(goodsOnSale.get(i).buyGood());
-                    this.goodsOnSale.remove(i);
-
-                } else {
-                    this.bidDeclined();
-
-                }
-            }
+    /**
+     * sets the market and calls update good view.
+     */
+    public void load(){
+        try {
+            this.setMarket();
+            this.changeBid();
+            this.updateGoodView();
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
+    /**
+     * @return Parent
+     * @throws RemoteException
+     */
+    @Override
+    public Parent show() throws RemoteException {
+        return root;
+    }
+
+    /**
+     * adds one coind to int bid.
+     */
     @FXML
     public void addBid(){
         showBid++;
@@ -54,6 +65,9 @@ public class BuyGoodInterfaceController implements Serializable, ControllerInter
 
     }
 
+    /**
+     * substrackts one coin from coin as long is bigger than 3.
+     */
     @FXML
     public void subtracktBid(){
         if (showBid > 3){
@@ -61,51 +75,95 @@ public class BuyGoodInterfaceController implements Serializable, ControllerInter
 
         }
         changeBid();
-
     }
 
     private void changeBid(){
-        bid.setText("" + showBid);
+        inputField.setText("" + showBid);
 
     }
 
-    public void setClient(Client client){
+    /**
+     * @param client
+     */
+    public void setClient(GameClientInterface client){
         this.client = client;
-        this.market = market;
-        this.setGoodPane();
-
     }
 
-    public void setGoodPane(){
+    /**
+     * Gets the market from the server.
+     *
+     * @throws RemoteException
+     */
+    private void setMarket()throws RemoteException{
+        this.market = client.getServer().getGameController().getMarket();
+    }
+
+    /**
+     * Gets the goods from the market and turns them into components.
+     * Adds the components to an array list and flowpane.
+     *
+     * @throws RemoteException
+     */
+    private void updateGoodView()throws RemoteException {
         this.goodsOnSale = market.getGoodList();
 
-        for (int i = 0; i < goodsOnSale.size(); i++){
-            goodComponents.add(new MarketGoodComponent(this, goodsOnSale.get(i).getGoodComponent()));
-            goodPane.getChildren().add(goodComponents.get(i));
+        if (goodsOnSale.size() > 0) {
 
+            int index = 0;
+
+            for (GoodOnSaleInterface goodOnSale : this.goodsOnSale) {
+                MarketGoodComponent marketGoodComponent = new MarketGoodComponent();
+                marketGoodComponent.setModel(goodOnSale.getGood());
+                marketGoodComponent.setController(this);
+                marketGoodComponent.setGoodOnSale(goodOnSale);
+                marketGoodComponent.setIndex(index++);
+                marketGoodComponent.load();
+
+                goodComponents.add(marketGoodComponent);
+                goods.getChildren().add(marketGoodComponent);
+            }
+        } else {
+            System.out.println("Geen goods on sale");
         }
     }
 
-
+    /**
+     * Checks every component if the boolean selected is true.
+     * Adds them to an Arraylist and returns them.
+     */
     @Override
-    public void selectGood(MarketGoodComponent good){
-        for (int i = 0; i < goodComponents.size(); i++){
-            goodComponents.get(i).setFalse();
+    public ArrayList<MarketGoodComponent> getSelectedGoods() {
+        ArrayList<MarketGoodComponent> selected = new ArrayList<MarketGoodComponent>();
 
+        for (MarketGoodComponent goodComponent : this.goodComponents) {
+            if (goodComponent.isSelected()) {
+                selected.add(goodComponent);
+            }
         }
 
-        good.setTrue();
+        return selected;
     }
 
-    private void bidAccepted(Good good) throws RemoteException{
-        this.client.getGameClient().getPlayer().getPlayerBoard().getGoods().add(good);
+    /**
+     * Gets the selected good and sends notification to their original owners.
+     *
+     * @throws RemoteException
+     */
+    @FXML
+    public void confirmSelection() throws RemoteException{
+        for (MarketGoodComponent goodComponent : this.goodComponents) {
+            if (goodComponent.isSelected()){
+                goodComponent.getGoodOnSale().getClient().receiveNotification(
+                        new TradeGoodNotification(this.showBid, goodComponent.getGoodOnSale(), goodComponent.getIndex(), this.client)
+                );
+            }
+        }
 
-
+        this.client.getClient().showMain();
     }
 
-    private void bidDeclined(){
-
-
+    @FXML
+    private void cancelAction() throws RemoteException{
+        this.client.getClient().showMain();
     }
-
 }
