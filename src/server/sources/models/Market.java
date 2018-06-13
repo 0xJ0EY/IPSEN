@@ -1,21 +1,16 @@
 package server.sources.models;
 
-import client.source.Client;
-import javafx.fxml.FXML;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.MarketInterface;
-
 import server.sources.controllers.GameController;
+import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
-import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 import server.sources.notifications.MarketUpdateNotification;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
-
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +29,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     private MarketHouse[] availableHouses = new MarketHouse[4];
     private MarketOutpost[] availableOutposts = new MarketOutpost[4];
     private Villager[] availableVillagers = new Villager[5];
+
+    private ArrayList<GoodOnSaleInterface> goodsOnSale = new ArrayList<>();
 
     private GameController gameController;
 
@@ -92,6 +89,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private Villager randomVillager(){
         int key = (int) (Math.random() * this.villagers.size());
+        if (key == 0) return null;
 
         // Get the villager from the available pool
         Villager villager = this.villagers.get(key);
@@ -133,7 +131,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return villagers;
     }
 
-    @Override
     public ArrayList<MarketHouse> listAvailableHouses() throws RemoteException {
         ArrayList<MarketHouse> houses = new ArrayList<MarketHouse>();
 
@@ -208,6 +205,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     }
 
     @Override
+
     public void buyRemoteHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
@@ -257,7 +255,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
         this.updateObserver();
     }
-
 
     /**
      * Move a local key house to the playerboard of the given gameClient.
@@ -330,7 +327,111 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         this.updateObserver();
     }
 
-    private void updateObserver() throws RemoteException {
-        this.gameController.server.notifyClients(new MarketUpdateNotification(this));
+
+    /**
+     * Move villagers to the left if it is available and add new villagers for null spaces.
+     *
+     * @throws RemoteException
+     * @author Joey de Ruiter
+     */
+    @Override
+    public void reorderAvailableVillagers() throws RemoteException {
+
+        boolean foundNull = false;
+        int nullIndex = 0;
+
+        for (int i = this.availableVillagers.length - 1; i >= 0; i--) {
+            Villager villager = this.availableVillagers[i];
+
+
+            if (villager == null && nullIndex < i) {
+                foundNull = true;
+                nullIndex = i;
+            } else if (villager != null && foundNull) {
+
+                this.availableVillagers[nullIndex] = villager;
+                this.availableVillagers[i] = null;
+
+                // Reset the loop back to the nullIndex
+                i = nullIndex;
+
+                foundNull = false;
+                nullIndex = 0;
+            }
+        }
+
+        int index = 0;
+
+        do {
+            availableVillagers[index] = this.randomVillager();
+            index++;
+        } while (index < this.availableVillagers.length &&  this.availableVillagers[index] == null);
+
+        this.updateObserver();
+
     }
+
+    private void updateObserver() throws RemoteException {
+        this.gameController.getServer().notifyClients(new MarketUpdateNotification(this));
+    }
+
+
+    public static void main(String[] args) {
+        String[] availableVillagers = new String[5];
+
+        boolean foundNull = false;
+        int nullIndex = 0;
+
+        for (int i = availableVillagers.length - 1; i >= 0; i--) {
+            String villager = availableVillagers[i];
+
+            if (villager == null && nullIndex < i) {
+                foundNull = true;
+                nullIndex = i;
+
+            } else if (villager != null && foundNull) {
+
+                availableVillagers[nullIndex] = villager;
+                availableVillagers[i] = null;
+
+                nullIndex = 0;
+                foundNull = false;
+
+                i = availableVillagers.length;
+            }
+        }
+
+
+        // Refill the villagers with random villagers
+        int index = 0;
+
+        do {
+
+            availableVillagers[index] = "Random shizzle";
+
+        } while (availableVillagers[++index % availableVillagers.length] == null);
+
+        for (String availableVillager : availableVillagers) {
+
+            System.out.println(availableVillager);
+
+        }
+    }
+
+    @Override
+    public void sellGood(Good good, GameClientInterface client) throws RemoteException{
+        this.goodsOnSale.add(new GoodOnSale(client, good));
+        System.out.println(goodsOnSale);
+    }
+
+    @Override
+    public ArrayList<GoodOnSaleInterface> getGoodList() throws RemoteException{
+        return this.goodsOnSale;
+    }
+
+    @Override
+    public void buyGood(int index) throws RemoteException{
+        this.goodsOnSale.remove(index);
+    }
+
 }

@@ -39,6 +39,13 @@ public interface GameControllerInterface extends Remote, Serializable {
      */
     public ReputationBoardInterface getReputationBoard() throws RemoteException;
 
+    /**
+     * Return the server interface
+     * @return
+     * @throws RemoteException
+     */
+    public ServerInterface getServer() throws RemoteException;
+
     public int getCurrentRound() throws RemoteException;
 
 }

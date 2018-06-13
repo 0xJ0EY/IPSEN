@@ -16,9 +16,10 @@ public class GoodComponent extends AnchorPane {
 
     protected Good good;
 
-    @FXML protected AnchorPane background;
+    @FXML public AnchorPane background;
 
     /**
+     * Loads a fxml file and activates it.
      * For loading goodscomponents
      * @author Joey de Ruiter
      */
@@ -35,6 +36,9 @@ public class GoodComponent extends AnchorPane {
         }
     }
 
+    /**
+     * sets the style for the component.
+     */
     public void load()  {
         this.background.setStyle(
             "-fx-background-image: url('/client/resources/img/goods/" + this.good.getBackground() + " ');" +
@@ -45,6 +49,7 @@ public class GoodComponent extends AnchorPane {
     }
 
     /**
+     * @param good
      * Setting a model
      * @param good Good
      * @author Robin Silverio

@@ -7,12 +7,23 @@ import server.sources.notifications.TestNotification;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * This class will be called when the player chooses the labor action on his turn.
+ *
+ * @author Jan Douwe Sminia.
+ */
+
 public class LaborAction implements VillagerActionInterface {
 
     private ArrayList<VillagerInterface> selectedVillagers;
     private GameClientInterface target;
     private ReputationBoardInterface reputationBoard;
 
+    /**
+     * This constructor gets the reputation board from the server.
+     *
+     * @param target
+     */
     public LaborAction(GameClientInterface target){
         this.target = target;
 
@@ -23,6 +34,13 @@ public class LaborAction implements VillagerActionInterface {
         }
     }
 
+    /**
+     * this method will be activated this class is called.
+     * It gives one coin to the player for each villager selected.
+     *
+     * @param server
+     * @throws RemoteException
+     */
     @Override
     public void execute(Server server) throws RemoteException {
 
@@ -39,16 +57,29 @@ public class LaborAction implements VillagerActionInterface {
         }
     }
 
+    /**
+     * This method allows the other players to see what is happening.
+     *
+     * @return.
+     * @throws RemoteException
+     */
     @Override
     public NotificationInterface update() throws RemoteException {
         return new TestNotification();
     }
 
+    /**
+     * @param villagers
+     */
     @Override
     public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.selectedVillagers = villagers;
     }
 
+    /**
+     * This method checks the reputationboard if the first cider has been taken.
+     * If it is still avaiable than the player get one cider.
+     */
     private void firstLaborCider() throws RemoteException{
         if(reputationBoard.hasCider()){
             reputationBoard.retrieveCider(target.getPlayer());

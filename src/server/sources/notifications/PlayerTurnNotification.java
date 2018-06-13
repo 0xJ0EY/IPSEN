@@ -24,7 +24,7 @@ public class PlayerTurnNotification implements NotificationInterface {
         } else {
 
             gameClient.getClient().messageObserver.setState(
-                    String.format("It\'s %s\'s turn", this.target.getPlayer().getUsername())
+                String.format("It\'s %s\'s turn", this.target.getPlayer().getUsername())
             );
         }
 

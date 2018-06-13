@@ -1,9 +1,9 @@
 package server.sources.models;
 
 
-import server.sources.interfaces.AdvancementTrackerInterface;
-import server.sources.interfaces.PlayerInterface;
-import server.sources.interfaces.VillagerInterface;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import server.sources.interfaces.*;
 import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
@@ -13,9 +13,9 @@ import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
-import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
+import server.sources.notifications.MessageNotification;
 import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
@@ -24,6 +24,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
@@ -312,6 +313,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         return this.goods;
     }
 
+    @Override
+    public void goodSold(int index) throws RemoteException{
+        goods.remove(index);
+        this.updateObserver();
+
+    }
+
     /**
      * Get current amount of coins
      *
@@ -358,6 +366,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      */
     public void endOfRound() throws RemoteException {
 
+        int coins = this.coins;
         this.endOfRound.load();
 
         // Recalculate available beds
@@ -375,6 +384,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         }
 
         this.updateObserver();
+
+        int difference = this.coins - coins;
+
+        this.player.getGameClient().receiveNotification(
+            new MessageNotification(
+                String.format("You have received %s coins", difference)
+            )
+        );
     }
 
     private void updateObserver() throws RemoteException {

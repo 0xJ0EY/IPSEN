@@ -12,6 +12,9 @@ import server.sources.notifications.ExploreStoryNotification;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class ExploreStoryAction implements VillagerActionInterface {
 
     private Story story;

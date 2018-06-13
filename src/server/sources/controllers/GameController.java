@@ -1,7 +1,5 @@
 package server.sources.controllers;
 
-import client.source.controllers.BelowController;
-import client.source.observers.Observable;
 import server.sources.interfaces.*;
 import server.sources.models.Market;
 import server.sources.models.Player;
@@ -19,7 +17,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     public ArrayList<Player> players = new ArrayList<Player>();
 
-    public transient ServerInterface server;
+    private transient ServerInterface server;
     private GameStates gameState = GameStates.LOBBY;
 
     private final int MAX_ROUNDS = 7;
@@ -29,7 +27,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     private StoryController stories = new StoryController();
     private Market market = new Market(this);
-    private ReputationBoardController reputationboard = new ReputationBoardController();
+    private ReputationBoardController reputationboard = new ReputationBoardController(this);
 
     public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -63,11 +61,11 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
         // Send everyone to the main screen
         System.out.println("[Game] Started");
-        this.server.notifyClients(new GameStartedNotification());
+        this.getServer().notifyClients(new GameStartedNotification());
 
         // Notify clients of the market / reputation board
-        this.server.notifyClients(new MarketUpdateNotification(this.market));
-        this.server.notifyClients(new GameControllerUpdateNotifcation(this));
+        this.getServer().notifyClients(new MarketUpdateNotification(this.market));
+        this.getServer().notifyClients(new GameControllerUpdateNotifcation(this));
     }
 
     public void runGame() throws RemoteException {
@@ -87,7 +85,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
                         }
 
                         System.out.println("Execute action");
-                        this.server.executeAction(player.getAction());
+                        this.getServer().executeAction(player.getAction());
 
                     } catch (RemoteException | InterruptedException e) {
                         e.printStackTrace();
@@ -141,7 +139,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private void endGame() throws RemoteException {
         this.setGameState(GameStates.ENDED);
 
-        this.server.notifyClients(new EndOfGameNotification());
+        this.getServer().notifyClients(new EndOfGameNotification());
 
         System.out.println("[Game] Ended");
 
@@ -191,6 +189,11 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private void endOfRound() throws RemoteException {
         this.restVillagers();
 
+        // Reset the cider
+        this.getReputationBoard().resetCider();
+
+        this.market.reorderAvailableVillagers();
+
         // Reset turn
         this.turn = 0;
 
@@ -202,6 +205,14 @@ public class GameController extends UnicastRemoteObject implements GameControlle
             player.getPlayerBoard().endOfRound();
         }
 
+        // Wait for message to go away
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
         this.updateObserver();
     }
 
@@ -211,6 +222,10 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     private void setGameState(GameStates gameState) {
         this.gameState = gameState;
+    }
+
+    public void setServer(ServerInterface server) {
+        this.server = server;
     }
 
     /**
@@ -253,9 +268,14 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         return this.round;
     }
 
+    @Override
+    public ServerInterface getServer() throws RemoteException {
+        return this.server;
+    }
+
     public void updateObserver() {
         try {
-            this.server.notifyClients(new GameControllerUpdateNotifcation(this));
+            this.getServer().notifyClients(new GameControllerUpdateNotifcation(this));
         } catch (RemoteException e) {
             e.printStackTrace();
         }

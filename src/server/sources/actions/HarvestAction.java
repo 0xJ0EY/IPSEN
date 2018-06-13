@@ -12,6 +12,11 @@ import server.sources.notifications.ShowHarvestNotification;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * This class is called when the player chooses the Harvest Action.
+ *
+ * @author Jan Douwe Sminia
+ */
 public class HarvestAction implements VillagerActionInterface {
 
     private GameClientInterface target;
@@ -20,7 +25,7 @@ public class HarvestAction implements VillagerActionInterface {
     private ArrayList<VillagerInterface> selectedVillagers;
 
     /**
-     * geeft de client van de speler die het uitvoert mee
+     * Sets the right client.
      *
      * @param target
      * @author Jan Douwe
@@ -29,12 +34,25 @@ public class HarvestAction implements VillagerActionInterface {
         this.target = target;
     }
 
+    /**
+     * Counts the amount of times it was activated.
+     *
+     * @param server
+     * @throws RemoteException
+     */
     @Override
     public void execute(Server server) throws RemoteException {
         this.count++;
 
     }
 
+    /**
+     * Allows all players to see this action and activates the action.
+     * Uses count to show harvest the right amount of times.
+     *
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public NotificationInterface update() throws RemoteException {
         if (this.count <= this.selectedVillagers.size()) {
@@ -48,6 +66,9 @@ public class HarvestAction implements VillagerActionInterface {
         }
     }
 
+    /**
+     * @param villagers
+     */
     @Override
     public void setSelectedVillagers(ArrayList<VillagerInterface> villagers) {
         this.selectedVillagers = villagers;

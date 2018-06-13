@@ -8,7 +8,7 @@
  - [x] Turn controller.  
 
        Disable de knop van harvest als er geen villagers / buildings zijn
-       Disable de knop van build als er geen builders zijn
+       Disable de knop van build als er geen actieve builders zijn
        Disable de knop van explore als er minder dan actieve 2 villagers zijn
        Disable de knop van labor als er geen actieve villagers is
        Disable de knop van trainer als er geen actieve trainers zijn    
@@ -38,14 +38,17 @@
        Villager selection mag alleen maar beschikbare bouwers laten zien (werkt)
        
  - [x] Verkennen grot
-       
+ 
+       gebruikte villagers vermoeien
+       select button disabelen als er geen villager geselecteerd is
+       1 of minder villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
+ - [x] Klaarzetten ronde
+ 
        gebruikte villagers vermoeien (werkt)
        select button disabelen als er geen villagers geselecteerd zijn (werkt)
  - [ ] Klaarzetten ronde
- 
-       Melding van beloning
-       ciders verversen
-       villagerspool aanvullen
+
+        villagerspool aanvullen
 
 TODO
  - [ ] Add message to the saving error
@@ -56,8 +59,8 @@ TODO
  - [x] Marketview
  - [ ] Building perks
  - [ ] Rewards(view) Richard
- - [ ] Check cave card Richard
- - [ ] End of round Joey
+ - [ ] Check cave card by gebouwen & playerboard Richard
+ - [x] End of round Joey
  - [ ] Bought villagers icon/functional
  - [x] Buyable houses/villagers
  - [ ] Turncontroller knoppen disable die niet kunnen

@@ -10,4 +10,6 @@ public interface ReputationBoardInterface extends Remote, Serializable {
 
     public void retrieveCider(PlayerInterface player) throws RemoteException;
 
+    public void resetCider() throws RemoteException;
+
 }
