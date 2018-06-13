@@ -48,9 +48,18 @@ public class ExploreController implements ControllerInterface, Observable {
      * @author Richard Kerkvliet
      */
     @Override
-    public Parent show() {
+    public Parent show() throws RemoteException {
+        PlayerInterface target = this.client.turnObserver.getState();
         story.setText(this.exploreStory.getStory());
         hbox.getChildren().clear();
+
+        boolean turn;
+
+        try {
+            turn = this.client.getGameClient().equals(target.getGameClient());
+        } catch (NullPointerException e) {
+            turn = false;
+        }
 
         for(int i=0; i<this.exploreStory.getChoices().size();i++){
             VBox vBox  = new VBox();
@@ -61,6 +70,7 @@ public class ExploreController implements ControllerInterface, Observable {
             rbtn.setId(""+i);
             rbtn.setText(this.exploreStory.getChoices().get(i).getDescription());
             rbtn.setToggleGroup(radioGroup);
+            rbtn.setDisable(!turn);
             rbtn.setOnMouseClicked( e-> {
                 this.confirmButton.setDisable(false);
             });

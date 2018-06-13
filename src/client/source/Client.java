@@ -135,7 +135,7 @@ public class Client extends Application {
      * Show the explore with corresponding story
      * @param story Story
      */
-    public void showExplore(Story story) {
+    public void showExplore(Story story) throws RemoteException{
         ExploreController explore = controllerFactory.createExplore();
         explore.setExploreStory(story);
         this.setScene(explore.show());
