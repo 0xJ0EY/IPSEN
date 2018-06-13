@@ -92,7 +92,14 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
     private Villager randomVillager(){
         int key = (int) (Math.random() * this.villagers.size());
-        return this.villagers.get(key);
+
+        // Get the villager from the available pool
+        Villager villager = this.villagers.get(key);
+
+        // Remove the villager from the available pool
+        this.villagers.remove(key);
+
+        return villager;
     }
 
     private Player getLocalPlayer(GameClientInterface gameClient) throws RemoteException {
