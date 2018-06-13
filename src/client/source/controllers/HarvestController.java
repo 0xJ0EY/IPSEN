@@ -128,7 +128,7 @@ public class HarvestController implements SelectableControllerInterface {
             if (perk instanceof Harvestable && ((Harvestable)perk).canHarvest()) {
                 HarvestableGoodPerk harvestableGoodPerk = (HarvestableGoodPerk) perk;
 
-                Good good = harvestableGoodPerk.getGood();
+                Good good = harvestableGoodPerk.getGood().harvestGood();
                 harvestableGoodPerk.harvest();
 
                 this.client.getGameClient().getPlayer().getPlayerBoard().addGood(good);
@@ -146,5 +146,10 @@ public class HarvestController implements SelectableControllerInterface {
     @Override
     public Parent show() throws RemoteException{
         return root;
+    }
+
+    @FXML
+    private void cancelAction(){
+        this.client.showMain();
     }
 }

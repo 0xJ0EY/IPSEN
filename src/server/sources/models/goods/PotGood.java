@@ -12,4 +12,9 @@ public class PotGood implements Good {
     public boolean sameInstance(Good good) {
         return good instanceof PotGood;
     }
+
+    @Override
+    public Good harvestGood() {
+        return new PotGood();
+    }
 }

@@ -28,6 +28,7 @@ public class HarvestableGoodPerk implements Perk, Harvestable {
     @Override
     public void harvest() {
         this.amountLeft--;
+        System.out.println("Good harvested");
 
     }
 }

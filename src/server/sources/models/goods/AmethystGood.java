@@ -12,4 +12,9 @@ public class AmethystGood implements Good {
     public boolean sameInstance(Good good) {
         return good instanceof AmethystGood;
     }
+
+    @Override
+    public Good harvestGood() {
+        return new AmethystGood();
+    }
 }

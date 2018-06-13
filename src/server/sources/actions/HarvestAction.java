@@ -31,8 +31,7 @@ public class HarvestAction implements VillagerActionInterface {
 
     @Override
     public void execute(Server server) throws RemoteException {
-        this.count++;
-
+        count++;
     }
 
     @Override
