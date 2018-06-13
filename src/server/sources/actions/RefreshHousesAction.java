@@ -8,10 +8,19 @@ import server.sources.notifications.RefreshHousesNotification;
 
 import java.rmi.RemoteException;
 
+/**
+ * Class activates when the player chooses to refresh te houses.
+ *
+ * @author Robin Sylverio
+ */
 public class RefreshHousesAction implements ActionInterface {
 
     private MarketInterface market;
 
+    /**
+     * @param server
+     * @throws RemoteException
+     */
     @Override
     public void execute(Server server) throws RemoteException {
         server.getGameController().getMarket().refreshHousesAndOutposts();

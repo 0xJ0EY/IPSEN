@@ -109,6 +109,12 @@ public interface MarketInterface extends Remote, Serializable {
      */
     public void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException;
 
+
+    public void sellGood(Good good, GameClientInterface client) throws RemoteException;
+
+    public ArrayList<GoodOnSaleInterface> getGoodList() throws RemoteException;
+
+    public void buyGood(int index) throws RemoteException;
     /**
      * Refresh all the outposts
      *

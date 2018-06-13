@@ -7,8 +7,15 @@ import server.sources.notifications.TestNotification;
 
 import java.rmi.RemoteException;
 
+/**
+ * Class activates when de player lets the villager in the end of round.
+ */
 public class RestVillagerAction implements ActionInterface {
 
+    /**
+     * @param server
+     * @throws RemoteException
+     */
     @Override
     public void execute(Server server) throws RemoteException {
 
@@ -16,6 +23,12 @@ public class RestVillagerAction implements ActionInterface {
 
     }
 
+    /**
+     * Activates the Rest villager.
+     *
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public NotificationInterface update() throws RemoteException {
         return new TestNotification();

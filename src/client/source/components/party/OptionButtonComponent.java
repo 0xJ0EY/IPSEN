@@ -43,8 +43,8 @@ public class OptionButtonComponent extends Button {
                 }
             }
             try {
-                this.server.notifyClients(new RewardScreenNotification(option));
                 client.getGameClient().getPlayer().getPlayerBoard().addCaveCard();
+                this.server.notifyClients(new RewardScreenNotification(option));
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }

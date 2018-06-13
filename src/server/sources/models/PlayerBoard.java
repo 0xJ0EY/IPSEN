@@ -1,9 +1,9 @@
 package server.sources.models;
 
 
-import server.sources.interfaces.AdvancementTrackerInterface;
-import server.sources.interfaces.PlayerInterface;
-import server.sources.interfaces.VillagerInterface;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import server.sources.interfaces.*;
 import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
@@ -13,7 +13,6 @@ import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
-import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.MessageNotification;
@@ -25,6 +24,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
@@ -109,11 +109,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public void addCider() throws RemoteException {
         this.ciders += 1;
+        this.updateObserver();
     }
 
     @Override
     public void addPotion() throws RemoteException {
         this.potions += 1;
+        this.updateObserver();
     }
 
     public void payCoin(int coin) throws RemoteException {
@@ -121,8 +123,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
-    public void addGood(Good good){
+    public void addGood(Good good) throws RemoteException {
         this.goods.add(good);
+        this.updateObserver();
+    }
+
+    @Override
+    public void updateVillager() throws RemoteException {
+        this.updateObserver();
     }
 
     /**
@@ -144,6 +152,11 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public boolean hasBeds() throws RemoteException {
         return this.beds > 0;
+    }
+
+    @Override
+    public boolean hasCaveCards() throws RemoteException {
+        return this.caveCards > 0;
     }
 
     @Override
@@ -250,8 +263,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      */
     @Override
     public void addVillager(Villager villager) throws RemoteException {
-        villager.tire();
         villager.setPlayerBoard(this);
+        villager.tire();
 
         villagers.add(villager);
         this.updateObserver();
@@ -298,6 +311,13 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public ArrayList<Good> getGoods() throws RemoteException {
         return this.goods;
+    }
+
+    @Override
+    public void goodSold(int index) throws RemoteException{
+        goods.remove(index);
+        this.updateObserver();
+
     }
 
     /**

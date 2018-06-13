@@ -101,6 +101,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public ArrayList<Good> getGoods() throws RemoteException;
 
+    public void goodSold(int index) throws RemoteException;
+
     public void payCoin(int price) throws RemoteException;
 
     public void addHouse(House building) throws RemoteException;
@@ -116,6 +118,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public boolean hasPotion() throws RemoteException;
 
     public boolean hasBeds() throws RemoteException;
+
+    public boolean hasCaveCards() throws RemoteException;
 
     public void useCider() throws RemoteException;
 
@@ -140,4 +144,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public ArrayList<Building> getBuildings() throws RemoteException;
 
     public void moveGoodToAdvancementTracker(int index) throws RemoteException;
+
+    public void updateVillager() throws RemoteException;
 }

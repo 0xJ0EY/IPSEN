@@ -2,10 +2,9 @@ package client.source;
 
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
-import client.source.controllers.ExplorePartyController;
-import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
 import client.source.factories.VillagerSelectionComponentFactory;
+import client.source.factories.VillagerSelectionFactory;
 import client.source.observers.Observer;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.application.Application;
@@ -13,15 +12,12 @@ import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.sources.controllers.GoodOnSale;
 import server.sources.actions.HarvestAction;
-import server.sources.controllers.GameController;
 import server.sources.interfaces.*;
 import server.sources.models.GameClient;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
-import client.source.factories.VillagerSelectionFactory;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -30,6 +26,7 @@ public class Client extends Application {
 
     private Stage stage;
     private GameClient gameClient;
+    private ArrayList<VillagerInterface> selectedVillagers;
 
     private ControllerFactory controllerFactory;
 
@@ -202,6 +199,23 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
+    public void showSellableGoods(GameClientInterface client) throws RemoteException {
+        SellGoodController goods = controllerFactory.createSellGoodController();
+        goods.setClient(client);
+
+        goods.load();
+        this.setScene(goods.show());
+
+    }
+
+    public void showBuyableGoods(GameClientInterface client) throws RemoteException {
+        BuyGoodController goods = controllerFactory.createBuyGoodController();
+        goods.setClient(client);
+
+        goods.load();
+        this.setScene(goods.show());
+    }
+
     /**
      * Show the scoreboard
      */
@@ -221,7 +235,7 @@ public class Client extends Application {
         return this.stage;
     }
 
-    private void setScene(Parent root){
+    private void setScene(Parent root) {
         Scene scene = stage.getScene();
 
         if (scene == null) {
@@ -253,6 +267,10 @@ public class Client extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void setSelectedVillagers(ArrayList<VillagerInterface> selectedVillagers){
+        this.selectedVillagers = selectedVillagers;
     }
 
 }

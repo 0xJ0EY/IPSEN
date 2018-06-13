@@ -1,8 +1,8 @@
 package server.sources.models;
 
 import server.sources.interfaces.MarketInterface;
-
 import server.sources.controllers.GameController;
+import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
 import server.sources.models.villagers.Villager;
@@ -11,7 +11,6 @@ import server.sources.notifications.MarketUpdateNotification;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
-
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +29,8 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     private MarketHouse[] availableHouses = new MarketHouse[4];
     private MarketOutpost[] availableOutposts = new MarketOutpost[4];
     private Villager[] availableVillagers = new Villager[5];
+
+    private ArrayList<GoodOnSaleInterface> goodsOnSale = new ArrayList<>();
 
     private GameController gameController;
 
@@ -130,7 +131,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return villagers;
     }
 
-    @Override
     public ArrayList<MarketHouse> listAvailableHouses() throws RemoteException {
         ArrayList<MarketHouse> houses = new ArrayList<MarketHouse>();
 
@@ -205,6 +205,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     }
 
     @Override
+
     public void buyRemoteHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
@@ -254,7 +255,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
         this.updateObserver();
     }
-
 
     /**
      * Move a local key house to the playerboard of the given gameClient.
@@ -417,4 +417,21 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
 
         }
     }
+
+    @Override
+    public void sellGood(Good good, GameClientInterface client) throws RemoteException{
+        this.goodsOnSale.add(new GoodOnSale(client, good));
+        System.out.println(goodsOnSale);
+    }
+
+    @Override
+    public ArrayList<GoodOnSaleInterface> getGoodList() throws RemoteException{
+        return this.goodsOnSale;
+    }
+
+    @Override
+    public void buyGood(int index) throws RemoteException{
+        this.goodsOnSale.remove(index);
+    }
+
 }

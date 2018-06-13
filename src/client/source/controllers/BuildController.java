@@ -29,8 +29,7 @@ import java.util.ArrayList;
  * Class that acts as an intermediary between the buildview and the model.
  * Created by robin on 1-6-2018.
  */
-public class
-BuildController implements SelectableControllerInterface, Observable {
+public class BuildController implements SelectableControllerInterface, Observable {
 
     private boolean buying = false;
 
@@ -248,7 +247,8 @@ BuildController implements SelectableControllerInterface, Observable {
      */
     @FXML
     private void onClickCancel() throws RemoteException {
-        this.client.getGameClient().requestAction(new CancelAction());
+        this.client.showMain();
+//        this.client.getGameClient().requestAction(new CancelAction());
     }
 
     /**
@@ -277,6 +277,11 @@ BuildController implements SelectableControllerInterface, Observable {
             return;
         }
 
+        if (selected.getModel() instanceof Outpost && !target.getPlayerBoard().hasCaveCards()){
+            this.showMessage("Explore to get cave cards first");
+            this.enableBuying();
+            return;
+        }
 
         try {
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();

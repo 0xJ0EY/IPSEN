@@ -7,6 +7,11 @@ import server.sources.notifications.CancelNotification;
 
 import java.rmi.RemoteException;
 
+/**
+ * Cancels any action your doing.
+ *
+ * @author Robin Sylverio
+ */
 public class CancelAction implements ActionInterface {
 
     @Override
@@ -14,6 +19,12 @@ public class CancelAction implements ActionInterface {
 
     }
 
+    /**
+     * Cancels everybody's action.
+     *
+     * @return
+     * @throws RemoteException
+     */
     @Override
     public NotificationInterface update() throws RemoteException {
         return new CancelNotification();
