@@ -7,8 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import server.sources.controllers.ReputationBoardController;
-import server.sources.interfaces.PlayerInterface;
 
 import java.rmi.RemoteException;
 
@@ -90,6 +88,19 @@ public class MainController implements ControllerInterface, Observable {
     @Override
     public Parent show() {
         tabContainer.getSelectionModel().select(0);
+        try {
+            int availableVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableVillagers().size();
+            int availableTrainerVillagers = this.client.getGameClient().getPlayer().getPlayerBoard().listAvailableTrainerVillagers().size();
+            int availableBuildings = this.client.getGameClient().getPlayer().getPlayerBoard().getBuildings().size();
+
+            turnController.checkAvailableVillagersForExploreAction(availableVillagers);
+            turnController.checkAvailableVillagersForLabourAction(availableVillagers);
+            turnController.checkAvailableVillagersAndBuildingForHarvest(availableVillagers, availableBuildings);
+            turnController.checkAvailableTrainerVillagersForTraining(availableTrainerVillagers);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         return this.root;
     }
 

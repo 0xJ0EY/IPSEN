@@ -5,6 +5,7 @@ import client.source.factories.*;
 import client.source.strategies.DoActionStrategy;
 import client.source.strategies.RequestStrategy;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import server.sources.actions.*;
 import server.sources.notifications.EndOfGameNotification;
 
@@ -17,6 +18,11 @@ import java.rmi.RemoteException;
 public class TurnController {
 
     private Client client;
+
+    @FXML private Button exploreButton;
+    @FXML private Button labourButton;
+    @FXML private Button harvestButton;
+    @FXML private Button trainButton;
 
     /**
      * This allows user to do the explore action
@@ -117,5 +123,58 @@ public class TurnController {
      */
     public void registerClient(Client client) {
         this.client = client;
+    }
+
+    /**
+     * Method for controlling the amount of available villagers for performing an explore action.
+     * If not, then disable the buttons.
+     * @param size, count of available villagers
+     * @author Robin Silverio
+     */
+    public void checkAvailableVillagersForExploreAction(int size){
+        if (size < 2)
+            exploreButton.setDisable(true);
+        else
+            exploreButton.setDisable(false);
+    }
+
+    /**
+     * Method for controlling the amount of available villagers for performing a labour action.
+     * If not, then disable the buttons.
+     * @param size, count of available villagers
+     * @author Robin Silverio
+     */
+    public void checkAvailableVillagersForLabourAction(int size){
+        if (size < 1)
+            labourButton.setDisable(true);
+        else
+            labourButton.setDisable(false);
+    }
+
+    /**
+     * Method for controlling the amount of available villagers for performing a harvest action.
+     * If not, then disable the buttons.
+     * @param villagerSize, count of available villagers
+     * @param buildingSize, count of available buildings
+     * @author Robin Silverio
+     */
+    public void checkAvailableVillagersAndBuildingForHarvest(int villagerSize, int buildingSize){
+        if (villagerSize < 1 && buildingSize < 1)
+            harvestButton.setDisable(true);
+        else
+            harvestButton.setDisable(false);
+    }
+
+    /**
+     * Method for controlling the amount of available villagers for performing a train action.
+     * If not, then disable the buttons.
+     * @param size, count of available villagers
+     * @author Robin Silverio
+     */
+    public void checkAvailableTrainerVillagersForTraining(int size){
+        if (size < 1)
+            trainButton.setDisable(true);
+        else
+            trainButton.setDisable(false);
     }
 }

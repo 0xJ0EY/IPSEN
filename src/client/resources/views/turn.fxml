@@ -23,13 +23,13 @@
          <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
          <!-- left column -->
-         <Button mnemonicParsing="false" onAction="#explore" prefHeight="80" prefWidth="250" text="Explore" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+         <Button fx:id="exploreButton" mnemonicParsing="false" onAction="#explore" prefHeight="80" prefWidth="250" text="Explore" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
          <Button mnemonicParsing="false" onAction="#build" prefHeight="80" prefWidth="250" text="Build" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-         <Button mnemonicParsing="false" onAction="#labor" prefHeight="80" prefWidth="250" text="Labour" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+         <Button fx:id="labourButton" mnemonicParsing="false" onAction="#labor" prefHeight="80" prefWidth="250" text="Labour" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
 
          <!-- right column -->
-         <Button mnemonicParsing="false" onAction="#harvest" prefHeight="80" prefWidth="250" text="Harvest" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-         <Button mnemonicParsing="false" onAction="#train" prefHeight="80" prefWidth="250" text="Train" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+         <Button fx:id="harvestButton" mnemonicParsing="false" onAction="#harvest" prefHeight="80" prefWidth="250" text="Harvest" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+         <Button fx:id="trainButton" mnemonicParsing="false" onAction="#train" prefHeight="80" prefWidth="250" text="Train" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
          <Button mnemonicParsing="false" onAction="#pass" prefHeight="80" prefWidth="250" text="Pass" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       </GridPane>
    </children>
