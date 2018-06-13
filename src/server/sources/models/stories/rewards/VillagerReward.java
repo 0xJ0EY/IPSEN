@@ -12,13 +12,30 @@ import server.sources.strategies.villagers.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.rmi.RemoteException;
 
+/**
+ * This class creates a VillagerReward Reward.
+ * @author Richard Kerkvliet
+ */
 public class VillagerReward extends Reward {
     private String type;
 
+    /**
+     * creates the VillagerReward.
+     * @param type String
+     * @author Richard Kerkvliet
+     */
     public VillagerReward(String type) {
         this.type = type;
     }
 
+    /**
+     * Overrides the execute of Reward.
+     * adds a Villager to the PlayerBoard.
+     * @param client
+     * @throws RemoteException java.rmi.RemoteException
+     * @throws ParserConfigurationException
+     * @author Richard Kerkvliet
+     */
     @Override
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         super.execute(client);
@@ -47,6 +64,11 @@ public class VillagerReward extends Reward {
         }
     }
 
+    /**
+     * returns the String of the location of the special villager background
+     * @return String
+     * @author Richard Kerkvliet
+     */
     public String getVillagerBackground() {
 
         switch (this.type){
@@ -69,6 +91,11 @@ public class VillagerReward extends Reward {
 
     }
 
+    /**
+     * returns a new VillagerRewardComponent.
+     * @return VillagerRewardComponent RewardComponent
+     * @author Richard Kerkvliet
+     */
     @Override
     public RewardComponent getRewardComponent() {
         return new VillagerRewardComponent();

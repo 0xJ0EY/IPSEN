@@ -10,6 +10,10 @@ import javax.swing.event.AncestorEvent;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that creates special villagers reward
+ * Created by Richard Kerkvliet
+ */
 public class VillagerRewardComponent extends RewardComponent<VillagerReward> {
     private VillagerReward villager;
 

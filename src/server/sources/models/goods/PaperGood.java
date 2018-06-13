@@ -1,8 +1,5 @@
 package server.sources.models.goods;
 
-import client.source.components.harvest.PaperComponent;
-import javafx.scene.layout.AnchorPane;
-
 import java.io.Serializable;
 
 public class PaperGood implements Good {
@@ -12,7 +9,6 @@ public class PaperGood implements Good {
         return "paper.png";
     }
 
-    @Override
     public boolean sameInstance(Good good) {
         return good instanceof PaperGood;
     }

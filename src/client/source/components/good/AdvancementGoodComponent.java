@@ -8,6 +8,10 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that loads all goods in advancement track
+ * Created by Joey de Ruiter
+ */
 public class AdvancementGoodComponent extends GoodComponent {
 
     private int amount;
@@ -17,6 +21,10 @@ public class AdvancementGoodComponent extends GoodComponent {
     @FXML private Text amountText;
     @FXML private Text pointsText;
 
+    /**
+     * For loading goodscomponents in advancement track
+     * @author Joey de Ruiter
+     */
     public AdvancementGoodComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/good/advancement_good.fxml"));
 
@@ -30,10 +38,18 @@ public class AdvancementGoodComponent extends GoodComponent {
         }
     }
 
+    /**
+     * Updates amount of that good
+     * @author Joey de Ruiter
+     */
     private void updateAmountText() {
         this.amountText.setText(Integer.toString(this.amount));
     }
 
+    /**
+     * Updates amount of point that a user can obtain
+     * @author Robin Silverio
+     */
     private void updatePointsText() {
         int points = 0;
 
@@ -46,12 +62,22 @@ public class AdvancementGoodComponent extends GoodComponent {
         this.pointsText.setText(Integer.toString(points));
     }
 
+    /**
+     * For setting amount of that good
+     * @param amount int
+     * @author Robin Silverio
+     */
     public void setAmount(int amount) {
         this.amount = amount;
 
         this.updateAmountText();
     }
 
+    /**
+     * Setting a index
+     * @param index int
+     * @author Joey de Ruiter
+     */
     public void setIndex(int index) {
         this.index = index;
 

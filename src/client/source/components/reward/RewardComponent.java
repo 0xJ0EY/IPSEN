@@ -8,6 +8,10 @@ import javafx.scene.layout.FlowPane;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+/**
+ * A class that creates rewards
+ * Created by Richard Kerkvliet
+ */
 public abstract class RewardComponent<T> extends AnchorPane {
 
     @FXML protected AnchorPane background;

@@ -16,9 +16,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Deze klasse bouwt een arraylist met verhalen, welke gebruikt worden tijdens een explore actie.
+ * This classe builds an arrayList with stories, which are used during the explore action.
  *
- * @author richard
+ * @author Richard Kerkvliet
  */
 public class StoryFactory {
 
@@ -26,8 +26,8 @@ public class StoryFactory {
     private DocumentBuilder builder;
 
     /**
-     * maakt een storyfactory aan.
-     * @author richard
+     * creates a storyfactory.
+     * @author Richard Kerkvliet
      */
     public StoryFactory() {
 
@@ -42,9 +42,9 @@ public class StoryFactory {
     }
 
     /**
-     * laad de stories uit de xml file en plaatste ze in een arraylist van Story
-     * @return Arraylist
-     * @author richard
+     * Reads the stories form the stories.xml file and places them in the arraylist.
+     * @return Arraylist stories
+     * @author Richard Kerkvliet
      */
     public ArrayList<Story> loadStoriesFromXML() {
 

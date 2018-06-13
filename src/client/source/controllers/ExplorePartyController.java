@@ -41,6 +41,11 @@ public class ExplorePartyController implements ControllerInterface {
     private ArrayList<OptionButtonComponent> optionButtonComponents;
     private int totalLanternScore;
 
+    /**
+     * For loading an explore party view.
+     * @return explore party view
+     * @author Richard Kerkvliet
+     */
     @Override
     public Parent show() {
 
@@ -56,14 +61,26 @@ public class ExplorePartyController implements ControllerInterface {
         this.party = story.getVillagers();
     }
 
+    /**
+     * For setting a client.
+     * @author Richard Kerkvliet
+     */
     public void setClient(Client client) {
         this.client = client;
     }
 
+    /**
+     * For setting a random story.
+     * @author Richard Kerkvliet
+     */
     public void setStory(Story story) {
         this.story = story;
     }
 
+    /**
+     * For setting a choice.
+     * @author Richard Kerkvliet
+     */
     public void setChoice(Choice choice) {
         this.choice = choice;
     }
@@ -112,6 +129,10 @@ public class ExplorePartyController implements ControllerInterface {
 
     }
 
+    /**
+     * For updating a lanternscore.
+     * @author Richard Kerkvliet
+     */
     public void updateLanternScore(int lanternScore){
         this.totalLanternScore += lanternScore;
         this.currentLanterns.setText("Total number of lanterns: " + totalLanternScore);
@@ -121,6 +142,10 @@ public class ExplorePartyController implements ControllerInterface {
         }
     }
 
+    /**
+     * For forfaiting the explore action
+     * @author Richard Kerkvliet
+     */
     public void onClickRun(){
         try {
             RunAction run = new RunAction();

@@ -1,5 +1,6 @@
 package server.sources.controllers;
 
+import client.source.controllers.BelowController;
 import client.source.observers.Observable;
 import server.sources.interfaces.*;
 import server.sources.models.Market;
@@ -10,7 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable, Observable {
+public class GameController extends UnicastRemoteObject implements GameControllerInterface, Runnable {
 
     private static final long serialVersionUID = 1337L;
 
@@ -53,14 +54,20 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     private void startGame() throws RemoteException {
         this.setGameState(GameStates.STARTED);
 
+        // Update the playerboard
+        for (Player player : this.players) {
+            player.getGameClient().receiveNotification(
+                new UpdatePlayerBoardNotification(player.getPlayerBoard()
+            ));
+        }
+
         // Send everyone to the main screen
         System.out.println("[Game] Started");
         this.server.notifyClients(new GameStartedNotification());
 
         // Notify clients of the market / reputation board
         this.server.notifyClients(new MarketUpdateNotification(this.market));
-
-
+        this.server.notifyClients(new GameControllerUpdateNotifcation(this));
     }
 
     public void runGame() throws RemoteException {
@@ -101,7 +108,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
     /**
      * Request and then poll for all the players to rest thier villagers
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     private void restVillagers() throws RemoteException {
         boolean hasAction = true;
@@ -179,7 +186,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
      * Reset turn indicator
      * Reset players and add rewards, etc ...
      * @author Joey de Ruiter
-     * @throws RemoteException
+     * @throws RemoteException java.rmi.RemoteException
      */
     private void endOfRound() throws RemoteException {
         this.restVillagers();
@@ -206,29 +213,51 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         this.gameState = gameState;
     }
 
-    @Override
-    public ArrayList<PlayerInterface> listCurrentPlayers() throws RemoteException {
-        // Im casting some black magic right here
-        return (ArrayList<PlayerInterface>) (ArrayList<?>) this.players;
-
-    }
-
+    /**
+     * Return the story object so the StoryAction can generate stories
+     *
+     * @author Richard Kerkvliet
+     * @return StoryControllerInterface
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public StoryControllerInterface getStories() throws RemoteException {
         return (StoryControllerInterface) stories;
     }
 
+    /**
+     * Return the market interface so we can buy stuff.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException java.rmi.RemoteException
+     */
     @Override
     public MarketInterface getMarket() throws RemoteException {
         return (MarketInterface) market;
     }
 
-    public ReputationBoardInterface getReputationBoard(){
+    /**
+     * Return the reputation board, this will keep track of the cider and the reputation.
+     *
+     * @author Joey de Ruiter
+     * @return
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    public ReputationBoardInterface getReputationBoard() throws RemoteException {
         return (ReputationBoardInterface) reputationboard;
     }
 
     @Override
-    public void updateObserver() {
+    public int getCurrentRound() throws RemoteException {
+        return this.round;
+    }
 
+    public void updateObserver() {
+        try {
+            this.server.notifyClients(new GameControllerUpdateNotifcation(this));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

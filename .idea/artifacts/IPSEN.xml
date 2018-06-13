@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="IPSEN">
+    <output-path>$PROJECT_DIR$/out/artifacts/IPSEN</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="client.source.Client" />
+        <option name="description" value="A Java RMI implementation of Above and Below" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Above and Below" />
+        <option name="vendor" value="Microsoft 7.5b please" />
+        <option name="version" value="0.2" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="IPSEN.jar">
+        <element id="module-output" name="IPSEN" />
+      </element>
+    </root>
+  </artifact>
+</component>
