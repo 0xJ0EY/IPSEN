@@ -24,7 +24,7 @@
 
          <!-- left column -->
          <Button fx:id="exploreButton" mnemonicParsing="false" onAction="#explore" prefHeight="80" prefWidth="250" text="Explore" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-         <Button mnemonicParsing="false" onAction="#build" prefHeight="80" prefWidth="250" text="Build" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+         <Button fx:id="buildButton" mnemonicParsing="false" onAction="#build" prefHeight="80" prefWidth="250" text="Build" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
          <Button fx:id="labourButton" mnemonicParsing="false" onAction="#labor" prefHeight="80" prefWidth="250" text="Labour" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
 
          <!-- right column -->

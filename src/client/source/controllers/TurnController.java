@@ -23,6 +23,7 @@ public class TurnController {
     @FXML private Button labourButton;
     @FXML private Button harvestButton;
     @FXML private Button trainButton;
+    @FXML private Button buildButton;
 
     /**
      * This allows user to do the explore action
@@ -159,7 +160,7 @@ public class TurnController {
      * @author Robin Silverio
      */
     public void checkAvailableVillagersAndBuildingForHarvest(int villagerSize, int buildingSize){
-        if (villagerSize < 1 && buildingSize < 1)
+        if (villagerSize < 1 || buildingSize < 1)
             harvestButton.setDisable(true);
         else
             harvestButton.setDisable(false);
@@ -176,5 +177,12 @@ public class TurnController {
             trainButton.setDisable(true);
         else
             trainButton.setDisable(false);
+    }
+
+    public void checkAvailableBuilderVillagersForBuild(int size){
+        if (size < 1)
+            buildButton.setDisable(true);
+        else
+            buildButton.setDisable(false);
     }
 }
