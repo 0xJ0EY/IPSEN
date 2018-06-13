@@ -46,7 +46,6 @@
  - [ ] Klaarzetten ronde
  
        Melding van beloning
-       ciders verversen
        villagerspool aanvullen
 
 TODO

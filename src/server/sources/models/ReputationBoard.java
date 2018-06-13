@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ReputationBoard {
-    private ReputationBoardController rbc = new ReputationBoardController();
-    private ArrayList<PlayerInterface> players = new ArrayList<PlayerInterface>();
+//    private ReputationBoardController rbc = new ReputationBoardController();
+//    private ArrayList<PlayerInterface> players = new ArrayList<PlayerInterface>();
 
     private ArrayList<Integer> reputation = new ArrayList<Integer>();
 
-    public ReputationBoard(ArrayList<PlayerInterface> players){
-        this.players = players;
-        System.out.println("nieuw rep board");
-    }
+//    public ReputationBoard(ArrayList<PlayerInterface> players){
+//        this.players = players;
+//        System.out.println("nieuw rep board");
+//    }
 
     public ArrayList<PlayerInterface> sortPlayersByReputation(ArrayList<PlayerInterface> players) throws RemoteException {
         Collections.sort(getReputation(players));

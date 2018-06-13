@@ -41,6 +41,7 @@ public class Client extends Application {
     public Observer<PlayerBoardInterface> playerBoardObserver = new Observer<>();
     public Observer<MarketInterface> marketObserver = new Observer<>();
     public Observer<GameControllerInterface> gameObserver = new Observer<>();
+    public Observer<ReputationBoardInterface> reputationBoardObserver = new Observer<>();
 
     /**
      * Show the starting page of the app

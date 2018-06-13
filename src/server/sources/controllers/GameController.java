@@ -29,7 +29,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     private StoryController stories = new StoryController();
     private Market market = new Market(this);
-    private ReputationBoardController reputationboard = new ReputationBoardController();
+    private ReputationBoardController reputationboard = new ReputationBoardController(this);
 
     public GameController(ServerInterface server) throws RemoteException {
         this.server = server;
@@ -190,6 +190,9 @@ public class GameController extends UnicastRemoteObject implements GameControlle
      */
     private void endOfRound() throws RemoteException {
         this.restVillagers();
+
+        // Reset the cider
+        this.getReputationBoard().resetCider();
 
         // Reset turn
         this.turn = 0;
