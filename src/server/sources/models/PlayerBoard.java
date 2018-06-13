@@ -184,7 +184,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     /**
      * List all available villagers of on the playerboard.
      *
-     * @author Jan Douwe Sminia
+     * @author Jan Douwe Sminia | Joey de Ruiter
      * @return ArrayList of all available villagers
      * @throws RemoteException java.rmi.RemoteException
      */
@@ -204,7 +204,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     /**
      * List all available builder villagers of on the playerboard.
      *
-     * @author Jan Douwe Sminia
+     * @author Jan Douwe Sminia | Joey de Ruiter
      * @return ArrayList of available builder villagers
      * @throws RemoteException java.rmi.RemoteException
      */
@@ -212,7 +212,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableBuilderVillagers() throws RemoteException {
         ArrayList<VillagerInterface> builders = new ArrayList<VillagerInterface>();
 
-        for (VillagerInterface villager : this.villagers) {
+        for (VillagerInterface villager : this.listAvailableVillagers()) {
             if (villager instanceof Buildable) {
                 builders.add(villager);
             }
@@ -224,7 +224,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     /**
      * List all available trainer villagers of on the playerboard.
      *
-     * @author Jan Douwe Sminia
+     * @author Jan Douwe Sminia | Joey de Ruiter
      * @return ArrayList of all available villagers
      * @throws RemoteException java.rmi.RemoteException
      */
@@ -232,7 +232,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public ArrayList<VillagerInterface> listAvailableTrainerVillagers() throws RemoteException {
         ArrayList<VillagerInterface> trainers = new ArrayList<VillagerInterface>();
 
-        for (VillagerInterface villager : this.villagers) {
+        for (VillagerInterface villager : this.listAvailableVillagers()) {
             if (villager instanceof Trainable) {
                 trainers.add(villager);
             }

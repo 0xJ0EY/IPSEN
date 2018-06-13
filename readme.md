@@ -3,9 +3,17 @@
 ## TODO FROM TESTS
  - [ ] Verkopen Voorwerp (Jan Douwe)
  - [ ] Kopen Voorwerp (Jan Douwe)
+ 
+ - [ ] Turn controller.  
+
+       Disable de knop van harvest als er geen villagers / buildings zijn
+       Disable de knop van market als er geen villagers zijn
+       Disable de knop van explore als er minder dan actieve 2 villagers zijn
+       Disable de knop van labor als er geen actieve villagers is
+       Disable de knop van trainer als er geen actieve trainers zijn    
+ 
  - [ ] Trainen villager.
  
-       villager selection mag alleen maar beschikbare trainers laten zien
        gebruikte villagers vermoeien
        speler betalen villagers
        TrainToReady perk (enige perk die in de tests naar voren kwam)
@@ -29,11 +37,7 @@
  
        select button disabelen als er geen bouwer geselecteerd is
        Villager selection mag alleen maar beschikbare bouwers laten zien
- - [ ] Werken Villager
- 
-       geen villagers beschikbaar -> deze actie niet kunnen starten vanuit turn menu
-       select button disabelen als er geen villager geselecteerd is
-       moet meer villagers kunnen selecteren
+       
  - [ ] Verkennen grot
        
        gebruikte villagers vermoeien

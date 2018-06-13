@@ -10,7 +10,9 @@ import client.source.strategies.RequestStrategy;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.notifications.CancelNotification;
@@ -23,6 +25,13 @@ public class VillagerSelectionController implements ControllerInterface {
     @FXML private Parent root;
 
     @FXML private FlowPane villagerContainer;
+
+    @FXML private Button selectButton;
+
+    @FXML private Text message;
+
+    private int minimumRequiredVillagers = 1;
+    private int maximumRequiredVillagers = 0;
 
     private VillagerActionInterface action;
 
@@ -38,6 +47,8 @@ public class VillagerSelectionController implements ControllerInterface {
 
     private VillagerSelectionComponentFactory componentFactory;
 
+    private Thread messageThread;
+
     /**
      * Loads villager selection view.
      * @return loaded villager_selection.FXML
@@ -49,6 +60,22 @@ public class VillagerSelectionController implements ControllerInterface {
         this.updateVillagersView();
 
         return this.root;
+    }
+
+    /**
+     *
+     */
+    public void update() {
+        int villagerSelection = this.getSelectedVillagerComponents().size();
+
+        if (villagerSelection >= this.maximumRequiredVillagers && this.maximumRequiredVillagers != 0) {
+            this.disableSelection();
+        } else {
+            this.enableSelection();
+        }
+
+        // Disable the button when there are less buttons selected
+        this.selectButton.setDisable(villagerSelection < this.minimumRequiredVillagers);
     }
 
     /**
@@ -76,6 +103,8 @@ public class VillagerSelectionController implements ControllerInterface {
             this.villagerComponents.add(villagerComponent);
             this.villagerContainer.getChildren().add(villagerComponent);
         }
+
+        this.update();
     }
 
     /**
@@ -177,5 +206,55 @@ public class VillagerSelectionController implements ControllerInterface {
      */
     public void setStrategy(VillagerSelectionStrategy strategy) {
         this.strategy = strategy;
+    }
+
+    /**
+     * Set the minimum required villagers.
+     * @author Joey de Ruiter
+     * @param minimumRequiredVillagers
+     */
+    public void setMinimumRequiredVillagers(int minimumRequiredVillagers) {
+        this.minimumRequiredVillagers = minimumRequiredVillagers;
+    }
+
+    /**
+     * Set the maximum required villagers. Set 0 to have the maximum ignored.
+     * @author Joey de Ruiter
+     * @param maximumRequiredVillagers
+     */
+    public void setMaximumRequiredVillagers(int maximumRequiredVillagers) {
+        this.maximumRequiredVillagers = maximumRequiredVillagers;
+    }
+
+    private void enableSelection() {
+        for (SelectableVillagerComponent villagerComponent : this.villagerComponents) {
+            villagerComponent.enableSelection();
+        }
+    }
+
+    private void disableSelection() {
+        for (SelectableVillagerComponent villagerComponent : this.villagerComponents) {
+            villagerComponent.disableSelection();
+        }
+    }
+
+    public void showMessage(String message) {
+        if (this.messageThread != null && this.messageThread.isAlive()) this.messageThread.interrupt();
+
+        Runnable r = () -> {
+            this.message.setText(message);
+            this.message.setVisible(true);
+
+            try {
+                Thread.sleep(1700);
+            } catch (InterruptedException e) {
+                System.out.println("Message interrupted");
+            } finally {
+                this.message.setVisible(false);
+            }
+        };
+
+        this.messageThread = new Thread(r);
+        this.messageThread.start();
     }
 }
