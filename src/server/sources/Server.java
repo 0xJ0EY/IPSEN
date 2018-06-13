@@ -29,7 +29,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
     private ArrayList<GameClientInterface> gameClients = new ArrayList<GameClientInterface>();
     private GameController gameController = new GameController((ServerInterface) this);
-    private ReputationBoard reputationBoard;
 
     public Server(String[] args) throws RemoteException, MalformedURLException {
         System.out.println("Starting server");
@@ -79,7 +78,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         this.promoteOwner();
 
         ArrayList<PlayerInterface> players = (ArrayList<PlayerInterface>) (ArrayList<?>) this.gameController.players;
-        reputationBoard = new ReputationBoard(players);
 
         // Update target client
         gameClient.receiveNotification(new LobbyNotification());
