@@ -24,7 +24,7 @@ public class GameController extends UnicastRemoteObject implements GameControlle
 
     private final int MAX_ROUNDS = 7;
 
-    private int round = 0;
+    private int round = 1;
     private int turn = 0;
 
     private StoryController stories = new StoryController();

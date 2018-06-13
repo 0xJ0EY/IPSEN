@@ -1,10 +1,8 @@
 package client.source.components.villager;
 
+import client.source.controllers.VillagerSelectionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import server.sources.interfaces.VillagerInterface;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -15,6 +13,9 @@ import java.rmi.RemoteException;
  */
 public abstract class SelectableVillagerComponent extends VillagerComponent {
 
+    protected VillagerSelectionController controller;
+
+    protected boolean selectable = true;
     protected boolean selected;
 
     public SelectableVillagerComponent() {
@@ -47,6 +48,11 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
      * @author Richard Kerkvliet
      */
     public void select() {
+        if (!this.isSelectable()) {
+            this.controller.showMessage("You already have selected the maximum amount of villagers.");
+            return;
+        }
+
         this.selected = true;
         this.update();
     }
@@ -65,11 +71,17 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
      * @author Richard Kerkvliet
      */
     public void toggleSelected() {
-        this.selected = !this.selected;
-        this.update();
+        if (this.isSelected()) {
+            this.deselect();
+        }
+        else {
+            this.select();
+        }
     }
 
     protected void update() {
+        this.controller.update();
+
         if (this.selected) {
             this.showIndicator();
         } else {
@@ -105,5 +117,27 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * For setting a controller
+     * @param controller VillagerSelectionController
+     * @author Joey de Ruiter
+     */
+    public void setController(VillagerSelectionController controller) {
+        this.controller = controller;
+    }
+
+    private boolean isSelectable() {
+        return this.selectable;
+    }
+
+    public void enableSelection() {
+        this.selectable = true;
+
+    }
+
+    public void disableSelection() {
+        this.selectable = false;
     }
 }
