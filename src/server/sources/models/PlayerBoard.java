@@ -257,8 +257,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
      */
     @Override
     public void addVillager(Villager villager) throws RemoteException {
-        villager.tire();
         villager.setPlayerBoard(this);
+        villager.tire();
 
         villagers.add(villager);
         this.updateObserver();
