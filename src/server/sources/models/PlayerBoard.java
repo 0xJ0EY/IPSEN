@@ -115,8 +115,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.potions += 1;
     }
 
-    public void payCoin(int coin){
+    public void payCoin(int coin) throws RemoteException {
         this.coins -= coin;
+        this.updateObserver();
     }
 
     public void addGood(Good good){
