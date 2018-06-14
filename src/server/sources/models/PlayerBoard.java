@@ -519,8 +519,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    public void addRerolls(int amount) throws RemoteException {
-        this.rerolls += amount;
+    public void addReroll() throws RemoteException {
+        this.rerolls++;
     }
 
     @Override

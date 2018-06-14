@@ -10,14 +10,12 @@ import java.rmi.RemoteException;
 public class RerollPerk implements Perk, Refreshable {
 
     private String perk;
-    private int amount;
     private GameClientInterface gameClient;
 
     //TODO: reroll in explore kunnen gebruiken
 
-    public RerollPerk(String textContent, int amount) {
+    public RerollPerk(String textContent) {
         this.perk = textContent;
-        this.amount = amount;
     }
 
     @Override
@@ -29,12 +27,12 @@ public class RerollPerk implements Perk, Refreshable {
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
 
-        gameClient.getPlayer().getPlayerBoard().addRerolls(amount);
+        gameClient.getPlayer().getPlayerBoard().addReroll();
 
     }
 
     @Override
     public void refresh() throws RemoteException {
-        this.gameClient.getPlayer().getPlayerBoard().addRerolls(amount);
+        this.gameClient.getPlayer().getPlayerBoard().addReroll();
     }
 }
