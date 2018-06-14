@@ -51,7 +51,7 @@
         villagerspool aanvullen
 
 TODO
- - [ ] Add message to the saving error
+ - [x] Add message to the saving error
  - [ ] UI Improvements
  - [ ] Key bindings on turn buttons (important)
  - [x] JavaDoc
