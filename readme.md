@@ -69,7 +69,7 @@ TODO
 ## UI
  - [ ] Special villager backgrounds
  - [ ] more villager backgrounds
- - [ ] house/outpost backgrounds
+ - [x] house/outpost backgrounds
  - [ ] Harvest check for cider
  - [ ] Cider inbouwen in de belowview
 
