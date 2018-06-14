@@ -10,7 +10,6 @@ public class EndOfTurnNotification implements NotificationInterface {
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
-        System.out.println("Dit is een endOfTurn notification");
         gameClient.getClient().showMain();
 
     }
