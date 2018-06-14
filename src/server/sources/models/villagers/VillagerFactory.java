@@ -122,10 +122,10 @@ public class VillagerFactory {
         // Fetch cost
         int cost = Integer.parseInt(lanternElement.getElementsByTagName("cost").item(0).getTextContent());
 
-        // Fetch eyes
-        int eyes = Integer.parseInt(lanternElement.getElementsByTagName("eyes").item(0).getTextContent());
+        // Fetch amount
+        int amount = Integer.parseInt(lanternElement.getElementsByTagName("amount").item(0).getTextContent());
 
-        return new Lantern(cost, eyes);
+        return new Lantern(cost, amount);
     }
 
     public TinVillager createTinVillager() {

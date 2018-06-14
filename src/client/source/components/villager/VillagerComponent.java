@@ -1,5 +1,6 @@
 package client.source.components.villager;
 
+import client.source.models.DisplayDice;
 import client.source.views.DiceLanternView;
 import client.source.views.DiceView;
 import client.source.views.LanternView;
@@ -28,13 +29,15 @@ public class VillagerComponent extends AnchorPane {
 
     @FXML protected AnchorPane background;
 
-    @FXML protected Text labelType;
-
     @FXML protected AnchorPane type;
 
     @FXML protected HBox diceLanterns;
 
     public VillagerComponent() {
+        this.loadView();
+    }
+
+    protected void loadView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager.fxml"));
 
         loader.setRoot(this);
@@ -87,10 +90,11 @@ public class VillagerComponent extends AnchorPane {
             this.diceLanterns.getChildren().clear();
 
             for (Lantern lantern : this.villager.listLanterns()) {
+                DisplayDice dice = new DisplayDice(lantern.getCost());
 
                 DiceLanternController diceLanternController = new DiceLanternController(
                     new DiceLanternView(),
-                    new DiceController(new DiceView(), new Dice()),
+                    new DiceController(new DiceView(), dice),
                     new LanternController(new LanternView(), lantern)
                 );
 

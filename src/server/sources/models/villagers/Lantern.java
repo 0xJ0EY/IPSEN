@@ -12,11 +12,17 @@ public class Lantern implements Serializable {
     public Lantern(int cost, int amount) {
         this.cost = cost;
         this.amount = amount;
+
+        System.out.println("amount = " + amount);
     }
 
     public int throwForLanterns(Dice dice) {
-        return (dice.getEyes() > this.cost) ? amount : 0;
+        return (dice.getEyes() >= this.cost) ? amount : 0;
 
+    }
+
+    public int getCost() {
+        return this.cost;
     }
 
     public int getAmount() {

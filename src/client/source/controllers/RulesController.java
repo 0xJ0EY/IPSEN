@@ -39,7 +39,7 @@ public class RulesController {
 
         Runnable loadImages = () -> {
             for (int i = 0; i < 15; i++) {
-                Image image =  new Image("client/resources/img/rules_map/rules-" + i + ".jpg");
+                Image image = new Image("client/resources/img/rules_map/rules-" + i + ".jpg");
                 images.add(image);
             }
 

@@ -23,8 +23,9 @@ public class TrainerVillagerComponent extends SingleSelectableVillagerComponent 
         this.showIndicator();
     }
 
-    public TrainerVillagerComponent() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager_to_train/villager.fxml"));
+    @Override
+    protected void loadView() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager_to_train.fxml"));
 
         loader.setRoot(this);
         loader.setController(this);

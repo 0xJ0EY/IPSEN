@@ -35,7 +35,7 @@ public class LanternView extends AnchorPane implements ViewInterface {
     }
 
     public void show() {
-        String image = "/client/resources/img/dice/dice_" + this.lanterns + ".png";
+        String image = "/client/resources/img/lanterns/lanterns_" + this.lanterns + ".png";
         this.background.setStyle("-fx-background-image: url('" + image + "')");
     }
 

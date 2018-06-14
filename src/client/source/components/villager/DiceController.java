@@ -1,6 +1,7 @@
 package client.source.components.villager;
 
 import client.source.interfaces.ControllerInterface;
+import client.source.models.DisplayDice;
 import client.source.views.DiceView;
 import javafx.scene.Parent;
 import server.sources.models.Dice;
@@ -8,9 +9,9 @@ import server.sources.models.Dice;
 public class DiceController implements ControllerInterface {
 
     private DiceView view;
-    private Dice model;
+    private DisplayDice model;
 
-    public DiceController(DiceView view, Dice model) {
+    public DiceController(DiceView view, DisplayDice model) {
         this.model = model;
 
         view.load(this);
@@ -20,8 +21,7 @@ public class DiceController implements ControllerInterface {
     @Override
     public Parent update() {
 
-        model.roll();
-        view.setEyes(model.getEyes());
+        view.setEyes(model.read());
 
         view.show();
 

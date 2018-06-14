@@ -18,7 +18,8 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
     protected boolean selectable = true;
     protected boolean selected;
 
-    public SelectableVillagerComponent() {
+    @Override
+    protected void loadView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/selectable_villager.fxml"));
 
         loader.setRoot(this);
