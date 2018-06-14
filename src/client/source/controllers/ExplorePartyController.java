@@ -49,7 +49,6 @@ public class ExplorePartyController implements ControllerInterface {
     @Override
     public Parent show() {
 
-        // TODO: Maybe make this possible with observers (Should be easy)
         this.retrieveParty();
 
         this.updatePartyView();

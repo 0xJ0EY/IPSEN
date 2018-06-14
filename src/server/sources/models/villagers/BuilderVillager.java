@@ -20,8 +20,4 @@ public class BuilderVillager extends Villager implements Buildable {
         super(lanterns, state, background);
     }
 
-    @Override
-    public void build() {
-
-    }
 }

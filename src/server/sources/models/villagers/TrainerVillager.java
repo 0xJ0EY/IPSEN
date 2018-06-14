@@ -21,12 +21,4 @@ public class TrainerVillager extends Villager implements Trainable {
         super(lanterns, state, background);
     }
 
-    /**
-     * trains a villager.
-     */
-    @Override
-    public void train() {
-
-    }
-
 }
