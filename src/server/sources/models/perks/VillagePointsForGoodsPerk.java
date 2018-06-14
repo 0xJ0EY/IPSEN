@@ -30,6 +30,7 @@ public class VillagePointsForGoodsPerk implements Perk, EndOfGame {
         this.gameClient = gameClient;
     }
 
+    //TODO: laatste Perk
     @Override
     public int endOfGamePerk() throws RemoteException {
         int amount;
