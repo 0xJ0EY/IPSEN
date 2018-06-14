@@ -12,6 +12,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -27,87 +30,129 @@ public class RulesController {
     @FXML private ImageView ruleImage;
     @FXML private ScrollPane rulesScrollpane;
 
-
     private int index = 0;
-    private ArrayList<Image> images = new ArrayList<Image>();
+
+    private Image imageLeft = null;
+    private Image imageMiddle = new Image("/client/resources/img/rules_map/rules-0.jpg");
+    private Image imageRight = new Image("/client/resources/img/rules_map/rules-1.jpg");
 
     /**
-     * This is for loading images to imageViews
-     * @author Robin Silverio
+     * Set up the first image & set the scroll pane to full width
+     * @author Joey de Ruiter
      * */
     public void initialize() {
+        this.updateImage();
 
-        Runnable loadImages = () -> {
-            for (int i = 0; i < 15; i++) {
-                Image image = new Image("client/resources/img/rules_map/rules-" + i + ".jpg");
-                images.add(image);
-            }
-
-            this.updateImage();
-            this.updateButtons();
-        };
-
-        new Thread(loadImages).start();
-
-        // This is for resizing imageview.
         this.ruleImage.fitWidthProperty().bind(rulesScrollpane.widthProperty());
 
+        this.enableBothButtons();
     }
 
-    /**
-     * This is for handling clicks to see next ruleimage on scrollpane
-     * @author Joey de Ruiter and Robin Silverio
-     */
-    @FXML private void next() {
-        if (this.index + 1 > this.images.size()) return;
-
-        this.index++;
-
-        this.updateImage();
-        this.updateButtons();
-
-    }
 
     /**
-     * This is for handling clicks to see previous ruleimage on scrollpane
-     * @author Joey de Ruiter and Robin Silverio
-     */
-    @FXML private void previous() {
-        if (this.index - 1 < 0) return;
-        this.index--;
-
-        this.updateImage();
-        this.updateButtons();
-
-    }
-
-    /**
-     * Updates ruleimages after clicking next or previous button
-     * @author Robin Silverio
-     */
-    private void updateImage() {
-        this.ruleImage.setImage(this.images.get(this.index));
-    }
-
-    /**
-     * To prevent nullpointerexception, disable buttons when scrollpane loads first or last index
+     * Load the image to the right
      * @author Joey de Ruiter
      */
-    private void updateButtons() {
+    @FXML private void next() {
+        // Move to the right
 
-        if (this.index == 0) {
-            this.previous_btn.setDisable(true);
-            this.next_btn.setDisable(false);
+        this.imageLeft = this.imageMiddle;
+        this.imageMiddle = this.imageRight;
+        this.imageRight = null;
 
-        } else if (this.index == this.images.size() - 1) {
-            this.previous_btn.setDisable(false);
-            this.next_btn.setDisable(true);
+        this.updateImage();
 
-        } else {
-            this.previous_btn.setDisable(false);
-            this.next_btn.setDisable(false);
+        this.loadImageRight();
 
-        }
+    }
+
+    /**
+     * Load the image to the left
+     * @author Joey de Ruiter
+     */
+    @FXML private void previous() {
+        // Move to the left
+        this.imageRight = this.imageMiddle;
+        this.imageMiddle = this.imageLeft;
+        this.imageLeft = null;
+
+        this.updateImage();
+
+        this.loadImageLeft();
+    }
+
+    /**
+     * Set the main image
+     */
+    private void updateImage() {
+        this.ruleImage.setImage(this.imageMiddle);
+    }
+
+    /**
+     * Load most right image in a thread, so it wont be run on the main thread.
+     * @author Joey de Ruiter
+     */
+    private void loadImageRight() {
+        Thread thread = new Thread(() -> {
+
+            this.index++;
+
+            String rightImage = "client/resources/img/rules_map/rules-" + (this.index + 1) + ".jpg";
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rightImage);
+
+            this.disableRightButton();
+
+            if (inputStream == null) {
+                this.imageRight = null;
+                return;
+            }
+
+            this.imageRight = new Image(inputStream);
+            this.enableBothButtons();
+        });
+
+        thread.start();
+    }
+
+    /**
+     * Load most left image in a thread, so it wont be run on the main thread.
+     * @author Joey de Ruiter
+     */
+    private void loadImageLeft() {
+        Thread thread = new Thread(() -> {
+
+            this.index--;
+
+            String rightImage = "client/resources/img/rules_map/rules-" + (this.index - 1) + ".jpg";
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rightImage);
+
+            this.disableLeftButton();
+
+            if (inputStream == null) {
+                this.imageLeft = null;
+                return;
+            }
+
+            this.imageLeft = new Image(inputStream);
+            this.enableBothButtons();
+        });
+
+        thread.start();
+    }
+
+    private void disableLeftButton() {
+        this.previous_btn.setDisable(true);
+
+    }
+
+    private void disableRightButton() {
+        this.next_btn.setDisable(true);
+
+    }
+
+    private void enableBothButtons() {
+        this.previous_btn.setDisable(false);
+        this.next_btn.setDisable(false);
 
     }
 }
