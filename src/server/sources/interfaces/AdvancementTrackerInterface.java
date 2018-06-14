@@ -38,7 +38,7 @@ public interface AdvancementTrackerInterface extends Remote, Serializable {
      * @author Joey de Ruiter
      * @throws RemoteException java.rmi.RemoteException
      */
-    public int calculatePoints()  throws RemoteException;
+    public int calculatePoints(GameClientInterface gameClient)  throws RemoteException;
 
     /**
      * Return the points a good on the specified index is worth

@@ -2,7 +2,6 @@ package client.source.factories;
 
 import client.source.Client;
 import client.source.controllers.*;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.fxml.FXMLLoader;
 
 import java.awt.image.BufferedImageOp;

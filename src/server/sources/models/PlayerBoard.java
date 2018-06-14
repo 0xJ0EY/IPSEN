@@ -1,8 +1,5 @@
 package server.sources.models;
 
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
@@ -10,21 +7,15 @@ import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
 import server.sources.models.perks.*;
 import server.sources.models.buildings.Building;
-import server.sources.models.goods.*;
-import server.sources.models.buildings.House;
-import server.sources.models.buildings.Outpost;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.MessageNotification;
 import server.sources.notifications.UpdatePlayerBoardNotification;
 import server.sources.strategies.villagers.AddVillagerStrategy;
 
-import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
 
 public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
@@ -44,9 +35,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private int ciders = 2;
     private int potions = 2;
-    private int coins = 10;
+    private int coins = 40;
     private int beds = 3;
     private int caveCards = 0;
+    private int rerolls = 0;
+
+    private boolean hasTrainToReadyPerk = false;
+    private boolean hasCoinForBuildPerk = false;
+    private boolean hasCoinForExplorePerk = false;
 
     public PlayerBoard(PlayerInterface player) throws RemoteException {
         this.player = player;
@@ -61,6 +57,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
         // TODO: A nice implementation of this
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED, "villager_background_04.png"));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED, "villager_background_05.png"));
 
@@ -177,6 +176,12 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
+    @Override
+    public void addBeds(int amount) throws RemoteException{
+        this.beds += amount;
+        this.updateObserver();
+    }
+
     /**
      * List all villagers of on the playerboard.
      *
@@ -264,7 +269,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public void addVillager(Villager villager) throws RemoteException {
         villager.setPlayerBoard(this);
-        villager.tire();
+        if (!this.hasTrainToReadyPerk) villager.tire();
 
         villagers.add(villager);
         this.updateObserver();
@@ -294,6 +299,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     public void addHouse(House house) throws RemoteException {
+        this.activatePerks(house);
         this.houses.add(house);
         this.updateObserver();
     }
@@ -304,8 +310,15 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     public void addOutpost(Outpost outpost) throws RemoteException {
+        this.activatePerks(outpost);
         this.outposts.add(outpost);
         this.updateObserver();
+    }
+
+    private void activatePerks(Building building) throws RemoteException{
+        for (Perk perk : building.listPerks()) {
+            perk.activateOnObtainedPerk(this.player.getGameClient());
+        }
     }
 
     @Override
@@ -374,6 +387,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
         // Add all coins
         this.addCoins(this.endOfRound.countCoins());
+
+        // clears the rerolls
+        this.clearRerolls();
 
         // Refresh perks
         this.endOfRound.refreshPerks();
@@ -479,5 +495,44 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     public void addCaveCard(){
         this.caveCards++;
+    }
+
+    public int getCaveCards(){
+        return this.caveCards;
+    }
+
+    @Override
+    public void obtainedTrainToReadyPerk() throws RemoteException{
+        this.hasTrainToReadyPerk = true;
+    }
+
+    @Override
+    public void obtainedCoinForBuildPerk() throws RemoteException{
+        this.hasCoinForBuildPerk = true;
+    }
+
+    @Override
+    public boolean getHasCoinForBuildPerk() throws RemoteException{
+        return this.hasCoinForBuildPerk;
+    }
+
+    @Override
+    public void obtainedCoinForExplorePerk() throws RemoteException{
+        this.hasCoinForBuildPerk = true;
+    }
+
+    @Override
+    public boolean getHasCoinForExplorePerk() throws RemoteException{
+        return this.hasCoinForExplorePerk;
+    }
+
+    @Override
+    public void addReroll() throws RemoteException {
+        this.rerolls++;
+    }
+
+    @Override
+    public void clearRerolls() throws RemoteException {
+        this.rerolls = 0;
     }
 }

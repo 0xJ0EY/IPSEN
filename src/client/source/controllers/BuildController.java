@@ -19,7 +19,12 @@ import server.sources.actions.EndTurnAction;
 import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
+import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.IncomeForGoodsPerk;
+import server.sources.models.perks.Perk;
+import server.sources.models.perks.PotionPerk;
 
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -287,7 +292,9 @@ public class BuildController implements SelectableControllerInterface, Observabl
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
             building.buy(this.market, this.target.getGameClient());
 
-            //this.client.getGameClient().getPlayer().doAction(new EndTurnAction(this.usedTrainerVillagers));
+            for (VillagerInterface villager: usedTrainerVillagers) {
+                villager.tire();
+            }
             this.client.showBuildReward(selected.getModel());
         } catch (RemoteException e) {
             e.printStackTrace();

@@ -4,21 +4,12 @@ import server.sources.interfaces.GameClientInterface;
 
 import java.rmi.RemoteException;
 
-/**
- * Created by robin on 28-5-2018.
- */
-public class VillagePointsPerk implements Perk, EndOfGame {
-
-    private int value;
+public class PotionIncomePerk implements Perk, Refreshable {
     private GameClientInterface gameClient;
-
-    public VillagePointsPerk(int value) {
-        this.value = value;
-    }
 
     @Override
     public String getBackground() {
-        return "village_points.png";
+        return "potion_income.png";
     }
 
     @Override
@@ -26,12 +17,9 @@ public class VillagePointsPerk implements Perk, EndOfGame {
         this.gameClient = gameClient;
     }
 
-    public int getValue() {
-        return this.value;
-    }
-
     @Override
-    public int endOfGamePerk() throws RemoteException {
-        return value;
+    public void refresh() throws RemoteException{
+        this.gameClient.getPlayer().getPlayerBoard().addPotion();
+        System.out.println("Potion increased due to potion income perk");
     }
 }

@@ -207,7 +207,6 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     }
 
     @Override
-
     public synchronized void buyRemoteHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 

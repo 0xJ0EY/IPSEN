@@ -91,6 +91,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void addCaveCard() throws RemoteException;
 
+    public int getCaveCards() throws RemoteException;
+
     public int getCoins() throws RemoteException;
 
     public int getCiders() throws RemoteException;
@@ -98,6 +100,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public int getPotions() throws RemoteException;
 
     public int getBeds() throws RemoteException;
+
+    public void addBeds(int amount) throws RemoteException;
 
     public ArrayList<Good> getGoods() throws RemoteException;
 
@@ -146,4 +150,18 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public void moveGoodToAdvancementTracker(int index) throws RemoteException;
 
     public void updateVillager() throws RemoteException;
+
+    public void obtainedTrainToReadyPerk() throws RemoteException;
+
+    public void obtainedCoinForBuildPerk() throws RemoteException;
+
+    public boolean getHasCoinForBuildPerk() throws RemoteException;
+
+    public void obtainedCoinForExplorePerk() throws RemoteException;
+
+    public boolean getHasCoinForExplorePerk() throws RemoteException;
+
+    public void addReroll() throws RemoteException;
+
+    public void clearRerolls() throws RemoteException;
 }
