@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.HarvestController">
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.HarvestController">
    <children>
       <FlowPane fx:id="buildingContainer" layoutY="50.0" prefHeight="300.0" prefWidth="600.0" />
-      <Button layoutX="225.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="30.0" prefWidth="150.0" text="Confirm" />
+      <Button layoutX="124.0" layoutY="355.0" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="30.0" prefWidth="150.0" text="Confirm" />
+      <Button layoutX="323.0" layoutY="355.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="30.0" prefWidth="150.0" text="Cancel" />
+      <TextField text="Wich good do you want?" layoutX="200.0" layoutY="14.0" prefHeight="35.0" prefWidth="198.0" />
    </children>
 </AnchorPane>

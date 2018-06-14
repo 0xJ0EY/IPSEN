@@ -119,7 +119,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         this.housesContainer.getChildren().clear();
 
-        for (House house : this.houses) {
+        for (BuildingInterface house : this.houses) {
             SingleSelectableBuildingComponent houseComponent = new SingleSelectableBuildingComponent();
             houseComponent.setModel(house);
             houseComponent.setController(this);
@@ -139,7 +139,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         this.outpostsContainer.getChildren().clear();
 
-        for (Outpost outpost : this.outposts) {
+        for (BuildingInterface outpost : this.outposts) {
             SelectableBuildingComponent outpostComponent = new SingleSelectableBuildingComponent();
             outpostComponent.setModel(outpost);
             outpostComponent.setController(this);
@@ -159,7 +159,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         this.keyHousesContainer.getChildren().clear();
 
-        for (KeyHouse keyHouse : keyHouses) {
+        for (BuildingInterface keyHouse : keyHouses) {
             SelectableBuildingComponent keyhouseComponent = new SingleSelectableBuildingComponent();
             keyhouseComponent.setModel(keyHouse);
             keyhouseComponent.setController(this);
@@ -179,7 +179,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         this.starHousesContainer.getChildren().clear();
 
-        for (StarHouse starHouse : this.starHouses) {
+        for (BuildingInterface starHouse : this.starHouses) {
             SelectableBuildingComponent starhouseComponent = new SingleSelectableBuildingComponent();
             starhouseComponent.setModel(starHouse);
             starhouseComponent.setController(this);

@@ -12,4 +12,9 @@ public class OreGood implements Good {
     public boolean sameInstance(Good good) {
         return good instanceof OreGood;
     }
+
+    @Override
+    public Good harvestGood() {
+        return new OreGood();
+    }
 }

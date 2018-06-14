@@ -10,8 +10,8 @@ import server.sources.models.goods.*;
  */
 public class ReplenishableGoodPerk implements Harvestable, Refreshable {
 
-    private int original_value = 2;
-    private int value = 0;
+    private final int original_value = 1;
+    private int value;
 
     private Good good;
 
@@ -20,6 +20,7 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
      */
     public ReplenishableGoodPerk(Good good){
         this.good = good;
+        this.value = 1;
     }
 
     /**
@@ -51,6 +52,7 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
      *
      * @return
      */
+    @Override
     public boolean canHarvest(){
         return this.value > 0;
     }
@@ -58,6 +60,7 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
     /**
      * Removes one good.
      */
+    @Override
     public void harvest(){
         this.value--;
 

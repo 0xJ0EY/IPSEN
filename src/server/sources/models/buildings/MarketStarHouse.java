@@ -20,7 +20,7 @@ public class MarketStarHouse extends StarHouse implements BuildingMarketInterfac
      * @param background
      * @author Robin Silverio
      */
-    public MarketStarHouse(int cost, ArrayList<Perk> perks, String background) {
+    public MarketStarHouse(int cost, ArrayList<Perk> perks, String background) throws RemoteException {
         super(cost, perks, background);
     }
 

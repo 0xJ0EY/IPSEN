@@ -1,7 +1,6 @@
 package server.sources.actions;
 
 import server.sources.Server;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.GoodOnSaleInterface;

@@ -1,4 +1,4 @@
-package server.sources.controllers;
+package server.sources.models.goods;
 
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.GoodOnSaleInterface;

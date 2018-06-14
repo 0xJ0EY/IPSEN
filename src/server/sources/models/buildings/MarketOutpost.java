@@ -20,7 +20,7 @@ public class MarketOutpost extends Outpost implements BuildingMarketInterface {
      * @param background
      * @author Robin Silverio
      */
-    public MarketOutpost(int cost, ArrayList<Perk> perks, String background) {
+    public MarketOutpost(int cost, ArrayList<Perk> perks, String background) throws RemoteException {
         super(cost, perks, background);
     }
 

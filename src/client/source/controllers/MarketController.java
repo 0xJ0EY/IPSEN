@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import server.sources.actions.RefreshHousesAction;
+import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.MarketInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.KeyHouse;
@@ -132,7 +133,7 @@ public class MarketController implements Observable {
     private void createHouseComponents() throws RemoteException {
         this.houses.getChildren().clear();
 
-        for (MarketHouse marketHouse : this.market.listAvailableHouses()) {
+        for (BuildingInterface marketHouse : this.market.listAvailableHouses()) {
             BuildingComponent buildingComponent = new BuildingComponent();
             buildingComponent.setModel(marketHouse);
             buildingComponent.load();
@@ -149,7 +150,7 @@ public class MarketController implements Observable {
     private void createKeyHouseComponents() throws RemoteException {
         this.keyhouses.getChildren().clear();
 
-        for (KeyHouse keyhouses : this.market.listAvailableKeyHouses()) {
+        for (BuildingInterface keyhouses : this.market.listAvailableKeyHouses()) {
             BuildingComponent buildingComponent = new BuildingComponent();
             buildingComponent.setModel(keyhouses);
             buildingComponent.load();
@@ -165,7 +166,7 @@ public class MarketController implements Observable {
     private void createStarHouseComponents() throws RemoteException {
         this.starhouses.getChildren().clear();
 
-        for (StarHouse starHouse : this.market.listAvailableStarHouses()) {
+        for (BuildingInterface starHouse : this.market.listAvailableStarHouses()) {
             BuildingComponent buildingComponent = new BuildingComponent();
             buildingComponent.setModel(starHouse);
             buildingComponent.load();
@@ -181,7 +182,7 @@ public class MarketController implements Observable {
     private void createOutpostsHouseComponents() throws RemoteException {
         this.outposts.getChildren().clear();
 
-        for (MarketOutpost marketOutpost : this.market.listAvailableOutposts()) {
+        for (BuildingInterface marketOutpost : this.market.listAvailableOutposts()) {
             BuildingComponent buildingComponent = new BuildingComponent();
             buildingComponent.setModel(marketOutpost);
             buildingComponent.load();

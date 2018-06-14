@@ -2,6 +2,7 @@ package server.sources.models.buildings;
 
 import server.sources.models.perks.Perk;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class StarHouse extends House {
      * @param background
      * @author Robin Silverio
      */
-    public StarHouse(int cost, ArrayList<Perk> perks, String background) {
+    public StarHouse(int cost, ArrayList<Perk> perks, String background) throws RemoteException {
         super(cost, perks, background);
     }
 }

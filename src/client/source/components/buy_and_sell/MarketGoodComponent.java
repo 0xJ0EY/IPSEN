@@ -5,7 +5,6 @@ import client.source.controllers.MarketTradingController;
 import client.source.controllers.SellGoodController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.GoodOnSaleInterface;
 import server.sources.models.goods.Good;
 

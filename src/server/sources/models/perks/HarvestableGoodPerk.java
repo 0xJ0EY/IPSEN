@@ -1,6 +1,5 @@
 package server.sources.models.perks;
 
-import javafx.scene.layout.AnchorPane;
 import server.sources.models.goods.*;
 
 /**
@@ -11,13 +10,14 @@ import server.sources.models.goods.*;
  */
 public class HarvestableGoodPerk implements Harvestable {
     private Good good;
-    private int amountLeft = 2;
+    private int amountLeft;
 
     /**
      * @param good
      */
     public HarvestableGoodPerk(Good good){
         this.good = good;
+        this.amountLeft = 2;
     }
 
     /**
@@ -37,6 +37,7 @@ public class HarvestableGoodPerk implements Harvestable {
         return this.good;
     }
 
+    @Override
     /**
      * This check if you still can harvest the good.
      *
@@ -53,6 +54,7 @@ public class HarvestableGoodPerk implements Harvestable {
     @Override
     public void harvest() {
         this.amountLeft--;
+        System.out.println("Good harvested");
 
     }
 }

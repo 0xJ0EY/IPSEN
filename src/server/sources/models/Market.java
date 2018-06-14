@@ -2,10 +2,10 @@ package server.sources.models;
 
 import server.sources.interfaces.MarketInterface;
 import server.sources.controllers.GameController;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
 import server.sources.models.goods.Good;
+import server.sources.models.goods.GoodOnSale;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 import server.sources.notifications.MarketUpdateNotification;

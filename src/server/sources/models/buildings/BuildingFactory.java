@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -57,8 +58,13 @@ public class BuildingFactory {
             Element buildingElement = (Element) buildingNode;
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
+            String image = buildingElement.getElementsByTagName("img").item(0).getTextContent();
 
-            housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
+            try {
+                housesArrayList.add(new MarketHouse(price, this.fetchPerk(buildingNode), image));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return housesArrayList;
@@ -80,7 +86,13 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
+            String image = buildingElement.getElementsByTagName("img").item(0).getTextContent();
+
+            try {
+                starHousesArrayList.add(new MarketStarHouse(price, this.fetchPerk(buildingNode), image));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
         return starHousesArrayList;
     }
@@ -100,8 +112,13 @@ public class BuildingFactory {
             Element buildingElement = (Element) buildingNode;
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
+            String image = buildingElement.getElementsByTagName("img").item(0).getTextContent();
 
-            keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
+            try {
+                keyHousesArrayList.add(new MarketKeyHouse(price, this.fetchPerk(buildingNode), image));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return keyHousesArrayList;
@@ -123,7 +140,13 @@ public class BuildingFactory {
 
             int price = Integer.parseInt(buildingElement.getElementsByTagName("price").item(0).getTextContent());
 
-            outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode), buildingElement.getElementsByTagName("img").item(0).getTextContent()));
+            String image = buildingElement.getElementsByTagName("img").item(0).getTextContent();
+
+            try {
+                outpostsArrayList.add(new MarketOutpost(price, this.fetchPerk(buildingNode), image));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         return outpostsArrayList;

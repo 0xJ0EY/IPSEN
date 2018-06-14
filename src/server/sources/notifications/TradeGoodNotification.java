@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import server.sources.actions.AcceptAction;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.GoodOnSaleInterface;
 import server.sources.interfaces.NotificationInterface;

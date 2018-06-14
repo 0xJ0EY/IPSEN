@@ -11,4 +11,9 @@ public class MushroomGood implements Good {
     public boolean sameInstance(Good good) {
         return good instanceof MushroomGood;
     }
+
+    @Override
+    public Good harvestGood() {
+        return new MushroomGood();
+    }
 }

@@ -24,4 +24,6 @@ public interface Good extends Serializable {
      */
     public boolean sameInstance(Good good);
 
+    public Good harvestGood();
+
 }

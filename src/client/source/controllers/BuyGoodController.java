@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.GoodOnSaleInterface;
 import server.sources.interfaces.MarketInterface;

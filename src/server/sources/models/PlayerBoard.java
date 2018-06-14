@@ -403,9 +403,15 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    public ArrayList<Building> getHarvestBuildings() {
+    public ArrayList<BuildingInterface> getHarvestBuildings() throws RemoteException {
         this.checkHarvestBuildings();
-        return this.harvestBuildings;
+        ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
+
+        for (Building harvestBuilding : this.harvestBuildings) {
+            buildings.add((BuildingInterface) harvestBuilding);
+        }
+
+        return buildings;
     }
 
     private void checkHarvestBuildings() {
@@ -420,7 +426,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
                 boolean harvestable = false;
 
                 for (Perk perk : building.listPerks()) {
-                    if (perk instanceof Harvestable) {
+                    if (perk instanceof Harvestable && ((Harvestable) perk).canHarvest()) {
                         harvestable = true;
                     }
                 }
@@ -453,8 +459,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    public ArrayList<Building> getBuildings() throws RemoteException {
-        ArrayList<Building> buildings = new ArrayList<Building>();
+    public ArrayList<BuildingInterface> getBuildings() throws RemoteException {
+        ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
         buildings.addAll(this.houses);
         buildings.addAll(this.outposts);
 
