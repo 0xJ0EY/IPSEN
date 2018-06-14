@@ -18,11 +18,7 @@ public class BedPerk implements Perk {
 
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
-
-    }
-
-    public int getValue(){
-        return this.value;
+        gameClient.getPlayer().getPlayerBoard().addBeds(this.value);
     }
 
 }
