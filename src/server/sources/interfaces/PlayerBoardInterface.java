@@ -148,4 +148,14 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public void moveGoodToAdvancementTracker(int index) throws RemoteException;
 
     public void updateVillager() throws RemoteException;
+
+    public void obtainedTrainToReadyPerk() throws RemoteException;
+
+    public void obtainedCoinForBuildPerk() throws RemoteException;
+
+    public boolean getHasCoinForBuildPerk() throws RemoteException;
+
+    public void obtainedCoinForExplorePerk() throws RemoteException;
+
+    public boolean getHasCoinForExplorePerk() throws RemoteException;
 }

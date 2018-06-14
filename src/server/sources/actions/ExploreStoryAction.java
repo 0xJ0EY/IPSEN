@@ -23,6 +23,14 @@ public class ExploreStoryAction implements VillagerActionInterface {
 
     public ExploreStoryAction(GameClientInterface target) {
         this.target = target;
+
+        try {
+            if (this.target.getPlayer().getPlayerBoard().getHasCoinForExplorePerk()){
+                this.target.getPlayer().getPlayerBoard().addCoins(1);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
