@@ -187,6 +187,7 @@ public class Client extends Application {
     public void showTrainReward(TrainerVillagerComponent villager) throws RemoteException {
         TrainRewardController trainReward = controllerFactory.createTrainRewardView();
         trainReward.setTrainReward(villager);
+        trainReward.setVillagers(this.selectedVillagers);
         this.setScene(trainReward.show());
     }
 

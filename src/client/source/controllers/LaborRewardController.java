@@ -33,7 +33,9 @@ public class LaborRewardController implements ControllerInterface, Observable {
         coinRewardComponent.load();
         this.rewardComponent.getChildren().add(coinRewardComponent);
         if (client.getGameClient().getServer().getGameController().getReputationBoard().hasCider()) {
-            this.rewardComponent.getChildren().add(new CiderRewardComponent());
+            CiderRewardComponent ciderRewardComponent = new CiderRewardComponent();
+            ciderRewardComponent.load();
+            this.rewardComponent.getChildren().add(ciderRewardComponent);
         }
         this.updateObserver();
         return this.root;

@@ -90,7 +90,6 @@ public class RewardController implements ControllerInterface, Observable {
         this.rewards = rewards;
     }
 
-    // TODO: 14/06/2018 use
     public void setVillagers(ArrayList<VillagerInterface> villagers){
         this.villagers = villagers;
     }

@@ -51,6 +51,7 @@ public class LaborAction implements VillagerActionInterface {
         System.out.println(playerBoard.getCoins());
 
         for(int i = 0; i < selectedVillagers.size(); i++){
+
             this.firstLaborCider();
 
             playerBoard.addCoins(1);

@@ -298,7 +298,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     }
 
-
     private boolean canBuy() {
         return !this.buying;
     }
