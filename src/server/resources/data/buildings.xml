@@ -2,14 +2,14 @@
 <houses>
     <!-- A dataset of houses -->
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>5</price>
         <perks>
             <perk value="1">CIDER</perk>
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>2</price>
         <perks>
             <perk value="3">INCOME</perk>
@@ -17,14 +17,14 @@
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>2</price>
         <perks>
             <perk>REROLL</perk>
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>4</price>
         <perks>
             <perk>TRAIN_TO_READY</perk>
@@ -33,7 +33,7 @@
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>7</price>
         <perks>
             <perk >REROLL_PERK</perk>
@@ -41,7 +41,7 @@
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>5</price>
         <perks>
             <perk value="2">VILLAGE_POINTS</perk>
@@ -49,7 +49,7 @@
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>12</price>
         <perks>
             <perk>REROLL</perk>
@@ -58,14 +58,14 @@
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>3</price>
         <perks>
             <perk good="ORE">REPLENISHABLE_PERK</perk>
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>4</price>
         <perks>
             <perk good="AMETHYST">HARVESTABLE_PERK</perk>
@@ -73,7 +73,7 @@
         </perks>
     </house>
     <house>
-        <img>house_0.png</img>
+        <img>house_icon.png</img>
         <price>6</price>
         <perks>
             <perk>REROLL</perk>
@@ -84,7 +84,7 @@
 
     <!-- A dataset of Starhouses -->
     <starhouse>
-        <img>starhouse_0.png</img>
+        <img>starhouse_icon.png</img>
         <price>11</price>
         <perks>
             <perk value="3">VILLAGE_POINTS</perk>
@@ -94,7 +94,7 @@
         </perks>
     </starhouse>
     <starhouse>
-        <img>starhouse_0.png</img>
+        <img>starhouse_icon.png</img>
         <price>14</price>
         <perks>
             <perk value="2">VILLAGE_POINTS</perk>
@@ -102,7 +102,7 @@
         </perks>
     </starhouse>
     <starhouse>
-        <img>starhouse_0.png</img>
+        <img>starhouse_icon.png</img>
         <price>17</price>
         <perks>
             <perk value="12">VILLAGE_POINTS</perk>
@@ -110,7 +110,7 @@
         </perks>
     </starhouse>
     <starhouse>
-        <img>starhouse_0.png</img>
+        <img>starhouse_icon.png</img>
         <price>16</price>
         <perks>
             <perk value="7">VILLAGE_POINTS</perk>
@@ -118,7 +118,7 @@
         </perks>
     </starhouse>
     <starhouse>
-        <img>starhouse_0.png</img>
+        <img>starhouse_icon.png</img>
         <price>18</price>
         <perks>
             <perk value="3">VILLAGE_POINTS</perk>
@@ -126,7 +126,7 @@
         </perks>
     </starhouse>
     <starhouse>
-        <img>starhouse_0.png</img>
+        <img>starhouse_icon.png</img>
         <price>12</price>
         <perks>
             <perk value="4">VILLAGE_POINTS</perk>
@@ -137,21 +137,21 @@
 
     <!-- A dataset of keyhouses -->
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>5</price>
         <perks>
             <perk value="1">POTION</perk>
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>2</price>
         <perks>
             <perk value="3">INCOME</perk>
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>2</price>
         <perks>
             <perk value="1">POTION</perk>
@@ -159,7 +159,7 @@
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>4</price>
         <perks>
             <perk>TRAIN_TO_READY</perk>
@@ -168,7 +168,7 @@
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>5</price>
         <perks>
             <perk good="ORE" value="2">INCOME_FOR_GOODS</perk>
@@ -176,21 +176,21 @@
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>2</price>
         <perks>
             <perk good="PAPER" value="3" >INCOME_FOR_GOODS</perk>
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>2</price>
         <perks>
             <perk value="3">CIDER</perk>
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>5</price>
         <perks>
             <perk>BEDS</perk>
@@ -198,7 +198,7 @@
         </perks>
     </keyhouse>
     <keyhouse>
-        <img>keyhouse_0.png</img>
+        <img>keyhouse_icon.png</img>
         <price>7</price>
         <perks>
             <perk>TRAIN_TO_READY</perk>
@@ -208,7 +208,7 @@
 
     <!-- A dataset of outposts -->
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>11</price>
         <perks>
             <perk value="1">CIDER</perk>
@@ -216,7 +216,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>10</price>
         <perks>
             <perk value="1">COINS</perk>
@@ -225,7 +225,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>7</price>
         <perks>
             <perk good="ROPE">REPLENISHABLE_PERK</perk>
@@ -233,7 +233,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>3</price>
         <perks>
             <perk>BEDS</perk>
@@ -241,7 +241,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>4</price>
         <perks>
             <perk good="POT">HARVESTABLE_PERK</perk>
@@ -249,7 +249,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>6</price>
         <perks>
             <perk value="1">COINS</perk>
@@ -258,7 +258,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>7</price>
         <perks>
             <perk good="MUSHROOM">REPLENISHABLE_PERK</perk>
@@ -266,7 +266,7 @@
         </perks>
     </outpost>
     <outpost>
-        <img>outpost_0.png</img>
+        <img>outpost_icon.png</img>
         <price>3</price>
         <perks>
             <perk>BEDS</perk>
