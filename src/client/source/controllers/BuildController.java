@@ -295,6 +295,17 @@ public class BuildController implements SelectableControllerInterface, Observabl
                 villager.tire();
             }
 
+            for (Perk perk : selected.getModel().listPerks()){
+                if (perk instanceof BedPerk){
+                    perk.activateOnObtainedPerk(this.client.getGameClient());
+                    System.out.println("Stats updated!!");
+                }
+                else if (perk instanceof PotionPerk){
+                    perk.activateOnObtainedPerk(this.client.getGameClient());
+                    System.out.println("Stats updated!!");
+                }
+            }
+
             if (this.client.getGameClient().getPlayer().getPlayerBoard().getHasCoinForBuildPerk()){
                 this.client.getGameClient().getPlayer().getPlayerBoard().addCoins(1);
             }

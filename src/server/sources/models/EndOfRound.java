@@ -64,7 +64,11 @@ public class EndOfRound implements Serializable {
     public void refreshPerks() throws RemoteException{
         for (Perk perk : this.perks) {
             if (perk instanceof Refreshable) {
-                ((Refreshable) perk).refresh();
+                try {
+                    ((Refreshable) perk).refresh();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
