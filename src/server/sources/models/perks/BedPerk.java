@@ -19,6 +19,7 @@ public class BedPerk implements Perk {
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
         gameClient.getPlayer().getPlayerBoard().addBeds(this.value);
+        System.out.println("Beds increased.");
     }
 
 }

@@ -20,5 +20,6 @@ public class PotionIncomePerk implements Perk, Refreshable {
     @Override
     public void refresh() throws RemoteException{
         this.gameClient.getPlayer().getPlayerBoard().addPotion();
+        System.out.println("Potion increased due to potion income perk");
     }
 }

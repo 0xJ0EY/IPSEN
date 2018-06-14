@@ -26,13 +26,11 @@ public class RerollPerk implements Perk, Refreshable {
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
-
-        gameClient.getPlayer().getPlayerBoard().addReroll();
-
     }
 
     @Override
     public void refresh() throws RemoteException {
         this.gameClient.getPlayer().getPlayerBoard().addReroll();
+        System.out.println("REROLL gained");
     }
 }

@@ -22,5 +22,6 @@ public class PotionPerk implements Perk {
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
         gameClient.getPlayer().getPlayerBoard().addPotion();
+        System.out.println("Potion increased.");
     }
 }
