@@ -28,7 +28,8 @@ public class HarvestRewardController implements ControllerInterface, Observable 
 
     @Override
     public Parent show() throws RemoteException {
-        this.rewardComponent.getChildren().add(new GoodRewardComponent());
+        goodReward.load();
+        this.rewardComponent.getChildren().add(goodReward);
         this.updateObserver();
         return this.root;
     }

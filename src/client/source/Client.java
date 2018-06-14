@@ -1,5 +1,7 @@
 package client.source;
 
+import client.source.components.building.BuildingComponent;
+import client.source.components.reward.GoodRewardComponent;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import client.source.factories.ControllerFactory;
@@ -18,6 +20,7 @@ import server.sources.models.GameClient;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
+import server.sources.models.stories.rewards.GoodReward;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -195,6 +198,20 @@ public class Client extends Application {
         LaborRewardController laborReward = controllerFactory.createLaborRewardView();
         laborReward.setVillagers(villagers);
         this.setScene(laborReward.show());
+    }
+
+    public void showHarvestReward(GoodRewardComponent good) throws RemoteException {
+        HarvestRewardController harvestReward = controllerFactory.createHarvestRewardView();
+        harvestReward.setVillagers(this.selectedVillagers);
+        harvestReward.setGoodReward(good);
+        this.setScene(harvestReward.show());
+    }
+
+    public void showBuildReward(BuildingInterface buildingReward) throws RemoteException {
+        BuildRewardController buildReward = controllerFactory.createBuildRewardView();
+        buildReward.setVillagers(this.selectedVillagers);
+        buildReward.setRewardBuilding(buildingReward);
+        this.setScene(buildReward.show());
     }
 
     /**

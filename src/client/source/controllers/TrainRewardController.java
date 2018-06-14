@@ -3,7 +3,6 @@ package client.source.controllers;
 import client.source.Client;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -64,7 +63,6 @@ public class TrainRewardController implements ControllerInterface, Observable {
         this.villager = villager;
     }
 
-    // TODO: 14/06/2018 use 
     public void setVillagers(ArrayList<VillagerInterface> villagers){
         this.villagers = villagers;
     }

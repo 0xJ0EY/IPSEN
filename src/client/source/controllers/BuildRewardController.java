@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.EndTurnAction;
+import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.House;
@@ -25,7 +26,7 @@ public class BuildRewardController implements ControllerInterface, Observable {
 
     private Client client;
     private ArrayList<VillagerInterface> villagers;
-    private BuildingComponent rewardBuilding;
+    private BuildingInterface rewardBuilding;
 
     @Override
     public Parent show() throws RemoteException {
@@ -52,7 +53,7 @@ public class BuildRewardController implements ControllerInterface, Observable {
     }
 
     // TODO: 14/06/2018 use 
-    public void setRewardBuilding(BuildingComponent rewardBuilding){
+    public void setRewardBuilding(BuildingInterface rewardBuilding){
         this.rewardBuilding = rewardBuilding;
     }
 
