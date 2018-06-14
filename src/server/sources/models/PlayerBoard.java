@@ -38,6 +38,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private int coins = 10;
     private int beds = 3;
     private int caveCards = 0;
+    private int rerolls = 0;
 
     private boolean hasTrainToReadyPerk = false;
     private boolean hasCoinForBuildPerk = false;
@@ -383,6 +384,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         // Add all coins
         this.addCoins(this.endOfRound.countCoins());
 
+        // clears the rerolls
+        this.clearRerolls();
+
         // Refresh perks
         this.endOfRound.refreshPerks();
 
@@ -512,5 +516,15 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public boolean getHasCoinForExplorePerk() throws RemoteException{
         return this.hasCoinForExplorePerk;
+    }
+
+    @Override
+    public void addRerolls(int amount) throws RemoteException {
+        this.rerolls += amount;
+    }
+
+    @Override
+    public void clearRerolls() throws RemoteException {
+        this.rerolls = 0;
     }
 }

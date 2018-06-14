@@ -158,4 +158,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public void obtainedCoinForExplorePerk() throws RemoteException;
 
     public boolean getHasCoinForExplorePerk() throws RemoteException;
+
+    public void addRerolls(int amount) throws RemoteException;
+
+    public void clearRerolls() throws RemoteException;
 }
