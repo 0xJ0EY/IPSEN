@@ -53,12 +53,10 @@ public class HarvestRewardController implements ControllerInterface, Observable 
         this.client.clientObserver.attach(this);
     }
 
-    // TODO: 14/06/2018 use 
     public void setVillagers(ArrayList<VillagerInterface> villagers){
         this.villagers = villagers;
     }
 
-    // TODO: 14/06/2018 use 
     public void setGoodRewards(ArrayList<GoodRewardComponent> goodRewards){
         this.goodRewards = goodRewards;
     }

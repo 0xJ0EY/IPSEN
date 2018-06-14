@@ -11,7 +11,6 @@ import server.sources.actions.EndTurnAction;
 import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
-import server.sources.models.buildings.House;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -27,10 +26,13 @@ public class BuildRewardController implements ControllerInterface, Observable {
     private Client client;
     private ArrayList<VillagerInterface> villagers;
     private BuildingInterface rewardBuilding;
+    private BuildingComponent buildingComponent = new BuildingComponent();
 
     @Override
     public Parent show() throws RemoteException {
-        //this.rewardComponent.getChildren().add(new HouseRewardComponent());
+        buildingComponent.setModel(rewardBuilding);
+        buildingComponent.load();
+        this.rewardComponent.getChildren().add(buildingComponent);
         this.updateObserver();
         return this.root;
     }
