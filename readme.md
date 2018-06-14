@@ -46,7 +46,7 @@
  
        gebruikte villagers vermoeien (werkt)
        select button disabelen als er geen villagers geselecteerd zijn (werkt)
- - [ ] Klaarzetten ronde
+ - [x] Klaarzetten ronde
 
         villagerspool aanvullen
 
