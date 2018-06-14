@@ -11,6 +11,4 @@ public interface Harvestable extends Perk {
 
     public Good getGood();
 
-    public int getAmount();
-
 }

@@ -94,13 +94,10 @@ public class Building extends UnicastRemoteObject implements BuildingInterface {
             if (perk instanceof Harvestable && ((Harvestable) perk).canHarvest()) {
                 Harvestable harvestablePerk = (Harvestable) perk;
 
-                System.out.println("harvestablePerk.getAmount() = " + harvestablePerk.getAmount());
-
                 gameClient.getPlayer().getPlayerBoard().addGood(harvestablePerk.getGood());
                 harvestablePerk.harvest();
 
                 this.perks.set(i, harvestablePerk);
-                System.out.println("harvestablePerk.getAmount() = " + harvestablePerk.getAmount());
             }
         }
     }

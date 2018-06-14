@@ -126,21 +126,9 @@ public class HarvestController implements SelectableControllerInterface {
 
         SelectableBuildingComponent building = selected.get(0);
 
-        System.out.println("building = " + building.getModel());
-
         building.getModel().harvest(this.client.getGameClient());
 
         this.client.getGameClient().requestAction(this.harvest);
-
-//        for (Perk perk : building.getModel().listPerks()) {
-//            if (perk instanceof Harvestable) {
-//                building.getModel().harvest();
-//
-//                this.client.getGameClient().getPlayer().getPlayerBoard().addGood(good);
-//
-//                this.client.getGameClient().requestAction(this.harvest);
-//            }
-//        }
     }
 
     /**

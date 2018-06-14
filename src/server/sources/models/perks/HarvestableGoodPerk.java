@@ -21,13 +21,7 @@ public class HarvestableGoodPerk implements Perk, Harvestable {
     }
 
     @Override
-    public int getAmount() {
-        return amountLeft;
-    }
-
-    @Override
     public boolean canHarvest() {
-        System.out.println("checken of het kan harvesten.");
         return this.amountLeft > 0;
 
     }
@@ -36,7 +30,6 @@ public class HarvestableGoodPerk implements Perk, Harvestable {
     public void harvest() {
         this.amountLeft--;
         System.out.println("Good harvested");
-        System.out.println(amountLeft);
 
     }
 }

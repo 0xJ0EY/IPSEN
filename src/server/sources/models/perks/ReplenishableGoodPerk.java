@@ -24,25 +24,17 @@ public class ReplenishableGoodPerk implements Perk, Harvestable, Refreshable {
 
     @Override
     public void refresh() {
-        System.out.println("Refresh");
         this.value = this.original_value;
     }
 
     @Override
     public boolean canHarvest(){
-        System.out.println("checken of het kan harvesten.");
         return this.value > 0;
-    }
-
-    @Override
-    public int getAmount() {
-        return this.value;
     }
 
     @Override
     public void harvest(){
         this.value--;
-        System.out.println("Good harvested");
         System.out.println(value);
 
     }
