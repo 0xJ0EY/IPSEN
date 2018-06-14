@@ -2,11 +2,13 @@ package server.sources.interfaces;
 
 import javafx.scene.layout.AnchorPane;
 import server.sources.models.Dice;
+import server.sources.models.villagers.Lantern;
 import server.sources.models.villagers.Villager;
 
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -22,7 +24,14 @@ public interface VillagerInterface extends Serializable, Remote {
      * @throws RemoteException java.rmi.RemoteException
      * @author Richard Kerkvliet
      */
-    public int calculateLanters(Dice dice) throws RemoteException;
+    public int calculateLanterns(Dice dice) throws RemoteException;
+
+    /**
+     * List the lanterns that are contained in this villager
+     * @return
+     * @throws RemoteException
+     */
+    public ArrayList<Lantern> listLanterns() throws RemoteException;
 
     /**
      * sets the playerboard where the villager will be shown.

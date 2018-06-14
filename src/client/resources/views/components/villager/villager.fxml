@@ -10,7 +10,7 @@
       <Insets />
    </opaqueInsets>
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lanterns" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0" />
       <AnchorPane fx:id="type" layoutY="8.0" prefHeight="50.0" prefWidth="35.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+      <HBox fx:id="diceLanterns" prefHeight="70.0" prefWidth="65.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
    </children>
 </fx:root>

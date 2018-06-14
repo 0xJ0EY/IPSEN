@@ -1,12 +1,18 @@
 package client.source.components.villager;
 
+import client.source.views.DiceLanternView;
+import client.source.views.DiceView;
+import client.source.views.LanternView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import server.sources.interfaces.VillagerInterface;
+import server.sources.models.Dice;
 import server.sources.models.villagers.Buildable;
 import server.sources.models.villagers.BuilderVillager;
+import server.sources.models.villagers.Lantern;
 import server.sources.models.villagers.Trainable;
 
 import java.io.IOException;
@@ -25,6 +31,8 @@ public class VillagerComponent extends AnchorPane {
     @FXML protected Text labelType;
 
     @FXML protected AnchorPane type;
+
+    @FXML protected HBox diceLanterns;
 
     public VillagerComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager.fxml"));
@@ -52,6 +60,8 @@ public class VillagerComponent extends AnchorPane {
         try {
             this.setType();
 
+            this.setLanterns();
+
             this.background.setStyle(
                 "-fx-background-image: url('/client/resources/img/villager_backgrounds/" + this.villager.getBackground() + " ');" +
                 "-fx-background-repeat: stretch;" +
@@ -69,6 +79,27 @@ public class VillagerComponent extends AnchorPane {
      */
     public VillagerInterface getVillager() {
         return villager;
+    }
+
+    private void setLanterns() {
+        try {
+
+            this.diceLanterns.getChildren().clear();
+
+            for (Lantern lantern : this.villager.listLanterns()) {
+
+                DiceLanternController diceLanternController = new DiceLanternController(
+                    new DiceLanternView(),
+                    new DiceController(new DiceView(), new Dice()),
+                    new LanternController(new LanternView(), lantern)
+                );
+
+                this.diceLanterns.getChildren().add(diceLanternController.update());
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setType() {
