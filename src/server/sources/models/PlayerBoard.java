@@ -1,9 +1,7 @@
 package server.sources.models;
 
 
-import server.sources.interfaces.AdvancementTrackerInterface;
-import server.sources.interfaces.PlayerInterface;
-import server.sources.interfaces.VillagerInterface;
+import server.sources.interfaces.*;
 import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
@@ -13,7 +11,6 @@ import server.sources.models.buildings.Building;
 import server.sources.models.goods.*;
 import server.sources.models.buildings.House;
 import server.sources.models.buildings.Outpost;
-import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.models.perks.Perk;
 import server.sources.models.villagers.*;
 import server.sources.notifications.UpdatePlayerBoardNotification;
@@ -386,9 +383,15 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    public ArrayList<Building> getHarvestBuildings() {
+    public ArrayList<BuildingInterface> getHarvestBuildings() throws RemoteException {
         this.checkHarvestBuildings();
-        return this.harvestBuildings;
+        ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
+
+        for (Building harvestBuilding : this.harvestBuildings) {
+            buildings.add((BuildingInterface) harvestBuilding);
+        }
+
+        return buildings;
     }
 
     private void checkHarvestBuildings() {
@@ -403,7 +406,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
                 boolean harvestable = false;
 
                 for (Perk perk : building.listPerks()) {
-                    if (perk instanceof Harvestable) {
+                    if (perk instanceof Harvestable && ((Harvestable) perk).canHarvest()) {
                         harvestable = true;
                     }
                 }
@@ -436,8 +439,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
-    public ArrayList<Building> getBuildings() throws RemoteException {
-        ArrayList<Building> buildings = new ArrayList<Building>();
+    public ArrayList<BuildingInterface> getBuildings() throws RemoteException {
+        ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
         buildings.addAll(this.houses);
         buildings.addAll(this.outposts);
 

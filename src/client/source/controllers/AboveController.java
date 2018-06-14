@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.buildings.Building;
@@ -206,9 +207,9 @@ public class AboveController implements Observable {
         this.buildings.getChildren().clear();
 
         try {
-            ArrayList<Building> buildings = playerBoard.getBuildings();
+            ArrayList<BuildingInterface> buildings = playerBoard.getBuildings();
 
-            for (Building building : buildings) {
+            for (BuildingInterface building : buildings) {
                 BuildingComponent buildingComponent = new BuildingComponent();
                 buildingComponent.setModel(building);
                 buildingComponent.load();

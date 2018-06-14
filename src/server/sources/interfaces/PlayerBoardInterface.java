@@ -125,7 +125,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void useBed() throws RemoteException;
 
-    public ArrayList<Building> getHarvestBuildings() throws RemoteException;
+    public ArrayList<BuildingInterface> getHarvestBuildings() throws RemoteException;
 
     /**
      * Process the end of round sequence,
@@ -139,7 +139,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public ArrayList<Perk> getBuildingsPerks() throws RemoteException;
 
-    public ArrayList<Building> getBuildings() throws RemoteException;
+    public ArrayList<BuildingInterface> getBuildings() throws RemoteException;
 
     public void moveGoodToAdvancementTracker(int index) throws RemoteException;
 

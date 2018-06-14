@@ -12,7 +12,7 @@ import java.util.UUID;
  * Remote interface so al buildings can be remote object on the server.
  * @author Joey de Ruiter;
  */
-public interface BuildingInterface extends Serializable, Remote {
+public interface BuildingInterface extends Remote, Serializable {
 
     /**
      * returns the cost of the building.
@@ -37,6 +37,17 @@ public interface BuildingInterface extends Serializable, Remote {
      * @author Joey de Ruiter
      */
     public boolean isHarvestable() throws RemoteException;
+
+    /**
+     * Harvest the first possible perk(should only be 1 perk per harvestable building).
+     * (This will only be executed when isHarbestable() is true)
+     *
+     * The reason for this method here is that the perks are local object and not remote instances like Buildings.
+     * And Java RMI doesnt update local (serializable) objects with the server.
+     * @author Jan Douwe
+     * @throws RemoteException
+     */
+    public void harvest(GameClientInterface gameClient) throws RemoteException;
 
     /**
      * returns the background of the building.

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.HarvestAction;
+import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerActionInterface;
 import server.sources.models.buildings.Building;
@@ -14,6 +15,7 @@ import server.sources.models.goods.Good;
 import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.HarvestableGoodPerk;
 import server.sources.models.perks.Perk;
+import server.sources.notifications.NoHarvestNotification;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class HarvestController implements SelectableControllerInterface {
 
     private VillagerActionInterface action;
 
-    private ArrayList<Building> buildings = new ArrayList<Building>();
+    private ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
     private ArrayList<SelectableBuildingComponent> buildingComponents = new ArrayList<SelectableBuildingComponent>();
 
     /**
@@ -60,7 +62,7 @@ public class HarvestController implements SelectableControllerInterface {
 
         this.buildingContainer.getChildren().clear();
 
-        for (Building building : this.buildings) {
+        for (BuildingInterface building : this.buildings) {
             SelectableBuildingComponent buildingComponent = new SingleSelectableBuildingComponent();
             buildingComponent.setModel(building);
             buildingComponent.setController(this);
@@ -124,18 +126,21 @@ public class HarvestController implements SelectableControllerInterface {
 
         SelectableBuildingComponent building = selected.get(0);
 
-        for (Perk perk : building.getModel().listPerks()) {
-            if (perk instanceof Harvestable && ((Harvestable)perk).canHarvest()) {
-                HarvestableGoodPerk harvestableGoodPerk = (HarvestableGoodPerk) perk;
+        System.out.println("building = " + building.getModel());
 
-                Good good = harvestableGoodPerk.getGood().harvestGood();
-                harvestableGoodPerk.harvest();
+        building.getModel().harvest(this.client.getGameClient());
 
-                this.client.getGameClient().getPlayer().getPlayerBoard().addGood(good);
-            }
-        }
+        this.client.getGameClient().requestAction(this.harvest);
 
-        this.client.getGameClient().requestAction(harvest);
+//        for (Perk perk : building.getModel().listPerks()) {
+//            if (perk instanceof Harvestable) {
+//                building.getModel().harvest();
+//
+//                this.client.getGameClient().getPlayer().getPlayerBoard().addGood(good);
+//
+//                this.client.getGameClient().requestAction(this.harvest);
+//            }
+//        }
     }
 
     /**

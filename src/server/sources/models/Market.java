@@ -1,14 +1,10 @@
 package server.sources.models;
 
-import client.source.Client;
-import javafx.fxml.FXML;
-import server.sources.controllers.GoodOnSale;
 import server.sources.interfaces.MarketInterface;
 
 import server.sources.controllers.GameController;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
-import server.sources.models.goods.Good;
 import server.sources.models.villagers.Villager;
 import server.sources.models.villagers.VillagerFactory;
 import server.sources.notifications.MarketUpdateNotification;

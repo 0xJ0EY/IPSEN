@@ -20,7 +20,7 @@ public class MarketKeyHouse extends KeyHouse implements BuildingMarketInterface 
      * @param background
      * @author Robin Silverio
      */
-    public MarketKeyHouse(int cost, ArrayList<Perk> perks, String background) {
+    public MarketKeyHouse(int cost, ArrayList<Perk> perks, String background) throws RemoteException {
         super(cost, perks, background);
     }
 

@@ -1,4 +1,4 @@
-package server.sources.controllers;
+package server.sources.models.goods;
 
 import client.source.Client;
 import javafx.scene.layout.AnchorPane;
