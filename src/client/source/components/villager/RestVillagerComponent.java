@@ -26,7 +26,8 @@ public class RestVillagerComponent extends VillagerComponent {
 
     private boolean slept = false;
 
-    public RestVillagerComponent() {
+    @Override
+    protected void loadView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/rest_villager.fxml"));
 
         loader.setRoot(this);

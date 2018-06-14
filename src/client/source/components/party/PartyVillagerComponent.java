@@ -9,7 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.Dice;
-import server.sources.models.villagers.Villager;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -57,10 +56,10 @@ public class PartyVillagerComponent extends VBox {
 
         this.roll.setOnMouseClicked( e -> {
             dice.roll();
-            this.rolled.setText("You rolled: " + dice.returnValue());
+            this.rolled.setText("You rolled: " + dice.getEyes());
 
             try {
-                this.explorePartyController.updateLanternScore(this.villager.calculateLanters(dice));
+                this.explorePartyController.updateLanternScore(this.villager.calculateLanterns(dice));
             } catch (RemoteException ex) {
                 ex.printStackTrace();
             }

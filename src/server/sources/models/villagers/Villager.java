@@ -54,18 +54,29 @@ public class Villager extends UnicastRemoteObject implements VillagerInterface {
     }
 
     /**
+     * List the lanterns that are contained in this villager
+     *
+     * @return
+     * @throws RemoteException
+     */
+    @Override
+    public ArrayList<Lantern> listLanterns() throws RemoteException {
+        return this.lanterns;
+    }
+
+    /**
      * calculates the lanterns.
      * @param dice
      * @return lanterns
      * @throws RemoteException java.rmi.RemoteException
      */
-    public int calculateLanters(Dice dice) throws RemoteException {
+    public int calculateLanterns(Dice dice) throws RemoteException {
         int amount = 0;
+
         for (Lantern lantern : lanterns) {
-            if (lantern.getAmount(dice.returnValue()) > 0) {
-                amount = lantern.getAmount(dice.returnValue());
-            }
+            amount = lantern.throwForLanterns(dice);
         }
+
         return amount;
     }
 

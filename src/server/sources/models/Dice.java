@@ -6,14 +6,13 @@ import java.io.Serializable;
 
 public class Dice implements Serializable {
 
-    private int value;
-    private Villager villager;
+    protected int eyes;
 
     public void roll() {
-        value = (int)(Math.random() * 6 + 1);
+        eyes = (int)(Math.random() * 6 + 1);
     }
 
-    public int returnValue() {
-        return value;
+    public int getEyes() {
+        return eyes;
     }
 }
