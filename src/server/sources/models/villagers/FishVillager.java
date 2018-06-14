@@ -20,12 +20,4 @@ public class FishVillager extends Villager implements Buildable {
         super(lanterns, state, background);
     }
 
-    /**
-     * same as build but costs one coin less for the building.
-     */
-    @Override
-    public void build() {
-        //TODO: implenting build
-    }
-
 }

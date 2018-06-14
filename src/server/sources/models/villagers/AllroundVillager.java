@@ -21,14 +21,4 @@ public class AllroundVillager extends Villager implements Trainable, Buildable {
         super(lanterns, state, background);
     }
 
-    //TODO: implementing build
-    public void build() {
-
-    }
-
-    //TODO: implenting train
-    public void train() {
-
-    }
-
 }

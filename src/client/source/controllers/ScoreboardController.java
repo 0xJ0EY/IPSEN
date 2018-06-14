@@ -50,8 +50,6 @@ public class ScoreboardController implements ControllerInterface {
      * @author Robin Silverio
      */
     public void populateScoreBoard() {
-        // TODO: Populate all data in a tableview.
-
 
         ArrayList<PlayerInterface> players = client.clientObserver.getState();
 
