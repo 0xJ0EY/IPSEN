@@ -2,6 +2,7 @@ package client.source.components.reward;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
@@ -15,6 +16,7 @@ import java.rmi.RemoteException;
 public abstract class RewardComponent<T> extends AnchorPane {
 
     @FXML protected AnchorPane background;
+    @FXML protected Label label;
 
     public RewardComponent() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/reward/reward.fxml"));

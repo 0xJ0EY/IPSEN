@@ -16,10 +16,7 @@ import server.sources.actions.BuildAction;
 import server.sources.actions.CancelAction;
 import server.sources.actions.EndTurnAction;
 import server.sources.actions.RefreshHousesAction;
-import server.sources.interfaces.BuildingInterface;
-import server.sources.interfaces.BuildingMarketInterface;
-import server.sources.interfaces.MarketInterface;
-import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
 
 import java.rmi.RemoteException;
@@ -287,7 +284,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
             building.buy(this.market, this.target.getGameClient());
 
-            this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
+            this.client.getGameClient().getPlayer().doAction(new EndTurnAction(new ArrayList<VillagerInterface>()));
 
         } catch (RemoteException e) {
             e.printStackTrace();

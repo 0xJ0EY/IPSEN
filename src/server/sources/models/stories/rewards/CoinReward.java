@@ -45,6 +45,6 @@ public class CoinReward extends Reward {
      */
     @Override
     public RewardComponent getRewardComponent() {
-        return new CoinRewardComponent();
+        return new CoinRewardComponent(amount);
     }
 }

@@ -158,9 +158,10 @@ public class Client extends Application {
      * @param option Option
      * @throws RemoteException java.rmi.RemoteException
      */
-    public void showRewards(Option option) throws RemoteException {
+    public void showRewards(Option option, ArrayList<VillagerInterface> villagers) throws RemoteException {
         RewardController rewards = controllerFactory.createRewardView();
         rewards.setRewards(option.getRewards());
+        rewards.setVillagers(villagers);
         this.setScene(rewards.show());
     }
 
@@ -185,6 +186,12 @@ public class Client extends Application {
         TrainRewardController trainReward = controllerFactory.createTrainRewardView();
         trainReward.setTrainReward(villager);
         this.setScene(trainReward.show());
+    }
+
+    public void showLaborReward(ArrayList<VillagerInterface> villagers) throws RemoteException {
+        LaborRewardController laborReward = controllerFactory.createLaborRewardView();
+        laborReward.setVillagers(villagers);
+        this.setScene(laborReward.show());
     }
 
     /**

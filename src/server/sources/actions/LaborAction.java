@@ -2,6 +2,8 @@ package server.sources.actions;
 
 import server.sources.Server;
 import server.sources.interfaces.*;
+import server.sources.notifications.LaborRewardNotification;
+import server.sources.notifications.RewardScreenNotification;
 import server.sources.notifications.TestNotification;
 
 import java.rmi.RemoteException;
@@ -49,8 +51,6 @@ public class LaborAction implements VillagerActionInterface {
         System.out.println(playerBoard.getCoins());
 
         for(int i = 0; i < selectedVillagers.size(); i++){
-            selectedVillagers.get(i).tire();
-
             this.firstLaborCider();
 
             playerBoard.addCoins(1);
@@ -65,7 +65,7 @@ public class LaborAction implements VillagerActionInterface {
      */
     @Override
     public NotificationInterface update() throws RemoteException {
-        return new TestNotification();
+        return new LaborRewardNotification(this.selectedVillagers);
     }
 
     /**

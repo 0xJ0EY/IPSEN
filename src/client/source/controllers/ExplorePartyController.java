@@ -115,7 +115,7 @@ public class ExplorePartyController implements ControllerInterface {
 
         for (Option option : this.choice.getOptions()){
 
-            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option, client);
+            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option, this.client, this.party);
 
             try {
                 optionButtonComponent.setServer(client.getGameClient().getServer());

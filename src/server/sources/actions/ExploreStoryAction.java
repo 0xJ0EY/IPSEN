@@ -31,10 +31,6 @@ public class ExploreStoryAction implements VillagerActionInterface {
         this.story = server.getGameController().getStories().randomStory();
         this.story.setVillagers(selectedVillagers);
 
-        for (VillagerInterface villager: selectedVillagers) {
-            villager.tire();
-        }
-
         System.out.println("Generated new story");
         System.out.println(this.story.getChoices().get(0).getOptions().get(0).getRewards());
     }

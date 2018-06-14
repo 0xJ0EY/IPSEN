@@ -28,6 +28,7 @@ public class RewardController implements ControllerInterface, Observable {
     @FXML private Button endTurnButton;
 
     private Client client;
+    private ArrayList<VillagerInterface> villagers;
 
     private ArrayList<Reward> rewards;
 
@@ -89,6 +90,11 @@ public class RewardController implements ControllerInterface, Observable {
         this.rewards = rewards;
     }
 
+    // TODO: 14/06/2018 use
+    public void setVillagers(ArrayList<VillagerInterface> villagers){
+        this.villagers = villagers;
+    }
+
     /**
      * Ends turn when player clicks on end turn button.
      * @throws RemoteException java.rmi.RemoteException
@@ -96,7 +102,7 @@ public class RewardController implements ControllerInterface, Observable {
      */
     public void onClickEndTurn() throws RemoteException {
         try {
-            client.getGameClient().getPlayer().doAction(new EndTurnAction());
+            client.getGameClient().getPlayer().doAction(new EndTurnAction(this.villagers));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
