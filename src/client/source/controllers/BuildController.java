@@ -18,6 +18,10 @@ import server.sources.actions.EndTurnAction;
 import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
+import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.IncomeForGoodsPerk;
+import server.sources.models.perks.Perk;
+import server.sources.models.perks.PotionPerk;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

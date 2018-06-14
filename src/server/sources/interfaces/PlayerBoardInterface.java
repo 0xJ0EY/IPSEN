@@ -99,6 +99,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public int getBeds() throws RemoteException;
 
+    public void addBeds(int amount) throws RemoteException;
+
     public ArrayList<Good> getGoods() throws RemoteException;
 
     public void goodSold(int index) throws RemoteException;
