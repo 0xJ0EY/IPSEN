@@ -109,11 +109,25 @@ public interface MarketInterface extends Remote, Serializable {
      */
     public void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException;
 
+
+    public void sellGood(Good good, GameClientInterface client) throws RemoteException;
+
+    public ArrayList<GoodOnSaleInterface> getGoodList() throws RemoteException;
+
+    public void buyGood(int index) throws RemoteException;
     /**
      * Refresh all the outposts
      *
      * @throws RemoteException java.rmi.RemoteException
      */
     public void refreshHousesAndOutposts() throws RemoteException;
+
+    /**
+     * Move villagers to the left if it is available and add new villagers for null spaces.
+     *
+     * @author Joey de Ruiter
+     * @throws RemoteException
+     */
+    public void reorderAvailableVillagers() throws RemoteException;
 
 }

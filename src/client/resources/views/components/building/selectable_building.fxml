@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
 
-<fx:root fx:id="background" onMouseClicked="#onClickCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="120.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickCard" prefHeight="200.0" prefWidth="120.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <FlowPane fx:id="perks" prefHeight="60.0" prefWidth="200.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <Label fx:id="cost" layoutX="14.0" layoutY="14.0" text="#" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Label fx:id="cost" layoutX="14.0" layoutY="14.0" text="#" textFill="#d7d1d1" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
-                <Font size="20.0" />
+                <Font size="35.0" />
             </font>
         </Label>
     </children>

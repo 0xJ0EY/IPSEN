@@ -2,10 +2,9 @@ package client.source;
 
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
-import client.source.controllers.ExplorePartyController;
-import client.source.controllers.VillagerSelectionController;
 import client.source.factories.ControllerFactory;
 import client.source.factories.VillagerSelectionComponentFactory;
+import client.source.factories.VillagerSelectionFactory;
 import client.source.observers.Observer;
 import client.source.strategies.VillagerSelectionStrategy;
 import javafx.application.Application;
@@ -19,7 +18,6 @@ import server.sources.models.GameClient;
 import server.sources.models.stories.Choice;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Story;
-import client.source.factories.VillagerSelectionFactory;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -40,6 +38,7 @@ public class Client extends Application {
     public Observer<PlayerBoardInterface> playerBoardObserver = new Observer<>();
     public Observer<MarketInterface> marketObserver = new Observer<>();
     public Observer<GameControllerInterface> gameObserver = new Observer<>();
+    public Observer<ReputationBoardInterface> reputationBoardObserver = new Observer<>();
 
     /**
      * Show the starting page of the app
@@ -167,10 +166,12 @@ public class Client extends Application {
 
     /**
      * Show the building scene
+     * @param villagers
      */
-    public void showBuild(){
+    public void showBuild(ArrayList<VillagerInterface> villagers){
         BuildController build = controllerFactory.createBuild();
         build.load();
+        build.setUsedTrainerVillager(villagers);
         this.setScene(build.show());
     }
 
@@ -200,6 +201,23 @@ public class Client extends Application {
         this.setScene(party.show());
     }
 
+    public void showSellableGoods(GameClientInterface client) throws RemoteException {
+        SellGoodController goods = controllerFactory.createSellGoodController();
+        goods.setClient(client);
+
+        goods.load();
+        this.setScene(goods.show());
+
+    }
+
+    public void showBuyableGoods(GameClientInterface client) throws RemoteException {
+        BuyGoodController goods = controllerFactory.createBuyGoodController();
+        goods.setClient(client);
+
+        goods.load();
+        this.setScene(goods.show());
+    }
+
     /**
      * Show the scoreboard
      */
@@ -219,7 +237,7 @@ public class Client extends Application {
         return this.stage;
     }
 
-    private void setScene(Parent root){
+    private void setScene(Parent root) {
         Scene scene = stage.getScene();
 
         if (scene == null) {

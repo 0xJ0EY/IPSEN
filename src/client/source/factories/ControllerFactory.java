@@ -287,4 +287,35 @@ public class ControllerFactory {
 
         return villagerRestController;
     }
+
+    public SellGoodController createSellGoodController(){
+        SellGoodController sellGoodController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/sellGood.fxml"));
+            loader.load();
+
+            sellGoodController = loader.getController();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return sellGoodController;
+    }
+
+    public BuyGoodController createBuyGoodController(){
+        BuyGoodController buyGoodController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/buyGood.fxml"));
+            loader.load();
+
+            buyGoodController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return buyGoodController;
+    }
+
 }

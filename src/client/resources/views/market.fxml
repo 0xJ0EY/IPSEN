@@ -14,8 +14,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #d3b7a3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MarketController">
    <children>
+       <Button id="sellGood" layoutX="473.0" layoutY="38.0" mnemonicParsing="false" onAction="#sellGood" prefHeight="26.0" prefWidth="98.0" text="Sell Good" />
+       <Button id="buyGood" layoutX="473.0" layoutY="71.0" mnemonicParsing="false" onAction="#buyGood" prefHeight="26.0" prefWidth="98.0" text="Buy Good" />
+
        <HBox prefHeight="38.0" prefWidth="446.0" spacing="20" styleClass="header_display" stylesheets="@../css/header_display.css">
            <children>
                <Label text="Turn:" />

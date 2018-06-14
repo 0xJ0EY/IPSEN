@@ -30,6 +30,7 @@ public class MenuController implements Observable {
 
     @FXML private Button turnButton;
     @FXML private Button settingsButton;
+    @FXML private Button marketButton;
 
     @FXML private ListView playerList;
 

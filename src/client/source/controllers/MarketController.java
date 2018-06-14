@@ -90,6 +90,18 @@ public class MarketController implements Observable {
 
     }
 
+    @FXML
+    public void sellGood() throws RemoteException{
+        this.client.showSellableGoods(client.getGameClient());
+
+    }
+
+    @FXML
+    public void buyGood() throws RemoteException{
+        this.client.showBuyableGoods(client.getGameClient());
+
+    }
+
     /**
      * Create villagerscomponents so that can be stocked in market in case that a player wants to buy
      * @throws RemoteException java.rmi.RemoteException

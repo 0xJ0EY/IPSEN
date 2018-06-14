@@ -16,14 +16,12 @@ import server.sources.actions.BuildAction;
 import server.sources.actions.CancelAction;
 import server.sources.actions.EndTurnAction;
 import server.sources.actions.RefreshHousesAction;
-import server.sources.interfaces.BuildingInterface;
-import server.sources.interfaces.BuildingMarketInterface;
-import server.sources.interfaces.MarketInterface;
-import server.sources.interfaces.PlayerInterface;
+import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Class that acts as an intermediary between the buildview and the model.
@@ -35,6 +33,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     private Client client;
     private MarketInterface market;
+
+    private ArrayList<VillagerInterface> usedTrainerVillagers;
 
     @FXML private Parent root;
     @FXML private Button refreshButton;
@@ -262,13 +262,14 @@ public class BuildController implements SelectableControllerInterface, Observabl
         this.disableBuying();
 
         ArrayList<SelectableBuildingComponent> selectedBuildings = this.getSelectedBuildingComponents();
-        SelectableBuildingComponent selected = selectedBuildings.get(0);
 
-        if (selected == null) {
+        if (selectedBuildings.size() < 1) {
             this.showMessage("Please select a building.");
             this.enableBuying();
             return;
         }
+
+        SelectableBuildingComponent selected = selectedBuildings.get(0);
 
         if (selected.getModel().getCost() > this.target.getPlayerBoard().getCoins()) {
             this.showMessage("Not sufficient funds.");
@@ -285,6 +286,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
         try {
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
             building.buy(this.market, this.target.getGameClient());
+
+            for (VillagerInterface villager: usedTrainerVillagers) {
+                villager.tire();
+            }
 
             this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
 
@@ -330,5 +335,9 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
+    }
+
+    public void setUsedTrainerVillager(ArrayList<VillagerInterface> villagers) {
+        this.usedTrainerVillagers = villagers;
     }
 }
