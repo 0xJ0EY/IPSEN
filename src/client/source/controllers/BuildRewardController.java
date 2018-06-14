@@ -30,10 +30,13 @@ public class BuildRewardController implements ControllerInterface, Observable {
 
     @Override
     public Parent show() throws RemoteException {
+
         buildingComponent.setModel(rewardBuilding);
         buildingComponent.load();
         this.rewardComponent.getChildren().add(buildingComponent);
+
         this.updateObserver();
+
         return this.root;
     }
 
@@ -54,12 +57,10 @@ public class BuildRewardController implements ControllerInterface, Observable {
         this.client.clientObserver.attach(this);
     }
 
-    // TODO: 14/06/2018 use 
     public void setRewardBuilding(BuildingInterface rewardBuilding){
         this.rewardBuilding = rewardBuilding;
     }
 
-    // TODO: 14/06/2018 use 
     public void setVillagers(ArrayList<VillagerInterface> villagers){
         this.villagers = villagers;
     }
