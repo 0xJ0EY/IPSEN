@@ -18,6 +18,10 @@ import server.sources.actions.EndTurnAction;
 import server.sources.actions.RefreshHousesAction;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.*;
+import server.sources.models.perks.BedPerk;
+import server.sources.models.perks.IncomeForGoodsPerk;
+import server.sources.models.perks.Perk;
+import server.sources.models.perks.PotionPerk;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -289,6 +293,20 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
             for (VillagerInterface villager: usedTrainerVillagers) {
                 villager.tire();
+            }
+
+            // This is for retrieving amount of perks to be set on goodscontainer.
+            for (Perk perk : selected.getModel().listPerks()){
+                if (perk instanceof BedPerk) {
+                    this.client.getGameClient().getPlayer().getPlayerBoard().addBeds(((BedPerk) perk).getValue());
+                }
+                else if (perk instanceof PotionPerk) {
+                    this.client.getGameClient().getPlayer().getPlayerBoard().addPotion();
+                }
+                else if (perk instanceof IncomeForGoodsPerk){
+                    
+                }
+
             }
 
             this.client.getGameClient().getPlayer().doAction(new EndTurnAction());

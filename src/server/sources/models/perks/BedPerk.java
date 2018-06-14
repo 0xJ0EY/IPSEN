@@ -5,9 +5,15 @@ package server.sources.models.perks;
  */
 public class BedPerk implements Perk {
 
+    private int value = 1;
+
     @Override
     public String getBackground() {
         return "bed_perk.png";
+    }
+
+    public int getValue(){
+        return this.value;
     }
 
 }

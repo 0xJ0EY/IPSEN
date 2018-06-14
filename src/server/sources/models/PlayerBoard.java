@@ -177,6 +177,11 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.updateObserver();
     }
 
+    @Override
+    public void addBeds(int amount) throws RemoteException{
+        this.updateObserver();
+    }
+
     /**
      * List all villagers of on the playerboard.
      *
