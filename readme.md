@@ -4,6 +4,7 @@
  - [x] Verkopen Voorwerp (Jan Douwe)
  - [x] Kopen Voorwerp (Jan Douwe)
  
+ - [ ] Perks!
 
  - [x] Turn controller.  
 
@@ -18,8 +19,7 @@
  
        gebruikte villagers vermoeien (werkt)
        speler betalen villagers
-       TrainToReady perk (enige perk die in de tests naar voren kwam)
- - [ ] Oogsten Grondstof
+ - [x] Oogsten Grondstof
  
        gebruikte villagers vermoeien 
        goederen toekenen aan speler
@@ -51,20 +51,20 @@
         villagerspool aanvullen
 
 TODO
- - [ ] Add message to the saving error
+ - [x] Add message to the saving error
  - [ ] UI Improvements
  - [ ] Key bindings on turn buttons (important)
  - [x] JavaDoc
  - [x] Below view maken
  - [x] Marketview
  - [ ] Building perks
- - [ ] Rewards(view) Richard
+ - [x] Rewards(view) Richard
  - [ ] Check cave card by gebouwen & playerboard Richard
  - [x] End of round Joey
  - [ ] Bought villagers icon/functional
  - [x] Buyable houses/villagers
- - [ ] Turncontroller knoppen disable die niet kunnen
- - [ ] HarvestController cancel button
+ - [x] Turncontroller knoppen disable die niet kunnen
+ - [x] HarvestController cancel button
 
 ## UI
  - [ ] Special villager backgrounds
@@ -74,5 +74,7 @@ TODO
  - [ ] Cider inbouwen in de belowview
 
 Known bugs.   
- - [ ] Bug train -> speler is halverwege niet meer aan de beurt.  
+ - [ ] bug rewards -> Build and train only for active player instead of all
+ - [ ] Bug Train -> Andere spelers kunnen ook kopen.  
+ - [x] Bug train -> speler is halverwege niet meer aan de beurt.  
  - [x] Bug Build -> on cancel in the build market the villager is tired but not realy used.
