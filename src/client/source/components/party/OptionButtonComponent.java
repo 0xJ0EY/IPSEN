@@ -4,6 +4,7 @@ import client.source.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import server.sources.interfaces.ServerInterface;
+import server.sources.interfaces.VillagerInterface;
 import server.sources.models.stories.Option;
 import server.sources.models.stories.Reward;
 import server.sources.notifications.RewardScreenNotification;
@@ -11,13 +12,14 @@ import server.sources.notifications.RewardScreenNotification;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class OptionButtonComponent extends Button {
 
     private Option option;
     private ServerInterface server;
 
-    public OptionButtonComponent(Option option, Client client){
+    public OptionButtonComponent(Option option, Client client, ArrayList<VillagerInterface> villagers){
         this.option = option;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/party/optionButton.fxml"));
@@ -31,11 +33,11 @@ public class OptionButtonComponent extends Button {
             e.printStackTrace();
         }
 
-        this.setText("Explore "+option.getCost());
+        this.setText("Explore "+this.option.getCost());
         this.setDisable(true);
 
         this.setOnMouseClicked( e -> {
-            for (Reward reward:option.getRewards()) {
+            for (Reward reward:this.option.getRewards()) {
                 try {
                     reward.execute(client);
                 } catch (RemoteException | ParserConfigurationException ex) {
@@ -44,7 +46,7 @@ public class OptionButtonComponent extends Button {
             }
             try {
                 client.getGameClient().getPlayer().getPlayerBoard().addCaveCard();
-                this.server.notifyClients(new RewardScreenNotification(option));
+                this.server.notifyClients(new RewardScreenNotification(this.option, villagers));
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }

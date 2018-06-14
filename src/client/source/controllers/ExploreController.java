@@ -48,9 +48,11 @@ public class ExploreController implements ControllerInterface, Observable {
      * @author Richard Kerkvliet
      */
     @Override
-    public Parent show() {
+    public Parent show() throws RemoteException {
         story.setText(this.exploreStory.getStory());
         hbox.getChildren().clear();
+
+
 
         for(int i=0; i<this.exploreStory.getChoices().size();i++){
             VBox vBox  = new VBox();
@@ -61,6 +63,7 @@ public class ExploreController implements ControllerInterface, Observable {
             rbtn.setId(""+i);
             rbtn.setText(this.exploreStory.getChoices().get(i).getDescription());
             rbtn.setToggleGroup(radioGroup);
+            rbtn.setDisable(!hasTurn());
             rbtn.setOnMouseClicked( e-> {
                 this.confirmButton.setDisable(false);
             });
@@ -123,19 +126,8 @@ public class ExploreController implements ControllerInterface, Observable {
      */
     @Override
     public void updateObserver() {
-        PlayerInterface target = this.client.turnObserver.getState();
-
         try {
-            boolean turn;
-
-            try {
-                turn = this.client.getGameClient().equals(target.getGameClient());
-            } catch (NullPointerException e) {
-                turn = false;
-            }
-
-            this.runButton.setDisable(!turn);
-
+            this.runButton.setDisable(!hasTurn());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -149,5 +141,18 @@ public class ExploreController implements ControllerInterface, Observable {
      */
     public void setExploreStory(Story exploreStory) {
         this.exploreStory = exploreStory;
+    }
+
+    private boolean hasTurn() throws RemoteException{
+        boolean turn;
+        PlayerInterface target = this.client.turnObserver.getState();
+
+        try {
+            turn = this.client.getGameClient().equals(target.getGameClient());
+        } catch (NullPointerException e){
+            turn = false;
+        }
+
+        return turn;
     }
 }

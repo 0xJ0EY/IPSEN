@@ -1,12 +1,15 @@
 package server.sources.actions;
 
+import client.source.components.reward.GoodRewardComponent;
 import server.sources.Server;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 import server.sources.interfaces.VillagerActionInterface;
 
 import server.sources.interfaces.VillagerInterface;
+import server.sources.models.goods.Good;
 import server.sources.notifications.EndOfTurnNotification;
+import server.sources.notifications.HarvestRewardNotification;
 import server.sources.notifications.ShowHarvestNotification;
 
 import java.rmi.RemoteException;
@@ -23,6 +26,7 @@ public class HarvestAction implements VillagerActionInterface {
     private int count = 0;
 
     private ArrayList<VillagerInterface> selectedVillagers;
+    private ArrayList<GoodRewardComponent> goods = new ArrayList<GoodRewardComponent>();
 
     /**
      * Sets the right client.
@@ -42,7 +46,7 @@ public class HarvestAction implements VillagerActionInterface {
      */
     @Override
     public void execute(Server server) throws RemoteException {
-        count++;
+        this.count++;
     }
 
     /**
@@ -60,7 +64,9 @@ public class HarvestAction implements VillagerActionInterface {
 
         } else {
             // Stuur alle spelers naar de above view (we zijn klaar).
-            return new EndOfTurnNotification();
+            // TODO: 14/06/2018 add goodRewardComponent and remove endturnnotification
+            return new HarvestRewardNotification(this.goods);
+          //  return new EndOfTurnNotification();
 
         }
     }
@@ -73,4 +79,11 @@ public class HarvestAction implements VillagerActionInterface {
         this.selectedVillagers = villagers;
     }
 
+    public void setGoods(ArrayList<GoodRewardComponent> goods) {
+        this.goods = goods;
+    }
+
+    public ArrayList<GoodRewardComponent> getGoods() {
+        return this.goods;
+    }
 }

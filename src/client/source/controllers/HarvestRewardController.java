@@ -1,7 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.components.villager_to_train.TrainerVillagerComponent;
+import client.source.components.reward.GoodRewardComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -14,7 +14,7 @@ import server.sources.interfaces.VillagerInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class TrainRewardController implements ControllerInterface, Observable {
+public class HarvestRewardController implements ControllerInterface, Observable {
 
     @FXML private Parent root;
 
@@ -24,19 +24,18 @@ public class TrainRewardController implements ControllerInterface, Observable {
 
     private Client client;
     private ArrayList<VillagerInterface> villagers;
-    private TrainerVillagerComponent villager;
+    private ArrayList<GoodRewardComponent> goodRewards;
 
     @Override
     public Parent show() throws RemoteException {
-        this.rewardComponent.getChildren().add(villager);
+        for (GoodRewardComponent goodReward:goodRewards) {
+            goodReward.load();
+            this.rewardComponent.getChildren().add(goodReward);
+        }
         this.updateObserver();
         return this.root;
     }
 
-    /**
-     * Observes any updates.
-     * @author Richard Kerkvliet
-     */
     @Override
     public void updateObserver() {
         PlayerInterface target = this.client.turnObserver.getState();
@@ -54,17 +53,12 @@ public class TrainRewardController implements ControllerInterface, Observable {
         this.client.clientObserver.attach(this);
     }
 
-    /**
-     * Gives a selected trainer villager a reward for recruiting new villager.
-     * @param villager a selected villager before performing a train action
-     * @author Richard Kerkvliet
-     */
-    public void setTrainReward(TrainerVillagerComponent villager) {
-        this.villager = villager;
-    }
-
     public void setVillagers(ArrayList<VillagerInterface> villagers){
         this.villagers = villagers;
+    }
+
+    public void setGoodRewards(ArrayList<GoodRewardComponent> goodRewards){
+        this.goodRewards = goodRewards;
     }
 
     /**

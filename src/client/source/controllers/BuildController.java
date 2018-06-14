@@ -248,7 +248,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
     @FXML
     private void onClickCancel() throws RemoteException {
         this.client.showMain();
-//        this.client.getGameClient().requestAction(new CancelAction());
     }
 
     /**
@@ -287,12 +286,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
             BuildingMarketInterface building = (BuildingMarketInterface) selected.getModel();
             building.buy(this.market, this.target.getGameClient());
 
-            for (VillagerInterface villager: usedTrainerVillagers) {
-                villager.tire();
-            }
-
-            this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
-
+            //this.client.getGameClient().getPlayer().doAction(new EndTurnAction(this.usedTrainerVillagers));
+            this.client.showBuildReward(selected.getModel());
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {
@@ -300,7 +295,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
 
     }
-
 
     private boolean canBuy() {
         return !this.buying;

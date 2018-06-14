@@ -1,7 +1,8 @@
 package client.source.controllers;
 
 import client.source.Client;
-import client.source.components.villager_to_train.TrainerVillagerComponent;
+import client.source.components.reward.CiderRewardComponent;
+import client.source.components.reward.CoinRewardComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -14,7 +15,7 @@ import server.sources.interfaces.VillagerInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class TrainRewardController implements ControllerInterface, Observable {
+public class LaborRewardController implements ControllerInterface, Observable {
 
     @FXML private Parent root;
 
@@ -23,20 +24,23 @@ public class TrainRewardController implements ControllerInterface, Observable {
     @FXML private Button endTurnButton;
 
     private Client client;
+
     private ArrayList<VillagerInterface> villagers;
-    private TrainerVillagerComponent villager;
 
     @Override
     public Parent show() throws RemoteException {
-        this.rewardComponent.getChildren().add(villager);
+        CoinRewardComponent coinRewardComponent = new CoinRewardComponent(villagers.size());
+        coinRewardComponent.load();
+        this.rewardComponent.getChildren().add(coinRewardComponent);
+        if (client.getGameClient().getServer().getGameController().getReputationBoard().hasCider()) {
+            CiderRewardComponent ciderRewardComponent = new CiderRewardComponent();
+            ciderRewardComponent.load();
+            this.rewardComponent.getChildren().add(ciderRewardComponent);
+        }
         this.updateObserver();
         return this.root;
     }
 
-    /**
-     * Observes any updates.
-     * @author Richard Kerkvliet
-     */
     @Override
     public void updateObserver() {
         PlayerInterface target = this.client.turnObserver.getState();
@@ -52,15 +56,6 @@ public class TrainRewardController implements ControllerInterface, Observable {
     public void setClient(Client client) {
         this.client = client;
         this.client.clientObserver.attach(this);
-    }
-
-    /**
-     * Gives a selected trainer villager a reward for recruiting new villager.
-     * @param villager a selected villager before performing a train action
-     * @author Richard Kerkvliet
-     */
-    public void setTrainReward(TrainerVillagerComponent villager) {
-        this.villager = villager;
     }
 
     public void setVillagers(ArrayList<VillagerInterface> villagers){

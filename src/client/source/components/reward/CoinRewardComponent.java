@@ -2,6 +2,7 @@ package client.source.components.reward;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import server.sources.models.stories.rewards.CoinReward;
 
@@ -14,7 +15,10 @@ import java.rmi.RemoteException;
  */
 public class CoinRewardComponent extends RewardComponent<CoinReward> {
 
-    public CoinRewardComponent() {
+    private int amount;
+
+    public CoinRewardComponent(int amount) {
+        this.amount = amount;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/reward/coin_reward.fxml"));
 
         loader.setRoot(this);
@@ -35,6 +39,7 @@ public class CoinRewardComponent extends RewardComponent<CoinReward> {
             "-fx-background-position: center center;" +
             "-fx-background-size: 50 50"
         );
+        this.label.setText(amount+" COINS");
     }
 
     @Override

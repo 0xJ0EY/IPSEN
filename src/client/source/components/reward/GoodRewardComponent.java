@@ -7,12 +7,13 @@ import server.sources.models.goods.Good;
 import server.sources.models.stories.rewards.GoodReward;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * A class that creates good reward
  * Created by Richard Kerkvliet
  */
-public class GoodRewardComponent extends RewardComponent<GoodReward> {
+public class GoodRewardComponent extends RewardComponent<GoodReward> implements Serializable{
 
     protected GoodReward good;
 

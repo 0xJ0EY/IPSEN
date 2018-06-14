@@ -3,6 +3,9 @@ package client.source.controllers;
 import client.source.Client;
 import client.source.components.building.SelectableBuildingComponent;
 import client.source.components.building.SingleSelectableBuildingComponent;
+import client.source.components.harvest.MushroomComponent;
+import client.source.components.reward.GoodRewardComponent;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
@@ -15,6 +18,8 @@ import server.sources.models.goods.Good;
 import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.HarvestableGoodPerk;
 import server.sources.models.perks.Perk;
+import server.sources.models.perks.ReplenishableGoodPerk;
+import server.sources.models.stories.rewards.GoodReward;
 import server.sources.notifications.NoHarvestNotification;
 
 import java.rmi.RemoteException;
@@ -24,7 +29,7 @@ import java.util.ArrayList;
  * A class that acts as an intermediary between a harvestview and model.
  * Created by Jan Douwe Sminia.
  */
-public class HarvestController implements SelectableControllerInterface {
+public class HarvestController implements SelectableControllerInterface, Observable {
 
     private Client client;
     private PlayerBoardInterface playerBoard;
@@ -38,6 +43,8 @@ public class HarvestController implements SelectableControllerInterface {
 
     private ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
     private ArrayList<SelectableBuildingComponent> buildingComponents = new ArrayList<SelectableBuildingComponent>();
+    private ArrayList<GoodRewardComponent> goods = new ArrayList<GoodRewardComponent>();
+
 
     /**
      * For loading all harvest buildings in harvestview.
@@ -128,6 +135,35 @@ public class HarvestController implements SelectableControllerInterface {
 
         building.getModel().harvest(this.client.getGameClient());
 
+        this.goods = this.harvest.getGoods();
+
+        for (Perk perk:building.getModel().listPerks()) {
+            Good good;
+            GoodReward goodReward;
+            GoodRewardComponent goodRewardComponent = new GoodRewardComponent();
+            if (perk instanceof HarvestableGoodPerk){
+                good = ((HarvestableGoodPerk) perk).getGood();
+
+                goodReward = new GoodReward(good, 1);
+
+                goodRewardComponent.setModel(goodReward);
+
+                this.goods.add(goodRewardComponent);
+            } else if (perk instanceof ReplenishableGoodPerk){
+                good = ((ReplenishableGoodPerk) perk).getGood();
+
+                goodReward = new GoodReward(good, 1);
+
+                goodRewardComponent.setModel(goodReward);
+
+                this.goods.add(goodRewardComponent);
+            }
+        }
+
+        this.harvest.setGoods(this.goods);
+        for (GoodRewardComponent good:goods) {
+            System.out.println( good.getModel().isGood());
+        }
         this.client.getGameClient().requestAction(this.harvest);
     }
 
@@ -144,5 +180,10 @@ public class HarvestController implements SelectableControllerInterface {
     @FXML
     private void cancelAction(){
         this.client.showMain();
+    }
+
+    @Override
+    public void updateObserver() {
+
     }
 }
