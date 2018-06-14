@@ -8,23 +8,30 @@ import java.rmi.RemoteException;
 /**
  * Created by robin on 28-5-2018.
  */
-public class VillagePointsForThingsPerk implements Perk {
+public class VillagePointsForCiderPerk implements Perk, EndOfGame {
 
     private final int value;
-    private Good good;
+    private GameClientInterface gameClient;
 
-    public VillagePointsForThingsPerk(int value, Good good) {
+    public VillagePointsForCiderPerk(int value) {
         this.value = value;
-        this.good = good;
+
     }
 
     @Override
     public String getBackground() {
-        return null;
+        return "villager_points_for_cider.png";
     }
 
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+        this.gameClient = gameClient;
+    }
 
+    @Override
+    public int endOfGamePerk() throws RemoteException {
+        int amount = this.gameClient.getPlayer().getPlayerBoard().getCiders();
+
+        return value * amount;
     }
 }

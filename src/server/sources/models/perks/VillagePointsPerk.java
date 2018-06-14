@@ -7,9 +7,10 @@ import java.rmi.RemoteException;
 /**
  * Created by robin on 28-5-2018.
  */
-public class VillagePointsPerk implements Perk {
+public class VillagePointsPerk implements Perk, EndOfGame {
 
     private int value;
+    private GameClientInterface gameClient;
 
     public VillagePointsPerk(int value) {
         this.value = value;
@@ -22,11 +23,15 @@ public class VillagePointsPerk implements Perk {
 
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
-
+        this.gameClient = gameClient;
     }
 
     public int getValue() {
         return this.value;
     }
 
+    @Override
+    public int endOfGamePerk() throws RemoteException {
+        return value;
+    }
 }

@@ -71,7 +71,7 @@ public class ScoreboardController implements ControllerInterface {
             int points = 0;
 
             try {
-                points = c.getValue().getPlayerBoard().getAdvancementTracker().calculatePoints();
+                points = c.getValue().getPlayerBoard().getAdvancementTracker().calculatePoints(this.client.getGameClient());
 
             } catch (RemoteException e) {
                 e.printStackTrace();
@@ -113,7 +113,7 @@ public class ScoreboardController implements ControllerInterface {
             int totalPoints = 0;
 
             try {
-                totalPoints += c.getValue().getPlayerBoard().getAdvancementTracker().calculatePoints();
+                totalPoints += c.getValue().getPlayerBoard().getAdvancementTracker().calculatePoints(this.client.getGameClient());
                 totalPoints += c.getValue().getAmountBuildings();
                 totalPoints += c.getValue().getReputation();
                 totalPoints += this.getVillagerPointsFromPlayer();

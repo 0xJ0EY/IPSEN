@@ -91,6 +91,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void addCaveCard() throws RemoteException;
 
+    public int getCaveCards() throws RemoteException;
+
     public int getCoins() throws RemoteException;
 
     public int getCiders() throws RemoteException;

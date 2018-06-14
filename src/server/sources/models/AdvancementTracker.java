@@ -1,7 +1,10 @@
 package server.sources.models;
 
 import server.sources.interfaces.AdvancementTrackerInterface;
+import server.sources.interfaces.GameClientInterface;
 import server.sources.models.goods.Good;
+import server.sources.models.perks.EndOfGame;
+import server.sources.models.perks.Perk;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -74,13 +77,20 @@ public class AdvancementTracker extends UnicastRemoteObject implements Advanceme
      * @author Joey de Ruiter
      * @throws RemoteException java.rmi.RemoteException
      */
-    public int calculatePoints() throws RemoteException {
+    public int calculatePoints(GameClientInterface gameClient) throws RemoteException {
         int points = 0;
         int index = 0;
 
         for (Integer amount : this.tokens.values()) {
             points += this.getPointsByIndex(index) * amount;
             index++;
+        }
+
+        for (Perk perk : this.playerboard.getBuildingsPerks()) {
+            if (perk instanceof EndOfGame){
+                points += ((EndOfGame) perk).endOfGamePerk();
+
+            }
         }
 
         return points;

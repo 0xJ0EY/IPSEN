@@ -493,6 +493,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.caveCards++;
     }
 
+    public int getCaveCards(){
+        return this.caveCards;
+    }
+
     @Override
     public void obtainedTrainToReadyPerk() throws RemoteException{
         this.hasTrainToReadyPerk = true;
