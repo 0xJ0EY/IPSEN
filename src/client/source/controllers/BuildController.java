@@ -21,6 +21,7 @@ import server.sources.models.buildings.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Class that acts as an intermediary between the buildview and the model.
@@ -32,6 +33,8 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     private Client client;
     private MarketInterface market;
+
+    private ArrayList<VillagerInterface> usedTrainerVillagers;
 
     @FXML private Parent root;
     @FXML private Button refreshButton;
@@ -286,6 +289,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
             this.client.getGameClient().getPlayer().doAction(new EndTurnAction(new ArrayList<VillagerInterface>()));
 
+
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {
@@ -328,5 +332,9 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
+    }
+
+    public void setUsedTrainerVillager(ArrayList<VillagerInterface> villagers) {
+        this.usedTrainerVillagers = villagers;
     }
 }

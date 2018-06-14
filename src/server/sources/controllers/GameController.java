@@ -74,7 +74,8 @@ public class GameController extends UnicastRemoteObject implements GameControlle
         while (true) {
 
             do {
-                Player player = players.get((this.round + this.turn) % players.size());
+                // Remove 1 from the round counter so its equal to the index of the array
+                Player player = players.get((this.round - 1 + this.turn) % players.size());
 
                 if (!player.hasPassed()) {
 

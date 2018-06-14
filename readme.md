@@ -46,7 +46,7 @@
  
        gebruikte villagers vermoeien (werkt)
        select button disabelen als er geen villagers geselecteerd zijn (werkt)
- - [ ] Klaarzetten ronde
+ - [x] Klaarzetten ronde
 
         villagerspool aanvullen
 
@@ -74,5 +74,5 @@ TODO
  - [ ] Cider inbouwen in de belowview
 
 Known bugs.   
-Bug train -> speler is halverwege niet meer aan de beurt.  
-Bug Build -> on cancel in the build market the villager is tired but not realy used.
+ - [ ] Bug train -> speler is halverwege niet meer aan de beurt.  
+ - [x] Bug Build -> on cancel in the build market the villager is tired but not realy used.
