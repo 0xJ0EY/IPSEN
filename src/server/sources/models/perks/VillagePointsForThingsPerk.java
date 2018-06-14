@@ -1,6 +1,9 @@
 package server.sources.models.perks;
 
+import server.sources.interfaces.GameClientInterface;
 import server.sources.models.goods.Good;
+
+import java.rmi.RemoteException;
 
 /**
  * Created by robin on 28-5-2018.
@@ -18,5 +21,10 @@ public class VillagePointsForThingsPerk implements Perk {
     @Override
     public String getBackground() {
         return null;
+    }
+
+    @Override
+    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+
     }
 }

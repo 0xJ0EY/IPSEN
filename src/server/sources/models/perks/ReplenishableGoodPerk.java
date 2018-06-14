@@ -1,6 +1,9 @@
 package server.sources.models.perks;
 
+import server.sources.interfaces.GameClientInterface;
 import server.sources.models.goods.*;
+
+import java.rmi.RemoteException;
 
 /**
  * This class is a perk that can be given to a building.
@@ -29,6 +32,11 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
      */
     public String getBackground() {
         return "../good/" + good.getBackground();
+    }
+
+    @Override
+    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+
     }
 
     /**
