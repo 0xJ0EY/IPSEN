@@ -13,7 +13,7 @@ import java.io.Serializable;
  * A class that creates good reward
  * Created by Richard Kerkvliet
  */
-public class GoodRewardComponent extends RewardComponent<GoodReward> {
+public class GoodRewardComponent extends RewardComponent<GoodReward> implements Serializable{
 
     protected GoodReward good;
 

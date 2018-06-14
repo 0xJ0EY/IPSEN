@@ -200,10 +200,10 @@ public class Client extends Application {
         this.setScene(laborReward.show());
     }
 
-    public void showHarvestReward(GoodRewardComponent good) throws RemoteException {
+    public void showHarvestReward(ArrayList<GoodRewardComponent> goods) throws RemoteException {
         HarvestRewardController harvestReward = controllerFactory.createHarvestRewardView();
         harvestReward.setVillagers(this.selectedVillagers);
-        harvestReward.setGoodReward(good);
+        harvestReward.setGoodRewards(goods);
         this.setScene(harvestReward.show());
     }
 

@@ -24,12 +24,14 @@ public class HarvestRewardController implements ControllerInterface, Observable 
 
     private Client client;
     private ArrayList<VillagerInterface> villagers;
-    private GoodRewardComponent goodReward;
+    private ArrayList<GoodRewardComponent> goodRewards;
 
     @Override
     public Parent show() throws RemoteException {
-        goodReward.load();
-        this.rewardComponent.getChildren().add(goodReward);
+        for (GoodRewardComponent goodReward:goodRewards) {
+            goodReward.load();
+            this.rewardComponent.getChildren().add(goodReward);
+        }
         this.updateObserver();
         return this.root;
     }
@@ -57,8 +59,8 @@ public class HarvestRewardController implements ControllerInterface, Observable 
     }
 
     // TODO: 14/06/2018 use 
-    public void setGoodReward(GoodRewardComponent goodReward){
-        this.goodReward = goodReward;
+    public void setGoodRewards(ArrayList<GoodRewardComponent> goodRewards){
+        this.goodRewards = goodRewards;
     }
 
     /**

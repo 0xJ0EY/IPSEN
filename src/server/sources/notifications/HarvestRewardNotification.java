@@ -6,17 +6,18 @@ import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class HarvestRewardNotification implements NotificationInterface {
 
-    private GoodRewardComponent good;
+    private ArrayList<GoodRewardComponent> goods;
 
-    public HarvestRewardNotification(GoodRewardComponent good) {
-        this.good = good;
+    public HarvestRewardNotification(ArrayList<GoodRewardComponent> goods) {
+        this.goods = goods;
     }
 
     @Override
     public void execute(GameClientInterface gameClient) throws RemoteException {
-        gameClient.getClient().showHarvestReward(this.good);
+        gameClient.getClient().showHarvestReward(this.goods);
     }
 }
