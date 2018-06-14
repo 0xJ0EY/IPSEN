@@ -5,12 +5,12 @@
         <image>villager_background_01.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>2</cost>
+                <cost>4</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -20,12 +20,12 @@
         <image>villager_background_02.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>2</cost>
+                <cost>4</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -35,12 +35,12 @@
         <image>villager_background_03.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>2</eyes>
                 <cost>2</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -50,12 +50,12 @@
         <image>villager_background_04.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
+                <cost>4</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -65,12 +65,12 @@
         <image>villager_background_05.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
-                <cost>2</cost>
+                <cost>1</cost>
+                <amount>2</amount>
             </lantern>
             <lantern>
-                <eyes>5</eyes>
-                <cost>3</cost>
+                <cost>5</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -80,12 +80,12 @@
         <image>villager_background_01.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
-                <cost>2</cost>
+                <cost>1</cost>
+                <amount>2</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
+                <cost>4</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -95,8 +95,8 @@
         <image>villager_background_02.png</image>
         <lanterns>
             <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
+                <cost>3</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -106,12 +106,12 @@
         <image>villager_background_03.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>5</eyes>
-                <cost>3</cost>
+                <cost>5</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -121,12 +121,12 @@
         <image>villager_background_04.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>2</cost>
+                <cost>4</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -136,12 +136,12 @@
         <image>villager_background_05.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
+                <cost>3</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -151,12 +151,12 @@
         <image>villager_background_01.png</image>
         <lanterns>
             <lantern>
-                <eyes>2</eyes>
-                <cost>1</cost>
+                <cost>2</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>2</cost>
+                <cost>4</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -166,12 +166,12 @@
         <image>villager_background_02.png</image>
         <lanterns>
             <lantern>
-                <eyes>2</eyes>
-                <cost>1</cost>
+                <cost>2</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
+                <cost>4</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -181,12 +181,12 @@
         <image>villager_background_03.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>4</eyes>
-                <cost>3</cost>
+                <cost>4</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -196,12 +196,12 @@
         <image>villager_background_04.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>2</eyes>
                 <cost>2</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -211,12 +211,12 @@
         <image>villager_background_05.png</image>
         <lanterns>
             <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
+                <cost>3</cost>
+                <amount>2</amount>
             </lantern>
             <lantern>
-                <eyes>6</eyes>
-                <cost>3</cost>
+                <cost>6</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -226,12 +226,12 @@
         <image>villager_background_01.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>6</eyes>
-                <cost>2</cost>
+                <cost>6</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -241,12 +241,12 @@
         <image>villager_background_02.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
                 <cost>1</cost>
+                <amount>1</amount>
             </lantern>
             <lantern>
-                <eyes>3</eyes>
-                <cost>2</cost>
+                <cost>3</cost>
+                <amount>2</amount>
             </lantern>
         </lanterns>
     </villager>
@@ -256,12 +256,12 @@
         <image>villager_background_03.png</image>
         <lanterns>
             <lantern>
-                <eyes>1</eyes>
-                <cost>2</cost>
+                <cost>1</cost>
+                <amount>2</amount>
             </lantern>
             <lantern>
-                <eyes>5</eyes>
-                <cost>3</cost>
+                <cost>5</cost>
+                <amount>3</amount>
             </lantern>
         </lanterns>
     </villager>

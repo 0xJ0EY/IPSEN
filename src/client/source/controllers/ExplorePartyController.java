@@ -49,7 +49,6 @@ public class ExplorePartyController implements ControllerInterface {
     @Override
     public Parent show() {
 
-        // TODO: Maybe make this possible with observers (Should be easy)
         this.retrieveParty();
 
         this.updatePartyView();
@@ -115,7 +114,7 @@ public class ExplorePartyController implements ControllerInterface {
 
         for (Option option : this.choice.getOptions()){
 
-            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option, client);
+            OptionButtonComponent optionButtonComponent = new OptionButtonComponent(option, this.client, this.party);
 
             try {
                 optionButtonComponent.setServer(client.getGameClient().getServer());

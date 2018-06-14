@@ -77,7 +77,7 @@ public class TurnController implements Observable {
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new LaborAction(this.client.getGameClient()),
-            new DoActionStrategy(),
+            new RequestStrategy(),
             new MultipleSelectionFactory(),
                 1,
                 0
@@ -95,7 +95,7 @@ public class TurnController implements Observable {
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
-            new DoActionStrategy(),
+            new RequestStrategy(),
             new MultipleSelectionFactory(),
                 1,
                 0 // Has to be equal to amount of possible harvest actions

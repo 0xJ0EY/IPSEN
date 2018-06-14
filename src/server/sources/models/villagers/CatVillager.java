@@ -29,7 +29,7 @@ public class CatVillager extends Villager {
         Dice dice = new Dice();
         dice.roll();
 
-        return dice.returnValue() >= 3;
+        return dice.getEyes() >= 3;
     }
 
 }

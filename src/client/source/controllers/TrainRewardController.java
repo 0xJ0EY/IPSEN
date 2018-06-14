@@ -3,7 +3,6 @@ package client.source.controllers;
 import client.source.Client;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -24,6 +23,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
     @FXML private Button endTurnButton;
 
     private Client client;
+    private ArrayList<VillagerInterface> villagers;
     private TrainerVillagerComponent villager;
 
     @Override
@@ -63,6 +63,10 @@ public class TrainRewardController implements ControllerInterface, Observable {
         this.villager = villager;
     }
 
+    public void setVillagers(ArrayList<VillagerInterface> villagers){
+        this.villagers = villagers;
+    }
+
     /**
      * Ends turn after user clicks on end turn button
      * @throws RemoteException java.rmi.RemoteException
@@ -70,7 +74,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
      */
     public void onClickEndTurn() throws RemoteException {
         try {
-            EndTurnAction endTurnAction = new EndTurnAction();
+            EndTurnAction endTurnAction = new EndTurnAction(this.villagers);
             client.getGameClient().getPlayer().doAction(endTurnAction);
         } catch (RemoteException e) {
             e.printStackTrace();

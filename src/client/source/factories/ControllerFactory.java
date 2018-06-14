@@ -2,8 +2,10 @@ package client.source.factories;
 
 import client.source.Client;
 import client.source.controllers.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.fxml.FXMLLoader;
 
+import java.awt.image.BufferedImageOp;
 import java.io.IOException;
 
 /**
@@ -99,7 +101,7 @@ public class ControllerFactory {
     }
 
     /**
-     * For loading a train reward view after recruiting a villager.
+     * For loading a reward view after a succesfull exploration.
      * @return train reward view
      * @author Richard Kerkvliet
      */
@@ -138,6 +140,54 @@ public class ControllerFactory {
         }
 
         return trainRewardController;
+    }
+
+    public LaborRewardController createLaborRewardView(){
+        LaborRewardController laborRewardController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/labor_reward.fxml"));
+            loader.load();
+
+            laborRewardController = loader.getController();
+            laborRewardController.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return laborRewardController;
+    }
+
+    public HarvestRewardController createHarvestRewardView(){
+        HarvestRewardController harvestRewardController = null;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/harvest_reward.fxml"));
+            loader.load();
+
+            harvestRewardController = loader.getController();
+            harvestRewardController.setClient(this.client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return harvestRewardController;
+    }
+
+    public BuildRewardController createBuildRewardView() {
+        BuildRewardController buildRewardController = null;
+
+        try{
+            FXMLLoader loader = new FXMLLoader((getClass().getResource("/client/resources/views/build_reward.fxml")));
+            loader.load();
+
+            buildRewardController = loader.getController();
+            buildRewardController.setClient(this.client);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return buildRewardController;
     }
 
     /**

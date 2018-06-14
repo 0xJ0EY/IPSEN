@@ -121,7 +121,18 @@ public class BuildingFactory {
             }
         }
 
-        return keyHousesArrayList;
+        ArrayList<MarketKeyHouse> randomKeyHouses = new ArrayList<MarketKeyHouse>();
+
+        // Only select 4 random key houses from the keyHouseArrayList
+        do {
+            int key = (int) Math.floor(Math.random() * keyHousesArrayList.size());
+            randomKeyHouses.add(keyHousesArrayList.get(key));
+            keyHousesArrayList.remove(key);
+
+        } while (randomKeyHouses.size() < 4);
+
+
+        return randomKeyHouses;
     }
 
     /**

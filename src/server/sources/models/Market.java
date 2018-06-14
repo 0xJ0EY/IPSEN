@@ -1,5 +1,6 @@
 package server.sources.models;
 
+import javafx.application.Platform;
 import server.sources.interfaces.MarketInterface;
 import server.sources.controllers.GameController;
 import server.sources.interfaces.*;
@@ -206,7 +207,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
     }
 
     @Override
-    public void buyRemoteHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
+    public synchronized void buyRemoteHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
         if (localPlayer.getPlayerBoard().getCoins() < house.getCost()) return;
@@ -235,7 +236,7 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @throws RemoteException java.rmi.RemoteException
      */
     @Override
-    public void buyRemoteOutpost(GameClientInterface gameClient, BuildingInterface outpost) throws RemoteException {
+    public synchronized void buyRemoteOutpost(GameClientInterface gameClient, BuildingInterface outpost) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
         if (localPlayer.getPlayerBoard().getCoins() < outpost.getCost()) return;
@@ -265,17 +266,25 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @throws RemoteException java.rmi.RemoteException
      */
     @Override
-    public void buyRemoteKeyHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
+    public synchronized void buyRemoteKeyHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
         if (localPlayer.getPlayerBoard().getCoins() < house.getCost()) return;
 
         for (MarketKeyHouse keyHouse : this.keyHouses) {
             if (keyHouse.equals(house)) {
-                localPlayer.getPlayerBoard().addHouse((KeyHouse) keyHouse);
-                localPlayer.getPlayerBoard().payCoin(keyHouse.getCost());
 
-                this.keyHouses.remove(keyHouse);
+                // Wait for thread to be ready so we wont get a ConcurrentModificationException
+                Platform.runLater(() -> {
+                    try {
+                        localPlayer.getPlayerBoard().addHouse((KeyHouse) keyHouse);
+                        localPlayer.getPlayerBoard().payCoin(keyHouse.getCost());
+
+                        this.keyHouses.remove(keyHouse);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         }
 
@@ -291,17 +300,25 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
      * @throws RemoteException java.rmi.RemoteException
      */
     @Override
-    public void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
+    public synchronized void buyRemoteStarHouse(GameClientInterface gameClient, BuildingInterface house) throws RemoteException {
         Player localPlayer = this.getLocalPlayer(gameClient);
 
         if (localPlayer.getPlayerBoard().getCoins() < house.getCost()) return;
 
         for (MarketStarHouse starHouse : this.starHouses) {
             if (starHouse.equals(house)) {
-                localPlayer.getPlayerBoard().addHouse((StarHouse) starHouse);
-                localPlayer.getPlayerBoard().payCoin(starHouse.getCost());
 
-                this.starHouses.remove(starHouse);
+                // Wait for thread to be ready so we wont get a ConcurrentModificationException
+                Platform.runLater(() -> {
+                    try {
+                        localPlayer.getPlayerBoard().addHouse((StarHouse) starHouse);
+                        localPlayer.getPlayerBoard().payCoin(starHouse.getCost());
+
+                        this.starHouses.remove(starHouse);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         }
 

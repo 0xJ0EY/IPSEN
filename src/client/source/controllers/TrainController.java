@@ -5,6 +5,7 @@ import client.source.components.villager.VillagerComponent;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -123,5 +124,9 @@ public class TrainController implements ControllerInterface {
                 client.showTrainReward(villager);
             }
         }
+    }
+
+    public void onClickCancel() throws RemoteException{
+        client.showMain();
     }
 }

@@ -6,6 +6,7 @@ import client.source.components.building.SelectableBuildingComponent;
 import client.source.components.building.SingleSelectableBuildingComponent;
 import client.source.components.villager.SelectableVillagerComponent;
 import client.source.observers.Observable;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -252,7 +253,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
     @FXML
     private void onClickCancel() throws RemoteException {
         this.client.showMain();
-//        this.client.getGameClient().requestAction(new CancelAction());
     }
 
     /**
@@ -310,8 +310,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
                 this.client.getGameClient().getPlayer().getPlayerBoard().addCoins(1);
             }
 
-            this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
+//            this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
 
+            //this.client.getGameClient().getPlayer().doAction(new EndTurnAction(this.usedTrainerVillagers));
+            this.client.showBuildReward(selected.getModel());
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {
@@ -319,7 +321,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
 
     }
-
 
     private boolean canBuy() {
         return !this.buying;

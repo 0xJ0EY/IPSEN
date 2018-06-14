@@ -33,11 +33,7 @@ public class TrainerAction implements VillagerActionInterface {
      * @throws RemoteException
      */
     @Override
-    public void execute(Server server) throws RemoteException {
-        for (VillagerInterface villager: villagers) {
-            villager.tire();
-        }
-    }
+    public void execute(Server server) throws RemoteException {}
 
     /**
      * Activates the train action and shows it to everyone.

@@ -116,6 +116,8 @@ public class VillagerSelectionController implements ControllerInterface {
 
         ArrayList<VillagerInterface> selected = this.getSelectedVillagers();
 
+        client.setSelectedVillagers(selected);
+
         this.action.setSelectedVillagers(selected);
 
         this.strategy.execute(this.client.getGameClient(), this.action);
