@@ -1,5 +1,6 @@
 package server.sources.notifications;
 
+import client.source.controllers.TurnController;
 import server.sources.controllers.GameController;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.NotificationInterface;
@@ -13,6 +14,7 @@ public class SaveGameNotification implements NotificationInterface {
 
     private final String DS = File.separator;
     private byte[] bytes;
+    private boolean isSaved = false; // This is for determining if a game has been saved
 
     public SaveGameNotification(GameController gameController) {
         this.bytes = this.gameControllerToBytes(gameController);
@@ -26,13 +28,17 @@ public class SaveGameNotification implements NotificationInterface {
         try {
             // Create byte array from the GameController object
             out = new ObjectOutputStream(bos);
+
+            // by changing the controller such as 'out.writeObject(new TurnController)', it will trigger an error.
             out.writeObject(gameController);
             out.flush();
+
+            isSaved = true;
 
             return bos.toByteArray();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            isSaved = false;
         }
 
         return new byte[0];
@@ -42,7 +48,11 @@ public class SaveGameNotification implements NotificationInterface {
     public void execute(GameClientInterface gameClient) throws RemoteException {
 
         this.writeBytesToFile();
-        gameClient.getClient().showMessage("Save file written to documents");
+
+        if (isSavedGame())
+            gameClient.getClient().showMessage("Save file written to documents");
+        else
+            gameClient.getClient().showMessage("Something went wrong with saving a file to documents.");
 
     }
 
@@ -64,6 +74,11 @@ public class SaveGameNotification implements NotificationInterface {
             e.printStackTrace();
         }
 
+    }
+
+    // This is for checking if the game has been saved.
+    private boolean isSavedGame(){
+        return this.isSaved;
     }
 
 }
