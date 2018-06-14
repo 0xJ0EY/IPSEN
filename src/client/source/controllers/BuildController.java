@@ -6,6 +6,7 @@ import client.source.components.building.SelectableBuildingComponent;
 import client.source.components.building.SingleSelectableBuildingComponent;
 import client.source.components.villager.SelectableVillagerComponent;
 import client.source.observers.Observable;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
