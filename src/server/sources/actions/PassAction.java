@@ -17,8 +17,9 @@ public class PassAction implements ActionInterface {
 
     private GameClientInterface target;
 
-    public PassAction(GameClientInterface target) {
+    public PassAction(GameClientInterface target) throws RemoteException{
         this.target = target;
+        target.getClient().showMain();
     }
 
     /**
