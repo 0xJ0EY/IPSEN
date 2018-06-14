@@ -291,6 +291,10 @@ public class BuildController implements SelectableControllerInterface, Observabl
                 villager.tire();
             }
 
+            if (this.client.getGameClient().getPlayer().getPlayerBoard().getHasCoinForBuildPerk()){
+                this.client.getGameClient().getPlayer().getPlayerBoard().addCoins(1);
+            }
+
             this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
 
         } catch (RemoteException e) {

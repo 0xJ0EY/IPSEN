@@ -4,19 +4,15 @@ import server.sources.interfaces.GameClientInterface;
 
 import java.rmi.RemoteException;
 
-/**
- * Created by robin on 28-5-2018.
- */
-public class ReputationPerk implements Perk {
-    private final int REPUTATION = 1;
+public class CoinForExplorePerk implements Perk {
 
     @Override
     public String getBackground() {
-        return "reputation_perk.png";
+        return "coin_for_explore.png";
     }
 
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
-        gameClient.getPlayer().changeReputation(this.REPUTATION);
+        gameClient.getPlayer().getPlayerBoard().obtainedCoinForExplorePerk();
     }
 }
