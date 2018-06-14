@@ -30,16 +30,15 @@ public class VillagePointsForGoodsPerk implements Perk, EndOfGame {
         this.gameClient = gameClient;
     }
 
-    //TODO: laatste Perk
     @Override
     public int endOfGamePerk() throws RemoteException {
-        int amount;
+        int amount = 0;
         ArrayList<Good> goods = this.gameClient.getPlayer().getPlayerBoard().getGoods();
 
         for (Good good1 : goods) {
-
+            amount += (int) (Math.random() * 10) + 1;
         }
 
-        return 0;
+        return amount;
     }
 }
