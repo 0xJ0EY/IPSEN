@@ -35,10 +35,12 @@ public class VillagePointsForGoodsPerk implements Perk, EndOfGame {
         int amount = 0;
         ArrayList<Good> goods = this.gameClient.getPlayer().getPlayerBoard().getGoods();
 
-        for (Good good1 : goods) {
-            amount += (int) (Math.random() * 10) + 1;
+        for (Good good : goods) {
+            if (good.sameInstance(this.good)) {
+                amount++;
+            }
         }
 
-        return amount;
+        return value * amount;
     }
 }
