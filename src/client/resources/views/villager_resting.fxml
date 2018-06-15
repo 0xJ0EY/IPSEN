@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.VillagerRestController">
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.VillagerRestController">
     <children>
-        <FlowPane fx:id="villagerContainer" hgap="10.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0" />
+      <HBox alignment="CENTER" layoutY="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <AnchorPane layoutX="-18.0" layoutY="360.0" prefHeight="100.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <Text fx:id="bedsText" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="# Beds" wrappingWidth="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="ciderText" layoutX="15.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="# Ciders" wrappingWidth="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="potionsText" layoutX="25.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="# Potions" wrappingWidth="300.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="70.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="40.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+         <children>
+              <FlowPane fx:id="villagerContainer" hgap="10.0" prefHeight="229.0" prefWidth="1200.0" vgap="10.0" />
+         </children>
+      </HBox>
         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickSelect" prefHeight="60.0" text="Select" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox alignment="CENTER" layoutY="-6.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select villagers to rest.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

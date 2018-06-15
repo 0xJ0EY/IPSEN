@@ -2,9 +2,11 @@ package client.source.controllers;
 
 import client.source.Client;
 import client.source.components.villager.RestVillagerComponent;
+import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 import server.sources.actions.RestVillagerAction;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.VillagerInterface;
@@ -12,11 +14,15 @@ import server.sources.interfaces.VillagerInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class VillagerRestController implements ControllerInterface {
+public class VillagerRestController implements ControllerInterface, Observable {
 
     @FXML Parent root;
 
     @FXML private FlowPane villagerContainer;
+
+    @FXML private Text bedsText;
+    @FXML private Text ciderText;
+    @FXML private Text potionsText;
 
     private Client client;
 
@@ -27,6 +33,9 @@ public class VillagerRestController implements ControllerInterface {
 
     @Override
     public Parent show() {
+
+        this.client.playerBoardObserver.attach(this);
+        this.updateObserver();
 
         this.fetchVillagers();
 
@@ -117,5 +126,27 @@ public class VillagerRestController implements ControllerInterface {
         this.client.getGameClient().getPlayer().doAction(new RestVillagerAction());
         this.client.showMain();
 
+    }
+
+    @Override
+    public void updateObserver() {
+        PlayerBoardInterface playerboard = this.client.playerBoardObserver.getState();
+
+        try {
+            int beds = playerboard.getBeds();
+            int ciders = playerboard.getCiders();
+            int potions = playerboard.getPotions();
+
+            String bedsString = String.format(beds == 1 ? "%s bed" : "%s beds", beds);
+            String cidersString = String.format(ciders == 1 ? "%s cider" : "%s ciders", ciders);
+            String potionsString = String.format(potions == 1 ? "%s potion" : "%s potions", potions);
+
+            this.bedsText.setText(bedsString);
+            this.ciderText.setText(cidersString);
+            this.potionsText.setText(potionsString);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
