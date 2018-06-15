@@ -20,7 +20,7 @@ import server.sources.notifications.CancelNotification;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class VillagerSelectionController implements ControllerInterface {
+public class VillagerSelectionController implements VillagerSelectionControllerInterface {
 
     @FXML private Parent root;
 
@@ -258,5 +258,16 @@ public class VillagerSelectionController implements ControllerInterface {
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
+    }
+
+    @Override
+    public boolean hasTurn() {
+        // The villager selection screen is only available for the selecting client.
+        return true;
+    }
+
+    @Override
+    public Client getClient() {
+        return this.client;
     }
 }

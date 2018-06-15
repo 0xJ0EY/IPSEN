@@ -1,26 +1,44 @@
 package client.source.components.villager_to_train;
 
 import client.source.components.villager.SingleSelectableVillagerComponent;
+import client.source.controllers.TrainController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.text.Text;
+import server.sources.interfaces.PlayerBoardInterface;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class TrainerVillagerComponent extends SingleSelectableVillagerComponent {
+
+    private int price = 0;
+
+    @FXML private Text priceText;
+
     /**
-     * For selecting trainer villagers
-     * @param villagerComponents
-     * @author Robin Silverio
+     * For selecting villagers
+     * @author Joey de Ruiter
      */
     @FXML
-    public void onClickSelect(ArrayList<TrainerVillagerComponent> villagerComponents) {
-        for (TrainerVillagerComponent villager : villagerComponents) {
-            villager.selected = false;
-            villager.hideIndicator();
+    public void onClickSelect() {
+        if (!this.controller.hasTurn()) return;
+        this.deselectVillagers();
+
+        try {
+            PlayerBoardInterface playerBoard = this.controller.getClient().getGameClient().getPlayer().getPlayerBoard();
+
+            if (playerBoard.getCoins() < this.price) {
+                this.controller.showMessage("Insufficient funds.");
+                return;
+            }
+
+            super.onClickSelect();
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
-        this.selected = true;
-        this.showIndicator();
     }
 
     @Override
@@ -37,4 +55,13 @@ public class TrainerVillagerComponent extends SingleSelectableVillagerComponent 
         }
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+
+        this.priceText.setText(Integer.toString(this.price));
+    }
 }

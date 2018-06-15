@@ -64,9 +64,7 @@ public class HarvestAction implements VillagerActionInterface {
 
         } else {
             // Stuur alle spelers naar de above view (we zijn klaar).
-            // TODO: 14/06/2018 add goodRewardComponent and remove endturnnotification
             return new HarvestRewardNotification(this.goods);
-          //  return new EndOfTurnNotification();
 
         }
     }

@@ -38,7 +38,7 @@ public class PerkComponent extends AnchorPane {
      */
     public void load() {
         this.background.setStyle(
-            "-fx-background-image: url('/client/resources/img/perks/" + this.perk.getBackground() + " ');" +
+            "-fx-background-image: url('/client/resources/img/perks/" + this.perk.getBackground() + "');" +
             "-fx-background-repeat: stretch;" +
             "-fx-background-position: center center;" +
             "-fx-background-size: 50 50;"
