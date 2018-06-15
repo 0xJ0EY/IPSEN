@@ -30,7 +30,7 @@ public class PotionRewardComponent extends RewardComponent<PotionReward> {
     @Override
     public void load() throws RemoteException {
         this.background.setStyle(
-            "-fx-background-image: url('/client/resources/img/rewards/potion.png" +  "');" +
+            "-fx-background-image: url('/client/resources/img/perks/potion.png" +  "');" +
             "-fx-background-repeat: stretch;" +
             "-fx-background-position: center center;" +
             "-fx-background-size: 50 50"

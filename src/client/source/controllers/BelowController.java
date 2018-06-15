@@ -24,7 +24,7 @@ public class BelowController implements ControllerInterface, Observable {
     @FXML private Label roundLabel;
 
     @FXML private ImageView ciderView;
-    private Image ciderImage = new Image("/client/resources/img/rewards/cider.png");
+    private Image ciderImage = new Image("/client/resources/img/perks/cider.png");
     private Image noCiderImage = new Image("/client/resources/img/misc/sold.png");
 
     @FXML private Ellipse round1;

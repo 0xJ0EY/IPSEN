@@ -5,7 +5,7 @@
  - [x] Kopen Voorwerp (Jan Douwe)
  
  - [x] Perks!
- - [ ] S.P.E.C.I.A.L Villagers
+ - [x] S.P.E.C.I.A.L Villagers
 
  - [x] Turn controller.  
 
@@ -62,7 +62,7 @@ TODO
  - [x] Rewards(view) Richard
  - [x] Check cave card by gebouwen & playerboard Richard
  - [x] End of round Joey
- - [ ] Bought villagers icon/functional
+ - [x] Bought villagers icon/functional
  - [x] Buyable houses/villagers
  - [x] Turncontroller knoppen disable die niet kunnen
  - [x] HarvestController cancel button
