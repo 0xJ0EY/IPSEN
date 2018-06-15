@@ -34,7 +34,7 @@ public class TrainerVillagerComponent extends SingleSelectableVillagerComponent 
 
         Random rnd = new Random(); // This is only necessary to generate price.
 
-        this.price = rnd.nextInt(10);
+        this.price = rnd.nextInt(10) + 1;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/components/villager/villager_to_train.fxml"));
 
