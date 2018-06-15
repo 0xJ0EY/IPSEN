@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerInterface;
 
@@ -69,6 +70,28 @@ public class MenuController implements Observable {
 
     @FXML public void onRulesClick() {
         tabContainer.getSelectionModel().select(Tabs.RULES.ordinal());
+    }
+
+    @FXML public void select() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode){
+                case DIGIT1:
+                    this.onClickAbove();
+                    break;
+                case DIGIT2:
+                    this.onClickBelow();
+                    break;
+                case DIGIT3:
+                    this.onMarketClick();
+                    break;
+                case DIGIT4:
+                    if(!this.turnButton.isDisabled()) {
+                        this.onTurnClick();
+                    }
+                    break;
+            }
+        });
     }
 
     /**
