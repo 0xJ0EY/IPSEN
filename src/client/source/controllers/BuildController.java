@@ -295,6 +295,9 @@ public class BuildController implements SelectableControllerInterface, Observabl
             for (VillagerInterface villager: usedTrainerVillagers) {
                 villager.tire();
             }
+
+            this.client.getGameClient().getPlayer().changeReputation(1);
+
             this.client.showBuildReward(selected.getModel());
         } catch (RemoteException e) {
             e.printStackTrace();

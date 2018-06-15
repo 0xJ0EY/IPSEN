@@ -9,9 +9,10 @@
 <?import javafx.scene.shape.CubicCurve?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="below" prefHeight="700.0" prefWidth="1500.0" style="-fx-background-color: #d35400;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BelowController">
+<AnchorPane fx:id="below" prefHeight="700.0" prefWidth="1500.0" style="-fx-background-color: #d35400;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BelowController">
    <children>
       <HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
          <children>
@@ -81,7 +82,7 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <AnchorPane maxWidth="300.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: purple;">
+            <AnchorPane fx:id="reputationBoardCounter" maxWidth="300.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: purple;">
                <children>
                   <Line endX="100.0" layoutX="162.0" layoutY="37.0" rotate="31.0" scaleX="0.3" startX="-100.0" />
                   <Line endX="100.0" layoutX="122.0" layoutY="82.0" rotate="21.8" scaleX="0.4" startX="-100.0" />
@@ -140,11 +141,12 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="60.0" fitWidth="90.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/rewards/reputation.png" />
-                     </image>
-                  </ImageView>
+                  <!--<ImageView fitHeight="60.0" fitWidth="90.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">-->
+                     <!--<image>-->
+                        <!--<Image url="@../img/rewards/reputation.png" />-->
+                     <!--</image>-->
+                  <!--</ImageView>-->
+                  <!--<Rectangle fill="red" height="10.0" layoutX="137.0" layoutY="132.0" width="10.0" />-->
                </children></AnchorPane>
          </children></HBox>
    </children>

@@ -1,5 +1,8 @@
 package server.sources.interfaces;
 
+import javafx.scene.shape.Rectangle;
+import org.w3c.dom.css.Rect;
+
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -81,5 +84,4 @@ public interface PlayerInterface extends Remote, Serializable {
      * @throws RemoteException java.rmi.RemoteException
      */
     public void changeReputation(int amount) throws RemoteException;
-
 }

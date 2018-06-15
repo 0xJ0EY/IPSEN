@@ -1,5 +1,7 @@
 package server.sources.models;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import server.sources.interfaces.*;
 import server.sources.models.buildings.StarHouse;
 import server.sources.models.goods.*;
@@ -16,6 +18,7 @@ import server.sources.strategies.villagers.AddVillagerStrategy;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInterface {
 
@@ -32,6 +35,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private ArrayList<Building> harvestBuildings;
 
     private AdvancementTracker advancementTracker = new AdvancementTracker(this);
+
+    private enum RepColors{ BLUE, RED, GREEN, YELLOW, TURQUOISE}
+
+    private Rectangle reputationIcon = new Rectangle(137,132, 10, 10);
 
     private int ciders = 0;
     private int potions = 0;
@@ -538,4 +545,21 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public void clearRerolls() throws RemoteException {
         this.rerolls = 0;
     }
+
+    public String randomColor() {
+        int pick = new Random().nextInt(Player.RepColors.values().length);
+        return Player.RepColors.values()[pick].toString();
+    }
+
+    @Override
+    public void setReputationIconColor(){
+        this.reputationIcon.setFill(Color.valueOf(this.randomColor()));
+    }
+
+    @Override
+    public Rectangle getReputationIcon() throws RemoteException{
+        return this.reputationIcon;
+    }
+
+
 }

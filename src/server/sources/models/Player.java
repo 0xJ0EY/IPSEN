@@ -1,5 +1,7 @@
 package server.sources.models;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import server.sources.controllers.GameController;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
@@ -7,8 +9,10 @@ import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.notifications.PlayerTurnNotification;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Random;
 import java.util.UUID;
 
 public class Player extends UnicastRemoteObject implements PlayerInterface {

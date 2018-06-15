@@ -7,9 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import server.sources.interfaces.GameControllerInterface;
+import server.sources.interfaces.PlayerBoardInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.ReputationBoardInterface;
 
 /**
@@ -17,11 +21,14 @@ import server.sources.interfaces.ReputationBoardInterface;
  * Created by Richard Kerkvliet.
  */
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
-public class BelowController implements ControllerInterface, Observable {
+public class BelowController implements ControllerInterface, Observable{
 
     @FXML private Label roundLabel;
+    @FXML private AnchorPane reputationBoardCounter;
 
     @FXML private ImageView ciderView;
     private Image ciderImage = new Image("/client/resources/img/rewards/cider.png");
@@ -36,6 +43,11 @@ public class BelowController implements ControllerInterface, Observable {
     @FXML private Ellipse round7;
 
     private Client client;
+    private int reputation = 0;
+
+    private ArrayList<PlayerInterface> players;
+    private PlayerInterface target;
+    private PlayerBoardInterface playerboard;
 
     /**
      * This is for registering client when entering the view
@@ -46,6 +58,9 @@ public class BelowController implements ControllerInterface, Observable {
 
         this.client = client;
 
+        // For getting players
+        this.client.clientObserver.attach(this);
+
         // For updating the reputation
         this.client.playerBoardObserver.attach(this);
 
@@ -54,6 +69,48 @@ public class BelowController implements ControllerInterface, Observable {
 
         // For updating the cider
         this.client.reputationBoardObserver.attach(this);
+
+        // For checking turns.
+        this.client.turnObserver.attach(this);
+
+        this.client.playerBoardObserver.attach(this);
+
+    }
+
+    private void updateReputation(){
+
+
+
+        // No target, so its not even worth going here
+        if (target == null) return;
+
+        try {
+            boolean turn = target.getGameClient().equals(this.client.getGameClient());
+
+            if (turn){
+                reputation = target.getReputation();
+                System.out.println("Reputation: " + reputation);
+                switch (reputation){
+                    case 1:
+                        target.getReputationIcon().setLayoutY(80);
+                        break;
+                    case 2:
+                        target.getReputationIcon().setLayoutY(130);
+                        break;
+                    case 3:
+                        target.getReputationIcon().setLayoutY(180);
+                        break;
+                    case 4:
+                        target.getReputationIcon().setLayoutY(250);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showRound(int round) {
@@ -97,10 +154,34 @@ public class BelowController implements ControllerInterface, Observable {
     public void updateObserver() {
         GameControllerInterface gameController = this.client.gameObserver.getState();
         ReputationBoardInterface reputationBoard = this.client.reputationBoardObserver.getState();
+        players = this.client.clientObserver.getState(); // For getting clients.
+        target = this.client.turnObserver.getState();
 
         this.updateRoundMarker(gameController);
 
         this.updateCider(reputationBoard);
+
+        this.updateReputation();
+
+        for(PlayerInterface player : players){
+            try {
+                reputationBoardCounter.getChildren().add(player.getPlayerBoard().get);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+//            try {
+//                reputationBoardCounter.getChildren().add(player.getReputationIcon());
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                player.getReputationIcon().setFill(Color.valueOf(player.randomColor()));
+//                reputationBoardCounter.getChildren().add(player.getReputationIcon());
+//            } catch (RemoteException e) {
+//                e.printStackTrace();
+//            }
+        }
+
     }
 
     private void updateCider(ReputationBoardInterface reputationBoard) {
@@ -129,6 +210,7 @@ public class BelowController implements ControllerInterface, Observable {
 
     @Override
     public Parent show() throws RemoteException {
+
         return null;
     }
 }
