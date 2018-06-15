@@ -64,4 +64,20 @@ public class TrainerVillagerComponent extends SingleSelectableVillagerComponent 
 
         this.priceText.setText(Integer.toString(this.price));
     }
+
+    public static int calculatePrice(int index) {
+        switch (index) {
+            case 0:
+                return 2;
+            case 1:
+            case 2:
+                return 3;
+            case 3:
+                return 4;
+            case 4:
+                return 5;
+            default:
+                return 0;
+        }
+    }
 }

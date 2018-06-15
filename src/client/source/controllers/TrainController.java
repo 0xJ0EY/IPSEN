@@ -95,7 +95,7 @@ public class TrainController implements VillagerSelectionControllerInterface {
 
             TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent();
             villagerComponent.setModel(this.availableVillagers[i]);
-            villagerComponent.setPrice(this.basePrice + i);
+            villagerComponent.setPrice(TrainerVillagerComponent.calculatePrice(i));
             villagerComponent.setController(this);
             villagerComponent.load();
 

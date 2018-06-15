@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+
+<fx:root maxHeight="200.0" maxWidth="160.0" minHeight="200.0" minWidth="160.0" prefHeight="200.0" prefWidth="160.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <javafx.scene.layout.AnchorPane fx:id="background" maxHeight="200.0" maxWidth="110.0" prefHeight="200.0" prefWidth="110.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <children>
+                <AnchorPane fx:id="type" layoutY="8.0" prefHeight="50.0" prefWidth="35.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                <HBox fx:id="diceLanterns" alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="65.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+            </children>
+        </javafx.scene.layout.AnchorPane>1
+        <AnchorPane fx:id="priceContainer" layoutX="23.0" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: red;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Text fx:id="priceText" layoutX="-7.0" layoutY="32.3359375" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="50.0" AnchorPane.bottomAnchor="13.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.5">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+    </children>
+</fx:root>
