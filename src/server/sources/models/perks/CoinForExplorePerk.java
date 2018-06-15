@@ -4,7 +4,9 @@ import server.sources.interfaces.GameClientInterface;
 
 import java.rmi.RemoteException;
 
-public class CoinForExplorePerk implements Perk {
+public class CoinForExplorePerk implements Perk, ActivateOnObtainedInterface {
+
+    private GameClientInterface gameClient;
 
     @Override
     public String getBackground() {
@@ -12,7 +14,12 @@ public class CoinForExplorePerk implements Perk {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
+        this.gameClient = gameClient;
+    }
+
+    @Override
+    public void activateOnObtainedPerk() throws RemoteException {
         gameClient.getPlayer().getPlayerBoard().obtainedCoinForExplorePerk();
     }
 }

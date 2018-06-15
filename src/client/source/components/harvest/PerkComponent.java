@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import server.sources.models.perks.Perk;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 /**
  * A class that creates perk component
@@ -39,7 +40,7 @@ public class PerkComponent extends AnchorPane {
      * For loading perks.
      * @author Richard Kerkvliet
      */
-    public void load() {
+    public void load() throws RemoteException {
         this.background.setStyle(
             "-fx-background-image: url('/client/resources/img/perks/" + this.perk.getBackground() + " ');" +
             "-fx-background-repeat: stretch;" +

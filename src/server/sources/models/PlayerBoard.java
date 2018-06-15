@@ -317,7 +317,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private void activatePerks(Building building) throws RemoteException{
         for (Perk perk : building.listPerks()) {
-            perk.activateOnObtainedPerk(this.player.getGameClient());
+            perk.setGameClient(this.player.getGameClient());
+            if (perk instanceof ActivateOnObtainedInterface) {
+                ((ActivateOnObtainedInterface) perk).activateOnObtainedPerk();
+            }
         }
     }
 
