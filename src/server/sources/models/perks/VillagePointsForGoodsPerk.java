@@ -21,8 +21,10 @@ public class VillagePointsForGoodsPerk implements Perk, EndOfGame {
     }
 
     @Override
-    public String getBackground() {
-        return "village_points_for_goods.png";
+    public  String getBackground() throws RemoteException {
+        System.out.println(this.good);
+        String good = this.good.getBackground();
+        return "village_points_for_" + good;
     }
 
     @Override
