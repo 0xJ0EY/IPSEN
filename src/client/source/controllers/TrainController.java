@@ -33,6 +33,7 @@ public class TrainController implements ControllerInterface {
     @FXML private GridPane villagerContainer;
 
     @FXML private Button cancelButton;
+
     @FXML private Button buyButton;
 
     private VillagerInterface[] availableVillagers;
