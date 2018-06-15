@@ -3,22 +3,37 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="root" onKeyPressed="#keys" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.ExploreController">
+<AnchorPane fx:id="root"  style="-fx-background-image: url('/client/resources/img/background-game.png'); -fx-background-size: cover;"  maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#keys" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.ExploreController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0">
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <Pane prefWidth="600.0">
+            <children>
+               <HBox fx:id="hbox" alignment="CENTER" layoutY="191.0" prefHeight="75.0" prefWidth="600.0" spacing="20.0">
+                  <children>
+                  </children>
+               </HBox>
+               <TextArea fx:id="story" editable="false" layoutX="50.0" layoutY="14.0" prefHeight="177.0" prefWidth="500.0" text="Hier komt echt een gaaf verhaal als het meezit&#10;" wrapText="true" />
+            </children>
+         </Pane>
+      </HBox>
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <HBox fx:id="hbox" alignment="CENTER" layoutY="191.0" prefHeight="75.0" prefWidth="600.0" spacing="20.0">
-               <children>
-
-               </children>
-            </HBox>
-            <TextArea fx:id="story" layoutX="50.0" layoutY="14.0" prefHeight="177.0" prefWidth="500.0" text="Hier komt echt een gaaf verhaal als het meezit&#10;" wrapText="true" />
-            <Button fx:id="runButton" layoutX="50.0" layoutY="328.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="60.0" prefWidth="500.0" text="Run (R)" />
-            <Button fx:id="confirmButton" layoutX="50.0" layoutY="267.0" mnemonicParsing="false" disable="true" onAction="#clickConfirm" prefHeight="60.0" prefWidth="500.0" text="Confirm (C)" />
+            <Button fx:id="confirmButton" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConfirm" text="Confirm (C)" GridPane.columnIndex="1" />
+            <Button fx:id="runButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickRun" text="Run (R)" />
          </children>
-      </Pane>
+      </GridPane>
    </children>
 </AnchorPane>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #d3b7a3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MarketController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-image: url('/client/resources/img/background-game.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MarketController">
    <children>
        <Button id="sellGood" layoutX="618.0" layoutY="7.0" mnemonicParsing="false" onAction="#sellGood" prefHeight="40.0" prefWidth="178.0" text="Sell Good" />
        <Button id="buyGood" layoutX="807.0" layoutY="7.0" mnemonicParsing="false" onAction="#buyGood" prefHeight="40.0" prefWidth="178.0" text="Buy Good" />

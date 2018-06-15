@@ -16,7 +16,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" onKeyPressed="#keys" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.VillagerSelectionController">
+<AnchorPane fx:id="root" style="-fx-background-image: url('/client/resources/img/background-game.png'); -fx-background-size: cover;" onKeyPressed="#keys" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.VillagerSelectionController">
    <children>
       <HBox alignment="CENTER" layoutY="-13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

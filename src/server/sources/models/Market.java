@@ -65,8 +65,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         }
     }
 
-    private MarketHouse randomHouse(){
-        int key = (int) (Math.random() * this.houses.size());
+    private MarketHouse randomHouse() {
+        if (this.houses.size() == 0) return null;
+        int key = (int) (Math.floor(Math.random() * this.houses.size()));
 
         // Get the house from the available pool
         MarketHouse house = this.houses.get(key);
@@ -77,8 +78,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return house;
     }
 
-    private MarketOutpost randomOutpost(){
-        int key = (int) (Math.random() * this.outposts.size());
+    private MarketOutpost randomOutpost() {
+        if (this.outposts.size() == 0) return null;
+        int key = (int) (Math.floor(Math.random() * this.outposts.size()));
 
         // Get the house from the available pool
         MarketOutpost outpost = this.outposts.get(key);
@@ -89,9 +91,9 @@ public class Market extends UnicastRemoteObject implements MarketInterface {
         return outpost;
     }
 
-    private Villager randomVillager(){
-        int key = (int) (Math.random() * this.villagers.size());
-        if (key == 0) return null;
+    private Villager randomVillager() {
+        if (this.villagers.size() == 0) return null;
+        int key = (int) (Math.floor(Math.random() * this.villagers.size()));
 
         // Get the villager from the available pool
         Villager villager = this.villagers.get(key);
