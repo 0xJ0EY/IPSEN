@@ -13,7 +13,7 @@ public class ReputationPerk implements Perk, ActivateOnObtainedInterface {
 
     @Override
     public String getBackground() {
-        return "reputation_perk.png";
+        return "reputation.png";
     }
 
     @Override

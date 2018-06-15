@@ -18,7 +18,7 @@ public class CiderPerk implements Perk, ActivateOnObtainedInterface {
 
     @Override
     public String getBackground() {
-        return "cider_perk.png";
+        return "cider.png";
     }
 
     @Override

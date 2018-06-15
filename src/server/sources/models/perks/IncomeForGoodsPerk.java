@@ -22,7 +22,7 @@ public class IncomeForGoodsPerk implements Perk, Refreshable {
 
     @Override
     public String getBackground() {
-        return "income_from_goods_perk.png";
+        return "coin_for_good.png";
     }
 
     @Override

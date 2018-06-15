@@ -18,7 +18,7 @@ public class VillagePointsForEmptyCavePerk implements Perk, EndOfGame {
 
     @Override
     public String getBackground() {
-        return "village_points_for_empty_cave_perk.png";
+        return "village_points_for_cave_cards.png";
     }
 
     @Override

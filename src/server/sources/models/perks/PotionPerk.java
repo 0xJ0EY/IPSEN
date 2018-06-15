@@ -18,7 +18,7 @@ public class PotionPerk implements Perk, ActivateOnObtainedInterface {
 
     @Override
     public String getBackground() {
-        return "potion_perk.png";
+        return "potion.png";
     }
 
     @Override

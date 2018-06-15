@@ -18,7 +18,7 @@ public class VillagePointsPerk implements Perk, EndOfGame {
 
     @Override
     public String getBackground() {
-        return "village_points.png";
+        return "villager_point.png";
     }
 
     @Override

@@ -20,7 +20,7 @@ public class RerollPerk implements Perk, Refreshable {
 
     @Override
     public String getBackground() {
-        return "reroll_perk.png";
+        return "reroll.png";
     }
 
     @Override

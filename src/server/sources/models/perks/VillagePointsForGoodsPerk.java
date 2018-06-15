@@ -22,7 +22,7 @@ public class VillagePointsForGoodsPerk implements Perk, EndOfGame {
 
     @Override
     public String getBackground() {
-        return "village_points_for_goods_perk.png";
+        return "village_points_for_goods.png";
     }
 
     @Override

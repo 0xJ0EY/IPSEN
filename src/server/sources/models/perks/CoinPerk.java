@@ -18,7 +18,7 @@ public class CoinPerk implements Perk, ActivateOnObtainedInterface {
 
     @Override
     public String getBackground() {
-        return "coin_perk.png";
+        return "coin.png";
     }
 
     @Override

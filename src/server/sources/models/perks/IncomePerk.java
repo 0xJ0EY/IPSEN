@@ -18,7 +18,7 @@ public class IncomePerk implements Perk, Refreshable {
 
     @Override
     public String getBackground() {
-        return "income_perk.png";
+        return "income.png";
     }
 
     @Override
