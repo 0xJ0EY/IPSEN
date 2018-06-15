@@ -85,10 +85,9 @@ public class LaborAction implements VillagerActionInterface {
     private boolean firstLaborCider() throws RemoteException{
         if(reputationBoard.hasCider()){
             reputationBoard.retrieveCider(target.getPlayer());
-            return true;
-        } else {
-            return false;
+            ciderRewarded =  true;
         }
+        return ciderRewarded;
     }
 
 }
