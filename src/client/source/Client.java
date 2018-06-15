@@ -194,9 +194,10 @@ public class Client extends Application {
         this.setScene(trainReward.show());
     }
 
-    public void showLaborReward(ArrayList<VillagerInterface> villagers) throws RemoteException {
+    public void showLaborReward(ArrayList<VillagerInterface> villagers, boolean ciderReward) throws RemoteException {
         LaborRewardController laborReward = controllerFactory.createLaborRewardView();
         laborReward.setVillagers(villagers);
+        laborReward.setCider(ciderReward);
         this.setScene(laborReward.show());
     }
 
