@@ -7,6 +7,7 @@ import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.EndTurnAction;
 import server.sources.interfaces.PlayerInterface;
@@ -78,5 +79,21 @@ public class LaborRewardController implements ControllerInterface, Observable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case ENTER:
+                    try {
+                        this.onClickEndTurn();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+
+            }
+        });
     }
 }

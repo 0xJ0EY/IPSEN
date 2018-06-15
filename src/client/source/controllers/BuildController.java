@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -302,6 +303,29 @@ public class BuildController implements SelectableControllerInterface, Observabl
             this.enableBuying();
         }
 
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case B:
+                    if(!this.buyButton.isDisabled()) {
+                        try {
+                            this.onClickBuy();
+                        } catch (RemoteException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    break;
+                case ESCAPE:
+                    try {
+                        this.onClickCancel();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+            }
+        });
     }
 
     private boolean canBuy() {
