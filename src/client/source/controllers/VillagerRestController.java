@@ -5,6 +5,7 @@ import client.source.components.villager.RestVillagerComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import server.sources.actions.RestVillagerAction;
@@ -148,5 +149,20 @@ public class VillagerRestController implements ControllerInterface, Observable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case D:
+                    try {
+                        this.onClickSelect();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+            }
+        });
     }
 }
