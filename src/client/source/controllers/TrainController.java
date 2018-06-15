@@ -13,6 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import server.sources.interfaces.MarketInterface;
 import server.sources.interfaces.PlayerBoardInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
 
@@ -31,12 +32,15 @@ public class TrainController implements ControllerInterface {
 
     @FXML private GridPane villagerContainer;
 
+    @FXML private Button cancelButton;
+
     @FXML private Button buyButton;
 
     private VillagerInterface[] availableVillagers;
 
     private ArrayList<TrainerVillagerComponent> villagerComponents;
     private PlayerBoardInterface playerboard;
+    private PlayerInterface target;
 
     /**
      * Loads available villagers to be recruited and trained
@@ -47,6 +51,8 @@ public class TrainController implements ControllerInterface {
     public Parent show() {
 
         try {
+            this.updateButtons();
+
             this.retrieveVillagers();
 
             this.updateVillagersView();
@@ -128,5 +134,17 @@ public class TrainController implements ControllerInterface {
 
     public void onClickCancel() throws RemoteException{
         client.showMain();
+    }
+
+    public void updateButtons() {
+        this.target = client.turnObserver.getState();
+        try {
+            boolean turn = !this.target.getGameClient().equals(client.getGameClient());
+            this.cancelButton.setDisable(turn);
+            this.buyButton.setDisable(turn);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
