@@ -98,9 +98,9 @@ public class BuildController implements SelectableControllerInterface, Observabl
         if (target == null) return;
 
         try {
-            boolean turn = target.getGameClient().equals(this.client.getGameClient());
-            this.cancelButton.setDisable(!turn);
-            this.buyButton.setDisable(!turn);
+            boolean turn = !target.getGameClient().equals(this.client.getGameClient());
+            this.cancelButton.setDisable(turn);
+            this.buyButton.setDisable(turn);
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -203,7 +203,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
      * @author Joey de Ruiter and Robin Silverio
      */
     public void setClient(Client client) throws RemoteException {
-        this.client = client;
+        this.client = client;;
 
         // Set market
         this.market = this.client.getGameClient().getServer().getGameController().getMarket();
@@ -282,7 +282,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
             return;
         }
 
-        if (selected.getModel() instanceof Outpost && !target.getPlayerBoard().hasCaveCards()){
+        if (this.isOutpost(selected.getModel()) && !target.getPlayerBoard().hasCaveCards()){
             this.showMessage("Explore to get cave cards first");
             this.enableBuying();
             return;
@@ -341,5 +341,23 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
     public void setUsedTrainerVillager(ArrayList<VillagerInterface> villagers) {
         this.usedTrainerVillagers = villagers;
+    }
+
+    /**
+     * Method to check if the building is in the og outposts array,
+     * we cannot use instanceof since its a remote RMI object.
+     * @param building
+     * @author Joey de Ruiter
+     * @return
+     */
+    private boolean isOutpost(BuildingInterface building) throws RemoteException {
+
+        for (SelectableBuildingComponent component : this.outpostComponents) {
+            BuildingInterface model = component.getModel();
+
+            if (model.equals(building)) return true;
+        }
+
+        return false;
     }
 }

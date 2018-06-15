@@ -45,7 +45,7 @@ public class RulesController {
 
         this.ruleImage.fitWidthProperty().bind(rulesScrollpane.widthProperty());
 
-        this.enableBothButtons();
+        this.next_btn.setDisable(false);
     }
 
 

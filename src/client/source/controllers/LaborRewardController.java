@@ -26,13 +26,14 @@ public class LaborRewardController implements ControllerInterface, Observable {
     private Client client;
 
     private ArrayList<VillagerInterface> villagers;
+    private boolean ciderReward;
 
     @Override
     public Parent show() throws RemoteException {
         CoinRewardComponent coinRewardComponent = new CoinRewardComponent(villagers.size());
         coinRewardComponent.load();
         this.rewardComponent.getChildren().add(coinRewardComponent);
-        if (client.getGameClient().getServer().getGameController().getReputationBoard().hasCider()) {
+        if (this.ciderReward) {
             CiderRewardComponent ciderRewardComponent = new CiderRewardComponent();
             ciderRewardComponent.load();
             this.rewardComponent.getChildren().add(ciderRewardComponent);
@@ -60,6 +61,9 @@ public class LaborRewardController implements ControllerInterface, Observable {
 
     public void setVillagers(ArrayList<VillagerInterface> villagers){
         this.villagers = villagers;
+    }
+    public void setCider(boolean ciderReward){
+        this.ciderReward = ciderReward;
     }
 
     /**
