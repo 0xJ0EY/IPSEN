@@ -5,6 +5,7 @@
  - [x] Kopen Voorwerp (Jan Douwe)
  
  - [ ] Perks!
+ - [ ] S.P.E.C.I.A.L Villagers
 
  - [x] Turn controller.  
 
@@ -53,7 +54,7 @@
 TODO
  - [x] Add message to the saving error
  - [ ] UI Improvements
- - [ ] Key bindings on turn buttons (important)
+ - [ ] **Key bindings on turn buttons (important)**
  - [x] JavaDoc
  - [x] Below view maken
  - [x] Marketview
