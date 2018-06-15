@@ -101,7 +101,7 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public int getBeds() throws RemoteException;
 
-    public void addBeds(int amount) throws RemoteException;
+    public int getReputation() throws RemoteException;
 
     public ArrayList<Good> getGoods() throws RemoteException;
 
@@ -165,7 +165,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void addReroll() throws RemoteException;
 
-    public void clearRerolls() throws RemoteException;
-
     public PlayerInterface getPlayer() throws RemoteException;
+
+    public void changeReputation(int amount) throws RemoteException;
+    
 }

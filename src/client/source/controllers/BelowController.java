@@ -7,10 +7,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import server.sources.interfaces.GameControllerInterface;
+import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.ReputationBoardInterface;
+import server.sources.models.Player;
 
 /**
  * Class that acts as an intermediary between the belowview and the model.
@@ -18,6 +22,7 @@ import server.sources.interfaces.ReputationBoardInterface;
  */
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class BelowController implements ControllerInterface, Observable {
 
@@ -35,6 +40,8 @@ public class BelowController implements ControllerInterface, Observable {
     @FXML private Ellipse round6;
     @FXML private Ellipse round7;
 
+    @FXML private AnchorPane reputationBoardCounter;
+
     private Client client;
 
     /**
@@ -47,7 +54,7 @@ public class BelowController implements ControllerInterface, Observable {
         this.client = client;
 
         // For updating the reputation
-        this.client.playerBoardObserver.attach(this);
+        this.client.clientObserver.attach(this);
 
         // For updating the round marker
         this.client.gameObserver.attach(this);
@@ -97,10 +104,76 @@ public class BelowController implements ControllerInterface, Observable {
     public void updateObserver() {
         GameControllerInterface gameController = this.client.gameObserver.getState();
         ReputationBoardInterface reputationBoard = this.client.reputationBoardObserver.getState();
+        ArrayList<PlayerInterface> players = this.client.clientObserver.getState();
 
         this.updateRoundMarker(gameController);
 
         this.updateCider(reputationBoard);
+
+        this.updateReputation(players);
+    }
+
+    private void updateReputation(ArrayList<PlayerInterface> players) {
+
+        int offset = 0;
+        this.reputationBoardCounter.getChildren().clear();
+
+        for (PlayerInterface player : players) {
+            try {
+
+                int reputation = player.getPlayerBoard().getReputation();
+
+                Rectangle rectangle = new Rectangle(
+                        this.reputationXPos(reputation) + offset,
+                        this.reputationYPos(reputation),
+                        10,
+                        10);
+                rectangle.setFill(Color.web(player.getColour().getHex()));
+
+                this.reputationBoardCounter.getChildren().add(rectangle);
+
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+            offset -= 15;
+        }
+
+
+    }
+
+    private int reputationXPos(int reputation) {
+        switch (reputation) {
+            case -2: return 200;
+            case -1: return 150;
+            case 0: return 130;
+            case 1: return 130;
+            case 2: return 140;
+            case 3: return 170;
+            case 4: return 200;
+            case 5: return 220;
+            case 6: return 250;
+            case 7: return 220;
+            case 8: return 170;
+            default: return 0;
+        }
+    }
+
+    private int reputationYPos(int reputation) {
+        switch (reputation) {
+            case -2: return 10;
+            case -1: return 60;
+            case 0: return 130;
+            case 1: return 220;
+            case 2: return 270;
+            case 3: return 320;
+            case 4: return 380;
+            case 5: return 450;
+            case 6: return 550;
+            case 7: return 650;
+            case 8: return 720;
+            default: return 0;
+        }
     }
 
     private void updateCider(ReputationBoardInterface reputationBoard) {

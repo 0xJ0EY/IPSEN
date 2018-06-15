@@ -8,7 +8,6 @@ import java.rmi.RemoteException;
  * Created by robin on 28-5-2018.
  */
 public class ReputationPerk implements Perk, ActivateOnObtainedInterface {
-    private final int REPUTATION = 1;
     private GameClientInterface gameClient;
 
     @Override
@@ -23,7 +22,7 @@ public class ReputationPerk implements Perk, ActivateOnObtainedInterface {
 
     @Override
     public void activateOnObtainedPerk() throws RemoteException {
-        gameClient.getPlayer().changeReputation(this.REPUTATION);
+        gameClient.getPlayer().getPlayerBoard().changeReputation(1);
 
     }
 }

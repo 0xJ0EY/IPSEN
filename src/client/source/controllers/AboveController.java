@@ -7,12 +7,11 @@ import client.source.components.good.SelectableGoodComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import server.sources.interfaces.BuildingInterface;
 import server.sources.interfaces.PlayerBoardInterface;
@@ -46,6 +45,8 @@ public class AboveController implements Observable {
     @FXML private Label labelBeds;
     @FXML private Label labelIncome;
 
+    @FXML private Pane colourPane;
+
     private PlayerBoardInterface playerBoard;
 
     private Client client;
@@ -77,6 +78,26 @@ public class AboveController implements Observable {
         this.updateBuildings();
         this.updateGoods();
         this.updateAdvancementTracker();
+        this.updatePlayerColour();
+    }
+
+    private void updatePlayerColour() {
+
+        String hex = "";
+
+        try {
+            hex = client.getGameClient().getPlayer().getColour().getHex();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        this.colourPane.setBackground(
+                new Background(
+                        new BackgroundFill(Color.web(hex), CornerRadii.EMPTY, Insets.EMPTY)
+                )
+        );
+
+
     }
 
     /**

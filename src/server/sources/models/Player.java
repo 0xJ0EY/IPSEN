@@ -1,11 +1,13 @@
 package server.sources.models;
 
 import server.sources.controllers.GameController;
+import server.sources.enumerations.PlayerColour;
 import server.sources.interfaces.ActionInterface;
 import server.sources.interfaces.GameClientInterface;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.notifications.PlayerTurnNotification;
+import server.sources.notifications.UpdatePlayerListNotification;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -18,11 +20,10 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
     private PlayerBoard board = new PlayerBoard(this);
 
     private GameController gameController;
-    private int reputation = 0;
 
     private transient GameClientInterface gameClient;
 
-    private String colour = "";
+    private PlayerColour colour = null;
 
     private ActionInterface action = null;
 
@@ -30,9 +31,9 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
 
     private String username;
 
-    public Player(String username) throws RemoteException {
-        this.colour = UUID.randomUUID().toString();
+    public Player(String username, int id) throws RemoteException {
         this.username = username;
+        this.colour = PlayerColour.getColourByIndex(id);
     }
 
     public GameClientInterface getGameClient() {
@@ -113,11 +114,6 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         return (PlayerBoard) this.board;
     }
 
-    @Override
-    public int getReputation() throws RemoteException {
-        return this.reputation;
-    }
-
     public void resetAfterRound() {
         this.passed = false;
     }
@@ -126,39 +122,8 @@ public class Player extends UnicastRemoteObject implements PlayerInterface {
         this.gameController = gameController;
     }
 
-    public String getColour() {
+    public PlayerColour getColour() {
         return colour;
-    }
-
-    /**
-     * With this method, we can retrieve all amount of buildings that a player has build.
-     * Each building represents one village points.
-     * @return VP (Village Points)
-     * @author Robin Silverio
-     */
-    public int getAmountBuildings(){
-
-        int villagePointsPerBuilding = 0;
-
-        try {
-            villagePointsPerBuilding = (this.getPlayerBoard().getHouses().size() + this.getPlayerBoard().getOutposts().size());
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        return villagePointsPerBuilding;
-    }
-
-    /**
-     * Set reputation based on an int
-     *
-     * @author Richard Kerkvliet
-     * @param amount
-     * @throws RemoteException java.rmi.RemoteException
-     */
-    @Override
-    public void changeReputation(int amount) throws RemoteException {
-        this.reputation += amount;
     }
 
 }
