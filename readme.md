@@ -54,7 +54,7 @@
 TODO
  - [x] Add message to the saving error
  - [ ] UI Improvements
- - [ ] **Key bindings on turn buttons (important)**
+ - [x] **Key bindings on turn buttons (important)**
  - [x] JavaDoc
  - [x] Below view maken
  - [x] Marketview
@@ -71,11 +71,11 @@ TODO
  - [ ] Special villager backgrounds
  - [ ] more villager backgrounds
  - [x] house/outpost backgrounds
- - [ ] Harvest check for cider
- - [ ] Cider inbouwen in de belowview
+ - [x] Harvest check for cider
+ - [x] Cider inbouwen in de belowview
 
 Known bugs.   
  - [ ] bug rewards -> Build and train only for active player instead of all
- - [ ] Bug Train -> Andere spelers kunnen ook kopen.  
+ - [x] Bug Train -> Andere spelers kunnen ook kopen.  
  - [x] Bug train -> speler is halverwege niet meer aan de beurt.  
  - [x] Bug Build -> on cancel in the build market the villager is tired but not realy used.
