@@ -1,6 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.components.villager.MarketVillagerComponent;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
 
     private Client client;
     private ArrayList<VillagerInterface> villagers;
-    private TrainerVillagerComponent villager;
+    private MarketVillagerComponent villager;
 
     @Override
     public Parent show() throws RemoteException {
@@ -60,7 +61,7 @@ public class TrainRewardController implements ControllerInterface, Observable {
      * @param villager a selected villager before performing a train action
      * @author Richard Kerkvliet
      */
-    public void setTrainReward(TrainerVillagerComponent villager) {
+    public void setTrainReward(MarketVillagerComponent villager) {
         this.villager = villager;
     }
 

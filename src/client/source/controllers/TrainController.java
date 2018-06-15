@@ -18,6 +18,7 @@ import server.sources.interfaces.MarketInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
+import server.sources.notifications.ShowVillagerRewardNotification;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -141,7 +142,10 @@ public class TrainController implements VillagerSelectionControllerInterface {
                 ;
 
                 this.availableVillagers[i] = null;
-                client.showTrainReward(villager);
+
+                this.client.getGameClient().getServer().notifyClients(
+                    new ShowVillagerRewardNotification(villager.getVillager(), villager.getPrice())
+                );
             }
 
         }
