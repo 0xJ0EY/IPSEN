@@ -31,7 +31,7 @@ public class TrainController implements ControllerInterface {
 
     @FXML private GridPane villagerContainer;
 
-    @FXML private Button train;
+    @FXML private Button buyButton;
 
     private VillagerInterface[] availableVillagers;
 
@@ -84,7 +84,7 @@ public class TrainController implements ControllerInterface {
 
             villagerComponent.setOnMouseClicked( e->{
                 villagerComponent.onClickSelect(villagerComponents);
-                this.train.setDisable(false);
+                this.buyButton.setDisable(false);
             });
             this.villagerComponents.add(villagerComponent);
 
