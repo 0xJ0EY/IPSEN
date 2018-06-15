@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import server.sources.actions.EndTurnAction;
@@ -118,6 +119,22 @@ public class ExploreController implements ControllerInterface, Observable {
         }
 
         client.showParty(this.exploreStory, this.choice);
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case R:
+                    this.clickRun();
+                    break;
+                case C:
+                    if(!this.confirmButton.isDisabled()) {
+                        this.clickConfirm();
+                    }
+                    break;
+            }
+        });
     }
 
     /**

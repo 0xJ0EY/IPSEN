@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -23,6 +24,7 @@ import server.sources.models.perks.BedPerk;
 import server.sources.models.perks.IncomeForGoodsPerk;
 import server.sources.models.perks.Perk;
 import server.sources.models.perks.PotionPerk;
+import server.sources.notifications.ShowBuildRewardNotification;
 
 import java.lang.reflect.Array;
 import java.rmi.RemoteException;
@@ -277,7 +279,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
         SelectableBuildingComponent selected = selectedBuildings.get(0);
 
         if (selected.getModel().getCost() > this.target.getPlayerBoard().getCoins()) {
-            this.showMessage("Not sufficient funds.");
+            this.showMessage("Insufficient funds.");
             this.enableBuying();
             return;
         }
@@ -295,13 +297,40 @@ public class BuildController implements SelectableControllerInterface, Observabl
             for (VillagerInterface villager: usedTrainerVillagers) {
                 villager.tire();
             }
-            this.client.showBuildReward(selected.getModel());
+
+            this.client.getGameClient().getServer().notifyClients(
+                new ShowBuildRewardNotification(selected.getModel())
+            );
+
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {
             this.enableBuying();
         }
 
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case B:
+                    if(!this.buyButton.isDisabled()) {
+                        try {
+                            this.onClickBuy();
+                        } catch (RemoteException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    break;
+                case ESCAPE:
+                    try {
+                        this.onClickCancel();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+            }
+        });
     }
 
     private boolean canBuy() {
@@ -359,5 +388,14 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
 
         return false;
+    }
+
+    public boolean hasTurn() {
+        try {
+            return this.target.getGameClient().equals(client.getGameClient());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

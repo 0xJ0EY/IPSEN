@@ -63,7 +63,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
         if (this.state != ServerState.LOBBY) throw new GameStartedException();
 
-        Player player = new Player(username);
+        Player player = new Player(username, this.gameClients.size());
 
         // Link GameClient & Player
         player.setGameController(this.gameController);

@@ -8,4 +8,6 @@ public interface SelectableControllerInterface extends ControllerInterface {
 
     public ArrayList<SelectableBuildingComponent> getSelectedBuildingComponents();
 
+    public boolean hasTurn();
+
 }

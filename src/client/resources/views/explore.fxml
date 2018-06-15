@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.ExploreController">
+<AnchorPane fx:id="root" onKeyPressed="#keys" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.ExploreController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -16,8 +16,8 @@
                </children>
             </HBox>
             <TextArea fx:id="story" layoutX="50.0" layoutY="14.0" prefHeight="177.0" prefWidth="500.0" text="Hier komt echt een gaaf verhaal als het meezit&#10;" wrapText="true" />
-            <Button fx:id="runButton" layoutX="50.0" layoutY="328.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="60.0" prefWidth="500.0" text="Run" />
-            <Button fx:id="confirmButton" layoutX="50.0" layoutY="267.0" mnemonicParsing="false" disable="true" onAction="#clickConfirm" prefHeight="60.0" prefWidth="500.0" text="Confirm" />
+            <Button fx:id="runButton" layoutX="50.0" layoutY="328.0" mnemonicParsing="false" onAction="#clickRun" prefHeight="60.0" prefWidth="500.0" text="Run (R)" />
+            <Button fx:id="confirmButton" layoutX="50.0" layoutY="267.0" mnemonicParsing="false" disable="true" onAction="#clickConfirm" prefHeight="60.0" prefWidth="500.0" text="Confirm (C)" />
          </children>
       </Pane>
    </children>

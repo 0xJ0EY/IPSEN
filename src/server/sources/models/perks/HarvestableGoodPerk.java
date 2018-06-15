@@ -30,7 +30,7 @@ public class HarvestableGoodPerk implements Harvestable {
      */
     @Override
     public String getBackground() {
-        return "../good/" + good.getBackground();
+        return "../goods/" + good.getBackground();
     }
 
     @Override
@@ -54,6 +54,11 @@ public class HarvestableGoodPerk implements Harvestable {
     public boolean canHarvest() {
         return this.amountLeft > 0;
 
+    }
+
+    @Override
+    public int getAmountLeft() {
+        return this.amountLeft;
     }
 
     /**

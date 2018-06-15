@@ -7,6 +7,8 @@ import client.source.strategies.DoActionStrategy;
 import client.source.strategies.RequestStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import server.sources.actions.*;
 import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
@@ -15,6 +17,7 @@ import server.sources.models.PlayerBoard;
 import server.sources.notifications.EndOfGameNotification;
 
 import java.rmi.RemoteException;
+import java.security.Key;
 
 /**
  * A class that acts as an intermediate between turnview and models
@@ -23,6 +26,8 @@ import java.rmi.RemoteException;
 public class TurnController implements Observable {
 
     private Client client;
+
+    @FXML private AnchorPane root;
 
     @FXML private Button exploreButton;
     @FXML private Button labourButton;
@@ -92,13 +97,15 @@ public class TurnController implements Observable {
      */
     @FXML private void harvest() throws RemoteException {
 
+        int maximumHarvestActions = client.getGameClient().getPlayer().getPlayerBoard().countHarvestableBuildings();
+
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
             new RequestStrategy(),
             new MultipleSelectionFactory(),
                 1,
-                0 // Has to be equal to amount of possible harvest actions
+            maximumHarvestActions
         );
 
     }
@@ -130,6 +137,46 @@ public class TurnController implements Observable {
 
         client.getGameClient().getPlayer().doAction(new PassAction(this.client.getGameClient()));
 
+    }
+
+    @FXML private void exploreEnter() throws RemoteException {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            try {
+                switch (keyCode){
+                    case E:
+                        if(!this.exploreButton.isDisabled()) {
+                            this.explore();
+                        }
+                        break;
+                    case B:
+                        if(!this.buildButton.isDisabled()) {
+                            this.build();
+                        }
+                        break;
+                    case H:
+                        if(!this.harvestButton.isDisabled()) {
+                            this.harvest();
+                        }
+                        break;
+                    case T:
+                        if(this.trainButton.isDisabled()) {
+                            this.train();
+                        }
+                        break;
+                    case L:
+                        if(this.labourButton.isDisabled()) {
+                            this.labor();
+                        }
+                        break;
+                    case P:
+                        this.pass();
+                        break;
+                }
+            } catch (RemoteException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
     /**

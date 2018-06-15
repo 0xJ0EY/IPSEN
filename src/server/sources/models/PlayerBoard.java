@@ -21,6 +21,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private static final long serialVersionUID = 1337L;
 
+    private final int MAX_REPUTATION = 8;
+    private final int MIN_REPUTATION = -2;
+
     private EndOfRound endOfRound = new EndOfRound(this);
 
     private PlayerInterface player;
@@ -33,12 +36,14 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private AdvancementTracker advancementTracker = new AdvancementTracker(this);
 
-    private int ciders = 2;
-    private int potions = 2;
-    private int coins = 40;
+    private int ciders = 0;
+    private int potions = 0;
+    private int coins = 10;
     private int beds = 3;
     private int caveCards = 0;
     private int rerolls = 0;
+
+    private int reputation = 0;
 
     private boolean hasTrainToReadyPerk = false;
     private boolean hasCoinForBuildPerk = false;
@@ -173,12 +178,6 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public void useBed() throws RemoteException {
         this.beds--;
-        this.updateObserver();
-    }
-
-    @Override
-    public void addBeds(int amount) throws RemoteException{
-        this.beds += amount;
         this.updateObserver();
     }
 
@@ -422,6 +421,30 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
+    public int countHarvestableBuildings() throws RemoteException {
+        int count = 0;
+
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
+
+        try {
+            for (Building building: buildings) {
+
+                for (Perk perk : building.listPerks()) {
+                    if (perk instanceof Harvestable && ((Harvestable) perk).canHarvest()) {
+                        count += ((Harvestable) perk).getAmountLeft();
+                    }
+                }
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+    @Override
     public ArrayList<BuildingInterface> getHarvestBuildings() throws RemoteException {
         this.checkHarvestBuildings();
         ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
@@ -534,8 +557,30 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.rerolls++;
     }
 
-    @Override
-    public void clearRerolls() throws RemoteException {
+    private void clearRerolls() {
         this.rerolls = 0;
+    }
+
+    @Override
+    public PlayerInterface getPlayer() throws RemoteException {
+        return this.player;
+    }
+
+    @Override
+    public void changeReputation(int amount) throws RemoteException {
+
+        // Clamp reputation
+        this.reputation = Math.max(
+            this.MIN_REPUTATION,
+            Math.max(
+                this.MAX_REPUTATION,
+                this.reputation + amount
+            )
+        );
+    }
+
+    @Override
+    public int getReputation() throws RemoteException {
+        return this.reputation;
     }
 }

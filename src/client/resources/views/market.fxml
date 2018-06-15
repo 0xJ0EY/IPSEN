@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #d3b7a3;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MarketController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #d3b7a3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MarketController">
    <children>
        <Button id="sellGood" layoutX="618.0" layoutY="7.0" mnemonicParsing="false" onAction="#sellGood" prefHeight="40.0" prefWidth="178.0" text="Sell Good" />
        <Button id="buyGood" layoutX="807.0" layoutY="7.0" mnemonicParsing="false" onAction="#buyGood" prefHeight="40.0" prefWidth="178.0" text="Buy Good" />
@@ -75,13 +75,13 @@
                         </Label>
                         <ScrollPane fitToHeight="true" layoutY="50.0" maxHeight="202.0" minHeight="202.0" prefHeight="202.0" style="-fx-background-color: transparent; -fx-font-size: 30px;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                            <content>
-                              <GridPane fx:id="villagers">
+                              <GridPane fx:id="villagers" hgap="10.0" vgap="10.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="160.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="160.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="160.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="160.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="160.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

@@ -10,6 +10,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +26,8 @@ import java.util.ResourceBundle;
  * Created by Joey de Ruiter
  */
 public class RulesController {
+
+    @FXML private AnchorPane root;
 
     @FXML private Button previous_btn;
     @FXML private Button next_btn;
@@ -79,6 +83,24 @@ public class RulesController {
         this.updateImage();
 
         this.loadImageLeft();
+    }
+
+    @FXML public void arrows() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case LEFT:
+                    if(!this.previous_btn.isDisabled()) {
+                        this.previous();
+                    }
+                    break;
+                case RIGHT:
+                    if(!this.next_btn.isDisabled()) {
+                        this.next();
+                    }
+                    break;
+            }
+        });
     }
 
     /**

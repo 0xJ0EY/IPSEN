@@ -19,6 +19,28 @@ public class TinVillager extends Villager {
     }
 
     /**
+     * returns if the villager can use a cider.
+     *
+     * @return canusecider boolean
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    @Override
+    public boolean canUseCider() throws RemoteException {
+        return false;
+    }
+
+    /**
+     * returns if the villager can use a potion.
+     *
+     * @return canUsePotion
+     * @throws RemoteException java.rmi.RemoteException
+     */
+    @Override
+    public boolean canUsePotion() throws RemoteException {
+        return false;
+    }
+
+    /**
      * Same as the normal sleep, but don't use a bed from the player board.
      * @author Joey de Ruiter
      * @throws RemoteException java.rmi.RemoteException

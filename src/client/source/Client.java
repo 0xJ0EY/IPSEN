@@ -2,6 +2,7 @@ package client.source;
 
 import client.source.components.building.BuildingComponent;
 import client.source.components.reward.GoodRewardComponent;
+import client.source.components.villager.MarketVillagerComponent;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.controllers.*;
 import client.source.factories.ControllerFactory;
@@ -187,7 +188,7 @@ public class Client extends Application {
         this.setScene(train.show());
     }
 
-    public void showTrainReward(TrainerVillagerComponent villager) throws RemoteException {
+    public void showTrainReward(MarketVillagerComponent villager) throws RemoteException {
         TrainRewardController trainReward = controllerFactory.createTrainRewardView();
         trainReward.setTrainReward(villager);
         trainReward.setVillagers(this.selectedVillagers);

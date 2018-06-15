@@ -10,6 +10,8 @@ public class MultipleSelectableVillagerComponent extends SelectableVillagerCompo
 
     @FXML
     public void onClickSelect() {
+        if (!this.controller.hasTurn()) return;
+
         // Select this villager
         this.toggleSelected();
     }

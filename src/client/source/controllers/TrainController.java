@@ -1,6 +1,7 @@
 package client.source.controllers;
 
 import client.source.Client;
+import client.source.components.villager.SelectableVillagerComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
@@ -9,13 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import server.sources.interfaces.MarketInterface;
-import server.sources.interfaces.PlayerBoardInterface;
 import server.sources.interfaces.PlayerInterface;
 import server.sources.interfaces.VillagerInterface;
 import server.sources.models.villagers.Villager;
+import server.sources.notifications.ShowVillagerRewardNotification;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -24,7 +27,9 @@ import java.util.ArrayList;
  * A class that acts as an intermediary between train view and models.
  * Created by robin on 7-6-2018.
  */
-public class TrainController implements ControllerInterface {
+public class TrainController implements VillagerSelectionControllerInterface {
+
+    private final int minimumRequiredVillagers = 1;
 
     private Client client;
     private MarketInterface market;
@@ -36,11 +41,14 @@ public class TrainController implements ControllerInterface {
 
     @FXML private Button buyButton;
 
+    @FXML private Text message;
+
     private VillagerInterface[] availableVillagers;
 
     private ArrayList<TrainerVillagerComponent> villagerComponents;
-    private PlayerBoardInterface playerboard;
     private PlayerInterface target;
+
+    private Thread messageThread;
 
     /**
      * Loads available villagers to be recruited and trained
@@ -51,6 +59,8 @@ public class TrainController implements ControllerInterface {
     public Parent show() {
 
         try {
+            this.target = client.turnObserver.getState();
+
             this.updateButtons();
 
             this.retrieveVillagers();
@@ -67,7 +77,7 @@ public class TrainController implements ControllerInterface {
     /**
      * For getting all villagers
      * @throws RemoteException java.rmi.RemoteException
-     * @author Robin Silverio
+     * @author Joey de Ruiter
      */
     public void retrieveVillagers() throws RemoteException {
         this.availableVillagers = market.listAvailableVillagers();
@@ -75,7 +85,7 @@ public class TrainController implements ControllerInterface {
 
     /**
      * For updating all villagers to its containers.
-     * @author Robin Silverio and Richard kerkvliet (for correcting code)
+     * @author Joey de Ruiter and Richard kerkvliet
      */
     private void updateVillagersView() {
         this.villagerComponents = new ArrayList<TrainerVillagerComponent>();
@@ -86,14 +96,11 @@ public class TrainController implements ControllerInterface {
 
             TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent();
             villagerComponent.setModel(this.availableVillagers[i]);
+            villagerComponent.setPrice(TrainerVillagerComponent.calculatePrice(i));
+            villagerComponent.setController(this);
             villagerComponent.load();
 
-            villagerComponent.setOnMouseClicked( e->{
-                villagerComponent.onClickSelect(villagerComponents);
-                this.buyButton.setDisable(false);
-            });
             this.villagerComponents.add(villagerComponent);
-
 
             GridPane.setColumnIndex(villagerComponent, i);
             this.villagerContainer.getChildren().add(villagerComponent);
@@ -109,8 +116,6 @@ public class TrainController implements ControllerInterface {
     public void setClient(Client client) throws RemoteException {
         this.client = client;
 
-        this.playerboard = client.getGameClient().getPlayer().getPlayerBoard();
-
         this.market = client.getGameClient().getServer().getGameController().getMarket();
 
     }
@@ -121,14 +126,27 @@ public class TrainController implements ControllerInterface {
      * @author Richard Kerkvliet
      */
     public void onClickTrain() throws RemoteException {
-        System.out.println("buying");
         for(int i=0; i < villagerComponents.size(); i++){
             TrainerVillagerComponent villager = villagerComponents.get(i);
+
             if(villager.isSelected()){
                 market.buyRemoteVillager(client.getGameClient(), villager.getVillager());
+
+                this.client.getGameClient()
+                    .getClient()
+                    .getGameClient()
+                    .getPlayer()
+                    .getPlayerBoard()
+                    .payCoin(villager.getPrice())
+                ;
+
                 this.availableVillagers[i] = null;
-                client.showTrainReward(villager);
+
+                this.client.getGameClient().getServer().notifyClients(
+                    new ShowVillagerRewardNotification(villager.getVillager(), villager.getPrice())
+                );
             }
+
         }
     }
 
@@ -136,15 +154,87 @@ public class TrainController implements ControllerInterface {
         client.showMain();
     }
 
-    public void updateButtons() {
-        this.target = client.turnObserver.getState();
-        try {
-            boolean turn = !this.target.getGameClient().equals(client.getGameClient());
-            this.cancelButton.setDisable(turn);
-            this.buyButton.setDisable(turn);
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case T:
+                    try {
+                        this.onClickTrain();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+                case ESCAPE:
+                    try {
+                        this.onClickCancel();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+            }
+        });
+    }
 
+    public void updateButtons() {
+        boolean turn = this.hasTurn();
+        this.cancelButton.setDisable(!turn);
+        this.buyButton.setDisable(true);
+
+    }
+
+    @Override
+    public ArrayList<SelectableVillagerComponent> getSelectedVillagerComponents() {
+        ArrayList<SelectableVillagerComponent> villagers = new ArrayList<SelectableVillagerComponent>();
+
+        for (SelectableVillagerComponent villagerComponent : this.villagerComponents) {
+            if (villagerComponent.isSelected()) villagers.add(villagerComponent);
+        }
+
+        return villagers;
+    }
+
+    @Override
+    public void showMessage(String message) {
+        if (this.messageThread != null && this.messageThread.isAlive()) this.messageThread.interrupt();
+
+        Runnable r = () -> {
+            this.message.setText(message);
+            this.message.setVisible(true);
+
+            try {
+                Thread.sleep(1710);
+            } catch (InterruptedException e) {
+                System.out.println("Message interrupted");
+            } finally {
+                this.message.setVisible(false);
+            }
+        };
+
+        this.messageThread = new Thread(r);
+        this.messageThread.start();
+    }
+
+    @Override
+    public void update() {
+        int villagerSelection = this.getSelectedVillagerComponents().size();
+
+        // Disable the button when there are less villagers selected
+        this.buyButton.setDisable(villagerSelection < this.minimumRequiredVillagers);
+    }
+
+    @Override
+    public boolean hasTurn() {
+        try {
+            return this.target.getGameClient().equals(client.getGameClient());
         } catch (RemoteException e) {
             e.printStackTrace();
+            return false;
         }
+    }
+
+    @Override
+    public Client getClient() {
+        return this.client;
     }
 }

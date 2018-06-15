@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import server.sources.actions.ExploreStoryAction;
@@ -153,6 +154,17 @@ public class ExplorePartyController implements ControllerInterface {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case R:
+                    this.onClickRun();
+                    break;
+            }
+        });
     }
 
 }

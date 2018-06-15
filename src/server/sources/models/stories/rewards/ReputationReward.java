@@ -34,7 +34,7 @@ public class ReputationReward extends Reward {
     @Override
     public void execute(Client client) throws RemoteException, ParserConfigurationException {
         super.execute(client);
-        client.getGameClient().getPlayer().changeReputation(this.amount);
+        client.getGameClient().getPlayer().getPlayerBoard().changeReputation(this.amount);
     }
 
     /**

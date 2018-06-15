@@ -11,6 +11,7 @@ import client.source.strategies.VillagerSelectionStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import server.sources.interfaces.VillagerActionInterface;
@@ -20,7 +21,7 @@ import server.sources.notifications.CancelNotification;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class VillagerSelectionController implements ControllerInterface {
+public class VillagerSelectionController implements VillagerSelectionControllerInterface {
 
     @FXML private Parent root;
 
@@ -132,6 +133,22 @@ public class VillagerSelectionController implements ControllerInterface {
     private void onClickCancel() {
         // Just show the main screen
         this.client.showMain();
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case ESCAPE:
+                    this.onClickCancel();
+                    break;
+                case ENTER:
+                    if(!this.selectButton.isDisabled()) {
+                        this.onClickSelect();
+                    }
+                    break;
+            }
+        });
     }
 
     /**
@@ -258,5 +275,16 @@ public class VillagerSelectionController implements ControllerInterface {
 
         this.messageThread = new Thread(r);
         this.messageThread.start();
+    }
+
+    @Override
+    public boolean hasTurn() {
+        // The villager selection screen is only available for the selecting client.
+        return true;
+    }
+
+    @Override
+    public Client getClient() {
+        return this.client;
     }
 }

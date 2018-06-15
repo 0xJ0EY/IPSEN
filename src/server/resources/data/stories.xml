@@ -4,13 +4,8 @@
         <text>You step into the thick darkness of the cave, lanterns held high, a thin layer of mist between your feet. Ahead, the cavern wall becomes a steep slope, and you spot what seem to be mushrooms at the top of a high ledge. Do you attempt the climb, or continue searching the cavern floor?</text>
         <choices>
             <choice description="SEARCH THE CAVERN FLOOR">
-                <option cost="0">
-                    <reward value="6">COIN</reward>
-                    <reward type="MUSHROOM" value="1">GOOD</reward>
-                    <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="-1">REPUTATION</reward>
-                    <reward>CIDER</reward>
-                    <reward>POTION</reward>
+                <option cost="3">
+                    <reward value="1">COIN</reward>
                 </option>
             </choice>
             <choice description="CLIMB THE LEDGE">
@@ -20,7 +15,7 @@
                 </option>
                 <option cost="7">
                     <reward value="6">COIN</reward>
-                    <reward type="MUSHROOM" value="2">GOOD</reward>
+                    <reward type="MUSHROOM" value="1">GOOD</reward>
                 </option>
             </choice>
         </choices>
@@ -30,13 +25,8 @@
         <text>You walk along the edge of a deep ravine. Cold blasts of air erupt from the darkness, and you shiver, wrapping your cloak closer. Soon, you reach a narrow, rope bridge, but it looks to be in poor condition. Do you try to cross or continue on this side of the ravine?</text>
         <choices>
             <choice description="SEARCH ON THIS SIDE OF THE RAVINE">
-                <option cost="0">
-                    <reward value="6">COIN</reward>
-                    <reward type="MUSHROOM" value="1">GOOD</reward>
-                    <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="-1">REPUTATION</reward>
-                    <reward>CIDER</reward>
-                    <reward>POTION</reward>
+                <option cost="3">
+                    <reward value="1">COIN</reward>
                 </option>
             </choice>
             <choice description="CROSS THE ROPE BRIDGE">
@@ -55,13 +45,8 @@
         <text>You journey over piles of sharp, grey rocks, slippery from the mist of a trickling waterfall nearby. Far off, you can see a dark opening lined with ancient columns, but the climb to it looks even more treacherous. Do you attempt to reach the columns or search the piles of rocks?</text>
         <choices>
             <choice description="SEARCH THE PILES OF ROCKS">
-                <option cost="0">
-                    <reward value="6">COIN</reward>
-                    <reward type="MUSHROOM" value="1">GOOD</reward>
-                    <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="-1">REPUTATION</reward>
-                    <reward>CIDER</reward>
-                    <reward>POTION</reward>
+                <option cost="3">
+                    <reward value="1">COIN</reward>
                 </option>
             </choice>
             <choice description="HEAD TOWARDS THE COLUMNS">
@@ -71,7 +56,7 @@
                 </option>
                 <option cost="8">
                     <reward value="3">COIN</reward>
-                    <reward type="AMETHYST" value="2">GOOD</reward>
+                    <reward type="AMETHYST" value="1">GOOD</reward>
                 </option>
             </choice>
         </choices>
@@ -81,13 +66,9 @@
         <text>You follow a well-worn path, holding your torches high. Before long you reach a set of stairs carved into the stone, but the way is blocked by a massive, brown rat, eyes glowing bright red in the darkness. Do you avoid the rat or attempt to pass?</text>
         <choices>
             <choice description="AVOID THE RAT">
-                <option cost="0">
-                    <reward value="6">COIN</reward>
-                    <reward type="MUSHROOM" value="1">GOOD</reward>
-                    <reward type="TIN" value="1">VILLAGER</reward>
+                <option cost="3">
+                    <reward value="2">COIN</reward>
                     <reward value="-1">REPUTATION</reward>
-                    <reward>CIDER</reward>
-                    <reward>POTION</reward>
                 </option>
             </choice>
             <choice description="FIGHT PAST THE RAT">
@@ -97,7 +78,192 @@
                 </option>
                 <option cost="7">
                     <reward value="4">COIN</reward>
-                    <reward type="ORE" value="2">GOOD</reward>
+                    <reward type="ORE" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>An ancient archway looms above you, carved by a long-dead civilization. As you pass underneath, walls etched in a strange language surround you. Deciphering the script might reveal secrets about the area, but would take valuable time. Do you continue exploring, or attemt to read the wall?</text>
+        <choices>
+            <choice description="CONTINUE EXPLORING">
+                <option cost="2">
+                    <reward value="1">COIN</reward>
+                </option>
+            </choice>
+            <choice description="ATTEMPT TO READ THE WALL">
+                <option cost="4">
+                    <reward value="3">COIN</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+                <option cost="6">
+                    <reward value="4">COIN</reward>
+                    <reward type="ORE" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You reach a great, dark lake in a wilde cavern. Eyeless fish swim about nex to a leaky boat. Do you take the boat to the other side, or search the shore?</text>
+        <choices>
+            <choice description="SEARCH THE SHORE">
+                <option cost="2">
+                    <reward>POTION</reward>
+                </option>
+            </choice>
+            <choice description="TAKE THE BOAT">
+                <option cost="4">
+                    <reward value="4">COIN</reward>
+                    <reward type="FISH" value="1">GOOD</reward>
+                </option>
+                <option cost="6">
+                    <reward value="3">COIN</reward>
+                    <reward type="POT" value="1">GOOD</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You come across a traveling merchant dressed in yellow and reining in an old, green-skinned pack-lizard. "Come, take a look at my wares", says the merchant as shafts of daylight slice through the ceiling and light up his veiled face. The man is traveling alone, and as far as you can tell, he is unarmed. Ypu could probably snatch one of his bags and run before he would be able to stop you. Do you haggle with the man, or steal from him?</text>
+        <choices>
+            <choice description="STEAL FROM THE MERCHANT">
+                <option cost="3">
+                    <reward value="1">COIN</reward>
+                    <reward type="FISH" value="1">GOOD</reward>
+                    <reward value="-1">REPUTATION</reward>
+                </option>
+                <option cost="7">
+                    <reward value="1">COIN</reward>
+                    <reward type="FISH" value="1">GOOD</reward>
+                    <reward type="PAPER" value="1">GOOD</reward>
+                    <reward value="-2">REPUTATION</reward>
+                </option>
+            </choice>
+            <choice description="HAGGLE">
+                <option cost="4">
+                    <reward value="1">REPUTATION</reward>
+                    <reward type="POT" value="1">GOOD</reward>
+                </option>
+                <option cost="6">
+                    <reward>POTION</reward>
+                    <reward type="POT" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You reach a forest of massive, glowing flowers. Huge wasps fly among the towering blooms, their stingers like spears, the buzz of their wings an endless roar. Do you skirt the edge of the flower forest, or try to fight off the wasps</text>
+        <choices>
+            <choice description="SKIRT THE EDGE OF THE FLOWER FOREST">
+                <option cost="2">
+                    <reward value="1">COIN</reward>
+                </option>
+            </choice>
+            <choice description="FIGHT THE WASPS">
+                <option cost="4">
+                    <reward value="1">COIN</reward>
+                    <reward type="MUSHROOM" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+                <option cost="7">
+                    <reward>POTION</reward>
+                    <reward type="MUSHROOM" value="1">GOOD</reward>
+                    <reward type="FISH" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You cross a thin, trickling stream and arrive at a massive stone door, the carving of a half-moon over mountains on the face of it. With time you could, perhaps, force it open. Do you try to open the door, or continue exploring the area?</text>
+        <choices>
+            <choice description="KEEP EXPLORING">
+                <option cost="3">
+                    <reward value="1">COIN</reward>
+                </option>
+            </choice>
+            <choice description="TRY TO OPEN THE DOOR">
+                <option cost="5">
+                    <reward value="2">COIN</reward>
+                    <reward type="PAPER" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+                <option cost="8">
+                    <reward value="3">COIN</reward>
+                    <reward type="AMETHYST" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You follow a wide staircase carved into the floor. It leads to a gargantuan, stone head. The mouth opens wide in an eerie, silent screem, and leads down a narrow tunnel crisscrossed with huge spider webs. You think you hear feint cries for help coming up from the dark, or is it just your imagination? Is someone trapped in the passage, by giant spiders perhaps? Do you follow the cries or wander near the stone head?</text>
+        <choices>
+            <choice description="WANDER NEAR THE STONE HEAD">
+                <option cost="2">
+                    <reward value="1">COIN</reward>
+                </option>
+            </choice>
+            <choice description="FOLLOW THE CRIES FOR HELP">
+                <option cost="4">
+                    <reward type="FRUIT" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+                <option cost="6">
+                    <reward value="4">COIN</reward>
+                    <reward type="ROPE" value="1">GOOD</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You turn a corner and come across a huge pile of bones, skulls staring at you with their dead, empty eyes. Moments later, a massive, blue cat emerges from the darkness. The cat's eyes are thin slits of purple, its striped, bushy tail swaying back and forth. "Find us some fish", says the cat, eyeing you hungrily. Do you fight the cat, hide from it, or search for some fish to give it?</text>
+        <choices>
+            <choice description="HIDE FROM THE CAT">
+                <option cost="2">
+                    <reward value="-1">REPUTATION</reward>
+                </option>
+            </choice>
+            <choice description="SEARCH FOR SOME FISH FOR THE CAT">
+                <option cost="4">
+                    <reward type="CAT" value="1">VILLAGER</reward>
+                    <reward value="1">REPUTATION</reward>
+                </option>
+            </choice>
+            <choice description="FIGHT THE CAT">
+                <option cost="6">
+                    <reward value="5">COIN</reward>
+                    <reward type="ROPE" value="1">GOOD</reward>
+                    <reward value="-1">REPUTATION</reward>
+                </option>
+            </choice>
+        </choices>
+    </story>
+
+    <story>
+        <text>You arrive at the edge of a huge city carved into the cave rock. It seems abondoned, the windows and doors dark, cob webs hanging from cracked archways and between buildings. You wander through the streets until you come upon what appears to be a man made of metal. He sits on the cobblestones, staring at you with bright eyes. "I'm broken", says the mechanical man. "If you can follow my instructions and fix me, i'd be indebted to you." Do you take time to try and repair him? Or do you move on and explore the city?</text>
+        <choices>
+            <choice description="IGNORE HIM AND KEEP EXPLORING THE CITY">
+                <option cost="3">
+                    <reward value="1">COIN</reward>
+                    <reward value="-1">REPUTATION</reward>
+                </option>
+            </choice>
+            <choice description="ATTEMPT TO REPAIR THE MECHANICAL MAN">
+                <option cost="6">
+                    <reward value="2">COIN</reward>
+                    <reward type="TIN" value="1">VILLAGER</reward>
                     <reward value="1">REPUTATION</reward>
                 </option>
             </choice>

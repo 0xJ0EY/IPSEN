@@ -4,7 +4,8 @@
  - [x] Verkopen Voorwerp (Jan Douwe)
  - [x] Kopen Voorwerp (Jan Douwe)
  
- - [ ] Perks!
+ - [x] Perks!
+ - [x] S.P.E.C.I.A.L Villagers
 
  - [x] Turn controller.  
 
@@ -15,7 +16,7 @@
        Disable de knop van trainer als er geen actieve trainers zijn    
 
  
- - [ ] Trainen villager.
+ - [x] Trainen villager.
  
        gebruikte villagers vermoeien (werkt)
        speler betalen villagers
@@ -53,15 +54,15 @@
 TODO
  - [x] Add message to the saving error
  - [ ] UI Improvements
- - [ ] Key bindings on turn buttons (important)
+ - [x] **Key bindings on turn buttons (important)**
  - [x] JavaDoc
  - [x] Below view maken
  - [x] Marketview
- - [ ] Building perks
+ - [x] Building perks
  - [x] Rewards(view) Richard
- - [ ] Check cave card by gebouwen & playerboard Richard
+ - [x] Check cave card by gebouwen & playerboard Richard
  - [x] End of round Joey
- - [ ] Bought villagers icon/functional
+ - [x] Bought villagers icon/functional
  - [x] Buyable houses/villagers
  - [x] Turncontroller knoppen disable die niet kunnen
  - [x] HarvestController cancel button
@@ -70,11 +71,11 @@ TODO
  - [ ] Special villager backgrounds
  - [ ] more villager backgrounds
  - [x] house/outpost backgrounds
- - [ ] Harvest check for cider
- - [ ] Cider inbouwen in de belowview
+ - [x] Harvest check for cider
+ - [x] Cider inbouwen in de belowview
 
 Known bugs.   
- - [ ] bug rewards -> Build and train only for active player instead of all
- - [ ] Bug Train -> Andere spelers kunnen ook kopen.  
+ - [x] bug rewards -> Build and train only for active player instead of all
+ - [x] Bug Train -> Andere spelers kunnen ook kopen.  
  - [x] Bug train -> speler is halverwege niet meer aan de beurt.  
  - [x] Bug Build -> on cancel in the build market the villager is tired but not realy used.
