@@ -68,7 +68,7 @@
                </children></AnchorPane>
             <AnchorPane fx:id="reputation" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: blue;">
                <children>
-                  <Ellipse fx:id="round1" fill="RED" layoutX="235.0" layoutY="98.0" radiusX="50.0" radiusY="50.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
+                  <Ellipse fx:id="round1" fill="DODGERBLUE" layoutX="235.0" layoutY="98.0" radiusX="50.0" radiusY="50.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
                   <Ellipse fx:id="round2" fill="DODGERBLUE" layoutX="175.0" layoutY="157.0" radiusX="50.0" radiusY="50.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
                   <Ellipse fx:id="round3" fill="DODGERBLUE" layoutX="128.0" layoutY="253.0" radiusX="50.0" radiusY="50.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
                   <Ellipse fx:id="round4" fill="DODGERBLUE" layoutX="174.0" layoutY="354.0" radiusX="50.0" radiusY="50.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
