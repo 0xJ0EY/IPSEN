@@ -2,16 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Label?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c4d369;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.TurnController">
+<AnchorPane fx:id="root" onKeyPressed="#exploreEnter" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c4d369;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.TurnController">
    <children>
       <HBox prefHeight="38.0" prefWidth="446.0" spacing="20" styleClass="header_display" stylesheets="@../css/header_display.css">
          <children>
@@ -23,14 +21,14 @@
          <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
          <!-- left column -->
-         <Button fx:id="exploreButton" mnemonicParsing="false" onAction="#explore" prefHeight="80" prefWidth="250" text="Explore" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-         <Button fx:id="buildButton" mnemonicParsing="false" onAction="#build" prefHeight="80" prefWidth="250" text="Build" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-         <Button fx:id="labourButton" mnemonicParsing="false" onAction="#labor" prefHeight="80" prefWidth="250" text="Labour" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+         <Button fx:id="exploreButton" mnemonicParsing="false" onAction="#explore" prefHeight="80" prefWidth="250" text="Explore (E)" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+         <Button fx:id="buildButton" mnemonicParsing="false" onAction="#build" prefHeight="80" prefWidth="250" text="Build (B)" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+         <Button fx:id="labourButton" mnemonicParsing="false" onAction="#labor" prefHeight="80" prefWidth="250" text="Labor (L)" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
 
          <!-- right column -->
-         <Button fx:id="harvestButton" mnemonicParsing="false" onAction="#harvest" prefHeight="80" prefWidth="250" text="Harvest" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-         <Button fx:id="trainButton" mnemonicParsing="false" onAction="#train" prefHeight="80" prefWidth="250" text="Train" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-         <Button mnemonicParsing="false" onAction="#pass" prefHeight="80" prefWidth="250" text="Pass" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+         <Button fx:id="harvestButton" mnemonicParsing="false" onAction="#harvest" prefHeight="80" prefWidth="250" text="Harvest (H)" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+         <Button fx:id="trainButton" mnemonicParsing="false" onAction="#train" prefHeight="80" prefWidth="250" text="Train (T)" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+         <Button mnemonicParsing="false" onAction="#pass" prefHeight="80" prefWidth="250" text="Pass (P)" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       </GridPane>
    </children>
 </AnchorPane>

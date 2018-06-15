@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="500.0" style="-fx-background-color: cadetblue" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
+<AnchorPane fx:id="root" onKeyPressed="#arrows" prefHeight="500.0" style="-fx-background-color: cadetblue" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.RulesController">
    <children>
        <ScrollPane fx:id="rulesScrollpane" fitToWidth="true" layoutX="0.0" prefViewportWidth="0.5" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <content>

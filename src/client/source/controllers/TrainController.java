@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -148,6 +149,28 @@ public class TrainController implements VillagerSelectionControllerInterface {
 
     public void onClickCancel() throws RemoteException{
         client.showMain();
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case T:
+                    try {
+                        this.onClickTrain();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+                case ESCAPE:
+                    try {
+                        this.onClickCancel();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+            }
+        });
     }
 
     public void updateButtons() {

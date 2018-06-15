@@ -4,14 +4,14 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MenuController">
+<AnchorPane fx:id="root" onKeyPressed="#select" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.MenuController">
     <children>
-        <Button layoutY="1.0" mnemonicParsing="false" onAction="#onClickAbove" prefHeight="60.0" text="Above" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <Button layoutX="72.0" layoutY="60.0" mnemonicParsing="false" onAction="#onClickBelow" prefHeight="60.0" text="Below" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-        <Button fx:id="marketButton" layoutX="73.0" layoutY="120.0" mnemonicParsing="false" onAction="#onMarketClick" prefHeight="60.0" text="Market" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0" />
-        <Button fx:id="turnButton" disable="true" layoutX="70.0" layoutY="180.0" mnemonicParsing="false" onAction="#onTurnClick" prefHeight="60.0" text="Turn" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0" />
+        <Button layoutY="1.0" mnemonicParsing="false" onAction="#onClickAbove" prefHeight="60.0" text="Above (1)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <Button layoutX="72.0" layoutY="60.0" mnemonicParsing="false" onAction="#onClickBelow" prefHeight="60.0" text="Below (2)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+        <Button fx:id="marketButton" layoutX="73.0" layoutY="120.0" mnemonicParsing="false" onAction="#onMarketClick" prefHeight="60.0" text="Market (3)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0" />
+        <Button fx:id="turnButton" disable="true" layoutX="70.0" layoutY="180.0" mnemonicParsing="false" onAction="#onTurnClick" prefHeight="60.0" text="Turn (4)" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0" />
         <ListView fx:id="playerList" layoutY="240.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="240.0" />
-        <Button layoutX="71.0" layoutY="540.0" mnemonicParsing="false" onAction="#onRulesClick" prefHeight="60.0" prefWidth="59.0" text="Rules" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <Button fx:id="settingsButton" disable="true" layoutX="71.0" layoutY="480.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="60.0" prefWidth="59.0" text="Settings" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <Button layoutX="71.0" layoutY="540.0" mnemonicParsing="false" onAction="#onRulesClick" prefHeight="60.0" prefWidth="59.0" text="Rules (R)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <Button fx:id="settingsButton" disable="true" layoutX="71.0" layoutY="480.0" mnemonicParsing="false" onAction="#onClickSettings" prefHeight="60.0" prefWidth="59.0" text="Settings (S)" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
     </children>
 </AnchorPane>

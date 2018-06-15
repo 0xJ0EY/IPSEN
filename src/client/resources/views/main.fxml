@@ -13,7 +13,7 @@
    <children>
         <fx:include fx:id="menu" source="menu.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
-        <TabPane fx:id="tabContainer" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
+        <TabPane fx:id="tabContainer" focusTraversable="false" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-10.0">
             <tabs>
                 <Tab text="Above">
                     <content>
