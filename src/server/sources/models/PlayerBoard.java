@@ -52,50 +52,26 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public PlayerBoard(PlayerInterface player) throws RemoteException {
         this.player = player;
 
-        ArrayList<Lantern> lanterns = new ArrayList<Lantern>();
 
-        lanterns.add(new Lantern(3, 2));
-        lanterns.add(new Lantern(4, 3));
+        // Trainer
+        ArrayList<Lantern> lanternsTrainer = new ArrayList<Lantern>();
+        lanternsTrainer.add(new Lantern(2, 1));
 
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_01.png"));
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_02.png"));
+        villagers.add(new TrainerVillager(lanternsTrainer, Villager.VillagerState.USABLE, "villager_background_01.png"));
 
-        // TODO: A nice implementation of this
-        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
-        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
-        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        // Builder
+        ArrayList<Lantern> lanternsBuilder = new ArrayList<Lantern>();
+        lanternsBuilder.add(new Lantern(4, 1));
 
-        villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED, "villager_background_04.png"));
-        villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED, "villager_background_05.png"));
+        villagers.add(new TrainerVillager(lanternsBuilder, Villager.VillagerState.USABLE, "villager_background_02.png"));
 
-        /**
-         * This is only for testing scoreboard.
-         * @author Robin Silverio
-         */
-        ArrayList<Perk> perks_1 = new ArrayList<Perk>();
-        perks_1.add(new CiderPerk(1));
-        perks_1.add(new CoinPerk(2));
-        perks_1.add(new VillagePointsPerk(3));
-        houses.add(new House(2, perks_1, "house_icon.png"));
+        // Normal
+        ArrayList<Lantern> lanternsNormal = new ArrayList<Lantern>();
+        lanternsNormal.add(new Lantern(1, 1));
+        lanternsNormal.add(new Lantern(3, 2));
 
-        ArrayList<Perk> perks_2 = new ArrayList<Perk>();
-        perks_2.add(new CiderPerk(1));
-        perks_2.add(new CoinPerk(2));
-        perks_2.add(new VillagePointsPerk(3));
-        houses.add(new StarHouse(2, perks_2, "starhouse_icon.png"));
+        villagers.add(new Villager(lanternsNormal, Villager.VillagerState.USABLE, "villager_background_03.png"));
 
-
-        for (int i = 0; i < 5; i++) {
-            this.goods.add(new FruitGood());
-        }
-
-        for (int i = 0; i < 5; i++) {
-            this.goods.add(new AmethystGood());
-        }
-
-        for (int i = 0; i < 5; i++) {
-            this.goods.add(new PaperGood());
-        }
 
         for (VillagerInterface villager : villagers) {
             villager.setPlayerBoard(this);
