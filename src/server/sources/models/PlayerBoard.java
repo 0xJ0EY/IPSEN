@@ -36,7 +36,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private int ciders = 0;
     private int potions = 0;
     private int coins = 10;
-    private int beds = 0;
+    private int beds = 3;
     private int caveCards = 0;
     private int rerolls = 0;
 
@@ -317,7 +317,10 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private void activatePerks(Building building) throws RemoteException{
         for (Perk perk : building.listPerks()) {
-            perk.activateOnObtainedPerk(this.player.getGameClient());
+            perk.setGameClient(this.player.getGameClient());
+            if (perk instanceof ActivateOnObtainedInterface) {
+                ((ActivateOnObtainedInterface) perk).activateOnObtainedPerk();
+            }
         }
     }
 

@@ -22,11 +22,11 @@ public class VillagePointsForGoodsPerk implements Perk, EndOfGame {
 
     @Override
     public String getBackground() {
-        return "village_points_for_goods_perk.png";
+        return "village_points_for_goods.png";
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
     }
 

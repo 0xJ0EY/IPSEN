@@ -34,9 +34,9 @@ public class HarvestableGoodPerk implements Harvestable {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
-
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
     }
+
 
     /**
      * @return

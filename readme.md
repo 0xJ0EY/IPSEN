@@ -4,7 +4,7 @@
  - [x] Verkopen Voorwerp (Jan Douwe)
  - [x] Kopen Voorwerp (Jan Douwe)
  
- - [ ] Perks!
+ - [x] Perks!
  - [ ] S.P.E.C.I.A.L Villagers
 
  - [x] Turn controller.  
@@ -16,7 +16,7 @@
        Disable de knop van trainer als er geen actieve trainers zijn    
 
  
- - [ ] Trainen villager.
+ - [x] Trainen villager.
  
        gebruikte villagers vermoeien (werkt)
        speler betalen villagers
@@ -58,9 +58,9 @@ TODO
  - [x] JavaDoc
  - [x] Below view maken
  - [x] Marketview
- - [ ] Building perks
+ - [x] Building perks
  - [x] Rewards(view) Richard
- - [ ] Check cave card by gebouwen & playerboard Richard
+ - [x] Check cave card by gebouwen & playerboard Richard
  - [x] End of round Joey
  - [ ] Bought villagers icon/functional
  - [x] Buyable houses/villagers

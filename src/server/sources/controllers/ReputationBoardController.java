@@ -8,14 +8,15 @@ import server.sources.models.goods.Good;
 import server.sources.notifications.UpdateReputationBoardNotification;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class ReputationBoardController implements ReputationBoardInterface {
+public class ReputationBoardController extends UnicastRemoteObject implements ReputationBoardInterface {
 
     private GameControllerInterface gameController;
     private boolean cider = true;
 
-    public ReputationBoardController(GameController gameController) {
+    public ReputationBoardController(GameController gameController) throws RemoteException {
         this.gameController = gameController;
     }
 
@@ -28,7 +29,6 @@ public class ReputationBoardController implements ReputationBoardInterface {
         if (!this.hasCider()) return;
 
         player.getPlayerBoard().addCider();
-        // TODO: 13/06/2018 Cider stays available
         this.useCider();
     }
 

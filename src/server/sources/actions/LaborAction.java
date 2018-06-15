@@ -20,6 +20,7 @@ public class LaborAction implements VillagerActionInterface {
     private ArrayList<VillagerInterface> selectedVillagers;
     private GameClientInterface target;
     private ReputationBoardInterface reputationBoard;
+    private boolean ciderRewarded;
 
     /**
      * This constructor gets the reputation board from the server.
@@ -52,7 +53,7 @@ public class LaborAction implements VillagerActionInterface {
 
         for(int i = 0; i < selectedVillagers.size(); i++){
 
-            this.firstLaborCider();
+            this.ciderRewarded = this.firstLaborCider();
 
             playerBoard.addCoins(1);
         }
@@ -66,7 +67,7 @@ public class LaborAction implements VillagerActionInterface {
      */
     @Override
     public NotificationInterface update() throws RemoteException {
-        return new LaborRewardNotification(this.selectedVillagers);
+        return new LaborRewardNotification(this.selectedVillagers, this.ciderRewarded);
     }
 
     /**
@@ -81,12 +82,12 @@ public class LaborAction implements VillagerActionInterface {
      * This method checks the reputationboard if the first cider has been taken.
      * If it is still avaiable than the player get one cider.
      */
-    private void firstLaborCider() throws RemoteException{
+    private boolean firstLaborCider() throws RemoteException{
         if(reputationBoard.hasCider()){
             reputationBoard.retrieveCider(target.getPlayer());
-
+            ciderRewarded =  true;
         }
-
+        return ciderRewarded;
     }
 
 }
