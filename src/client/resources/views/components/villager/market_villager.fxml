@@ -19,10 +19,10 @@
                 <AnchorPane fx:id="type" layoutY="8.0" prefHeight="50.0" prefWidth="35.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                 <HBox fx:id="diceLanterns" alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="65.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
             </children>
-        </javafx.scene.layout.AnchorPane>1
+        </javafx.scene.layout.AnchorPane>
         <AnchorPane fx:id="priceContainer" layoutX="23.0" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: red;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Text fx:id="priceText" layoutX="-7.0" layoutY="32.3359375" strokeType="OUTSIDE" strokeWidth="0.0" text="#" textAlignment="CENTER" wrappingWidth="50.0" AnchorPane.bottomAnchor="13.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.5">
+                <Text fx:id="priceText" layoutX="-7.0" layoutY="32.3359375" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" wrappingWidth="50.0" AnchorPane.bottomAnchor="13.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="13.5">
                     <font>
                         <Font size="20.0" />
                     </font>

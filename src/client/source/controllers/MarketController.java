@@ -2,6 +2,7 @@ package client.source.controllers;
 
 import client.source.Client;
 import client.source.components.building.BuildingComponent;
+import client.source.components.villager.MarketVillagerComponent;
 import client.source.components.villager.VillagerComponent;
 import client.source.components.villager_to_train.TrainerVillagerComponent;
 import client.source.observers.Observable;
@@ -118,7 +119,7 @@ public class MarketController implements Observable {
 
             VillagerInterface villagerInterface = villagerInterfaces[i];
 
-            TrainerVillagerComponent villagerComponent = new TrainerVillagerComponent();
+            MarketVillagerComponent villagerComponent = new MarketVillagerComponent();
             villagerComponent.setPrice(TrainerVillagerComponent.calculatePrice(i));
             villagerComponent.setModel(villagerInterface);
             villagerComponent.load();
