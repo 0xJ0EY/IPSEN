@@ -18,5 +18,6 @@ public class TrainToReadyPerk implements Perk {
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
         gameClient.getPlayer().getPlayerBoard().obtainedTrainToReadyPerk();
+        System.out.println("Train to ready is set true.");
     }
 }

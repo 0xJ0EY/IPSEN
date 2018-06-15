@@ -14,5 +14,10 @@ public class CoinForBuildPerk implements Perk {
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameclient) throws RemoteException {
         gameclient.getPlayer().getPlayerBoard().obtainedCoinForBuildPerk();
+
+        if (gameclient.getPlayer().getPlayerBoard().getHasCoinForBuildPerk()){
+            gameclient.getPlayer().getPlayerBoard().addCoins(1);
+            System.out.println("Coins increased due to coin for build perk");
+        }
     }
 }

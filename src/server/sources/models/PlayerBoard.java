@@ -35,7 +35,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private int ciders = 2;
     private int potions = 2;
-    private int coins = 10;
+    private int coins = 40;
     private int beds = 3;
     private int caveCards = 0;
     private int rerolls = 0;
@@ -57,6 +57,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
         // TODO: A nice implementation of this
         villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+        villagers.add(new BuilderVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.USABLE, "villager_background_03.png"));
+
         villagers.add(new TrainerVillager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.INJURED, "villager_background_04.png"));
         villagers.add(new Villager((ArrayList<Lantern>) lanterns.clone(), Villager.VillagerState.TIRED, "villager_background_05.png"));
 
@@ -175,6 +178,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     @Override
     public void addBeds(int amount) throws RemoteException{
+        this.beds += amount;
         this.updateObserver();
     }
 

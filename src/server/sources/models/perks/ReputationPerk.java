@@ -18,5 +18,6 @@ public class ReputationPerk implements Perk {
     @Override
     public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
         gameClient.getPlayer().changeReputation(this.REPUTATION);
+        System.out.println("Reputation gained");
     }
 }

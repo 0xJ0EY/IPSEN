@@ -24,6 +24,7 @@ import server.sources.models.perks.IncomeForGoodsPerk;
 import server.sources.models.perks.Perk;
 import server.sources.models.perks.PotionPerk;
 
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -294,25 +295,6 @@ public class BuildController implements SelectableControllerInterface, Observabl
             for (VillagerInterface villager: usedTrainerVillagers) {
                 villager.tire();
             }
-
-            for (Perk perk : selected.getModel().listPerks()){
-                if (perk instanceof BedPerk){
-                    perk.activateOnObtainedPerk(this.client.getGameClient());
-                    System.out.println("Stats updated!!");
-                }
-                else if (perk instanceof PotionPerk){
-                    perk.activateOnObtainedPerk(this.client.getGameClient());
-                    System.out.println("Stats updated!!");
-                }
-            }
-
-            if (this.client.getGameClient().getPlayer().getPlayerBoard().getHasCoinForBuildPerk()){
-                this.client.getGameClient().getPlayer().getPlayerBoard().addCoins(1);
-            }
-
-//            this.client.getGameClient().getPlayer().doAction(new EndTurnAction());
-
-            //this.client.getGameClient().getPlayer().doAction(new EndTurnAction(this.usedTrainerVillagers));
             this.client.showBuildReward(selected.getModel());
         } catch (RemoteException e) {
             e.printStackTrace();
