@@ -270,23 +270,4 @@
         </choices>
     </story>
 
-    <story>
-        <text>You arrive at the edge of a huge city carved into the cave rock. It seems abondoned, the windows and doors dark, cob webs hanging from cracked archways and between buildings. You wander through the streets until you come upon what appears to be a man made of metal. He sits on the cobblestones, staring at you with bright eyes. "I'm broken", says the mechanical man. "If you can follow my instructions and fix me, i'd be indebted to you." Do you take time to try and repair him? Or do you move on and explore the city?</text>
-        <choices>
-            <choice description="IGNORE HIM AND KEEP EXPLORING THE CITY">
-                <option cost="3">
-                    <reward value="1">COIN</reward>
-                    <reward value="-1">REPUTATION</reward>
-                </option>
-            </choice>
-            <choice description="ATTEMPT TO REPAIR THE MECHANICAL MAN">
-                <option cost="6">
-                    <reward value="2">COIN</reward>
-                    <reward type="TIN" value="1">VILLAGER</reward>
-                    <reward value="1">REPUTATION</reward>
-                </option>
-            </choice>
-        </choices>
-    </story>
-
 </stories>
