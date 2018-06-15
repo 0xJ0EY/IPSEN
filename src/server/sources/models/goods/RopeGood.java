@@ -6,7 +6,7 @@ public class RopeGood implements Good {
 
     @Override
     public String getBackground() {
-        return "rope.png";
+        return "rope_good.png";
     }
 
     public boolean sameInstance(Good good) {

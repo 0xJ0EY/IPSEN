@@ -6,7 +6,7 @@ public class FishGood implements Good {
 
     @Override
     public String getBackground() {
-        return "fish.png";
+        return "fish_good.png";
     }
 
     public boolean sameInstance(Good good) {
