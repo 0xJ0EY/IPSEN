@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import server.sources.interfaces.GameClientInterface;
@@ -33,6 +34,8 @@ public class LobbyController implements ControllerInterface, Observable {
     @FXML protected Button buttonStart;
 
     @FXML protected Button buttonLoad;
+
+    @FXML protected Label error;
 
     private ObservableList<String> listItems = FXCollections.observableArrayList();
 
@@ -148,4 +151,9 @@ public class LobbyController implements ControllerInterface, Observable {
     public Parent show() {
         return this.root;
     }
+
+    public void showError(){
+        this.error.setVisible(true);
+    }
+
 }
