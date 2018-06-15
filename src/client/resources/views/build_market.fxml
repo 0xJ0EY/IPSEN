@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BuildController">
+<AnchorPane fx:id="root" onKeyPressed="#keys" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BuildController">
     <children>
         <ScrollPane fitToWidth="true" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <content>
@@ -101,8 +101,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="cancelButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickCancel" text="Cancel" />
-                <Button fx:id="buyButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickBuy" text="Buy" GridPane.columnIndex="1" />
+                <Button fx:id="cancelButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickCancel" text="Cancel (ESC)" />
+                <Button fx:id="buyButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickBuy" text="Buy (B)" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <HBox alignment="CENTER" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
