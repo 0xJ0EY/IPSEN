@@ -16,12 +16,4 @@ public class OilGirlVillager extends Villager {
         super(lanterns, state, background);
     }
 
-    //TODO: fixing method
-    /**
-     * takes of one reputation of the player who gets this villager.
-     */
-    public void execute() {
-//        player.reputationDown();
-    }
-
 }

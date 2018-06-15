@@ -538,4 +538,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     public void clearRerolls() throws RemoteException {
         this.rerolls = 0;
     }
+
+    @Override
+    public PlayerInterface getPlayer() throws RemoteException {
+        return this.player;
+    }
 }

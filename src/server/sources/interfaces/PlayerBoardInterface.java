@@ -164,4 +164,6 @@ public interface PlayerBoardInterface extends Remote, Serializable {
     public void addReroll() throws RemoteException;
 
     public void clearRerolls() throws RemoteException;
+
+    public PlayerInterface getPlayer() throws RemoteException;
 }
