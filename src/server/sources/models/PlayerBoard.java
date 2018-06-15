@@ -35,7 +35,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private int ciders = 2;
     private int potions = 2;
-    private int coins = 40;
+    private int coins = 10;
     private int beds = 3;
     private int caveCards = 0;
     private int rerolls = 0;
