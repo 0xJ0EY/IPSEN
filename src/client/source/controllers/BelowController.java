@@ -51,6 +51,9 @@ public class BelowController implements ControllerInterface, Observable {
 
         // For updating the round marker
         this.client.gameObserver.attach(this);
+
+        // For updating the cider
+        this.client.reputationBoardObserver.attach(this);
     }
 
     public void showRound(int round) {
