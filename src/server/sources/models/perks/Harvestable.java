@@ -17,6 +17,8 @@ public interface Harvestable extends Perk {
      */
     public boolean canHarvest();
 
+    public int getAmountLeft();
+
     /**
      * Removes one good.
      */

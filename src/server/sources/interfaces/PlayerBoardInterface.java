@@ -131,6 +131,8 @@ public interface PlayerBoardInterface extends Remote, Serializable {
 
     public void useBed() throws RemoteException;
 
+    public int countHarvestableBuildings() throws RemoteException;
+
     public ArrayList<BuildingInterface> getHarvestBuildings() throws RemoteException;
 
     /**

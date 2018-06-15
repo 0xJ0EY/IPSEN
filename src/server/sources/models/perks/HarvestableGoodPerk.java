@@ -56,6 +56,11 @@ public class HarvestableGoodPerk implements Harvestable {
 
     }
 
+    @Override
+    public int getAmountLeft() {
+        return this.amountLeft;
+    }
+
     /**
      * This counts as giving a good to the player who harvests it.
      */

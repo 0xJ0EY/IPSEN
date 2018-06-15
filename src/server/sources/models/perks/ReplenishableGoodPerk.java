@@ -65,6 +65,11 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
         return this.value > 0;
     }
 
+    @Override
+    public int getAmountLeft() {
+        return this.value;
+    }
+
     /**
      * Removes one good.
      */

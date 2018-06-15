@@ -422,6 +422,30 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     }
 
     @Override
+    public int countHarvestableBuildings() throws RemoteException {
+        int count = 0;
+
+        ArrayList<Building> buildings = new ArrayList<Building>();
+        buildings.addAll(this.houses);
+        buildings.addAll(this.outposts);
+
+        try {
+            for (Building building: buildings) {
+
+                for (Perk perk : building.listPerks()) {
+                    if (perk instanceof Harvestable && ((Harvestable) perk).canHarvest()) {
+                        count += ((Harvestable) perk).getAmountLeft();
+                    }
+                }
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+    @Override
     public ArrayList<BuildingInterface> getHarvestBuildings() throws RemoteException {
         this.checkHarvestBuildings();
         ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
