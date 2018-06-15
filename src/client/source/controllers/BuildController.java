@@ -24,6 +24,7 @@ import server.sources.models.perks.BedPerk;
 import server.sources.models.perks.IncomeForGoodsPerk;
 import server.sources.models.perks.Perk;
 import server.sources.models.perks.PotionPerk;
+import server.sources.notifications.ShowBuildRewardNotification;
 
 import java.lang.reflect.Array;
 import java.rmi.RemoteException;
@@ -296,7 +297,11 @@ public class BuildController implements SelectableControllerInterface, Observabl
             for (VillagerInterface villager: usedTrainerVillagers) {
                 villager.tire();
             }
-            this.client.showBuildReward(selected.getModel());
+
+            this.client.getGameClient().getServer().notifyClients(
+                new ShowBuildRewardNotification(selected.getModel())
+            );
+
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {

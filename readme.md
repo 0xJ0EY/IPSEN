@@ -75,7 +75,7 @@ TODO
  - [x] Cider inbouwen in de belowview
 
 Known bugs.   
- - [ ] bug rewards -> Build and train only for active player instead of all
+ - [x] bug rewards -> Build and train only for active player instead of all
  - [x] Bug Train -> Andere spelers kunnen ook kopen.  
  - [x] Bug train -> speler is halverwege niet meer aan de beurt.  
  - [x] Bug Build -> on cancel in the build market the villager is tired but not realy used.

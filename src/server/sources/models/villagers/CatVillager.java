@@ -26,6 +26,8 @@ public class CatVillager extends Villager {
      */
     @Override
     public boolean isUsable() throws RemoteException {
+        if (this.state != VillagerState.USABLE) return false;
+
         Dice dice = new Dice();
         dice.roll();
 

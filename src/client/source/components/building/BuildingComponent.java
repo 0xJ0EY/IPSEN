@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import server.sources.interfaces.BuildingInterface;
 import server.sources.models.perks.Harvestable;
 import server.sources.models.perks.Perk;
+import server.sources.models.perks.Refreshable;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -51,10 +52,15 @@ public class BuildingComponent extends AnchorPane {
             for (Perk perk : this.building.listPerks()) {
                 PerkComponent perkComponent = null;
 
-                if (perk instanceof Harvestable) {
+                if (perk instanceof Refreshable) {
                     perkComponent = new RefreshablePerkComponent();
+
+                } else if (perk instanceof Harvestable) {
+                    perkComponent = new HarvestablePerkComponent();
+
                 } else {
                     perkComponent = new PerkComponent();
+
                 }
 
                 perkComponent.setBuildingComponent(this);

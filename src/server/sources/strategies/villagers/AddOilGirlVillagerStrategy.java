@@ -22,6 +22,7 @@ public class AddOilGirlVillagerStrategy implements AddVillagerStrategy {
         try {
             VillagerFactory villagerFactory = new VillagerFactory();
             playerboard.addVillager(villagerFactory.createOilGirlVillager());
+            playerboard.getPlayer().changeReputation(-1);
 
         } catch (ParserConfigurationException | RemoteException e) {
             e.printStackTrace();

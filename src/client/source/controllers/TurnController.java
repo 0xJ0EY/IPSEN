@@ -97,13 +97,15 @@ public class TurnController implements Observable {
      */
     @FXML private void harvest() throws RemoteException {
 
+        int maximumHarvestActions = client.getGameClient().getPlayer().getPlayerBoard().countHarvestableBuildings();
+
         client.showVillagerSelection(
             new AllVillagerSelectionFactory(),
             new HarvestAction(this.client.getGameClient()),
             new RequestStrategy(),
             new MultipleSelectionFactory(),
                 1,
-                0 // Has to be equal to amount of possible harvest actions
+            maximumHarvestActions
         );
 
     }
