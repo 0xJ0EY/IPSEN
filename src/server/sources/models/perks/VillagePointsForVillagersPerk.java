@@ -22,8 +22,8 @@ public class VillagePointsForVillagersPerk implements Perk, EndOfGame {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
-        this. gameClient = gameClient;
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
+     this.gameClient = gameClient;
     }
 
     @Override

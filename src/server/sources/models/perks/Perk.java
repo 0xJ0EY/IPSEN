@@ -10,8 +10,7 @@ import java.rmi.RemoteException;
  */
 public interface Perk extends Serializable {
 
-    public String getBackground();
+    public String getBackground() throws RemoteException;
 
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException;
-
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException;
 }

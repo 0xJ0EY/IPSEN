@@ -22,7 +22,7 @@ public class VillagePointsForEmptyCavePerk implements Perk, EndOfGame {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameClient = gameClient;
     }
 

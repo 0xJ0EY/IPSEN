@@ -1,4 +1,9 @@
 package server.sources.models.perks;
 
-public class ActivateOnObtainedInterface {
+import server.sources.interfaces.GameClientInterface;
+
+import java.rmi.RemoteException;
+
+public interface ActivateOnObtainedInterface  {
+    public void activateOnObtainedPerk() throws RemoteException;
 }

@@ -7,8 +7,9 @@ import java.rmi.RemoteException;
 /**
  * Created by robin on 28-5-2018.
  */
-public class TrainToReadyPerk implements Perk {
+public class TrainToReadyPerk implements Perk, ActivateOnObtainedInterface {
     private String perk = "Train to ready";
+    private GameClientInterface gameClient;
 
     @Override
     public String getBackground() {
@@ -16,8 +17,13 @@ public class TrainToReadyPerk implements Perk {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
+        this.gameClient = gameClient;
+    }
+
+    @Override
+    public void activateOnObtainedPerk() throws RemoteException {
         gameClient.getPlayer().getPlayerBoard().obtainedTrainToReadyPerk();
-        System.out.println("Train to ready is set true.");
+
     }
 }

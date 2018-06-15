@@ -35,7 +35,7 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
 
     }
 

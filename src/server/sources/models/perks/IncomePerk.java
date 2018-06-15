@@ -22,13 +22,13 @@ public class IncomePerk implements Perk, Refreshable {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
         this.gameclient = gameClient;
     }
 
     @Override
     public void refresh() throws RemoteException {
         this.gameclient.getPlayer().getPlayerBoard().addCoins(value);
-        System.out.println("Coins increased due incomeperk");
+
     }
 }

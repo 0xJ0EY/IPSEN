@@ -7,9 +7,10 @@ import java.rmi.RemoteException;
 /**
  * Created by robin on 28-5-2018.
  */
-public class CiderPerk implements Perk {
+public class CiderPerk implements Perk, ActivateOnObtainedInterface {
 
     private int value;
+    private GameClientInterface gameClient;
 
     public CiderPerk(int value){
         this.value = value;
@@ -21,7 +22,12 @@ public class CiderPerk implements Perk {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
+        this.gameClient = gameClient;
+    }
 
+    @Override
+    public void activateOnObtainedPerk() throws RemoteException {
+        this.gameClient.getPlayer().getPlayerBoard().addCider();
     }
 }

@@ -7,9 +7,10 @@ import java.rmi.RemoteException;
 /**
  * Created by robin on 28-5-2018.
  */
-public class CoinPerk implements Perk {
+public class CoinPerk implements Perk, ActivateOnObtainedInterface {
 
     private int value;
+    private  GameClientInterface gameClient;
 
     public CoinPerk(int value) {
         this.value = value;
@@ -21,7 +22,12 @@ public class CoinPerk implements Perk {
     }
 
     @Override
-    public void activateOnObtainedPerk(GameClientInterface gameClient) throws RemoteException {
+    public void setGameClient(GameClientInterface gameClient) throws RemoteException {
+        this.gameClient = gameClient;
+    }
 
+    @Override
+    public void activateOnObtainedPerk() throws RemoteException {
+        this.gameClient.getPlayer().getPlayerBoard().addCoins(value);
     }
 }
