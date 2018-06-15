@@ -226,7 +226,6 @@ public class AboveController implements Observable {
      * For updating a container of available goods
      * @author Joey de Ruiter
      */
-    // TODO: Move to its own controller?
     private void updateGoods() {
         this.goods.getChildren().clear();
 
@@ -255,7 +254,6 @@ public class AboveController implements Observable {
      * For updating a container of advancement tracker with goods, points, etc.
      * @author Joey de Ruiter
      */
-    // TODO: Move to its own controller?
     private void updateAdvancementTracker() {
         this.advancementTracker.getChildren().clear();
 
@@ -280,6 +278,5 @@ public class AboveController implements Observable {
             e.printStackTrace();
         }
 
-        // TODO: Fill all other 8 spaces
     }
 }

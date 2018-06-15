@@ -278,7 +278,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
         SelectableBuildingComponent selected = selectedBuildings.get(0);
 
         if (selected.getModel().getCost() > this.target.getPlayerBoard().getCoins()) {
-            this.showMessage("Not sufficient funds.");
+            this.showMessage("Insufficient funds.");
             this.enableBuying();
             return;
         }
@@ -383,5 +383,14 @@ public class BuildController implements SelectableControllerInterface, Observabl
         }
 
         return false;
+    }
+
+    public boolean hasTurn() {
+        try {
+            return this.target.getGameClient().equals(client.getGameClient());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

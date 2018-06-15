@@ -4,7 +4,8 @@
  - [x] Verkopen Voorwerp (Jan Douwe)
  - [x] Kopen Voorwerp (Jan Douwe)
  
- - [ ] Perks!
+ - [x] Perks!
+ - [ ] S.P.E.C.I.A.L Villagers
 
  - [x] Turn controller.  
 
@@ -53,13 +54,13 @@
 TODO
  - [x] Add message to the saving error
  - [ ] UI Improvements
- - [ ] Key bindings on turn buttons (important)
+ - [ ] **Key bindings on turn buttons (important)**
  - [x] JavaDoc
  - [x] Below view maken
  - [x] Marketview
- - [ ] Building perks
+ - [x] Building perks
  - [x] Rewards(view) Richard
- - [ ] Check cave card by gebouwen & playerboard Richard
+ - [x] Check cave card by gebouwen & playerboard Richard
  - [x] End of round Joey
  - [ ] Bought villagers icon/functional
  - [x] Buyable houses/villagers

@@ -33,8 +33,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private AdvancementTracker advancementTracker = new AdvancementTracker(this);
 
-    private int ciders = 2;
-    private int potions = 2;
+    private int ciders = 0;
+    private int potions = 0;
     private int coins = 10;
     private int beds = 3;
     private int caveCards = 0;

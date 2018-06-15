@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -14,6 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane fx:id="root" onKeyPressed="#keys" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.TrainController">
     <children>
@@ -46,5 +48,17 @@
                 <Button fx:id="buyButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickTrain" text="Train (T)" GridPane.columnIndex="1" />
             </children>
         </GridPane>
+        <HBox alignment="CENTER" mouseTransparent="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Text fx:id="message" strokeType="OUTSIDE" strokeWidth="0.0" text="Message" textAlignment="CENTER" visible="false">
+                    <HBox.margin>
+                        <Insets bottom="50.0" />
+                    </HBox.margin>
+                    <font>
+                        <Font name="Comic Sans MS" size="36.0" />
+                    </font>
+                </Text>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

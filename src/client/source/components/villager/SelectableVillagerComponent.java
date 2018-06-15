@@ -1,6 +1,7 @@
 package client.source.components.villager;
 
 import client.source.controllers.VillagerSelectionController;
+import client.source.controllers.VillagerSelectionControllerInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -13,7 +14,7 @@ import java.rmi.RemoteException;
  */
 public abstract class SelectableVillagerComponent extends VillagerComponent {
 
-    protected VillagerSelectionController controller;
+    protected VillagerSelectionControllerInterface controller;
 
     protected boolean selectable = true;
     protected boolean selected;
@@ -125,7 +126,7 @@ public abstract class SelectableVillagerComponent extends VillagerComponent {
      * @param controller VillagerSelectionController
      * @author Joey de Ruiter
      */
-    public void setController(VillagerSelectionController controller) {
+    public void setController(VillagerSelectionControllerInterface controller) {
         this.controller = controller;
     }
 

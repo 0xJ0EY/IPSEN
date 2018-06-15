@@ -17,6 +17,8 @@ public class SingleSelectableVillagerComponent extends SelectableVillagerCompone
      */
     @FXML
     public void onClickSelect() {
+        if (!this.controller.hasTurn()) return;
+
         // Deselect all other villagers
         this.deselectVillagers();
 
@@ -25,7 +27,7 @@ public class SingleSelectableVillagerComponent extends SelectableVillagerCompone
 
     }
 
-    private void deselectVillagers() {
+    protected void deselectVillagers() {
         ArrayList<SelectableVillagerComponent> components = controller.getSelectedVillagerComponents();
 
         if (components == null || components.size() == 0) return;
