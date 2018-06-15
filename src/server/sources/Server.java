@@ -1,5 +1,6 @@
 package server.sources;
 
+import client.source.controllers.LobbyController;
 import server.sources.controllers.GameController;
 import server.sources.exceptions.GameStartedException;
 import server.sources.exceptions.ServerFullException;
@@ -7,6 +8,7 @@ import server.sources.interfaces.*;
 import server.sources.models.GameClient;
 import server.sources.models.Player;
 import server.sources.notifications.LobbyNotification;
+import server.sources.notifications.MorePlayersNotification;
 import server.sources.notifications.SaveGameNotification;
 import server.sources.notifications.UpdatePlayerListNotification;
 
@@ -154,9 +156,9 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         return gameController;
     }
 
-    public void startGame() {
-        this.updateState(ServerState.RUNNING);
-        new Thread(this.gameController).start();
+    public void startGame() throws RemoteException {
+            this.updateState(ServerState.RUNNING);
+            new Thread(this.gameController).start();
     }
 
     private void updateState(ServerState state) {
