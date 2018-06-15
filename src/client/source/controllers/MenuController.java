@@ -90,6 +90,12 @@ public class MenuController implements Observable {
                         this.onTurnClick();
                     }
                     break;
+                case S:
+                    this.onClickSettings();
+                    break;
+                case R:
+                    this.onRulesClick();
+                    break;
             }
         });
     }
