@@ -98,9 +98,9 @@ public class BuildController implements SelectableControllerInterface, Observabl
         if (target == null) return;
 
         try {
-            boolean turn = target.getGameClient().equals(this.client.getGameClient());
-            this.cancelButton.setDisable(!turn);
-            this.buyButton.setDisable(!turn);
+            boolean turn = !target.getGameClient().equals(this.client.getGameClient());
+            this.cancelButton.setDisable(turn);
+            this.buyButton.setDisable(turn);
 
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -203,7 +203,7 @@ public class BuildController implements SelectableControllerInterface, Observabl
      * @author Joey de Ruiter and Robin Silverio
      */
     public void setClient(Client client) throws RemoteException {
-        this.client = client;
+        this.client = client;;
 
         // Set market
         this.market = this.client.getGameClient().getServer().getGameController().getMarket();
