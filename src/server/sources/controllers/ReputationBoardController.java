@@ -29,7 +29,6 @@ public class ReputationBoardController extends UnicastRemoteObject implements Re
         if (!this.hasCider()) return;
 
         player.getPlayerBoard().addCider();
-        // TODO: 13/06/2018 Cider stays available
         this.useCider();
     }
 

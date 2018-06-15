@@ -215,7 +215,7 @@ public class BuildingFactory {
                     perks.add(
                         new IncomeForGoodsPerk(
                             Integer.parseInt(perkElement.getAttribute("value")),
-                            perkElement.getAttribute("good")
+                            this.getGoodFromString(perkElement.getAttribute("good"))
                         )
                     );
                     break;

@@ -51,6 +51,9 @@ public class BelowController implements ControllerInterface, Observable {
 
         // For updating the round marker
         this.client.gameObserver.attach(this);
+
+        // For updating the cider
+        this.client.reputationBoardObserver.attach(this);
     }
 
     public void showRound(int round) {
@@ -60,21 +63,27 @@ public class BelowController implements ControllerInterface, Observable {
                 break;
             case 2:
                 this.round2.setFill(Color.RED);
+                this.round1.setFill(Color.DODGERBLUE);
                 break;
             case 3:
                 this.round3.setFill(Color.RED);
+                this.round2.setFill(Color.DODGERBLUE);
                 break;
             case 4:
                 this.round4.setFill(Color.RED);
+                this.round3.setFill(Color.DODGERBLUE);
                 break;
             case 5:
                 this.round5.setFill(Color.RED);
+                this.round4.setFill(Color.DODGERBLUE);
                 break;
             case 6:
                 this.round6.setFill(Color.RED);
+                this.round5.setFill(Color.DODGERBLUE);
                 break;
             case 7:
                 this.round7.setFill(Color.RED);
+                this.round6.setFill(Color.DODGERBLUE);
                 break;
             default:
                 System.out.println("Game ended");
