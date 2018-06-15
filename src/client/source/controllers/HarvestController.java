@@ -8,6 +8,7 @@ import client.source.components.reward.GoodRewardComponent;
 import client.source.observers.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -42,6 +43,9 @@ public class HarvestController implements SelectableControllerInterface {
 
     @FXML private Text message;
 
+    @FXML private Button cancelButton;
+    @FXML private Button confirmButton;
+
     private ArrayList<BuildingInterface> buildings = new ArrayList<BuildingInterface>();
     private ArrayList<SelectableBuildingComponent> buildingComponents = new ArrayList<SelectableBuildingComponent>();
     private ArrayList<GoodRewardComponent> goods = new ArrayList<GoodRewardComponent>();
@@ -58,6 +62,8 @@ public class HarvestController implements SelectableControllerInterface {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+        this.loadButtons();
 
         this.createBuildingComponents();
 
@@ -200,7 +206,10 @@ public class HarvestController implements SelectableControllerInterface {
     }
 
     private void loadButtons() {
+        boolean turn = !this.hasTurn();
 
+        this.cancelButton.setDisable(turn);
+        this.confirmButton.setDisable(turn);
     }
 
     public void showMessage(String message) {

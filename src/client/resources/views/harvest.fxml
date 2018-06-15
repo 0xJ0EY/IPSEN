@@ -44,8 +44,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelAction" prefHeight="30.0" prefWidth="150.0" text="Cancel" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="30.0" prefWidth="150.0" text="Confirm" GridPane.columnIndex="1" />
+            <Button fx:id="cancelButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelAction" prefHeight="30.0" prefWidth="150.0" text="Cancel" />
+            <Button fx:id="confirmButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClickConfirm" prefHeight="30.0" prefWidth="150.0" text="Confirm" GridPane.columnIndex="1" />
          </children>
       </GridPane>
 
