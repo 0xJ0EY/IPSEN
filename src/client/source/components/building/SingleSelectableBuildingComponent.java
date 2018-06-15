@@ -13,6 +13,8 @@ public class SingleSelectableBuildingComponent extends SelectableBuildingCompone
      */
     @Override
     public void onClickCard() {
+        if (!this.controller.hasTurn()) return;
+
         this.deselectBuildings();
 
         this.toggleSelected();

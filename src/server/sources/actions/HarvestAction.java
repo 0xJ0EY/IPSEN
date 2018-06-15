@@ -77,6 +77,10 @@ public class HarvestAction implements VillagerActionInterface {
         this.selectedVillagers = villagers;
     }
 
+    public GameClientInterface getTarget() {
+        return target;
+    }
+
     public void setGoods(ArrayList<GoodRewardComponent> goods) {
         this.goods = goods;
     }

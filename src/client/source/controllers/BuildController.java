@@ -360,4 +360,13 @@ public class BuildController implements SelectableControllerInterface, Observabl
 
         return false;
     }
+
+    public boolean hasTurn() {
+        try {
+            return this.target.getGameClient().equals(client.getGameClient());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
