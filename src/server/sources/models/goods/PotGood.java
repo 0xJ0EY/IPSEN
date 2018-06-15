@@ -6,7 +6,7 @@ public class PotGood implements Good {
 
     @Override
     public String getBackground() {
-        return "pot.png";
+        return "pot_good.png";
     }
 
     public boolean sameInstance(Good good) {

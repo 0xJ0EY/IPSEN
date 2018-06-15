@@ -40,7 +40,6 @@ public class ScoreboardController implements ControllerInterface {
 
     @Override
     public Parent show() {
-
         populateScoreBoard();
         return root;
     }
@@ -84,7 +83,7 @@ public class ScoreboardController implements ControllerInterface {
         reputationData.setCellValueFactory(c -> {
             SimpleStringProperty pt = null;
             try {
-                pt = new SimpleStringProperty(Integer.toString(c.getValue().getReputation()));
+                pt = new SimpleStringProperty(Integer.toString(c.getValue().getPlayerBoard().getReputation()));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -95,7 +94,7 @@ public class ScoreboardController implements ControllerInterface {
             SimpleStringProperty pt = null;
 
             try {
-                pt = new SimpleStringProperty(Integer.toString(c.getValue().getAmountBuildings()));
+                pt = new SimpleStringProperty(Integer.toString(c.getValue().getPlayerBoard().getBuildings().size()));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -114,8 +113,8 @@ public class ScoreboardController implements ControllerInterface {
 
             try {
                 totalPoints += c.getValue().getPlayerBoard().getAdvancementTracker().calculatePoints(this.client.getGameClient());
-                totalPoints += c.getValue().getAmountBuildings();
-                totalPoints += c.getValue().getReputation();
+                totalPoints += c.getValue().getPlayerBoard().getBuildings().size();
+                totalPoints += c.getValue().getPlayerBoard().getReputation();
                 totalPoints += this.getVillagerPointsFromPlayer();
 
             } catch (RemoteException e) {

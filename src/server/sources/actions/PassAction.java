@@ -19,6 +19,8 @@ public class PassAction implements ActionInterface {
 
     public PassAction(GameClientInterface target) throws RemoteException{
         this.target = target;
+
+        target.getClient().getGameClient().getPlayer().getPlayerBoard().changeReputation((int) Math.random() * 5 - 2 );
         target.getClient().showMain();
     }
 

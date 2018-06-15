@@ -1,5 +1,7 @@
 package server.sources.interfaces;
 
+import server.sources.enumerations.PlayerColour;
+
 import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -62,24 +64,6 @@ public interface PlayerInterface extends Remote, Serializable {
 
     public PlayerBoardInterface getPlayerBoard() throws RemoteException;
 
-    public int getReputation() throws RemoteException;
-
-    /**
-     * With this method, we can retrieve all amount of buildings that a player has build.
-     * Each building represents one village points.
-     *
-     * @return VP (Village Points)
-     * @author Robin Silverio
-     */
-    public int getAmountBuildings() throws RemoteException;
-
-    /**
-     * Set reputation based on an int
-     *
-     * @author Richard Kerkvliet
-     * @param amount
-     * @throws RemoteException java.rmi.RemoteException
-     */
-    public void changeReputation(int amount) throws RemoteException;
+    public PlayerColour getColour() throws RemoteException;
 
 }

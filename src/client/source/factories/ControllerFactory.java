@@ -4,7 +4,6 @@ import client.source.Client;
 import client.source.controllers.*;
 import javafx.fxml.FXMLLoader;
 
-import java.awt.image.BufferedImageOp;
 import java.io.IOException;
 
 /**
@@ -341,7 +340,7 @@ public class ControllerFactory {
         SellGoodController sellGoodController = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/sellGood.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/sell_good.fxml"));
             loader.load();
 
             sellGoodController = loader.getController();
@@ -356,7 +355,7 @@ public class ControllerFactory {
         BuyGoodController buyGoodController = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/buyGood.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/resources/views/buy_good.fxml"));
             loader.load();
 
             buyGoodController = loader.getController();

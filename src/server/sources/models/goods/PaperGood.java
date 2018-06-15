@@ -6,7 +6,7 @@ public class PaperGood implements Good {
 
     @Override
     public String getBackground() {
-        return "paper.png";
+        return "paper_good.png";
     }
 
     public boolean sameInstance(Good good) {

@@ -21,6 +21,9 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
 
     private static final long serialVersionUID = 1337L;
 
+    private final int MAX_REPUTATION = 8;
+    private final int MIN_REPUTATION = -2;
+
     private EndOfRound endOfRound = new EndOfRound(this);
 
     private PlayerInterface player;
@@ -39,6 +42,8 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     private int beds = 3;
     private int caveCards = 0;
     private int rerolls = 0;
+
+    private int reputation = 0;
 
     private boolean hasTrainToReadyPerk = false;
     private boolean hasCoinForBuildPerk = false;
@@ -173,12 +178,6 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
     @Override
     public void useBed() throws RemoteException {
         this.beds--;
-        this.updateObserver();
-    }
-
-    @Override
-    public void addBeds(int amount) throws RemoteException{
-        this.beds += amount;
         this.updateObserver();
     }
 
@@ -558,13 +557,30 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         this.rerolls++;
     }
 
-    @Override
-    public void clearRerolls() throws RemoteException {
+    private void clearRerolls() {
         this.rerolls = 0;
     }
 
     @Override
     public PlayerInterface getPlayer() throws RemoteException {
         return this.player;
+    }
+
+    @Override
+    public void changeReputation(int amount) throws RemoteException {
+
+        // Clamp reputation
+        this.reputation = Math.max(
+            this.MIN_REPUTATION,
+            Math.max(
+                this.MAX_REPUTATION,
+                this.reputation + amount
+            )
+        );
+    }
+
+    @Override
+    public int getReputation() throws RemoteException {
+        return this.reputation;
     }
 }

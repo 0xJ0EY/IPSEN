@@ -7,12 +7,12 @@
 
 <AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.BuyGoodController">
    <children>
-      <TextField layoutX="241.0" layoutY="14.0" prefHeight="26.0" prefWidth="117.0" text="Wich do you want?" />
+      <TextField layoutX="241.0" layoutY="14.0" prefHeight="26.0" prefWidth="117.0" text="Wich do you want?" AnchorPane.topAnchor="10.0" />
       <FlowPane fx:id="goods" layoutY="40.0" prefHeight="200.0" prefWidth="600.0" />
-      <Button id="ConfirmSelection" layoutX="122.0" layoutY="316.0" mnemonicParsing="false" onAction="#confirmSelection" prefHeight="50.0" prefWidth="150.0" text="Confirm" />
-      <TextField fx:id="inputField" layoutX="287.0" layoutY="272.0" prefHeight="26.0" prefWidth="26.0" />
-      <Button layoutX="314.0" layoutY="272.0" mnemonicParsing="false" onAction="#addBid" prefHeight="26.0" prefWidth="26.0" text="+" />
-      <Button layoutX="260.0" layoutY="272.0" mnemonicParsing="false" onAction="#subtracktBid" prefHeight="26.0" prefWidth="26.0" text="-" />
-      <Button id="ConfirmSelection" layoutX="327.0" layoutY="316.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="50.0" prefWidth="150.0" text="Cancel" />
+      <Button id="ConfirmSelection" layoutX="122.0" layoutY="316.0" mnemonicParsing="false" onAction="#confirmSelection" prefHeight="50.0" prefWidth="150.0" text="Confirm" AnchorPane.bottomAnchor="33.6" />
+      <TextField fx:id="inputField" layoutX="273.0" layoutY="271.0" prefHeight="26.0" prefWidth="54.0" />
+      <Button layoutX="341.0" layoutY="267.0" mnemonicParsing="false" onAction="#addBid" prefHeight="35.0" prefWidth="35.0" text="+" />
+      <Button layoutX="223.0" layoutY="267.0" mnemonicParsing="false" onAction="#subtracktBid" prefHeight="35.0" prefWidth="35.0" text="-" />
+      <Button id="ConfirmSelection" layoutX="327.0" layoutY="316.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="50.0" prefWidth="150.0" text="Cancel" AnchorPane.bottomAnchor="33.6" />
    </children>
 </AnchorPane>

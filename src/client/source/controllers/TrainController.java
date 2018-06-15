@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class TrainController implements VillagerSelectionControllerInterface {
 
     private final int minimumRequiredVillagers = 1;
-    private final int basePrice = 2;
 
     private Client client;
     private MarketInterface market;
