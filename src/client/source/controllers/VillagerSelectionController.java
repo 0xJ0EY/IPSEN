@@ -11,6 +11,7 @@ import client.source.strategies.VillagerSelectionStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import server.sources.interfaces.VillagerActionInterface;
@@ -132,6 +133,22 @@ public class VillagerSelectionController implements ControllerInterface {
     private void onClickCancel() {
         // Just show the main screen
         this.client.showMain();
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case ESCAPE:
+                    this.onClickCancel();
+                    break;
+                case ENTER:
+                    if(!this.selectButton.isDisabled()) {
+                        this.onClickSelect();
+                    }
+                    break;
+            }
+        });
     }
 
     /**
