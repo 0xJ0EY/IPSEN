@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url('/client/resources/img/background-game.png'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.source.controllers.AboveController">
    <children>
-      <AnchorPane layoutY="430.0" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0">
+      <AnchorPane layoutY="430.0" prefHeight="120.0" prefWidth="300.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0">
          <children>
             <Label fx:id="labelCoins" layoutX="14.0" layoutY="14.0" text="# Coins" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -36,9 +36,9 @@
       <FlowPane fx:id="tiredVillagers" alignment="TOP_RIGHT" hgap="10.0" layoutX="500.0" layoutY="230.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="270.0" AnchorPane.rightAnchor="0.0" />
       <FlowPane fx:id="injuredVillagers" alignment="TOP_RIGHT" hgap="10.0" layoutX="500.0" layoutY="30.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="470.0" AnchorPane.rightAnchor="0.0" />
       <FlowPane fx:id="activeVillagers" hgap="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" />
-      <AnchorPane layoutX="840.0" layoutY="430.0" prefHeight="70.0" prefWidth="160.0" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="840.0" layoutY="430.0" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="200.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="labelIncome" layoutX="14.0" layoutY="22.0" text="# Coins" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="21.0">
+            <Label fx:id="labelIncome" layoutX="14.0" layoutY="22.0" text="# Coins" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font size="20.0" />
                </font>

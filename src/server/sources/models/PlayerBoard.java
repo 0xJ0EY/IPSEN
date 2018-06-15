@@ -63,7 +63,7 @@ public class PlayerBoard extends UnicastRemoteObject implements PlayerBoardInter
         ArrayList<Lantern> lanternsBuilder = new ArrayList<Lantern>();
         lanternsBuilder.add(new Lantern(4, 1));
 
-        villagers.add(new TrainerVillager(lanternsBuilder, Villager.VillagerState.USABLE, "villager_background_02.png"));
+        villagers.add(new BuilderVillager(lanternsBuilder, Villager.VillagerState.USABLE, "villager_background_02.png"));
 
         // Normal
         ArrayList<Lantern> lanternsNormal = new ArrayList<Lantern>();
