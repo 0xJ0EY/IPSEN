@@ -4,6 +4,7 @@ import client.source.Client;
 import client.source.components.villager.RestVillagerComponent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import server.sources.actions.RestVillagerAction;
 import server.sources.interfaces.PlayerBoardInterface;
@@ -117,5 +118,20 @@ public class VillagerRestController implements ControllerInterface {
         this.client.getGameClient().getPlayer().doAction(new RestVillagerAction());
         this.client.showMain();
 
+    }
+
+    @FXML public void keys() {
+        root.setOnKeyPressed(e -> {
+            KeyCode keyCode = e.getCode();
+            switch (keyCode) {
+                case D:
+                    try {
+                        this.onClickSelect();
+                    } catch (RemoteException e1) {
+                        e1.printStackTrace();
+                    }
+                    break;
+            }
+        });
     }
 }
