@@ -30,7 +30,7 @@ public class CiderRewardComponent extends RewardComponent<CiderReward> {
     @Override
     public void load() throws RemoteException {
         this.background.setStyle(
-            "-fx-background-image: url('/client/resources/img/rewards/cider.png" + "');" +
+            "-fx-background-image: url('/client/resources/img/perks/cider.png" + "');" +
             "-fx-background-repeat: stretch;" +
             "-fx-background-position: center center;" +
             "-fx-background-size: 50 50"

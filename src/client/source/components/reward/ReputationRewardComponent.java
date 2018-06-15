@@ -30,7 +30,7 @@ public class ReputationRewardComponent extends RewardComponent<ReputationReward>
     @Override
     public void load() throws RemoteException {
         this.background.setStyle(
-            "-fx-background-image: url('/client/resources/img/rewards/reputation.png" + "');" +
+            "-fx-background-image: url('/client/resources/img/perks/reputation.png" + "');" +
             "-fx-background-repeat: stretch;" +
             "-fx-background-position: center center;" +
             "-fx-background-size: 50 50"
