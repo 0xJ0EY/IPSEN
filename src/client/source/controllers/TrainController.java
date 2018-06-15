@@ -125,6 +125,7 @@ public class TrainController implements ControllerInterface {
         for(int i=0; i < villagerComponents.size(); i++){
             TrainerVillagerComponent villager = villagerComponents.get(i);
             if(villager.isSelected()){
+                playerboard.payCoin(villager.getPrice());
                 market.buyRemoteVillager(client.getGameClient(), villager.getVillager());
                 this.availableVillagers[i] = null;
                 client.showTrainReward(villager);

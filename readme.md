@@ -15,7 +15,7 @@
        Disable de knop van trainer als er geen actieve trainers zijn    
 
  
- - [ ] Trainen villager.
+ - [x] Trainen villager.
  
        gebruikte villagers vermoeien (werkt)
        speler betalen villagers
