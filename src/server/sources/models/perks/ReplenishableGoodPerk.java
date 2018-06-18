@@ -31,7 +31,7 @@ public class ReplenishableGoodPerk implements Harvestable, Refreshable {
      * @return
      */
     public String getBackground() {
-        return "../good/" + good.getBackground();
+        return "../goods/" + good.getBackground();
     }
 
     @Override
